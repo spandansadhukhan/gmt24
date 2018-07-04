@@ -1,0 +1,92 @@
+<!--
+  Generated template for the MyproductPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>My Product</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item class="request-item" *ngFor="let p of productlists">
+      <ion-thumbnail item-start>
+        <img src="{{p.image}}">
+      </ion-thumbnail>
+      <h2>{{p.brand_name}}</h2>
+      <p class="name" *ngIf="p.approved==1 && p.live_status==1"><span>Expire on:</span> {{p.expiry_date}}</p>
+      <p class="info">{{p.description}}</p>
+      <p class="price"><span>KWD</span> {{p.price}}</p>
+      <div *ngIf="p.approved==1 && p.live_status==1">
+      <button ion-button round class="blue-btn ml-0">Send for Auction</button>
+      <button ion-button round class="brown-btn" (click)="deleteproduct(p.id)">Delete</button>
+      <button ion-button round class="dark-grey-btn" *ngIf="p.product_status== 0">Mark as sold</button>
+      <button ion-button round class="dark-grey-btn" *ngIf="p.product_status== 1" disabled>sold</button>
+      </div>
+      <div *ngIf="p.approved==0">
+        <button ion-button round class="dark-grey-btn" disabled>Wait for Approval</button>
+      </div>
+      <div *ngIf="p.approved==1 && p.live_status==0 && utype==1">
+        <button ion-button round class="blue-btn ml-0">Pay Now</button>
+      </div>
+    </ion-item>
+
+    <ion-item *ngIf="productlists== ''"> 
+            
+      <h2>{{msg}}</h2>
+      
+    </ion-item> 
+
+    <!-- <ion-item class="request-item">
+      <ion-thumbnail item-start>
+        <img src="assets/img/watch-5.png">
+      </ion-thumbnail>
+      <h2>Rolex Cosmograph Daytona</h2>
+      <p class="name">
+        <span>Seller:</span> Unimax Bros.</p>
+      <p class="info">Lorem Ipsum is simply dumy text of the watch printing and typesetting industry.</p>
+      <p class="price">
+        <span>$</span> 27.25</p>
+      <button ion-button round class="blue-btn ml-0">Accept</button>
+      <button ion-button round class="brown-btn">Reject</button>
+      <button ion-button round class="dark-grey-btn">View</button>
+    </ion-item>
+
+    <ion-item class="request-item">
+      <ion-thumbnail item-start>
+        <img src="assets/img/watch-4.png">
+      </ion-thumbnail>
+      <h2>Rolex Cosmograph Daytona</h2>
+      <p class="name">
+        <span>Seller:</span> Unimax Bros.</p>
+      <p class="info">Lorem Ipsum is simply dumy text of the watch printing and typesetting industry.</p>
+      <p class="price">
+        <span>$</span> 27.25</p>
+      <button ion-button round class="blue-btn ml-0">Accept</button>
+      <button ion-button round class="brown-btn">Reject</button>
+      <button ion-button round class="dark-grey-btn">View</button>
+    </ion-item>
+
+    <ion-item class="request-item">
+      <ion-thumbnail item-start>
+        <img src="assets/img/watch-3.png">
+      </ion-thumbnail>
+      <h2>Rolex Cosmograph Daytona</h2>
+      <p class="name">
+        <span>Seller:</span> Unimax Bros.</p>
+      <p class="info">Lorem Ipsum is simply dumy text of the watch printing and typesetting industry.</p>
+      <p class="price">
+        <span>$</span> 27.25</p>
+      <button ion-button round class="blue-btn ml-0">Accept</button>
+      <button ion-button round class="brown-btn">Reject</button>
+      <button ion-button round class="dark-grey-btn">View</button>
+    </ion-item> -->
+    
+  </ion-list>
+</ion-content>

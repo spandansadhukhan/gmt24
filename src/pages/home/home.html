@@ -1,14 +1,138 @@
+<!--
+  Generated template for the HomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
   </ion-navbar>
+  <ion-searchbar></ion-searchbar>
 </ion-header>
 
+
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <h6 class="text-uppercase">Recommended for you</h6>
+  <ion-slides pager>
+    <ion-slide class="slide-holder">
+      <div class="item-image">
+        <img src="assets/img/item-1.jpg" alt="Item">
+      </div>
+      <h6>Rolex Daytona round golden</h6>
+      <p class="price"><span><img src="assets/img/tick.png" alt="image"></span> $18.00</p>
+    </ion-slide>
+    <ion-slide class="slide-holder">
+      <div class="item-image">
+        <img src="assets/img/item-2.jpg" alt="Item">
+      </div>
+      <h6>Rolex Daytona round golden</h6>
+      <p class="price">
+        <span>
+          <img src="assets/img/tick.png" alt="image">
+        </span> $18.00</p>
+    </ion-slide>
+    <ion-slide class="slide-holder">
+      <div class="item-image">
+        <img src="assets/img/item-3.jpg" alt="Item">
+      </div>
+      <h6>Rolex Daytona round golden</h6>
+      <p class="price">
+        <span>
+          <img src="assets/img/tick.png" alt="image">
+        </span> $18.00</p>
+    </ion-slide>
+    <ion-slide class="slide-holder">
+      <div class="item-image">
+        <img src="assets/img/item-4.jpg" alt="Item">
+      </div>
+      <h6>Rolex Daytona round golden</h6>
+      <p class="price">
+        <span>
+          <img src="assets/img/tick.png" alt="image">
+        </span> $18.00</p>
+    </ion-slide>
+</ion-slides>
+
+<h6 class="text-uppercase">Top Models</h6>
+<ion-slides pager>
+  <ion-slide class="slide-holder" *ngFor="let tm of topmodellists">
+    <div class="item-image">
+      <img src="{{tm.product_image}}" alt="Item">
+    </div>
+    <h6>{{tm.product_name}}</h6>
+    
+  </ion-slide>
+  
+  
+  
+</ion-slides>
+
+<h6 class="text-uppercase">Top Brands</h6>
+<ion-slides pager>
+  <ion-slide class="slide-holder" *ngFor="let tb of brandlists">
+    <div class="item-image">
+      <img src="{{tb.brand_image}}" alt="Item">
+    </div>
+    <h6>{{tb.brand_name}}</h6>
+    
+  </ion-slide>
+ 
+  
+  <!-- <ion-slide class="slide-holder">
+    <div class="item-image">
+      <img src="assets/img/item-3.jpg" alt="Item">
+    </div>
+    <h6>Rolex Daytona round golden</h6>
+    <p class="price">
+      <span>
+        <img src="assets/img/tick.png" alt="image">
+      </span> $18.00
+      <span class="old-price">$19.00</span>
+    </p>
+  </ion-slide> -->
+</ion-slides>
+  
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar class="p-0">
+    <ion-grid class="p-0">
+      <ion-row class="row-bottom">
+        <ion-col text-center>
+          <a>
+            <span class="profile"><img src="assets/img/cate-pic-a.png" alt="image"></span>
+            <p>Profile</p>
+          </a>
+        </ion-col>
+        <ion-col text-center>
+          <a (click)="selectrepair()">
+            <span class="footer-icon"><img src="assets/img/icon-auction.png" alt="image"></span>
+            <p>Auction</p>
+          </a>
+        </ion-col>
+        <ion-col text-center>
+          <a>
+            <span class="footer-icon"><img src="assets/img/icon-notification.png" alt="image"></span>
+            <p>Notifications</p>
+          </a>
+        </ion-col>
+        <ion-col text-center>
+          <a>
+            <span class="footer-icon"><img src="assets/img/icon-settings.png" alt="image"></span>
+            <p>Settings</p>
+          </a>
+        </ion-col>
+        <ion-col text-center>
+          <a (click)="profiledetails()">
+            <span class="footer-icon"><img src="assets/img/icon-filter.png" alt="image"></span>
+            <p>Filter</p>
+          </a>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

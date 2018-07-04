@@ -1,1 +1,55 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<!-- <ion-nav [root]="rootPage"></ion-nav> -->
+<ion-split-pane >
+
+    <ion-menu id="loggedOutMenu" [content]="content" >
+      <ion-header>
+        <ion-item class="side-bar-header">
+          <div class="logo">
+            <img src="assets/img/appicon.png" alt="Ionic logo">
+          </div>
+        </ion-item>
+      </ion-header>
+     
+      <ion-content >
+        <ion-card class="sidepanel-list">
+          <ion-item menuClose (click)="myaccount()">
+            <ion-icon name="person" item-start ></ion-icon> Profile
+          </ion-item>
+          <ion-item menuClose (click)="changepassword()">
+            <ion-icon name="unlock" item-start></ion-icon> Change Password
+          </ion-item> 
+          
+          <ion-item menuClose (click)="notifications()">
+            <ion-icon name="notifications" item-start></ion-icon> Notifications
+          </ion-item>
+
+          <ion-item menuClose (click)="addproduct()">
+            <ion-icon name="add-circle" item-start></ion-icon> Add Product
+          </ion-item>
+
+          <ion-item menuClose (click)="myproduct()">
+            <ion-icon name="watch" item-start></ion-icon> My Product
+          </ion-item>
+          
+          <ion-item menuClose (click)="myauction()">
+            <ion-icon name="watch" item-start></ion-icon> My Auction
+          </ion-item>
+
+
+          <ion-item menuClose (click)="logout()">
+            <ion-icon name="power" item-start></ion-icon> Log out
+          </ion-item>
+
+        </ion-card>
+      </ion-content>
+
+  
+    </ion-menu>
+  
+    
+  
+    <!-- main navigation -->
+    <ion-nav [root]="rootPage" #content swipeBackEnabled="false" main name="app"></ion-nav>
+  
+  </ion-split-pane>
+  
