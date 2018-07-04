@@ -73,7 +73,34 @@ export class HomePage {
 
   }
 
-
+ brandList(){
+   
+    this.storage.get('uid').then(val => {
+      this.id = val;
+    let serval={
+      "user_id":this.id,
+     };
+    this.authService.postData(serval,'listbrand').then((result) => {
+      this.responseData = result
+ 
+      if( this.responseData.Ack == 1)
+      {
+       
+        this.brandlists =  this.responseData.brandlist;
+        
+      }
+      else
+      {
+        this.brandlists = '';
+      }
+     
+    }, (err) => {
+      
+      console.log(err);
+      
+    });
+  });
+}
 
 
 }
