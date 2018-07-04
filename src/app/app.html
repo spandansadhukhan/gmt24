@@ -31,10 +31,21 @@
             <ion-icon name="watch" item-start></ion-icon> My Product
           </ion-item>
           
+          <ion-item menuClose (click)="wishlist()">
+            <ion-icon name="heart" item-start></ion-icon> Favourite/Wishlist
+          </ion-item>
+
           <ion-item menuClose (click)="myauction()">
             <ion-icon name="watch" item-start></ion-icon> My Auction
           </ion-item>
 
+          <ion-item menuClose (click)="purchase()">
+            <ion-icon name="hammer" item-start></ion-icon> Purchased/ Won Auction
+          </ion-item>
+
+          <ion-item menuClose (click)="myInterest()">
+            <ion-icon name="thumbs-up" item-start></ion-icon> My Interest 
+          </ion-item>
 
           <ion-item menuClose (click)="logout()">
             <ion-icon name="power" item-start></ion-icon> Log out

@@ -115,4 +115,18 @@ abc(){
         
         }
 
+       public wishlist()
+        {
+          this.nav.push ('WishlistPage')
+        }
+
+        public purchase()
+        {
+          this.nav.push('ListOrderBuyerPage')
+        }
+
+        public myInterest()
+        {
+          this.nav.push('MyInterestPage')
+        }
 }
