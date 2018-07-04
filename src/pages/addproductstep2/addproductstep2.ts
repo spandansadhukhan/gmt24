@@ -43,7 +43,7 @@ export class Addproductstep2Page {
         'owner_number': [null, Validators.required],
         'country': [null, Validators.required],
         'state': [null, Validators.required],
-        'city': [null, Validators.required],
+        'city': [null, ""],
         'date_of_purchase': ["",""],
         
       });

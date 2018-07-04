@@ -46,9 +46,9 @@
             Brand is required </p>
         <ion-item>
             <ion-label stacked color="primary">Breslet Type</ion-label>
-            <ion-select name="breslet_type" formControlName="breslet_type">
-              <ion-option value="M">Metal</ion-option>
-              <ion-option value="L">Leather</ion-option>
+            <ion-select name="breslet_type" formControlName="breslet_type" >
+              <ion-option *ngFor="let bl of braceletlists" value="{{bl.id}}">{{bl.type}}</ion-option>
+              
             </ion-select>
         </ion-item>
         <p *ngIf="!pForm.controls['breslet_type'].valid && pForm.controls['breslet_type'].touched" ion-text color="danger" padding-left>

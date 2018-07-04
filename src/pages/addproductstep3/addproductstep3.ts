@@ -103,8 +103,10 @@ export class Addproductstep3Page {
     console.log('spandanproduct',formData);
      this.authService.productadd(formData).subscribe(res=>{
       
-       if(res.AcK==1){
+       if(res.Ack==1){
         loading.dismiss();
+        this.uploadImage(res.lastid);
+        
         console.log(res);
          const alert = this.alertCtrl.create({
            title: res.msg,
@@ -154,6 +156,8 @@ export class Addproductstep3Page {
 
 
 
+  //image upload
+
   presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
       enableBackdropDismiss: true,
@@ -178,12 +182,8 @@ export class Addproductstep3Page {
 
 
 
-
   uploadFromCamera(sourceType){
-    // this.loading = this.loadingCtrl.create({
-    //   content: 'Uploading...',
-    // });
-    // this.loading.present();
+
     var options = {
       quality: 100,
       sourceType: sourceType,
@@ -193,23 +193,19 @@ export class Addproductstep3Page {
    
     // Get the data of an image
     this.camera.getPicture(options).then((imagePath) => {
-      this.loading = this.loadingCtrl.create({
-        content: 'Uploading...',
-      });
-      this.loading.present();
       // Special handling for Android library
       if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
         this.filePath.resolveNativePath(imagePath)
           .then(filePath => {
             let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-            let curidentifierModuleUrlrentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
+            let currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
             this.copyFileToLocalDir(correctPath, currentName, this.createFileName(currentName));
           });
       } else {
         var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
         var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
         this.copyFileToLocalDir(correctPath, currentName, this.createFileName(currentName));
-      }identifierModuleUrl
+      }
     }, (err) => {
       this.presentToast('Error while selecting image.');
     });
@@ -225,14 +221,11 @@ export class Addproductstep3Page {
   }
 
   private copyFileToLocalDir(namePath, currentName, newFileName) {
-   
    console.log("CURRENTFILENAME",currentName);
     this.file.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(success => {
       this.lastImage = newFileName;
       console.log("NEWFILENAMEEEEEE",this.lastImage);
-      //this.uploadImage();
     }, error => {
-      console.log(error);
       this.presentToast('Error while storing file.');
     });
   }
@@ -247,7 +240,7 @@ export class Addproductstep3Page {
   }
 
   public pathForImage(img) {
-    //console.log("IMAGGGEGGEGGEGE",img);
+    console.log("IMAGGGEGGEGGEGE",img);
     if (img === null) {
       return '';
     } else {
@@ -255,66 +248,9 @@ export class Addproductstep3Page {
     }
   }
 
- /* public uploadImage() {
-
+  public uploadImage(lid) {
     // Destination URL
-    var url = "http://111.93.169.90/team1/webshop/webservice/frontend/imageinsert_app";
-   
-    // File for Upload
-    var targetPath = this.pathForImage(this.lastImage);
-   
-    // File name only
-    var filename = this.lastImage;
-   
-    var options = {
-      fileKey: "file",
-      file: filename,
-      chunkedMode: false,
-      mimeType: "multipart/form-data",
-      params : {
-      'file':filename,
-      //'gear_id':localStorage.getItem('gear_id')
-       }
-     // params : {'fileName': filename}
-    };
-    console.log("OPTIONS",options);
-    const fileTransfer:FileTransferObject = this.transfer.create();
-   console.log(targetPath);
-   
-   this.loading.dismissAll()
-    // Use the FileTransfer to upload the image
-    fileTransfer.upload(targetPath, url, options).then((data:any) => {
-      this.responseData = data;
-      //console.log(data);
-     // let det = JSON.parse(data.response)
-      console.log('UPLOADDDD',this.responseData);
-    
-    // if(localStorage.getItem('gear_id'))
-    // {
-    //   this.bikeimages = det.data;
-     
-    // }
-    // else{
-    //   this.bikeimages.push( det.data.link);
-    //   this.imagename.push( det.data.name);
-    // }
-      this.bikeimages.push( this.responseData.link);
-      this.imagename.push( this.responseData.name);
-      this.loading.dismissAll()
-      this.presentToast('Image succesful uploaded.');
-      
-    }, err => {
-      console.log("Error",err);
-      this.loading.dismissAll()
-      this.presentToast('Error while uploading file.');
-    });
-
-
-  }*/
-
-  public uploadImage(id) {
-    // Destination URL
-    var url = "http://111.93.169.90/team6/deal/products/insertimage_api";
+    var url = "http://111.93.169.90/team6/webshop/webservice/index.php/frontend/imageinsert_app";
    
     // File for Upload
     var targetPath = this.pathForImage(this.lastImage);
@@ -329,25 +265,32 @@ export class Addproductstep3Page {
       mimeType: "multipart/form-data",
       params : {
       'photo':filename,
-      'deal_id':id
+      'product_id':lid
        }
      // params : {'fileName': filename}
     };
     console.log("OPTIONS",options);
     const fileTransfer:FileTransferObject = this.transfer.create();
    
+    // this.loading = this.loadingCtrl.create({
+     //  content: 'Uploading...',
+    // });
+     //this.loading.present();
+   
     // Use the FileTransfer to upload the image
     fileTransfer.upload(targetPath, url, options).then(data => {
       console.log('UPLOADDDD',data);
-      this.loading.dismissAll()
+      //this.loading.dismissAll()
       this.presentToast('Image succesful uploaded.');
       //this.navCtrl.push('HomePage');
     }, err => {
       console.log("Error",err);
-      this.loading.dismissAll()
+      //this.loading.dismissAll()
       this.presentToast('Error while uploading file.');
     });
   }
+
+  //end image upload
 
 
 
