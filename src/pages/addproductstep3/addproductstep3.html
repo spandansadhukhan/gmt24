@@ -59,7 +59,10 @@
             <p class="upload-text">Product Image</p>
             <button ion-button block class="upload-image" color="light" (click)="presentActionSheet()">Upload Image</button>
           </ion-item>
-        
+        <ion-item *ngIf="pathForImage(lastImage)!= ''">
+          <h4>Image Preview</h4>
+          <img src="{{pathForImage(lastImage)}}"  alt="Ionic File" width="300" />
+        </ion-item>
         <!-- <ul class="upload-list" *ngIf="bikeimages">
         
         <li *ngFor="let item of bikeimages ;index as i ">

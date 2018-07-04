@@ -31,9 +31,10 @@ export class AddproductPage {
   isSelected: any;
   eventList:any;
   public timelists:any;
-date:any;
-getdate:any;
-public time_slot_id:any;
+  public braceletlists: any;
+  date:any;
+  getdate:any;
+  public time_slot_id:any;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -67,7 +68,7 @@ public time_slot_id:any;
     this.currencyList();
     this.brandList();
     this.yearList();
-    
+    this.braceletList()
     
   }
 
@@ -217,7 +218,34 @@ subcategoryList(bid){
 }
 
   
+braceletList(){
+   
+  this.storage.get('uid').then(val => {
+    this.id = val;
+  let serval={
+    "user_id":this.id,
+   };
+  this.authService.postData(serval,'listbracelet').then((result) => {
+    this.responseData = result
 
+    if( this.responseData.Ack == 1)
+    {
+     
+      this.braceletlists =  this.responseData.braceletlist;
+      
+    }
+    else
+    {
+      this.braceletlists = '';
+    }
+   
+  }, (err) => {
+    
+    console.log(err);
+    
+  });
+});
+}
 
  onSubmit(formData){
 
