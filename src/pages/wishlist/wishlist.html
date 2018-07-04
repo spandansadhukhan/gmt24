@@ -7,12 +7,32 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>wishlist</ion-title>
+    <ion-title>My Wishlist</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-list>
+    <ion-item class="request-item" *ngFor="let item of wishlist">
+      <ion-thumbnail item-start>
+        <img src={{item.pro_image}}>
+      </ion-thumbnail>
+      <h2>{{item.product_description}}</h2>
+      <p class="price">{{item.pro_price}}</p>
+      <div>
+      
+    
+      <button ion-button round class="blue-btn ml-0" >Delete</button>
+      </div>
+      
+    </ion-item>
+    <ion-item *ngIf="wishlist== ''"> 
+            
+        <h2>{{item.msg}}</h2>
+        
+      </ion-item> 
 
-</ion-content>
+    </ion-list>
+    </ion-content>
