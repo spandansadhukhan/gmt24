@@ -129,4 +129,14 @@ abc(){
         {
           this.nav.push('MyInterestPage')
         }
+
+        public loyalty()
+        {
+          this.nav.push('LoyaltyPage')
+        }
+
+        public messages()
+        {
+          this.nav.push('MessageListingPage')
+        }
 }
