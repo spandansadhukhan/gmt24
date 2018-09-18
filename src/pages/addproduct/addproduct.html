@@ -71,12 +71,47 @@
         </ion-item>
         <p *ngIf="!pForm.controls['currency'].valid && pForm.controls['currency'].touched" ion-text color="danger" padding-left>
             Currency is required </p>
+
+
+            <ion-item *ngIf="uploadtypeid==2 && !showCalendar"  >
+              <ion-label stacked color="primary" (click)="clickme()">Auction Date</ion-label></ion-item>
           
-        <ion-item *ngIf="uploadtypeid==2">
-            <ion-label stacked color="primary">Auction Date</ion-label>
-            <ion-datetime round displayFormat="DD MMM YYYY" formControlName="preferred_date" pickerFormat="YYYY-MM-DD" (ionChange)="getauctiontime($event)" name="preferred_date"></ion-datetime>
-        </ion-item>
-        
+
+        <ion-item *ngIf="uploadtypeid==2 && showCalendar" >
+            <ion-label stacked color="primary" >Auction Date
+            
+       
+        <div class="calendar-header">
+          <ion-row class="calendar-month">
+            <ion-col col-2 (click)="goToLastMonth()"><ion-icon name="arrow-back"></ion-icon></ion-col>
+            <ion-col col-8>{{currentMonth}} {{currentYear}}</ion-col>
+            <ion-col col-2 (click)="goToNextMonth()"><ion-icon name="arrow-forward"></ion-icon></ion-col>
+          </ion-row>
+        </div>
+        <div class="calendar-body">
+          <ion-grid>
+            <ion-row class="calendar-weekday">
+              <ion-col>Su</ion-col>
+              <ion-col>Mo</ion-col>
+              <ion-col>Tu</ion-col>
+              <ion-col>We</ion-col>
+              <ion-col>Th</ion-col>
+              <ion-col>Fr</ion-col>
+              <ion-col>Sa</ion-col>
+            </ion-row>
+            <ion-row class="calendar-date">
+              <ion-col col-1 *ngFor="let lastDay of daysInLastMonth" class="last-month">{{lastDay}}</ion-col>
+              <ion-col col-1 *ngFor="let day of daysInThisMonth" >
+                <span class="currentDate" *ngIf="currentDate == day || currentDate == day-1; else otherDate" (click)="selectDate(day,currentMonth,currentYear)">{{day}}</span>
+               
+              <ng-template #otherDate class="otherDate">{{day}}</ng-template>
+              </ion-col>
+      
+             
+              <ion-col col-1 *ngFor="let nextDay of daysInNextMonth" class="next-month">{{nextDay}}</ion-col>
+            </ion-row>
+          </ion-grid>
+        </div> </ion-label></ion-item>
         <!-- <ion-item *ngIf="uploadtypeid==2">
             <ion-label stacked color="primary">Auction Date</ion-label>
             <ion-input round type="date"  name="preferred_date" formControlName="preferred_date" (click)="getauctiontime($event)" date-enabled-dates="2018-06-06"></ion-input>
@@ -86,6 +121,8 @@
         <ion-list radio-group formControlName="time_slot_id" name="time_slot_id" *ngIf="uploadtypeid==2">
         <ion-list-header>
             Auction Time
+           
+            
         </ion-list-header>
         <ion-item *ngFor="let t of timelists">
             <ion-label>{{t.start_time}} To {{t.end_time}}</ion-label>
@@ -110,7 +147,7 @@
             Price is required </p>
 
         
-
+           
 
       <div padding class="no-p-t p-b-5">
           <!-- <button ion-button round class="grey-btn" (click)="onSubmit(aForm.value)" type="submit" block>Save</button> -->
@@ -121,4 +158,35 @@
 
 
   </form>
+  <!-- <ion-item>
+    <ion-label>Date</ion-label>
+    <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat=" MM/DD/YYYY" min="2020-10-07" max="2020-10-11" [(ngModel)]="myDate">
+    </ion-datetime>
+  </ion-item> -->
+  <!-- <ion-grid>
+
+    <ion-row justify-content-center>
+      <ion-col col-auto (click)="back()">
+        <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+      </ion-col>
+      <ion-col col-auto>
+        <div displayFormat=
+        "">{{displayYear}} {{displayMonth + 1}} </div>
+      </ion-col>
+      <ion-col col-auto (click)="forward()">
+        <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
+      </ion-col>
+    </ion-row>
+  
+    <ion-row>
+      <ion-col class="center calendar-header-col" *ngFor="let head of weekHead">{{head}}</ion-col>
+    </ion-row>
+  
+    <ion-row class="calendar-row"  *ngFor="let week of weekArray;let i = index" >
+      <ion-col class="center calendar-col" (click)="daySelect(day,i,j)" *ngFor="let day of week;let j = index" [ngClass]="[day.isThisMonth?'this-month':'not-this-month',day.isToday?'today':'',day.isSelect?'select':'']">
+        {{day.date}}
+      </ion-col>
+    </ion-row>
+  
+  </ion-grid> -->
 </ion-content>

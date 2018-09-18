@@ -8,7 +8,8 @@ import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
 import { UserProvider } from '../providers/user/user';
 import { IonicStorageModule } from '@ionic/storage';
-import { Calendar } from '@ionic-native/calendar';
+
+
 import { FilePath } from '@ionic-native/file-path';
 import { File } from '@ionic-native/file';
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -20,9 +21,11 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
     //HomePage
   ],
   imports: [
+   
     BrowserModule,HttpModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -36,7 +39,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
     
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserProvider,
-    Calendar,
+    
     Camera,
     FileTransfer,
     FilePath,

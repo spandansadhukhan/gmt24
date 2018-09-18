@@ -130,6 +130,10 @@ abc(){
           this.nav.push('MyInterestPage')
         }
 
+        public liveauction()
+        {
+          this.nav.push('LiveAuctionPage')
+        }
         public loyalty()
         {
           this.nav.push('LoyaltyPage')

@@ -1,5 +1,5 @@
 <!--
-  Generated template for the AuctionProductPage page.
+  Generated template for the LiveAuctionPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,8 +7,8 @@
 <ion-header>
 
   <ion-navbar>
-  <ion-icon name="md-arrow-back"></ion-icon>
-    <ion-title>Auction Product</ion-title>
+ 
+    <ion-title>Live Auction</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -25,7 +25,7 @@
 		<ion-row>
 			<ion-col class="product">
 				<img src="../../assets/img/watch-p.png" alt="" />
-				<h2>Time Left: <span>02h 10m 54 s</span></h2>
+				<h2>Time Left: <span>{{displayTime}}</span></h2>
 				<h2>Highest Bid: <span>$30.25</span></h2>
 			</ion-col>
 		</ion-row>
