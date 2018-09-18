@@ -1,4 +1,4 @@
-page-auction-product {
+page-live-auction {
 	ion-navbar ion-icon {
         color: #fff;
         position: absolute;
@@ -40,8 +40,8 @@ page-auction-product {
     .card .desc h4 span{color:#999999;}
     .card .desc p{color:#999999; text-align:center;}
     .card .desc button{ border-radius: 50px; margin-top:20px;}
-    }
-    .card .desc .wh{ background:#f5f5f5 !important; color:#999999 !important; font-size:20px !important; height:50px !important;}
-    .card .desc .wh:hover{background:#79746d !important;}
-    .card .desc .gr{ background:#545454 !important; color:#fff !important; font-size:20px !important; height:50px !important;}
-    .card .desc .gr:hover{background:#79746d !important;}
+}
+.card .desc .wh{ background:#f5f5f5 !important; color:#999999 !important; font-size:20px !important; height:50px !important;}
+.card .desc .wh:hover{background:#79746d !important;}
+.card .desc .gr{ background:#545454 !important; color:#fff !important; font-size:20px !important; height:50px !important;}
+.card .desc .gr:hover{background:#79746d !important;}

@@ -1,9 +1,15 @@
-import { Component } from '@angular/core';
+import { Component,ChangeDetectionStrategy } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController,LoadingController} from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { Storage } from '@ionic/storage';
 import { Calendar } from '@ionic-native/calendar';
+import { Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DatePicker } from '@ionic-native/date-picker';
+import * as moment from 'moment';
+import * as _ from "lodash";
+import { months } from 'moment';
+
 /**
  * Generated class for the AddproductPage page.
  *
@@ -27,15 +33,25 @@ export class AddproductPage {
   public yearlists:any;
   pForm: FormGroup;
   public uploadtypeid:any;
-  selectedEvent: any;
-  isSelected: any;
-  eventList:any;
+
   public timelists:any;
   public braceletlists: any;
-  date:any;
-  getdate:any;
+ showCalendar:boolean=false;
+ 
   public time_slot_id:any;
-
+ 
+  date: any = new Date();
+  daysInThisMonth: any;
+  daysInLastMonth: any;
+  daysInNextMonth: any;
+  // monthNames: string[];
+  public monthNames=[];
+  currentMonth: any;
+  currentYear: any;
+  currentDate: any;
+  isSelected: boolean=false;
+    
+    
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public authService: AuthServiceProvider,
@@ -43,10 +59,14 @@ export class AddproductPage {
     private builder: FormBuilder,
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
-    private calendar: Calendar,
+    
+    // private calendar: Calendar,
     private fb: FormBuilder) {
 
+      this.monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      this.getDaysOfMonth();
 
+      
       this.pForm = fb.group({
         'type': [null, Validators.required],
         'brand': [null, Validators.required],
@@ -62,6 +82,19 @@ export class AddproductPage {
       });
   }
 
+  clickme()
+  {
+    this.showCalendar=!this.showCalendar
+  }
+
+  selectDate(day,month, year)
+
+  {
+    // this.isSelected=!this.isSelected;
+    console.log(day,month,year);
+    
+    
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddproductPage');
     
@@ -70,8 +103,15 @@ export class AddproductPage {
     this.yearList();
     this.braceletList()
     
-  }
 
+    
+
+
+  }
+  markDisabled = (date: Date) => {
+    var current = new Date();
+    return date < current;
+  };
  /* selectDate(day) {
     this.isSelected = false;
     this.selectedEvent = new Array();
@@ -314,6 +354,55 @@ getauctiontime(date){
 
   }
 
-
+    
+  getDaysOfMonth() {
+    this.daysInThisMonth = new Array();
+    this.daysInLastMonth = new Array();
+    this.daysInNextMonth = new Array();
+    this.currentMonth = this.monthNames[this.date.getMonth()];
+    this.currentYear = this.date.getFullYear();
+ 
+   
+    if(this.date.getMonth() == new Date().getMonth()) {
+      this.currentDate = new Date().getDate();
+    } else {
+      this.currentDate = 999;
+    }
+  
+    var firstDayThisMonth = new Date(this.date.getFullYear(), this.date.getMonth(), 1).getDay();
+    var prevNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
+    for(var i = prevNumOfDays-(firstDayThisMonth-1); i <= prevNumOfDays; i++) {
+      this.daysInLastMonth.push(i);
+      
+    }
+    
+    var thisNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth()+1, 0).getDate();
+    for (var i = 0; i < thisNumOfDays; i++) {
+      this.daysInThisMonth.push(i+1);
+    }
+  
+    var lastDayThisMonth = new Date(this.date.getFullYear(), this.date.getMonth()+1, 0).getDay();
+    var nextNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth()+2, 0).getDate();
+    for (var i = 0; i < (6-lastDayThisMonth); i++) {
+      this.daysInNextMonth.push(i+1);
+    }
+    var totalDays = this.daysInLastMonth.length+this.daysInThisMonth.length+this.daysInNextMonth.length;
+    if(totalDays<36) {
+      for(var i = (7-lastDayThisMonth); i < ((7-lastDayThisMonth)+7); i++) {
+        this.daysInNextMonth.push(i);
+      }
+    }
+  }
+  
+  goToLastMonth() {
+    this.date = new Date(this.date.getFullYear(), this.date.getMonth(), 0);
+    this.getDaysOfMonth();
+  }
+  
+  
+  goToNextMonth() {
+    this.date = new Date(this.date.getFullYear(), this.date.getMonth()+2, 0);
+    this.getDaysOfMonth();
+  }
 
 }
