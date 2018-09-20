@@ -79,13 +79,12 @@
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-filepath": {},
       "cordova-plugin-datepicker": {},
+      "cordova-plugin-geolocation": {},
       "cordova-plugin-googlemaps": {
         "API_KEY_FOR_ANDROID": "AIzaSyDnTqCZqlvuWG1KNrNh9slnA_EqiJmiX9g",
-        "API_KEY_FOR_IOS": "AIzaSyDnTqCZqlvuWG1KNrNh9slnA_EqiJmiX9g",
         "PLAY_SERVICES_VERSION": "15.0.1",
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
-      },
-      "cordova-plugin-geolocation": {}
+      }
     },
     "platforms": [
       "android"

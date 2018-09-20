@@ -40,6 +40,10 @@ export class MyaccountPage {
   public phonecode:any;
   lat:any;
   lang:any;
+  map: any;
+  markers = [];
+  geocoder:any;
+  dragaddress:any;
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
     public authService: AuthServiceProvider,
@@ -50,6 +54,7 @@ export class MyaccountPage {
     private googleMaps: GoogleMaps,
     private geolocation: Geolocation,
   ) {
+    
     this.aForm = builder.group({
       'fname': [null, Validators.required],
       'lname': [null, Validators.required],
@@ -64,6 +69,9 @@ export class MyaccountPage {
       'language_preference': [null, Validators.required],
       'country_preference': [null, Validators.required],
       'currency_preference': [null, Validators.required],
+      'address': [null, null],
+      //'my_latitude': [null, null],
+      //'my_longitude': [null, null],
       
     });
 
@@ -86,11 +94,14 @@ export class MyaccountPage {
             this.aForm.controls['language_preference'].setValue(res.UserDetails.language_preference);
             this.aForm.controls['country_preference'].setValue(res.UserDetails.country_preference);
             this.aForm.controls['currency_preference'].setValue(res.UserDetails.currency_preference);
+            this.aForm.controls['address'].setValue(res.UserDetails.address);
+            
             this.fname=res.UserDetails.fname;
             this.lname=res.UserDetails.lname;
             this.image=res.UserDetails.profile_image;
             this.stateList(res.UserDetails.country);
             //this.cityList(res.UserDetails.state);  
+            this.dragaddress = res.UserDetails.address;
           });
         }
         
@@ -105,7 +116,7 @@ export class MyaccountPage {
       console.log('splocation',resp);
       this.lat = resp.coords.latitude;
       this.lang = resp.coords.longitude;
-      //this.initMapbike(this.lat,this.lang);
+      this.initMap(this.lat,this.lang);
       loading.dismiss();
     }).catch((error) => {
       loading.dismiss();
@@ -123,6 +134,77 @@ export class MyaccountPage {
     this.currencyList();
 
   }
+
+
+  private initMap(lat,lang) {
+
+    this.dragaddress;
+    var point = {lat: lat, lng: lang};
+    let divMap = (<HTMLInputElement>document.getElementById('map'));
+    this.map = new google.maps.Map(divMap, {
+    center: point,
+    zoom: 14,
+    disableDefaultUI: true,
+    draggable: true,
+    zoomControl: true
+    });
+     var marker = new google.maps.Marker({
+       map: this.map,
+       position: point,
+       draggable: true,
+       });
+       //this.markers.push(marker);
+       google.maps.event.addListener(marker, 'dragend', function ()
+       {
+       // alert(this.dragaddress);
+                 //console.log('marker',marker);
+           geocodePosition(marker.getPosition());
+          
+          //alert(marker.getPosition());
+       });
+
+     function  geocodePosition(pos)
+    {
+      //alert(pos);
+        var lat, lng, address;
+      var  geocoder = new google.maps.Geocoder();
+      console.log('ertertertre',geocoder)
+        geocoder.geocode
+                ({
+                    latLng: pos
+                },
+                function (results, status)
+                {
+                    if (status == google.maps.GeocoderStatus.OK)
+                    {
+                        lat = pos.lat();
+                        lng = pos.lng();
+                        address = results[0].formatted_address;
+                        //alert("Latitude: " + lat + "\nLongitude: " + lng + "\nAddress: " + address);
+                        //alert(this.dragaddress)
+                        //alert(address);
+                        return address;
+                        this.lat=lat;
+                        this.lang=lng;
+                        this.dragaddress=address;
+                        
+                      alert(this.dragaddress);
+                        //var input= document.getElementById("address") as HTMLInputElement;
+                        //input=address;
+                        //this.aForm.controls['address'].setValue(address);
+                        
+                    }
+                    else
+                    {
+                     
+                       // $("#mapErrorMsg").html('Cannot determine address at this location.' + status).show(100);
+                    }
+                }
+                );
+    }
+    }
+
+
 
   countryList(){
    
