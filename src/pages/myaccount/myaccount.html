@@ -119,12 +119,16 @@
         Preferred Currency is required </p>
 
 
-
+        <ion-item>
         <div class="map">
-          <div id="map" style="height:500px;"></div>
+          <div id="map" style="height:400px;"></div>
         </div> 
+        </ion-item>
 
-
+        <ion-item>
+          <ion-label stacked color="primary">Location</ion-label>
+          <!-- <ion-input round type="text" id="address" formControlName="address" name="address" placeholder="Location name" required></ion-input> -->
+      </ion-item>
 
       <!-- <ion-item>
         <ion-label stacked color="primary">Civil ID Attachment</ion-label>
@@ -144,6 +148,7 @@
     </ion-list>
 
   </form>
+  <p>{{dragaddress}}</p>
 </ion-content>
 
 <ion-footer>
