@@ -20,6 +20,7 @@ export class HomePage {
   public id:any;
   public brandlists:any;
   public topmodellists:any;
+  public topproductlists:any;
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public menu: MenuController,
@@ -54,13 +55,15 @@ export class HomePage {
         loading.dismiss();
         this.brandlists =  this.responseData.brandList;
         this.topmodellists =  this.responseData.topmodellist;
-        
+        this.topproductlists = this.responseData.topproductlist;
       }
+      
       else
       {
         loading.dismiss();
         this.brandlists = '';
         this.topmodellists = '';
+        this.topproductlists ='';
         //this.msg =this.responseData.msg; 
       }
      

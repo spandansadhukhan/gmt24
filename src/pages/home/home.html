@@ -16,45 +16,16 @@
 
 
 <ion-content padding>
-  <h6 class="text-uppercase">Recommended for you</h6>
+  <h6 class="text-uppercase">Top Products</h6>
   <ion-slides pager>
-    <ion-slide class="slide-holder">
+    <ion-slide class="slide-holder" *ngFor="let topproduct of topproductlists">
       <div class="item-image">
-        <img src="assets/img/item-1.jpg" alt="Item">
+        <img src="{{topproduct.product_image}}" alt="Item">
       </div>
-      <h6>Rolex Daytona round golden</h6>
-      <p class="price"><span><img src="assets/img/tick.png" alt="image"></span> $18.00</p>
+      <h6>{{topproduct.product_name}}</h6>
+      <p class="price"><span><img src="assets/img/tick.png" alt="image"></span> {{topproduct.product_price}}</p>
     </ion-slide>
-    <ion-slide class="slide-holder">
-      <div class="item-image">
-        <img src="assets/img/item-2.jpg" alt="Item">
-      </div>
-      <h6>Rolex Daytona round golden</h6>
-      <p class="price">
-        <span>
-          <img src="assets/img/tick.png" alt="image">
-        </span> $18.00</p>
-    </ion-slide>
-    <ion-slide class="slide-holder">
-      <div class="item-image">
-        <img src="assets/img/item-3.jpg" alt="Item">
-      </div>
-      <h6>Rolex Daytona round golden</h6>
-      <p class="price">
-        <span>
-          <img src="assets/img/tick.png" alt="image">
-        </span> $18.00</p>
-    </ion-slide>
-    <ion-slide class="slide-holder">
-      <div class="item-image">
-        <img src="assets/img/item-4.jpg" alt="Item">
-      </div>
-      <h6>Rolex Daytona round golden</h6>
-      <p class="price">
-        <span>
-          <img src="assets/img/tick.png" alt="image">
-        </span> $18.00</p>
-    </ion-slide>
+    
 </ion-slides>
 
 <h6 class="text-uppercase">Top Models</h6>
