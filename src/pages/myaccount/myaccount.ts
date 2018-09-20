@@ -3,7 +3,16 @@ import { IonicPage, NavController, NavParams, AlertController,LoadingController}
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { Storage } from '@ionic/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import {
+  GoogleMaps,
+  GoogleMap,
+  GoogleMapsEvent,
+  GoogleMapOptions,
+  CameraPosition,
+  MarkerOptions,
+  Marker
+} from '@ionic-native/google-maps';
+import { Geolocation } from '@ionic-native/geolocation';
 
 /**
  * Generated class for the MyaccountPage page.
@@ -11,7 +20,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+declare var google;
 @IonicPage()
 @Component({
   selector: 'page-myaccount',
@@ -28,14 +37,18 @@ export class MyaccountPage {
   public fname:any;
   public lname:any;
   public image:any;
-
+  public phonecode:any;
+  lat:any;
+  lang:any;
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
     public authService: AuthServiceProvider,
     private storage: Storage,
     private builder: FormBuilder,
     public alertCtrl: AlertController,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    private googleMaps: GoogleMaps,
+    private geolocation: Geolocation,
   ) {
     this.aForm = builder.group({
       'fname': [null, Validators.required],
@@ -77,12 +90,30 @@ export class MyaccountPage {
             this.lname=res.UserDetails.lname;
             this.image=res.UserDetails.profile_image;
             this.stateList(res.UserDetails.country);
-            this.cityList(res.UserDetails.state);  
+            //this.cityList(res.UserDetails.state);  
           });
         }
         
       });
     }).catch();
+
+    let loading = this.loadingCtrl.create({
+      content: 'Fetching your location...'
+    });
+    loading.present();
+      this.geolocation.getCurrentPosition().then((resp) => {
+      console.log('splocation',resp);
+      this.lat = resp.coords.latitude;
+      this.lang = resp.coords.longitude;
+      //this.initMapbike(this.lat,this.lang);
+      loading.dismiss();
+    }).catch((error) => {
+      loading.dismiss();
+      console.log('Error getting location', error);
+    });
+
+
+
 }
 
   
@@ -138,12 +169,14 @@ stateList(cid){
     {
      
       this.statelists =  this.responseData.statelist;
+      this.phonecode =  this.responseData.phonecode;
       
     }
     else
     {
      
       this.statelists = '';
+      this.phonecode = '';
     }
    
   }, (err) => {

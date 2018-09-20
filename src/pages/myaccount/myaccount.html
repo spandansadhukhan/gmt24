@@ -49,12 +49,7 @@
         </ion-item>
         <p *ngIf="!aForm.controls['gender'].valid && aForm.controls['gender'].touched" ion-text color="danger" padding-left>
           Gender is required </p>
-        <ion-item>
-            <ion-label stacked color="primary">Mobile Number</ion-label>
-            <ion-input round type="number" placeholder="Type your mobile Number" formControlName="phone" name="phone" required></ion-input>
-        </ion-item>
-        <p *ngIf="!aForm.controls['phone'].valid && aForm.controls['phone'].touched" ion-text color="danger" padding-left>
-          Mobile no is required </p>
+        
         <ion-item>
             <ion-label stacked color="primary">Email</ion-label>
             <ion-input round type="email" placeholder="Type your email" formControlName="email" name="email" required></ion-input>
@@ -71,20 +66,20 @@
         Country is required </p>
       <ion-item>
           <ion-label stacked color="primary">Governorate</ion-label>
-          <ion-select name="state" formControlName="state" (ionChange)="cityList($event)">
+          <ion-select name="state" formControlName="state">
             <ion-option value="{{s.id}}" *ngFor="let s of statelists">{{s.name}}</ion-option>
           </ion-select>
       </ion-item>
       <p *ngIf="!aForm.controls['state'].valid && aForm.controls['state'].touched" ion-text color="danger" padding-left>
         State is required </p>
-      <!-- <ion-item>
-          <ion-label stacked color="primary">City</ion-label>
-          <ion-select name="city" formControlName="city">
-            <ion-option value="{{ct.id}}" *ngFor="let ct of citylists">{{ct.name}}</ion-option>
-          </ion-select>
+
+        <ion-item>
+          <ion-label stacked color="primary">Mobile Number +{{phonecode}}</ion-label>
+          <ion-input round type="number" placeholder="Type your mobile Number" formControlName="phone" name="phone" required></ion-input>
       </ion-item>
-      <p *ngIf="!aForm.controls['city'].valid && aForm.controls['city'].touched" ion-text color="danger" padding-left>
-        City is required </p> -->
+      <p *ngIf="!aForm.controls['phone'].valid && aForm.controls['phone'].touched" ion-text color="danger" padding-left>
+        Mobile no is required </p>
+
       <ion-item>
         <ion-label stacked color="primary">IBAN Number</ion-label>
         <ion-input round type="text" name="ibanno" formControlName="ibanno" placeholder="Type IBAN number" required></ion-input>
@@ -125,7 +120,9 @@
 
 
 
-        
+        <div class="map">
+          <div id="map" style="height:500px;"></div>
+        </div> 
 
 
 
