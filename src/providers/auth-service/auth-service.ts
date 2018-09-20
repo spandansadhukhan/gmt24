@@ -52,9 +52,37 @@ export class AuthServiceProvider {
     });
   }
 
+  countrylist(data:object):Observable<any>{
+    console.log(data);
+    return this.http.post(this.apiUrl +'listcountry',data).map((res:Response)=>{
+      return res.json();
+    });
+  }
+
+  satelist(data:object):Observable<any>{
+    console.log(data);
+    return this.http.post(this.apiUrl +'liststate',data).map((res:Response)=>{
+      return res.json();
+    });
+  }
+
+  otpverify(data:object):Observable<any>{
+    console.log(data);
+    return this.http.post(this.apiUrl +'tomobileverifying',data).map((res:Response)=>{
+      return res.json();
+    });
+  }
+
   login(data: object): Observable<any> {
     console.log(data);
     return this.http.post(this.apiUrl +'userLogin', data).map((res: Response) => {
+      return res.json();
+    });
+  }
+
+  resendotp(data: object): Observable<any> {
+    console.log('spandan',data);
+    return this.http.post(this.apiUrl +'resend_app', data).map((res: Response) => {
       return res.json();
     });
   }
@@ -166,69 +194,7 @@ export class AuthServiceProvider {
     });
   }
 
-  /*
-
-
-  couponadd(data:object):Observable<any>{
-    console.log(data);
-    return this.http.post(this.apiUrl +'coupons/add_api',data).map((res:Response)=>{
-      return res.json();
-    });
-  }
-
-
-
-  offlinesubscription(data:object):Observable<any>{
-    console.log(data);
-    return this.http.post(this.apiUrl +'packages/package_request_api',data).map((res:Response)=>{
-      return res.json();
-    });
-  }
-
-
-
-  getdealdetails(data: object): Observable<any> {
-    let requestoptions = new RequestOptions({
-      method: RequestMethod.Post,
-      url: this.apiUrl + 'products/getdealdetails_api',
-      body: JSON.stringify(data)
-    });
-    return this.http.request(new Request(requestoptions))
-      .map((res: Response) => {
-        if (res) {
-          return res.json();
-        }
-      });
-    
-  }
-  updatedeal(data: object): Observable<any> {
-    return this.http.post(this.apiUrl + 'products/editdeal_api', data).map((res: Response) => {
-      return res.json();
-    });
-  }
-
-
-
-  getcoupondetails(data: object): Observable<any> {
-    let requestoptions = new RequestOptions({
-      method: RequestMethod.Post,
-      url: this.apiUrl + 'coupons/getcoupondetails_api',
-      body: JSON.stringify(data)
-    });
-    return this.http.request(new Request(requestoptions))
-      .map((res: Response) => {
-        if (res) {
-          return res.json();
-        }
-      });
-    
-  }
-  updatecoupon(data: object): Observable<any> {
-    return this.http.post(this.apiUrl + 'coupons/editcoupon_api', data).map((res: Response) => {
-      return res.json();
-    });
-  }
-  */
+  
 
   
 }

@@ -14,6 +14,9 @@ export class SignupPage {
   responseData: any;
   error: string;
   busy: boolean;
+  countrylist:any;
+  phonecode:any;
+  passwordmatch: boolean = false;
 
   constructor(
     private builder: FormBuilder,
@@ -30,7 +33,9 @@ export class SignupPage {
       'phone':[null, Validators.required],
       'email':[null, Validators.required],
       'password': [null, Validators.required],
-      'type': [null, Validators.required]
+      'type': [null, Validators.required],
+      'country': [null, Validators.required],
+      'confirm_password' : [null, Validators.required]
     });
     this.rForm.controls['type'].setValue('2');
 
@@ -54,14 +59,27 @@ export class SignupPage {
     }else{
     
      this.authService.signup(formData).subscribe(res=>{
-       if(res){
+       if(res.smsstatus==1){
         loading.dismiss();
         console.log(res);
          const alert = this.alertCtrl.create({
-           title: res.msg,
+          title: 'Success!',
+           subTitle: res.msg,
            buttons: ['OK']
          });
        alert.present();
+       this.navCtrl.push('VerifyOtpPage',{'mobile':res.phone,'userid':res.user_id,'resend': '0'});
+       }else{
+
+        loading.dismiss();
+        console.log(res);
+         const alert = this.alertCtrl.create({
+           title: 'Error!',
+           subTitle: res.msg,
+           buttons: ['OK']
+         });
+       alert.present();
+
        }
       },err=>{
         loading.dismiss();
@@ -76,8 +94,58 @@ export class SignupPage {
     }
   }
 
+  listcountry(){
+
+    this.authService.countrylist({}).subscribe(res=>{
+      if(res.Ack==1){
+       
+       //console.log(res.countrylist);
+      this.countrylist=res.countrylist;
+      }else{
+        this.countrylist="";
+      }
+     },err=>{
+       
+      //console.log(err);
+       
+    });
+
+  }
+
+  liststate(cid){
+
+    this.authService.satelist({"c_id": cid}).subscribe(res=>{
+      if(res.Ack==1){
+       
+       //console.log(res.countrylist);
+      this.phonecode=res.phonecode;
+      }else{
+        this.phonecode="";
+      }
+     },err=>{
+       
+      //console.log(err);
+       
+    });
+
+  }
+
+  public checkpassword(conpass,frmval)
+  {
+    //console.log(frmval.password);
+   // console.log(conpass);
+    if(frmval.password == conpass)
+    {
+     this.passwordmatch = true;
+    }
+    else{
+      this.passwordmatch = false;
+    }
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
+    this.listcountry();
   }
 
 

@@ -35,10 +35,16 @@
       <p *ngIf="!rForm.controls['lname'].valid && rForm.controls['lname'].touched" ion-text color="danger" >Last Name is required </p>
 
 
-
+      <ion-item class="input-field">
+        <ion-label stacked>Country</ion-label>
+        <ion-select name="country" formControlName="country" (ionChange)="liststate($event)">
+          <ion-option value="{{c.id}}" *ngFor="let c of countrylist">{{c.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <p *ngIf="!rForm.controls['country'].valid && rForm.controls['country'].touched" ion-text color="danger">Country is required </p>
 
       <ion-item class="input-field">
-        <ion-label fixed>Mobile No.</ion-label>
+        <ion-label fixed>Mobile No.{{phonecode}}</ion-label>
         <ion-input name="phone" formControlName="phone" type="number" placeholder="Type your mobile no." required></ion-input>
       </ion-item>
       <p *ngIf="!rForm.controls['phone'].valid && rForm.controls['phone'].touched" ion-text color="danger">Phone is required </p>
@@ -57,12 +63,17 @@
       </ion-item>
       <p *ngIf="!rForm.controls['password'].valid && rForm.controls['password'].touched" ion-text color="danger">Password is required </p>
 
-
-
+      <ion-item class="input-field">
+        <ion-label fixed>Confirm Password</ion-label>
+        <ion-input name="confirm_password" type="password" formControlName="confirm_password" placeholder="Re-type your password" (ngModelChange)="checkpassword($event,rForm.value)" required>
+        </ion-input>
+      </ion-item>
+      <p *ngIf="!rForm.controls['confirm_password'].valid && rForm.controls['confirm_password'].touched" ion-text color="danger">Confirm password is required </p>
+      <p *ngIf="!passwordmatch  && rForm.controls['confirm_password'].valid" ion-text color="danger" padding-left>Password and Confirm password not match </p>
       
       <ion-grid class="p-0">
         <ion-row>
-          <ion-col col-12 class="pl-0"><button ion-button round block class="grey-btn" (click)="onSubmit(rForm.value)" type="submit">Register</button></ion-col>
+          <ion-col col-12 class="pl-0"><button ion-button round block class="grey-btn" [disabled]="!passwordmatch" (click)="onSubmit(rForm.value)" type="submit">Register</button></ion-col>
         </ion-row>
       </ion-grid>
 

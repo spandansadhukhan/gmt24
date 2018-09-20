@@ -91,10 +91,22 @@ public loguser:any;
               });
         });
       
-    }else{
+    }else if(res.Ack==4){
+
       loading.dismiss();
       const alert = this.alertCtrl.create({
-        title: res.msg,
+        title: 'Sorry!',
+        subTitle: res.msg,
+        buttons: ['OK']
+      });
+      alert.present(); 
+      this.navCtrl.push('VerifyOtpPage',{'mobile':res.mobilenoforlogin,'userid':res.userid,'resend': '1'});
+    }
+    else{
+      loading.dismiss();
+      const alert = this.alertCtrl.create({
+        title: 'Sorry!',
+        subTitle: res.msg,
         buttons: ['OK']
       });
       alert.present(); 

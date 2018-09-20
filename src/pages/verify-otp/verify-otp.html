@@ -1,0 +1,36 @@
+<!--
+  Generated template for the VerifyOtpPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content padding>
+  <div class="logo">
+    <img src="assets/img/appicon.png" alt="Ionic logo">
+    <h3>Verify Mobile</h3>
+  </div>
+
+  <form [formGroup]="otpForm">
+    <ion-list>
+      <ion-item class="input-field">
+        <ion-label fixed>Mobile no.</ion-label>
+        <ion-input type="text" formControlName="mobile" readonly=""  placeholder="Mobile no"></ion-input>
+        
+      </ion-item>
+
+      <ion-item class="input-field">
+        <ion-label fixed>otp</ion-label>
+        <ion-input type="number" formControlName="otp" placeholder="Type otp">
+        </ion-input>
+      </ion-item>
+      <p *ngIf="!otpForm.controls['otp'].valid && otpForm.controls['otp'].touched" ion-text color="danger">Otp is required </p>
+      
+
+      <div>
+        <button ion-button round class="grey-btn" (click)="onSubmit(otpForm.value)" type="submit" block>Submit</button>
+      </div>
+</ion-list>
+</form>
+
+</ion-content>
+
