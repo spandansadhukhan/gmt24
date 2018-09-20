@@ -56,6 +56,7 @@ export class HomePage {
         this.brandlists =  this.responseData.brandList;
         this.topmodellists =  this.responseData.topmodellist;
         this.topproductlists = this.responseData.topproductlist;
+        console.log('brand',this.brandlists)
       }
       
       else
@@ -79,6 +80,12 @@ export class HomePage {
 
 //spandan end
 
+brandproduct(bid){
 
-
+  this.navCtrl.push('SearchPage',{"brand_id":bid}); 
+}
+productdetails(product_id){
+//lert(product_id);
+  this.navCtrl.push('DetailsPage',{"product_id":product_id}); 
+}
 }

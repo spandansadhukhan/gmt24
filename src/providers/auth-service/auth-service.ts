@@ -26,18 +26,18 @@ export class AuthServiceProvider {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
-    console.log(credentials);
-    console.log(type);
+    //console.log(credentials);
+    //console.log(type);
     return new Promise((resolve, reject) => {
      // let headers = new Headers();
 
       this.http.post(this.apiUrl + type, JSON.stringify(credentials))
         .subscribe(res => {
-          console.log(res);
+          //console.log(res);
           resolve(res.json());
           loading.dismiss();
         }, (err) => {
-          console.log(err);
+          //console.log(err);
           reject(err);
           loading.dismiss();
         });
