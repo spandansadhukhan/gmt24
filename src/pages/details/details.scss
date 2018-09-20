@@ -1,0 +1,26 @@
+page-details {
+
+.bar-buttons-start{ order: 3;}
+ion-title{ text-align: center;}
+ion-title .toolbar-title{align-items: center; display: flex; justify-content: center;}
+ion-title .toolbar-title img{ width: 100px; margin: 0 auto;}
+.toolbar .bar-button{font-size: 2.2rem;}
+.content {background-color: #f9f9f9;}
+.card-content{padding: 13px;}
+.top-content{display: flex; align-items: center; justify-content: flex-start;}
+.top-content img{ width: 22px; height: 23px; margin-right: 0.8rem;}
+.top-content span{ font-size: 1.6rem;}
+.detail-pic{width: 200px; height: auto; margin: 0 auto;}
+.thumb-area{width: 37px; height: 37px; border-radius: 50%; margin: 0 auto; border: 1px solid #e4e2e2; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); overflow: hidden; display: flex; align-items: center;}
+.thumb-area img{ width: 20px; height: 20px; text-align: center; margin: 0 auto;}
+.body-area{ background-color: #f6f5f5; padding: 13px; text-align: center;}
+.body-area h2{ color: #333333; font-weight: 400;}
+.body-area p .icon{ color: #fb8a05;}
+.row{margin-top: 2rem;}
+
+
+
+.pr-0{padding-right: 0;}
+.pl-0{ padding-left: 0;}
+
+}

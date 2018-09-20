@@ -19,7 +19,7 @@
   <h6 class="text-uppercase">Top Products</h6>
   <ion-slides pager>
     <ion-slide class="slide-holder" *ngFor="let topproduct of topproductlists">
-      <div class="item-image">
+      <div class="item-image" (click)="productdetails(topproduct.product_id)">
         <img src="{{topproduct.product_image}}" alt="Item">
       </div>
       <h6>{{topproduct.product_name}}</h6>
@@ -45,7 +45,7 @@
 <h6 class="text-uppercase">Top Brands</h6>
 <ion-slides pager>
   <ion-slide class="slide-holder" *ngFor="let tb of brandlists">
-    <div class="item-image">
+    <div class="item-image" (click)="brandproduct(tb.brand_id)">
       <img src="{{tb.brand_image}}" alt="Item">
     </div>
     <h6>{{tb.brand_name}}</h6>
