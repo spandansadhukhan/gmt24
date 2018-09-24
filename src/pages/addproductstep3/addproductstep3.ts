@@ -31,6 +31,7 @@ export class Addproductstep3Page {
   imagename = [];
   public bikeimages = [];
   selectedValue=[];
+  uploadsuccess:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public authService: AuthServiceProvider,
     private storage: Storage,
@@ -85,6 +86,8 @@ export class Addproductstep3Page {
     formData['type']=this.logproduct1.type;
     formData['brand']=this.logproduct1.brand;
     formData['cat_id']=this.logproduct1.cat_id;
+    formData['otherbrand']=this.logproduct1.otherbrand;
+    formData['othercategory']=this.logproduct1.othercategory;
     formData['breslet_type']=this.logproduct1.breslet_type;
     formData['model_year']=this.logproduct1.model_year;
     formData['currency']=this.logproduct1.currency;
@@ -250,7 +253,7 @@ export class Addproductstep3Page {
 
   public uploadImage(lid) {
     // Destination URL
-    var url = "http://111.93.169.90/team6/webshop/webservice/index.php/frontend/imageinsert_app";
+    var url = "https://thegmt24.com/webservice/frontend/imageinsert_app";
    
     // File for Upload
     var targetPath = this.pathForImage(this.lastImage);
@@ -272,20 +275,30 @@ export class Addproductstep3Page {
     console.log("OPTIONS",options);
     const fileTransfer:FileTransferObject = this.transfer.create();
    
-    // this.loading = this.loadingCtrl.create({
-     //  content: 'Uploading...',
-    // });
-     //this.loading.present();
+    let loading = this.loadingCtrl.create({
+      content: 'Uploading Please Wait...'
+    });
+    loading.present();
    
     // Use the FileTransfer to upload the image
     fileTransfer.upload(targetPath, url, options).then(data => {
-      console.log('UPLOADDDD',data);
-      //this.loading.dismissAll()
-      this.presentToast('Image succesful uploaded.');
-      //this.navCtrl.push('HomePage');
+      
+      this.uploadsuccess=JSON.parse(data.response);
+
+      console.log('UPLOADsp',this.uploadsuccess);
+
+      if(this.uploadsuccess.ack==1){
+        loading.dismiss();
+        this.presentToast('Image succesful uploaded.');
+      }else{
+
+        loading.dismiss();
+        this.presentToast('Time out. Try again.');
+      }
+      
     }, err => {
       console.log("Error",err);
-      //this.loading.dismissAll()
+      loading.dismiss();
       this.presentToast('Error while uploading file.');
     });
   }

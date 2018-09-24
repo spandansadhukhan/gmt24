@@ -3,16 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController,LoadingController}
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { Storage } from '@ionic/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-  GoogleMaps,
-  GoogleMap,
-  GoogleMapsEvent,
-  GoogleMapOptions,
-  CameraPosition,
-  MarkerOptions,
-  Marker
-} from '@ionic-native/google-maps';
-import { Geolocation } from '@ionic-native/geolocation';
+
 
 /**
  * Generated class for the MyaccountPage page.
@@ -20,7 +11,7 @@ import { Geolocation } from '@ionic-native/geolocation';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-declare var google;
+
 @IonicPage()
 @Component({
   selector: 'page-myaccount',
@@ -38,23 +29,14 @@ export class MyaccountPage {
   public lname:any;
   public image:any;
   public phonecode:any;
-  lat:any;
-  lang:any;
-  map: any;
-  markers = [];
-  geocoder:any;
-  dragaddress:any;
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
     public authService: AuthServiceProvider,
     private storage: Storage,
     private builder: FormBuilder,
     public alertCtrl: AlertController,
-    public loadingCtrl: LoadingController,
-    private googleMaps: GoogleMaps,
-    private geolocation: Geolocation,
+    public loadingCtrl: LoadingController
   ) {
-    
     this.aForm = builder.group({
       'fname': [null, Validators.required],
       'lname': [null, Validators.required],
@@ -69,9 +51,6 @@ export class MyaccountPage {
       'language_preference': [null, Validators.required],
       'country_preference': [null, Validators.required],
       'currency_preference': [null, Validators.required],
-      'address': [null, null],
-      //'my_latitude': [null, null],
-      //'my_longitude': [null, null],
       
     });
 
@@ -94,37 +73,16 @@ export class MyaccountPage {
             this.aForm.controls['language_preference'].setValue(res.UserDetails.language_preference);
             this.aForm.controls['country_preference'].setValue(res.UserDetails.country_preference);
             this.aForm.controls['currency_preference'].setValue(res.UserDetails.currency_preference);
-            this.aForm.controls['address'].setValue(res.UserDetails.address);
-            
             this.fname=res.UserDetails.fname;
             this.lname=res.UserDetails.lname;
             this.image=res.UserDetails.profile_image;
             this.stateList(res.UserDetails.country);
-            //this.cityList(res.UserDetails.state);  
-            this.dragaddress = res.UserDetails.address;
+            this.cityList(res.UserDetails.state);  
           });
         }
         
       });
     }).catch();
-
-    let loading = this.loadingCtrl.create({
-      content: 'Fetching your location...'
-    });
-    loading.present();
-      this.geolocation.getCurrentPosition().then((resp) => {
-      console.log('splocation',resp);
-      this.lat = resp.coords.latitude;
-      this.lang = resp.coords.longitude;
-      this.initMap(this.lat,this.lang);
-      loading.dismiss();
-    }).catch((error) => {
-      loading.dismiss();
-      console.log('Error getting location', error);
-    });
-
-
-
 }
 
   
@@ -134,76 +92,6 @@ export class MyaccountPage {
     this.currencyList();
 
   }
-
-
-  private initMap(lat,lang) {
-
-    this.dragaddress;
-    var point = {lat: lat, lng: lang};
-    let divMap = (<HTMLInputElement>document.getElementById('map'));
-    this.map = new google.maps.Map(divMap, {
-    center: point,
-    zoom: 14,
-    disableDefaultUI: true,
-    draggable: true,
-    zoomControl: true
-    });
-     var marker = new google.maps.Marker({
-       map: this.map,
-       position: point,
-       draggable: true,
-       });
-       //this.markers.push(marker);
-       google.maps.event.addListener(marker, 'dragend', function ()
-       {
-       // alert(this.dragaddress);
-                 //console.log('marker',marker);
-           geocodePosition(marker.getPosition());
-          
-          //alert(marker.getPosition());
-       });
-
-     function  geocodePosition(pos)
-    {
-      //alert(pos);
-        var lat, lng, address;
-      var  geocoder = new google.maps.Geocoder();
-      console.log('ertertertre',geocoder)
-        geocoder.geocode
-                ({
-                    latLng: pos
-                },
-                function (results, status)
-                {
-                    if (status == google.maps.GeocoderStatus.OK)
-                    {
-                        lat = pos.lat();
-                        lng = pos.lng();
-                        address = results[0].formatted_address;
-                        //alert("Latitude: " + lat + "\nLongitude: " + lng + "\nAddress: " + address);
-                        //alert(this.dragaddress)
-                        //alert(address);
-                        //return address;
-                        //this.lat=lat;
-                        //this.lang=lng;
-                        this.dragaddress=address;
-                        
-                      alert(this.dragaddress);
-                        //var input= document.getElementById("address") as HTMLInputElement;
-                        //input=address;
-                        //this.aForm.controls['address'].setValue(address);
-                        
-                    }
-                    else
-                    {
-                     
-                       // $("#mapErrorMsg").html('Cannot determine address at this location.' + status).show(100);
-                    }
-                }
-                );
-    }
-    }
-
 
 
   countryList(){
@@ -252,13 +140,12 @@ stateList(cid){
      
       this.statelists =  this.responseData.statelist;
       this.phonecode =  this.responseData.phonecode;
-      
     }
     else
     {
      
       this.statelists = '';
-      this.phonecode = '';
+      this.phonecode =  '';
     }
    
   }, (err) => {
