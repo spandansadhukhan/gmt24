@@ -50,7 +50,7 @@ export class AddproductPage {
   currentYear: any;
   currentDate: any;
   isSelected: boolean=false;
-    
+  brandid:any; 
     
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -70,7 +70,7 @@ export class AddproductPage {
       this.pForm = fb.group({
         'type': [null, Validators.required],
         'brand': [null, Validators.required],
-        'cat_id': [null, Validators.required],
+        'cat_id': ["", ""],
         'breslet_type':[null, Validators.required],
         'model_year': [null, Validators.required],
         'currency': [null, Validators.required],
@@ -78,6 +78,8 @@ export class AddproductPage {
         "time_slot_id" : ["",""],
         'description': [null, Validators.required],
         'price': [null, Validators.required],
+        'otherbrand': ["", ""],
+        'othercategory': ["", ""],
         
       });
   }
@@ -135,6 +137,7 @@ export class AddproductPage {
    }
 
 
+   
 
 
   brandList(){
@@ -168,8 +171,13 @@ export class AddproductPage {
 
 subcategoryList(bid){
    
-  //alert(cid);
-     
+  if(bid=="OTHER"){
+
+    this.brandid='OTHER';
+
+  }else{
+
+    this.brandid=bid; 
    let serval={
      "cat_id": bid,
     };
@@ -193,7 +201,7 @@ subcategoryList(bid){
      console.log(err);
      
    });
- 
+  }
  }
 
  yearList(){
@@ -298,12 +306,37 @@ braceletList(){
     alert.present();
   }else if(formData['type']== '2' && formData['preferred_date']==""){
     const alert = this.alertCtrl.create({
-      title: 'Please select action date and time!',
+      title: 'Required!',
+      subTitle: 'Please select action date and time!',
       buttons: ['OK']
     });
     alert.present();
 
-  }else{
+  }/*else if(formData['brand']== 'OTHER'){
+    
+    if(formData['otherbrand']=='' && formData['othercategory']== ''){
+
+      const alert = this.alertCtrl.create({
+        title: 'Required!',
+        subTitle: 'Please type other brand and category!',
+        buttons: ['OK']
+      });
+      alert.present();
+    }
+    
+  }else if(formData['brand']!= 'OTHER'){
+    
+    if(formData['cat_id']== ''){
+
+      const alert = this.alertCtrl.create({
+        title: 'Required!',
+        subTitle: 'Please select category!',
+        buttons: ['OK']
+      });
+      alert.present();
+    }
+  }*/else{
+    
     this.storage.ready().then(() => {
       localStorage.setItem('productData', JSON.stringify(formData));
       this.navCtrl.push('Addproductstep2Page');

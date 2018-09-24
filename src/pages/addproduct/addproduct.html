@@ -32,18 +32,33 @@
             <ion-label stacked color="primary">Brand</ion-label>
             <ion-select name="brand" (ionChange)="subcategoryList($event)" formControlName="brand">
               <ion-option value="{{b.id}}" *ngFor="let b of brandlists">{{b.name}}</ion-option>
+              <ion-option value="OTHER">OTHER</ion-option>
             </ion-select>
         </ion-item>
         <p *ngIf="!pForm.controls['brand'].valid && pForm.controls['brand'].touched" ion-text color="danger" padding-left>
             Brand is required </p>
-        <ion-item>
+        <ion-item *ngIf="brandid!='OTHER'">
             <ion-label stacked color="primary">Category</ion-label>
             <ion-select name="cat_id" formControlName="cat_id">
               <ion-option value="{{sc.id}}" *ngFor="let sc of subcategorylists">{{sc.name}}</ion-option>
             </ion-select>
         </ion-item>
-        <p *ngIf="!pForm.controls['cat_id'].valid && pForm.controls['cat_id'].touched" ion-text color="danger" padding-left>
-            Brand is required </p>
+        <!-- <p *ngIf="!pForm.controls['cat_id'].valid && pForm.controls['cat_id'].touched && brandid!='OTHER'" ion-text color="danger" padding-left>
+            Category is required </p> -->
+
+
+          <ion-item *ngIf="brandid=='OTHER'">
+              <ion-label stacked color="primary">Other Barand Name</ion-label>
+              <ion-input round type="text" placeholder="Type brand name"  formControlName="otherbrand" ></ion-input>
+          </ion-item>  
+          
+          <ion-item *ngIf="brandid=='OTHER'">
+            <ion-label stacked color="primary">Other Category Name</ion-label>
+            <ion-input round type="text" placeholder="Type category name" formControlName="othercategory" ></ion-input>
+        </ion-item> 
+       
+
+
         <ion-item>
             <ion-label stacked color="primary">Breslet Type</ion-label>
             <ion-select name="breslet_type" formControlName="breslet_type" >
@@ -81,7 +96,7 @@
             <ion-label stacked color="primary" >Auction Date
             
        
-        <div class="calendar-header">
+        <div class="calendar-header" style="background-color:gray">
           <ion-row class="calendar-month">
             <ion-col col-2 (click)="goToLastMonth()"><ion-icon name="arrow-back"></ion-icon></ion-col>
             <ion-col col-8>{{currentMonth}} {{currentYear}}</ion-col>
@@ -90,7 +105,7 @@
         </div>
         <div class="calendar-body">
           <ion-grid>
-            <ion-row class="calendar-weekday">
+            <ion-row class="calendar-weekday" style="background-color:gray">
               <ion-col>Su</ion-col>
               <ion-col>Mo</ion-col>
               <ion-col>Tu</ion-col>
@@ -99,10 +114,10 @@
               <ion-col>Fr</ion-col>
               <ion-col>Sa</ion-col>
             </ion-row>
-            <ion-row class="calendar-date">
+            <ion-row class="calendar-date" >
               <ion-col col-1 *ngFor="let lastDay of daysInLastMonth" class="last-month">{{lastDay}}</ion-col>
               <ion-col col-1 *ngFor="let day of daysInThisMonth" >
-                <span class="currentDate" *ngIf="currentDate == day || currentDate == day-1; else otherDate" (click)="selectDate(day,currentMonth,currentYear)">{{day}}</span>
+                <span class="currentDate" *ngIf="currentDate == day || currentDate == day-1; else otherDate" (click)="selectDate(day,currentMonth,currentYear)" style="background-color:gray">{{day}}</span>
                
               <ng-template #otherDate class="otherDate">{{day}}</ng-template>
               </ion-col>
@@ -121,7 +136,6 @@
         <ion-list radio-group formControlName="time_slot_id" name="time_slot_id" *ngIf="uploadtypeid==2">
         <ion-list-header>
             Auction Time
-           
             
         </ion-list-header>
         <ion-item *ngFor="let t of timelists">
