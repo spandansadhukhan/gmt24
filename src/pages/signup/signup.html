@@ -6,8 +6,8 @@
     </div>
     <ion-grid>
       <ion-row>
-        <ion-col col-6>
-          <div class="rdo-btn" text-right>
+        <ion-col col-6  text-right>
+          <div class="rdo-btn">
 <input type="radio" name="type" value="1" formControlName="type" />
             User
           </div>
@@ -45,6 +45,7 @@
 
       <ion-item class="input-field">
         <ion-label fixed>Mobile No.{{phonecode}}</ion-label>
+        <ion-label><span class="phone-no">+91</span></ion-label>
         <ion-input name="phone" formControlName="phone" type="number" placeholder="Type your mobile no." required></ion-input>
       </ion-item>
       <p *ngIf="!rForm.controls['phone'].valid && rForm.controls['phone'].touched" ion-text color="danger">Phone is required </p>

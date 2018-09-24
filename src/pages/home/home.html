@@ -44,7 +44,7 @@
 
 <h6 class="text-uppercase">Top Brands</h6>
 <ion-slides pager>
-  <ion-slide class="slide-holder" *ngFor="let tb of brandlists">
+  <ion-slide class="slide-holder brand-logo" *ngFor="let tb of brandlists">
     <div class="item-image" (click)="brandproduct(tb.brand_id)">
       <img src="{{tb.brand_image}}" alt="Item">
     </div>
