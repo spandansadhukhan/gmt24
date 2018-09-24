@@ -35,8 +35,8 @@
   <ion-card>
     <ion-card-content>
       <p class="top-content">
-        <img src="assets/img/thumb-outline.png" alt="">
-        <span>18</span>
+        <img src="assets/img/thumb.png" alt="">
+        <span>{{totallike}}</span>
       </p>
       <img class="detail-pic" src="{{product_single_image}}" alt="">
       <ion-row justify-content-center>
@@ -55,7 +55,7 @@
     <div class="body-area">
       <h2>{{brands}}/{{category}}({{gender}})</h2>
       <p> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> ({{averagerating}}) </p>
-      <h1>{{price}}</h1>
+      <h1>{{currency_code}} {{price}}</h1>
       <p>Seller: {{seller_name}}</p>
     </div>
 

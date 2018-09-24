@@ -27,6 +27,8 @@ export class DetailsPage {
   seller_name:any;
   product_single_image:any;
   averagerating:any;
+  currency_code:any;
+  totallike:any;
   //product_id1:any;
   constructor(
     public navCtrl: NavController, 
@@ -74,7 +76,9 @@ export class DetailsPage {
         this.gender=this.productLists.gender;
         this.seller_name=this.productLists.seller_name;
         this.product_single_image=this.productLists.product_single_image;
-        this.averagerating=this.productLists.averagerating
+        this.averagerating=this.productLists.averagerating;
+        this.currency_code=this.productLists.currency_code;
+        this.totallike=this.productLists.totallike
          //console.log('arunava',this.productLists)
       }
       else
