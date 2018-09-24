@@ -22,9 +22,7 @@
         <ion-item>
             <ion-label stacked color="primary">Movement</ion-label>
             <ion-select name="movement" formControlName="movement">
-              <ion-option value="Automatic Movement">Automatic</ion-option>
-              <ion-option value="Quartz Movement">Quartz</ion-option>
-              <ion-option value="Other Movement">Other</ion-option>
+                <ion-option value="{{ml.name}}" *ngFor="let ml of movementlist">{{ml.name}}</ion-option>
             </ion-select>
         </ion-item>
         <p *ngIf="!pForm.controls['movement'].valid && pForm.controls['movement'].touched" ion-text color="danger" padding-left>
@@ -42,8 +40,8 @@
         
 
         <ion-item>
-            <ion-label stacked color="primary">Reference Number</ion-label>
-            <ion-input round type="number" placeholder="Type number" formControlName="reference" name="reference" required></ion-input>
+            <ion-label stacked color="primary">Reference Code</ion-label>
+            <ion-input round type="text" placeholder="Type reference code" formControlName="reference" name="reference" required></ion-input>
         </ion-item>
         <p *ngIf="!pForm.controls['reference'].valid && pForm.controls['reference'].touched" ion-text color="danger" padding-left>
           Reference number is required </p>
@@ -60,12 +58,7 @@
         </ion-item>
         <p *ngIf="!pForm.controls['status'].valid && pForm.controls['status'].touched" ion-text color="danger" padding-left>
           Status is required </p>
-        <ion-item>
-            <ion-label stacked color="primary">Owner Number</ion-label>
-            <ion-input round type="number" min="0" placeholder="Type phone no." formControlName="owner_number" name="owner_number" required></ion-input>
-        </ion-item>
-        <p *ngIf="!pForm.controls['owner_number'].valid && pForm.controls['owner_number'].touched" ion-text color="danger" padding-left>
-          Owner number is required </p>
+        
       <ion-item>
         <ion-label stacked color="primary">Country</ion-label>
         <ion-select name="country" (ionChange)="stateList($event)" formControlName="country">
@@ -82,6 +75,14 @@
       </ion-item>
       <p *ngIf="!pForm.controls['state'].valid && pForm.controls['state'].touched" ion-text color="danger" padding-left>
         state is required </p>
+
+        <ion-item>
+            <ion-label stacked color="primary">Owner Number +{{phonecode}}</ion-label>
+            <ion-input round type="number" min="0" placeholder="Type phone no." formControlName="owner_number" name="owner_number" required></ion-input>
+        </ion-item>
+        <p *ngIf="!pForm.controls['owner_number'].valid && pForm.controls['owner_number'].touched" ion-text color="danger" padding-left>
+          Owner number is required </p>
+
       <!-- <ion-item>
           <ion-label stacked color="primary">City</ion-label>
           <ion-select name="city" formControlName="city">

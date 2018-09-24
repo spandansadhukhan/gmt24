@@ -56,6 +56,10 @@
         </ion-item>
         <p *ngIf="!aForm.controls['email'].valid && aForm.controls['email'].touched" ion-text color="danger" padding-left>
           Email is required </p>
+
+         
+
+
       <ion-item>
         <ion-label stacked color="primary">Country</ion-label>
         <ion-select name="country" formControlName="country" (ionChange)="stateList($event)">
@@ -66,12 +70,13 @@
         Country is required </p>
       <ion-item>
           <ion-label stacked color="primary">Governorate</ion-label>
-          <ion-select name="state" formControlName="state">
+          <ion-select name="state" formControlName="state" (ionChange)="cityList($event)">
             <ion-option value="{{s.id}}" *ngFor="let s of statelists">{{s.name}}</ion-option>
           </ion-select>
       </ion-item>
       <p *ngIf="!aForm.controls['state'].valid && aForm.controls['state'].touched" ion-text color="danger" padding-left>
         State is required </p>
+
 
         <ion-item>
           <ion-label stacked color="primary">Mobile Number +{{phonecode}}</ion-label>
@@ -80,6 +85,15 @@
       <p *ngIf="!aForm.controls['phone'].valid && aForm.controls['phone'].touched" ion-text color="danger" padding-left>
         Mobile no is required </p>
 
+
+      <!-- <ion-item>
+          <ion-label stacked color="primary">City</ion-label>
+          <ion-select name="city" formControlName="city">
+            <ion-option value="{{ct.id}}" *ngFor="let ct of citylists">{{ct.name}}</ion-option>
+          </ion-select>
+      </ion-item>
+      <p *ngIf="!aForm.controls['city'].valid && aForm.controls['city'].touched" ion-text color="danger" padding-left>
+        City is required </p> -->
       <ion-item>
         <ion-label stacked color="primary">IBAN Number</ion-label>
         <ion-input round type="text" name="ibanno" formControlName="ibanno" placeholder="Type IBAN number" required></ion-input>
@@ -119,16 +133,10 @@
         Preferred Currency is required </p>
 
 
-        <ion-item>
-        <div class="map">
-          <div id="map" style="height:400px;"></div>
-        </div> 
-        </ion-item>
 
-        <ion-item>
-          <ion-label stacked color="primary">Location</ion-label>
-          <!-- <ion-input round type="text" id="address" formControlName="address" name="address" placeholder="Location name" required></ion-input> -->
-      </ion-item>
+        
+
+
 
       <!-- <ion-item>
         <ion-label stacked color="primary">Civil ID Attachment</ion-label>
@@ -148,7 +156,6 @@
     </ion-list>
 
   </form>
-  <p>{{dragaddress}}</p>
 </ion-content>
 
 <ion-footer>

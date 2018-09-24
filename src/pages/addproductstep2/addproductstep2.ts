@@ -26,6 +26,8 @@ export class Addproductstep2Page {
   public statuslists:any;
   public loguser;
   pForm: FormGroup;
+  movementlist:any;
+  phonecode:any;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -68,6 +70,7 @@ export class Addproductstep2Page {
     console.log('ionViewDidLoad Addproductstep2Page');
     this.countryList();
     this.statusList();
+    this.movementList();
     //this.loguser =  JSON.parse(localStorage.getItem('productData'));
    // alert(this.loguser.price);
   }
@@ -117,7 +120,7 @@ stateList(cid){
     {
      
       this.statelists =  this.responseData.statelist;
-      
+      this.phonecode=this.responseData.phonecode;
     }
     else
     {
@@ -183,6 +186,7 @@ cityList(ctid){
     else
     {
       this.statuslists = '';
+
     }
    
   }, (err) => {
@@ -192,6 +196,38 @@ cityList(ctid){
   });
 });
 }
+
+movementList(){
+   
+  this.storage.get('uid').then(val => {
+    this.id = val;
+  let serval={
+    "user_id":this.id,
+   };
+  this.authService.postData(serval,'listmovement').then((result) => {
+    this.responseData = result
+
+    if( this.responseData.Ack == 1)
+    {
+     
+      this.movementlist =  this.responseData.movementlist;
+      
+    }
+    else
+    {
+      this.movementlist = '';
+    }
+   
+  }, (err) => {
+    
+    console.log(err);
+    
+  });
+});
+}
+
+
+
 
 onSubmit(formData){
   if (!this.pForm.valid) {
