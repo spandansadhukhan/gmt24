@@ -23,7 +23,7 @@
       <p class="name" *ngIf="p.approved==1 && p.live_status==1"><span>Expire on:</span> {{p.expiry_date}}</p>
       <p class="info">{{p.description}}</p>
       <p class="price"><span>KWD</span> {{p.price}}</p>
-      <div *ngIf="p.approved==1 && p.live_status==1">
+      <div class="product-bt" *ngIf="p.approved==1 && p.live_status==1">
       <button ion-button round class="blue-btn ml-0">Send for Auction</button>
       <button ion-button round class="brown-btn" (click)="deleteproduct(p.id)">Delete</button>
       <button ion-button round class="dark-grey-btn" *ngIf="p.product_status== 0">Mark as sold</button>

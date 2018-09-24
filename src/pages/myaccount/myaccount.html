@@ -73,8 +73,9 @@
       <p *ngIf="!aForm.controls['state'].valid && aForm.controls['state'].touched" ion-text color="danger" padding-left>
         State is required </p>
 
-        <ion-item>
+        <ion-item class="phone-wrap">
           <ion-label stacked color="primary">Mobile Number +{{phonecode}}</ion-label>
+          <ion-label><span class="phone-no">+91</span></ion-label>
           <ion-input round type="number" placeholder="Type your mobile Number" formControlName="phone" name="phone" required></ion-input>
       </ion-item>
       <p *ngIf="!aForm.controls['phone'].valid && aForm.controls['phone'].touched" ion-text color="danger" padding-left>

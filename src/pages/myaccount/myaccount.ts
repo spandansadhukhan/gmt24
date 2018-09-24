@@ -183,9 +183,9 @@ export class MyaccountPage {
                         //alert("Latitude: " + lat + "\nLongitude: " + lng + "\nAddress: " + address);
                         //alert(this.dragaddress)
                         //alert(address);
-                        return address;
-                        this.lat=lat;
-                        this.lang=lng;
+                        //return address;
+                        //this.lat=lat;
+                        //this.lang=lng;
                         this.dragaddress=address;
                         
                       alert(this.dragaddress);
