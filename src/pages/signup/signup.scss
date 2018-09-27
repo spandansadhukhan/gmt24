@@ -1,25 +1,28 @@
 page-signup {
-
-    
+	.label-md{margin:0;}
+p{margin:2px 0; padding:0;}
+    .grid{padding:0;}
+    .label{line-height:14px;}
     .checkbox{ margin-right: 5px !important;}
     .checkbox .checkbox-checked{ background-color: #17a2b8; border-color: #17a2b8; }
 
     .logo {
-        padding: 20px 0;
+        padding: 0px 0;
         text-align: center;
         img {
-          max-width: 50%;
+          max-width: 40%;
         }
-        h3{ font-family: 'Poppins', sans-serif; text-transform: uppercase; padding-top: 12px; color:#fff; letter-spacing: 1px;}
+        h3{ font-family: 'Poppins', sans-serif; text-transform: uppercase; padding-top: 12px; color:#fff; letter-spacing: 1px;
+        margin-top:0 !important;}
       }
     
     .content{background: url('../assets/img/log-bg.jpg') no-repeat top center; background-size: cover}
-    ion-label[fixed]{width:100%; max-width: 100%; min-width: 100%; margin-top:5px; margin-bottom: 0px}
+    ion-label[fixed]{width:100%; max-width: 100%; min-width: 100%; margin-top:0px; margin-bottom: 0px}
     .input-field .input-wrapper{flex-wrap: wrap}
     .input-field {padding-left:0; margin-bottom: 10px}
     .input-field .item-inner{padding-right:0 !important; border-bottom-color:#808080 !important; box-shadow:none !important}
     .input-field ion-input { border: 0; background-color:transparent; width: 100%; }
-    .input-field ion-input .text-input{margin: 5px 0; width: 100%; color:#e1e1e1; font-size: 1.4rem}
+    .input-field ion-input .text-input{margin: 2px 0; width: 100%; color:#e1e1e1; font-size: 12px;}
 
     .item{ background-color: transparent; border-top:0 !important;  }
     
