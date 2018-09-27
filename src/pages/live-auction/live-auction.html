@@ -18,27 +18,29 @@
 	<ion-card>
 		<ion-row>
 			<ion-col class="top">
-				<div class="users"><img src="assets/img/users-icon.png" alt="" /> 18</div>
-				<div class="online"></div>
+				<div class="users"><img src="assets/img/users-icon.png" alt="" /> {{countuniquebids}}</div>
+				<div class="offline"></div>
 			</ion-col>		
 		</ion-row>
 		<ion-row>
 			<ion-col class="product">
-				<img src="assets/img/watch-p.png" alt="" />
+				<img src="{{product_single_image}}" alt="" />
+				<h4>Total No Of Bid(s) : <span>{{countuniquebids}}</span></h4>
+				<h4>Highest Bidder Name :<span>{{maxbiddername}}({{higestbidderbid}})</span></h4>
+				<h4>Your Higest Bid : <span>{{currency_code}} {{usermaxbid}}</span></h4>
+
 				<h2>Time Left: <span>{{displayTime}}</span></h2>
-				<h2>Highest Bid: <span>$30.25</span></h2>
 			</ion-col>
 		</ion-row>
 		<ion-row>
 			<ion-col class="desc">
-				<h3>Rolex Cosmograph Daytona M11650
-					<span>(Male watch)</span>
+				<h3>{{brands}}/{{category}}
+					<span>({{gender}})</span>
 				</h3>
-				<h4>Seller: <span>Seller name goes here</span></h4>
-				<h4>Date of purchased: <span>02-08-2017</span></h4>
-				<h4>Owner’s number: <span>8787 898 956</span></h4>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-				<button ion-button full class="wh">Input Your Price</button>
+				<h4>Highest Bid: <span>{{currency_code}} {{higestbidderbid}}</span></h4>
+				<h4>Next Minimum Bid: <span>{{currency_code}} {{nextbidprice}}</span></h4>
+				
+				<ion-input class="wh" type="number" placeholder="Input your bid"></ion-input>
 				<button ion-button full class="gr">Submit</button>
 			</ion-col>
 		</ion-row>

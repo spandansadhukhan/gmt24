@@ -1,5 +1,5 @@
 <!--
-  Generated template for the SearchPage page.
+  Generated template for the ShopproductlistPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -12,14 +12,7 @@
       <img src="assets/img/appicon.png" alt="">
     </ion-title>
 
-    <!-- <ion-buttons end>
-      <button ion-button>
-        <ion-icon ios="ios-notifications" md="md-notifications"></ion-icon>
-      </button>
-      <button ion-button>
-        <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
-      </button>
-    </ion-buttons> -->
+    
   </ion-navbar>
   
   <ion-row>
@@ -40,10 +33,7 @@
 
   <ion-list>
     <ion-item class="request-item" *ngFor="let product of productlists">
-      <!-- <div class="top-tag">
-       <p>top</p> 
-        <img src="assets/img/top-tag.png" alt="">
-      </div> -->
+      
       
       <ion-thumbnail item-start>       
         <img src="{{product.image}}" alt="" (click)="productdetails(product.product_id)">
@@ -60,8 +50,14 @@
         <span class="batch-text">Trusted Seller since 2016</span>  -->
         
       </p>
+
     </ion-item>
     
+    <ion-item class="request-item" *ngIf="productlists == ''">
+      
+      Sorry! No products available. 
+      
+    </ion-item>
     
   </ion-list>
 

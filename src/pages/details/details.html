@@ -30,7 +30,7 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content style="margin-bottom: 50px">
 
   <ion-card>
     <ion-card-content>
@@ -40,13 +40,13 @@
       </p>
       <img class="detail-pic" src="{{product_single_image}}" alt="">
       <ion-row justify-content-center>
-        <ion-col col-2 class="pr-0">
+        <!-- <ion-col col-2 class="pr-0">
           <div class="thumb-area">
             <img src="assets/img/thumb.png" alt="">
           </div>
-        </ion-col>
-        <ion-col col-2 class="pl-0">
-          <div class="thumb-area">
+        </ion-col> -->
+        <ion-col col-2 class="pl-0" *ngIf="user_id!=seller_id">
+          <div class="thumb-area" (click)="favourite(seller_id)">
             <img src="assets/img/heart.png" alt="">
           </div>
         </ion-col>
@@ -56,13 +56,26 @@
       <h2>{{brands}}/{{category}}({{gender}})</h2>
       <p> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> ({{averagerating}}) </p>
       <h1>{{currency_code}} {{price}}</h1>
-      <p>Seller: {{seller_name}}</p>
+      <p>Seller Name: {{seller_name}}</p>
+      <p>Phone No: {{seller_phone}}</p>
+      <p>Address: {{seller_address}}</p>
+      <p>Product Bracelet Type: {{breslet_type}}</p>
+      <p>Product Size: {{size}}</p>
+      <p>Model Year: {{model_year}}</p>
+      <p>Movement: {{movement}}</p>
+      <p>Date of Purchased: {{date_purchase}}</p>
+      <p>Status of watch: {{status_watch}}</p>
+      <p>Product Description: {{description}}</p>
+      <p>Reference No: {{reference_no}}</p>
+
     </div>
 
-    <div padding>
-      <button ion-button round class="grey-btn" type="submit" block>I am Interested</button>
+    <div padding style="padding-bottom: 45px" *ngIf="ptype== 1 && user_id!=seller_id && interest== 0">
+      <button ion-button round class="grey-btn" block (click)="interestedEmailToVendor(seller_id,ptype)">I am Interested</button>
     </div>
-    
+    <div padding *ngIf="ptype== 2" style="padding-bottom: 45px">
+      <button ion-button round class="grey-btn"  block (click)="gotobid()">Go Live Bidding</button>
+    </div>
 
   </ion-card>
 

@@ -17,7 +17,7 @@
     <ion-list>
         <ion-item class="request-item" *ngFor="let item of interestList">
            
-           <ion-thumbnail item-start> <img src="{{item.image}}"></ion-thumbnail>
+           <ion-thumbnail item-start> <img src="{{item.image}}" (click)="productdetails(item.pid)"></ion-thumbnail>
           
           <h2>{{item.description}}</h2>
 

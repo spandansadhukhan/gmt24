@@ -17,7 +17,7 @@
   <ion-list>
     <ion-item class="request-item" *ngFor="let p of productlists">
       <ion-thumbnail item-start>
-        <img src="{{p.image}}">
+        <img src="{{p.image}}" (click)="productdetails(p.id)">
       </ion-thumbnail>
       <h2>{{p.brand_name}}</h2>
       <p class="name" *ngIf="p.approved==1 && p.live_status==1"><span>Expire on:</span> {{p.expiry_date}}</p>
