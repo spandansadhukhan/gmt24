@@ -125,4 +125,11 @@ deleteproduct(pid){
   });
   }
 
+
+
+  productdetails(product_id){
+    
+      this.navCtrl.push('DetailsPage',{"product_id":product_id}); 
+    }
+
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams ,MenuController,LoadingController} from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { Storage } from '@ionic/storage';
+import {MyApp} from '../../app/app.component';
 /**
  * Generated class for the HomePage page.
  *
@@ -21,16 +22,20 @@ export class HomePage {
   public brandlists:any;
   public topmodellists:any;
   public topproductlists:any;
+  public latestproductlist:any;
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public menu: MenuController,
     public authService: AuthServiceProvider,
     private storage: Storage,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    public myApp:MyApp) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
+    this.myApp.abc();
     this.menu.enable(true, 'loggedOutMenu');
     this.homemenus();
   }
@@ -56,6 +61,7 @@ export class HomePage {
         this.brandlists =  this.responseData.brandList;
         this.topmodellists =  this.responseData.topmodellist;
         this.topproductlists = this.responseData.topproductlist;
+        this.latestproductlist=this.responseData.latestproductlist
         console.log('brand',this.brandlists)
       }
       

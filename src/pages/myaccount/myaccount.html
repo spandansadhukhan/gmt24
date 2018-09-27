@@ -80,8 +80,8 @@
 
         <ion-item class="phone-wrap">
 
-          <ion-label stacked color="primary">Mobile Number +{{phonecode}}</ion-label>
-          <ion-label><span class="phone-no">+91</span></ion-label>
+          <ion-label stacked color="primary">Mobile Number</ion-label>
+          <ion-label><span class="phone-no">+{{phonecode}}</span></ion-label>
           <ion-input round type="number" placeholder="Type your mobile Number" formControlName="phone" name="phone" required></ion-input>
       </ion-item>
       <p *ngIf="!aForm.controls['phone'].valid && aForm.controls['phone'].touched" ion-text color="danger" padding-left>
@@ -159,52 +159,3 @@
 
   </form>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar class="p-0">
-    <ion-grid class="p-0">
-      <ion-row class="row-bottom">
-        <ion-col text-center>
-          <a class="active profile-link">
-            <span class="profile">
-              <img src="assets/img/cate-pic-a.png" alt="image">
-            </span>
-            <p>Profile</p>
-          </a>
-        </ion-col>
-        <ion-col text-center>
-          <a (click)="selectrepair()">
-            <span class="footer-icon">
-              <img src="assets/img/icon-auction.png" alt="image">
-            </span>
-            <p>Auction</p>
-          </a>
-        </ion-col>
-        <ion-col text-center>
-          <a>
-            <span class="footer-icon">
-              <img src="assets/img/icon-notification.png" alt="image">
-            </span>
-            <p>Notifications</p>
-          </a>
-        </ion-col>
-        <ion-col text-center>
-          <a>
-            <span class="footer-icon">
-              <img src="assets/img/icon-settings.png" alt="image">
-            </span>
-            <p>Settings</p>
-          </a>
-        </ion-col>
-        <ion-col text-center>
-          <a (click)="profiledetails()">
-            <span class="footer-icon">
-              <img src="assets/img/icon-filter.png" alt="image">
-            </span>
-            <p>Filter</p>
-          </a>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
-</ion-footer>

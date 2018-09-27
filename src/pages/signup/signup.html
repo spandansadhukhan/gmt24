@@ -8,35 +8,40 @@
       <ion-row>
         <ion-col col-6  text-right>
           <div class="rdo-btn">
-<input type="radio" name="type" value="1" formControlName="type" />
-            User
+          <input type="radio" value="1" (click)="usertype(1)" formControlName="type" id="test2" />
+            <label for="test2">User</label>
           </div>
+          
         </ion-col>
         <ion-col col-6>
           <div class="rdo-btn" text-left>
-<input type="radio" name="type" value="2" formControlName="type" />
-            Vendor
-          </div>
+            <input id="test3" type="radio" value="2" (click)="usertype(2)" formControlName="type" />
+              <label for="test3">Vendor</label>
+            </div>
         </ion-col>
+
       </ion-row>
+      <p *ngIf="!showusertype" style="color:#fff">Register as vendor</p>
+      <p *ngIf="showusertype" style="color:#fff">Register as user</p>
+
     </ion-grid>
     <ion-list class="mb-0">
       <ion-item class="input-field">
-        <ion-label fixed>First Name</ion-label>
+        <ion-label fixed>First Name *</ion-label>
         <ion-input name="fname" formControlName="fname" type="text" placeholder="Type your first name" required></ion-input>
       </ion-item>
       <p *ngIf="!rForm.controls['fname'].valid && rForm.controls['fname'].touched" ion-text color="danger" >First Name is required </p>
 
 
       <ion-item class="input-field">
-        <ion-label fixed>Last Name</ion-label>
+        <ion-label fixed>Last Name *</ion-label>
         <ion-input name="lname" formControlName="lname" type="text" placeholder="Type your last name" required></ion-input>
       </ion-item>
       <p *ngIf="!rForm.controls['lname'].valid && rForm.controls['lname'].touched" ion-text color="danger" >Last Name is required </p>
 
 
       <ion-item class="input-field">
-        <ion-label stacked>Country</ion-label>
+        <ion-label stacked>Country *</ion-label>
         <ion-select name="country" formControlName="country" (ionChange)="liststate($event)">
           <ion-option value="{{c.id}}" *ngFor="let c of countrylist">{{c.name}}</ion-option>
         </ion-select>
@@ -44,28 +49,28 @@
       <p *ngIf="!rForm.controls['country'].valid && rForm.controls['country'].touched" ion-text color="danger">Country is required </p>
 
       <ion-item class="input-field">
-        <ion-label fixed>Mobile No.{{phonecode}}</ion-label>
-        <ion-label><span class="phone-no">+91</span></ion-label>
+        <ion-label fixed>Mobile No *</ion-label>
+        <ion-label><span class="phone-no">+{{phonecode}}</span></ion-label>
         <ion-input name="phone" formControlName="phone" type="number" placeholder="Type your mobile no." required></ion-input>
       </ion-item>
       <p *ngIf="!rForm.controls['phone'].valid && rForm.controls['phone'].touched" ion-text color="danger">Phone is required </p>
 
 
       <ion-item class="input-field">
-        <ion-label fixed>Email</ion-label>
+        <ion-label fixed>Email *</ion-label>
         <ion-input name="email" formControlName="email" type="email" placeholder="Type your email" required></ion-input>
       </ion-item>
       <p *ngIf="!rForm.controls['email'].valid && rForm.controls['email'].touched" ion-text color="danger">Email is required </p>
 
       <ion-item class="input-field">
-        <ion-label fixed>Password</ion-label>
+        <ion-label fixed>Password *</ion-label>
         <ion-input name="password" type="password" formControlName="password" placeholder="Type your password" required>
         </ion-input>
       </ion-item>
       <p *ngIf="!rForm.controls['password'].valid && rForm.controls['password'].touched" ion-text color="danger">Password is required </p>
 
       <ion-item class="input-field">
-        <ion-label fixed>Confirm Password</ion-label>
+        <ion-label fixed>Confirm Password *</ion-label>
         <ion-input name="confirm_password" type="password" formControlName="confirm_password" placeholder="Re-type your password" (ngModelChange)="checkpassword($event,rForm.value)" required>
         </ion-input>
       </ion-item>

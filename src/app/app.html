@@ -11,7 +11,7 @@
       </ion-header>
      
       <ion-content >
-        <ion-card class="sidepanel-list left-menu">
+        <ion-card class="sidepanel-list left-menu" style="padding-bottom: 5rem;">
           <ion-item menuClose (click)="myaccount()">
             <ion-icon name="person" item-start ></ion-icon> Profile
           </ion-item>
@@ -43,9 +43,9 @@
             <ion-icon name="watch" item-start></ion-icon> My Auction
           </ion-item>
 
-          <ion-item menuClose (click)="liveauction()">
+          <!-- <ion-item menuClose (click)="liveauction()">
             <ion-icon name="watch" item-start></ion-icon> Live Auction
-          </ion-item>
+          </ion-item> -->
 
           <ion-item menuClose (click)="purchase()">
             <ion-icon name="hammer" item-start></ion-icon> Purchased/ Won Auction
@@ -75,4 +75,47 @@
     <ion-nav [root]="rootPage" #content swipeBackEnabled="false" main name="app"></ion-nav>
   
   </ion-split-pane>
+  <ion-footer *ngIf="!footerIsHidden">
+    <ion-toolbar class="p-0">
+      <ion-grid class="p-0">
+        <ion-row class="row-bottom">
+          <ion-col text-center>
+            <a (click)="home()">
+              <span class="profile"><img src="assets/img/cate-pic-a.png" alt="image"></span>
+              <p>Home</p>
+            </a>
+          </ion-col>
+          <ion-col text-center>
+            <a (click)="allauctions()">
+              <span class="footer-icon"><img src="assets/img/icon-auction.png" alt="image"></span>
+              <p>Auction</p>
+            </a>
+          </ion-col>
   
+          
+          <ion-col text-center>
+            <a (click)="allwatches()">
+              <span class="footer-icon"><img src="assets/img/item-4.jpg" alt="image"></span>
+              <p>Watches</p>
+            </a>
+          </ion-col>
+
+          <ion-col text-center>
+            <a (click)="allshops()">
+              <span class="footer-icon"><img src="assets/img/icon-filter.png" alt="image"></span>
+              <p>Shops</p>
+            </a>
+          </ion-col>
+
+
+          <ion-col text-center>
+            <a (click)="settings()">
+              <span class="footer-icon"><img src="assets/img/icon-settings.png" alt="image"></span>
+              <p>Settings</p>
+            </a>
+          </ion-col>
+          
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </ion-footer>

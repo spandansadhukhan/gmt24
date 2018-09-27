@@ -17,7 +17,7 @@ export class SignupPage {
   countrylist:any;
   phonecode:any;
   passwordmatch: boolean = false;
-
+  showusertype: boolean = false;
   constructor(
     private builder: FormBuilder,
     public navCtrl: NavController,
@@ -27,6 +27,7 @@ export class SignupPage {
     public loadingCtrl: LoadingController,
     private fb: FormBuilder
   ) {
+    
     this.rForm = fb.group({
       'fname': [null, Validators.required],
       'lname': [null, Validators.required],
@@ -147,12 +148,21 @@ export class SignupPage {
     console.log('ionViewDidLoad SignupPage');
     this.listcountry();
   }
-
+  
 
   login() {
-    this.navCtrl.push('LoginnewPage');
+    this.navCtrl.setRoot('LoginnewPage');
+    this.showusertype=false;
   }
 
-
+  usertype(id){
+    //alert(id);
+    if(id== 1){
+      this.showusertype=true;
+    }else{
+      this.showusertype=false;
+    }
+   
+  }
 
 }

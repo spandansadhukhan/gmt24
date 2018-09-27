@@ -46,16 +46,36 @@ page-signup {
       font-size: 1.4rem;
     }
     .rdo-btn{
-      background: #808080;
-      border-radius: 15px;
-      padding: 6px 12px;
-      color: #fff;
+      // background: #808080;
+      // border-radius: 15px;
+      // padding: 6px 12px;
+      // color: #fff;
       display: inline-block;
       position: relative;
     }
-    .rdo-btn input[type="radio"]{
-      position: absolute;
-      left: -9999px;
+    .rdo-btn [type="radio"]:checked,
+    .rdo-btn [type="radio"]:not(:checked) {
+        position: absolute;
+        left: -9999px;
+    }
+    // .rdo-btn input[type="radio"]{
+    //   position: absolute;
+    //   left: -9999px;
+    // }
+    .rdo-btn input[type="radio"]:not(:checked) + label{
+      position: relative;
+      background: #a5a5a5;
+      border-radius: 15px;
+      padding: 6px 12px;
+      color: #fff;
+    }
+
+    .rdo-btn input[type="radio"]:checked + label{
+      position: relative;
+      background: #3e3e3e;
+      border-radius: 15px;
+      padding: 6px 12px;
+      color: #fff;
     }
     .phone-no{
 

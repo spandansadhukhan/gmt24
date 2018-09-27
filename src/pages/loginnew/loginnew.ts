@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 
 import { MenuController } from 'ionic-angular';
 //import {MyApp} from '../../app/app.component';
+import { Events } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -41,9 +42,11 @@ public loguser:any;
     private storage: Storage,
     
     public loadingCtrl: LoadingController,
+    public events: Events,
     //private myApp:MyApp
   ) {
 
+    events.publish('hideFooter', { isHidden: true});
     this.form = builder.group({
       'email': ['', Validators.compose([Validators.required, Validators.email])],
       'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
@@ -122,7 +125,7 @@ public loguser:any;
   }
 
   onSignup() {
-    this.navCtrl.push('SignupPage');
+    this.navCtrl.setRoot('SignupPage');
   }
 
 }

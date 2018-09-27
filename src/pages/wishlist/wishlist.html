@@ -17,7 +17,7 @@
   <ion-list>
     <ion-item class="request-item" *ngFor="let item of wishlist">
       <ion-thumbnail item-start>
-        <img src={{item.pro_image}}>
+        <img src={{item.pro_image}} (click)="productdetails(item.product_id)">
       </ion-thumbnail>
       <h2>{{item.product_description}}</h2>
       <p class="price">{{item.pro_price}}</p>
