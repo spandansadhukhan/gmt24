@@ -16,20 +16,22 @@
 
 <ion-content padding>
 	<ion-card>
+			<form  [formGroup]="bidForm" novalidate>
 		<ion-row>
 			<ion-col class="top">
 				<div class="users"><img src="assets/img/users-icon.png" alt="" /> {{countuniquebids}}</div>
-				<div class="offline"></div>
+				<div *ngIf="lastbidvalue >= thresholdprice" class="online"></div>
+				<div *ngIf="lastbidvalue < thresholdprice" class="offline"></div>
 			</ion-col>		
 		</ion-row>
 		<ion-row>
 			<ion-col class="product">
 				<img src="{{product_single_image}}" alt="" />
-				<h4>Total No Of Bid(s) : <span>{{countuniquebids}}</span></h4>
+				<h4>Total No Of Bid(s) : <span>{{bidcount}}</span></h4>
 				<h4>Highest Bidder Name :<span>{{maxbiddername}}({{higestbidderbid}})</span></h4>
 				<h4>Your Higest Bid : <span>{{currency_code}} {{usermaxbid}}</span></h4>
 
-				<h2>Time Left: <span>{{displayTime}}</span></h2>
+				<h2>Time Left: <br><span>{{displayTime}}</span></h2>
 			</ion-col>
 		</ion-row>
 		<ion-row>
@@ -40,9 +42,11 @@
 				<h4>Highest Bid: <span>{{currency_code}} {{higestbidderbid}}</span></h4>
 				<h4>Next Minimum Bid: <span>{{currency_code}} {{nextbidprice}}</span></h4>
 				
-				<ion-input class="wh" type="number" placeholder="Input your bid"></ion-input>
-				<button ion-button full class="gr">Submit</button>
+				<ion-input class="wh" type="number" formControlName="bid" placeholder="Input your bid" (ngModelChange)="checkinputbid($event,nextbidprice)"></ion-input>
+				<button ion-button full class="gr" *ngIf="bidmatch" type="submit" (click)="bidsubmit(bidForm.value)">Submit</button>
 			</ion-col>
 		</ion-row>
+	</form>
 	</ion-card>
+
 </ion-content>
