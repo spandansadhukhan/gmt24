@@ -45,6 +45,8 @@ export class DetailsPage {
   status_watch:any;
   description:any;
   reference_no:any;
+  ctime:any;
+  start_time:any;
   //product_id1:any;
   constructor(
     public navCtrl: NavController, 
@@ -126,6 +128,8 @@ export class DetailsPage {
         this.status_watch=this.productLists.status_watch;
         this.description=this.productLists.description;
         this.reference_no=this.productLists.reference_no;
+        this.start_time=this.productLists.start_time;
+        this.ctime=this.productLists.ctime;
          //console.log('arunava',this.productLists)
       }
       else
