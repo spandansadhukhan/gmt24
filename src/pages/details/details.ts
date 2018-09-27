@@ -231,6 +231,9 @@ favourite(sellerid){
 
 gotobid(uid){
 
+
+  
+
   this.navCtrl.push('LiveAuctionPage',{"product_id":this.product_id});
 }
 

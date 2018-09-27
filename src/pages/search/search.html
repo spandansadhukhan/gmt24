@@ -62,7 +62,11 @@
       </p>
     </ion-item>
     
-    
+    <ion-item class="request-item" *ngIf="productlists == ''">
+      
+        Sorry! No products available. 
+        
+      </ion-item>
   </ion-list>
 
 </ion-content>
