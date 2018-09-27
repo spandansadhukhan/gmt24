@@ -130,6 +130,7 @@ export class DetailsPage {
         this.reference_no=this.productLists.reference_no;
         this.start_time=this.productLists.start_time;
         this.ctime=this.productLists.ctime;
+        this.interest=this.productLists.interest;
          //console.log('arunava',this.productLists)
       }
       else
@@ -232,7 +233,7 @@ favourite(sellerid){
 gotobid(uid){
 
 
-  
+
 
   this.navCtrl.push('LiveAuctionPage',{"product_id":this.product_id});
 }
