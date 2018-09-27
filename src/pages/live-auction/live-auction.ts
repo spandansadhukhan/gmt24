@@ -166,7 +166,7 @@ export class LiveAuctionPage {
     hoursString = (hours < 10) ? "0" + hours : hours.toString();
     minutesString = (minutes < 10) ? "0" + minutes : minutes.toString();
     secondsString = (seconds < 10) ? "0" + seconds : seconds.toString();
-    return hoursString + ' HOUR:' + minutesString + ' MINUTES:' + secondsString + ' SECONDS';
+    return hoursString + ':' + minutesString + ':' + secondsString ;
   }
 
 
