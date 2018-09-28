@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController,ToastController } from 'ionic-angular';
 import{Storage} from '@ionic/storage'
 import {AuthServiceProvider} from '../../providers/auth-service/auth-service'
 import {FormBuilder,FormControl,FormGroup,Validators,AbstractControl} from '@angular/forms'
@@ -30,8 +30,12 @@ dataSet:any;
 txtInput:any;
 userMessage:any;
 textEntered:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-  public storage: Storage,public authService:AuthServiceProvider) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public storage: Storage,
+    public authService:AuthServiceProvider,
+    public loadingCtrl: LoadingController,
+    public toastCtrl:ToastController,) {
 
     this.toId =  this.navParams.get('to_id');
     this.fromId =  this.navParams.get('from_id');
@@ -43,10 +47,30 @@ textEntered:any;
     });
   }
 
+
+  private presentToast(text) {
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad MessageDetailsPage');
+    this.messagedetails();
+  }
 
-this.dataSet=
+
+ messagedetails(){
+
+  let loading = this.loadingCtrl.create({
+    content: 'Please Wait...'
+  });
+  loading.present();
+
+  this.dataSet=
 {
   "to_id":this.toId,
   "from_id":this.fromId,
@@ -54,58 +78,77 @@ this.dataSet=
 
 };
 
-
 this.authService.postData(this.dataSet,'getfullMessages').then((result) => {
   this.responseData = result
   console.log ( this.responseData)
 
   if( this.responseData.Ack == 1)
   {
-   
+    loading.dismiss();
     this.messageDetails =  this.responseData.fillmessage;
     console.log(this.messageDetails);
     this.productName=this.responseData.product_name
     this.productImage=this.responseData.product_image
     
-    
+  }else
+  {
+    loading.dismiss();
+    this.messageDetails = '';
   }
+ 
+}, (err) => {
+  loading.dismiss();
+  this.presentToast('Error occured.');
+  console.log(err);
 });
 
-console.log(this.dataSet);
-  }
+ }
+
+
+
 
   send(data)
   {
-    console.log(data);
-    console.log(data.message);
+
+    //console.log(data);
+    //console.log(data.message);
     data.to_id=this.toId
     data.from_id=this.fromId
     data.product_id=this.productId
 
-    console.log (data)
-
-
-
-this.authService.postData(data,'addmessage').then((result) => {
+    //console.log (data)
+  let loading = this.loadingCtrl.create({
+    content: 'Please Wait...'
+  });
+  loading.present();
+  this.authService.postData(data,'addmessage').then((result) => {
 
   this.responseDataMsg = result
-  console.log ( this.responseDataMsg)
-  console.log (data)
+  //console.log ( this.responseDataMsg)
+  //console.log (data)
 
   if( this.responseDataMsg.Ack == 1)
   {
+    loading.dismiss();
     this.textEntered==1;
-data.message=this.txtInput
-   
-    console.log(this.formGroup.value.message);
+    data.message=this.txtInput
+    //console.log(this.formGroup.value.message);
     this.formGroup.value.message=this.userMessage;
-    console.log (this.userMessage)
+    //console.log (this.userMessage)
+    this.messagedetails();
     this.formGroup.reset();
-    // location.reload();
-
-
-
+    
+  }else
+  {
+    loading.dismiss();
+    this.messageDetails = '';
   }
+ 
+}, (err) => {
+  loading.dismiss();
+  this.presentToast('Error occured.');
+  console.log(err);
+
 });
   }
 
