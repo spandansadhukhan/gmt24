@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams ,LoadingController,ToastController} from 'ionic-angular';
 import {AuthServiceProvider} from '../../providers/auth-service/auth-service'
 import { pointerCoord } from 'ionic-angular/util/dom';
 import {Storage} from '@ionic/storage'
@@ -22,34 +22,68 @@ export class WishlistPage {
   id: any;
   wishlist:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-  public authService: AuthServiceProvider,
-public storage: Storage) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public authService: AuthServiceProvider,
+    public storage: Storage,
+    public loadingCtrl: LoadingController,
+    public toastCtrl:ToastController,
+) {
+  
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WishlistPage');
+    this.wishlists();
+   }
 
-    this.storage.get('uid').then(val => {
-      this.id = val;
-    let serval={
-      "user_id":this.id,
-     };
-    this.authService.postData(serval,'myFavoriteProduct').then((result) => {
-      this.responseData = result
- 
-      if( this.responseData.Ack == 1)
-      {
-       
-        this.wishlist =  this.responseData.favouriteProductList;
-        console.log(this.wishlist);
-        
-      }
+
+   private presentToast(text) {
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+
+ wishlists(){
+
+  let loading = this.loadingCtrl.create({
+    content: 'Please Wait...'
   });
+  loading.present();
+
+  this.storage.get('uid').then(val => {
+    this.id = val;
+  let serval={
+    "user_id":this.id,
+   };
+  this.authService.postData(serval,'myFavoriteProduct').then((result) => {
+    this.responseData = result
+
+    if( this.responseData.Ack == 1)
+    {
+      loading.dismiss();
+      this.wishlist =  this.responseData.favouriteProductList;
+      //console.log(this.wishlist);
+      
+    }else
+    {
+      loading.dismiss();
+      this.wishlist = '';
+    }
+   
+  }, (err) => {
+    loading.dismiss();
+    this.presentToast('Error occured.');
+    console.log(err);
+ 
+});
 
 });
-  
-}
+ }
+
 
 
 productdetails(product_id){

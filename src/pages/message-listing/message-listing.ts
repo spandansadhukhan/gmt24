@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController,ToastController } from 'ionic-angular';
 import {Storage} from '@ionic/storage'
 import {AuthServiceProvider} from '../../providers/auth-service/auth-service'
 
@@ -20,13 +20,36 @@ export class MessageListingPage {
   id: any;
   messageList: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-  public authService:AuthServiceProvider, public storage:Storage) {
+  constructor(public navCtrl: NavController,
+  public navParams: NavParams,
+  public authService:AuthServiceProvider,
+  public storage:Storage,
+  public loadingCtrl: LoadingController,
+  public toastCtrl:ToastController,) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MessageListingPage');
+    this.messagelist();
+    
+  }
 
+  private presentToast(text) {
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+
+
+  messagelist(){
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please Wait...'
+    });
+    loading.present();
     this.storage.get('uid').then(val => {
       this.id = val;
     let serval={
@@ -38,17 +61,27 @@ export class MessageListingPage {
  
       if( this.responseData.Ack == 1)
       {
-       
+        loading.dismiss();
         this.messageList =  this.responseData.message;
         console.log(this.messageList);
-
         
-        
+      }else
+      {
+        loading.dismiss();
+        this.messageList = '';
       }
+     
+    }, (err) => {
+      loading.dismiss();
+      this.presentToast('Error occured.');
+      console.log(err);
+     
   });
-
 });
+
   }
+
+
 
   messageDetails(to_id,from_id,product_id)
   {

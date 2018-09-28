@@ -25,6 +25,15 @@
       <p>{{item.date_diff}} ago</p>
       <ion-icon name="chatbubbles" (click)="messageDetails(item.to_id,item.from_id,item.product_id)"></ion-icon>
     </ion-item>
+
+
+    <ion-item class="request-item" *ngIf="messageList==''">
+        
+      Sorry! No message found.
+      </ion-item>
+
+
+
     <!-- <ion-item class="request-item">
       <ion-thumbnail item-start>
         <img src="assets/img/Arijit-Singh.jpg">

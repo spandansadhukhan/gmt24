@@ -227,16 +227,17 @@ export class LiveAuctionPage {
   
 }
 
-checkinputbid(bid1,nbid){
+checkinputbid(bid1,nbid,bidi,basebid){
 
-  alert(bid1.bid);
-    if(bid1.bid >= nbid)
+    if(bid1.bid >= nbid && ((bid1.bid-basebid)%bidi)== 0)
     {
       
      this.bidmatch = true;
     }
     else{
+      
       this.bidmatch = false;
+      //this.presentToast('Bid increment multiple of '+bidi+'.');
     }
   
 }
