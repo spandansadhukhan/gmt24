@@ -36,8 +36,8 @@
 		</ion-row>
 		<ion-row>
 			<ion-col col-12 class="product">
-				<h2><a href="">History</a></h2>
-				<h4>dsadsad sdsada sadsadsad sadsadsad </h4>
+				<h2><a  (click)="showhistory()">Bid History</a></h2>
+				<h4 *ngFor="let bh of bidhistory"> {{bh.name}} ({{bh.bidprice}}) </h4>
 			</ion-col>	
 		</ion-row>
 		<ion-row>

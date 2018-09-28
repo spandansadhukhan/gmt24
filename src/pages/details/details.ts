@@ -217,6 +217,7 @@ favourite(sellerid){
     {
       
       this.totallike=this.responseData.totallike;
+      this.is_fav=this.responseData.is_fav;
       loading.dismiss();
             
     }

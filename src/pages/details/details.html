@@ -42,7 +42,8 @@
       </div>
       <div class="heart" *ngIf="user_id!=seller_id">
           <div class="thumb-area" (click)="favourite(seller_id)">
-            <img src="assets/img/heart.png" alt="">
+            <img *ngIf="is_fav== 0" src="assets/img/heart.png" alt="">
+            <img *ngIf="is_fav== 1" src="assets/img/heart-red.png" alt="">
           </div>
         </div>
       <ion-slides class="image-slider" loop="true" pager>
@@ -64,7 +65,7 @@
     <div class="body-area">
     <div class="d-box">
     	<h2 style="padding-bottom: 5px;">{{brands}}/{{category}}({{gender}})</h2>
-      <p style="border: none;"> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> ({{averagerating}}) <span>
+      <p *ngIf="ptype==1" style="border: none;"> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> ({{averagerating}}) <span>
       	<a href="" class="new-abtn">Write a review</a>
       </span> </p>
       <h1>{{currency_code}} {{price}}</h1>
@@ -73,14 +74,13 @@
       <div class="d-box">
       <h2>Seller Informations</h2>
       <p><span>Seller Name:</span> {{seller_name}}</p>
-      <p><span>Phone No:</span> {{seller_phone}}</p>
-      <p><span>Address:</span><br/>{{seller_address}}</p>
+      <p *ngIf="interest== 1"><span>Phone No:</span> {{seller_phone}}</p>
+      <p *ngIf="interest== 1"><span>Address:</span><br/>{{seller_address}}</p>
       </div>
-      <div class="d-box">
+      <div class="d-box" *ngIf="interest== 1">
       <h2>Location Map</h2>
       <div>
-      	dsadsadsads
-      	adadad
+      
       </div>
       </div>
       <div class="d-box">
@@ -94,7 +94,7 @@
       <p><span>Product Description:<br /></span> {{description}}</p>
       <p><span>Reference No:</span> {{reference_no}}</p>
       </div>
-      <div class="d-box">
+      <div class="d-box" *ngIf="ptype==1">
       <h2>Reviews</h2>
       <div class="noti-list">
       <ion-item>
