@@ -55,6 +55,8 @@ export class LiveAuctionPage {
   winnerid:any;
   seller_id:any;
   refreshIntervalId:any;
+  bidhistory:any;
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
@@ -103,6 +105,7 @@ export class LiveAuctionPage {
           this.thresholdprice=this.productLists.thresholdprice;
           this.bidcount=this.productLists.bidcount;
           this.lastbidvalue=this.productLists.lastbidvalue;
+          this.bidhistory=this.productLists.bidhistory
         }
       });
       }, 1000);
@@ -210,6 +213,7 @@ export class LiveAuctionPage {
         this.bidcount=this.productLists.bidcount;
         this.lastbidvalue=this.productLists.lastbidvalue;
         this.time_difference=this.productLists.time_difference;
+        this.bidhistory=this.productLists.bidhistory
         this.initTimer(this.time_difference);
         this. startTimer()
       }
@@ -310,7 +314,7 @@ addbid(bid){
    
     if( this.responseData.Ack == 1)
     {
-      let serval1={
+      /*let serval1={
         "product_id":this.product_id,
         "user_id":this.user_id,
         
@@ -345,7 +349,7 @@ addbid(bid){
         
         console.log(err);
         
-      });
+      });*/
 
       this.bidmatch = false;
       this.presentToast('Bid sumitted successfully.');
