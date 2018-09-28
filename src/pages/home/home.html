@@ -52,16 +52,15 @@
     
   </ion-slide>
 </ion-slides>
-
-  <ion-slides  loop="true">
-    <ion-slide *ngFor="let tb of brandlists">
+<!--<ion-scroll scrollX="true" style="width:100vw; height:125px" >
+  <ion-row style="width:100vw; display:flex;">
+    <div class="box" *ngFor="let tb of brandlists">
         <div class="item-image" (click)="brandproduct(tb.brand_id)">
       <img src="{{tb.brand_image}}"/>
       </div>
-    </ion-slide>
-  </ion-slides>
-  
-  
+    </div>
+</ion-row>
+ </ion-scroll>-->
 
   
 <h6 class="text-uppercase">Latest Deals</h6>
