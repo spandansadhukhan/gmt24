@@ -63,15 +63,28 @@
     </ion-card-content>
     <div class="body-area">
     <div class="d-box">
-    	<h2>{{brands}}/{{category}}({{gender}})</h2>
-      <p style="border: none;"> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> ({{averagerating}}) </p>
+    	<h2 style="padding-bottom: 5px;">{{brands}}/{{category}}({{gender}})</h2>
+      <p style="border: none;"> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> ({{averagerating}}) <span>
+      	<a href="" class="new-abtn">Write a review</a>
+      </span> </p>
       <h1>{{currency_code}} {{price}}</h1>
     </div>
       
       <div class="d-box">
+      <h2>Seller Informations</h2>
       <p><span>Seller Name:</span> {{seller_name}}</p>
       <p><span>Phone No:</span> {{seller_phone}}</p>
       <p><span>Address:</span><br/>{{seller_address}}</p>
+      </div>
+      <div class="d-box">
+      <h2>Location Map</h2>
+      <div>
+      	dsadsadsads
+      	adadad
+      </div>
+      </div>
+      <div class="d-box">
+      <h2>Product informations</h2>
       <p><span>Product Bracelet Type:</span> {{breslet_type}}</p>
       <p><span>Product Size:</span> {{size}}</p>
       <p><span>Model Year:</span> {{model_year}}</p>
@@ -80,8 +93,33 @@
       <p><span>Status of watch:</span> {{status_watch}}</p>
       <p><span>Product Description:<br /></span> {{description}}</p>
       <p><span>Reference No:</span> {{reference_no}}</p>
-</div>
+      </div>
+      <div class="d-box">
+      <h2>Reviews</h2>
+      <div class="noti-list">
+      <ion-item>
+      <ion-avatar item-start>
+        <img src="assets/img/face-2.jpg" alt="">
+      </ion-avatar>
+      <h2>Alina Wilson</h2>
+      <p style="border: none;"> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> ({{averagerating}})</p>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+      <small>Feb 10, 2018</small>
+    </ion-item>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="assets/img/face-3.jpg" alt="">
+      </ion-avatar>
+      <h2>Alina Wilson</h2>
+      <p style="border: none;"> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> ({{averagerating}})</p>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+      <small>Feb 10, 2018</small>
+    </ion-item>
     </div>
+      </div>
+</div>
+    
+    
 
     <div padding style="padding-bottom: 15px" *ngIf="ptype== 1 && user_id!=seller_id && interest== 0">
       <button ion-button round class="grey-btn" block (click)="interestedEmailToVendor(seller_id,ptype)">I am Interested</button>
