@@ -14,7 +14,7 @@
 
 
 <ion-content padding>
-  <ion-list>
+  <ion-list style="padding-bottom: 30px;">
     <ion-item class="request-item" *ngFor="let p of productlists">
       <ion-thumbnail item-start>
         <img src="{{p.image}}" (click)="productdetails(p.id)">
