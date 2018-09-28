@@ -42,8 +42,8 @@
 				<h4>Highest Bid: <span>{{currency_code}} {{higestbidderbid}}</span></h4>
 				<h4>Next Minimum Bid: <span>{{currency_code}} {{nextbidprice}}</span></h4>
 				
-				<ion-input class="wh" type="number" formControlName="bid" placeholder="Input your bid" (ngModelChange)="checkinputbid($event,nextbidprice)"></ion-input>
-				<button ion-button full class="gr" *ngIf="bidmatch" type="submit" (click)="bidsubmit(bidForm.value)">Submit</button>
+				<ion-input class="wh" type="number" formControlName="bid" min="{{nextbidprice}}" step="{{bidincrement}}" placeholder="Input your bid" (keyup)="checkinputbid(bidForm.value,nextbidprice,bidincrement)" navTooltip></ion-input>
+				<button ion-button full class="gr" [disabled]="!bidmatch" type="submit" (click)="bidsubmit(bidForm.value)">Place bid</button>
 			</ion-col>
 		</ion-row>
 	</form>

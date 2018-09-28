@@ -38,13 +38,15 @@
         <img src="assets/img/thumb2.png" alt="">
         <span>{{totallike}}</span>
       </p>
+
       </div>
       <div class="heart" *ngIf="user_id!=seller_id">
           <div class="thumb-area" (click)="favourite(seller_id)">
             <img src="assets/img/heart.png" alt="">
           </div>
         </div>
-      <ion-slides class="image-slider" loop="true">
+      <ion-slides class="image-slider" loop="true" pager>
+
         <ion-slide *ngFor="let img of sliderimages">
           <img src="{{img.src}}" class="detail-pic" imageViewer/>
         </ion-slide>

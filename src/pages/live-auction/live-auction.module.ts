@@ -8,6 +8,7 @@ import { LiveAuctionPage } from './live-auction';
   ],
   imports: [
     IonicPageModule.forChild(LiveAuctionPage),
+    
   ],
 })
 export class LiveAuctionPageModule {}

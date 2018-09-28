@@ -227,9 +227,10 @@ export class LiveAuctionPage {
   
 }
 
-checkinputbid(bid,nbid){
+checkinputbid(bid1,nbid){
 
-    if(bid >= nbid)
+  alert(bid1.bid);
+    if(bid1.bid >= nbid)
     {
       
      this.bidmatch = true;

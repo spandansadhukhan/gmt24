@@ -28,6 +28,10 @@ ion-title .toolbar-title img{ width: 100px; margin: 0 auto;}
 .pl-0{ padding-left: 0;}
 .like {
 
+
+
+
+
     background: #363636;
     border-radius: 3px;
     padding: 3px 6px;
@@ -76,4 +80,7 @@ ion-title .toolbar-title img{ width: 100px; margin: 0 auto;}
 	border-top:0;
 	padding-top:0 !important;
 }
+.swiper-pagination-bullets{bottom: -4px !important}
+.slides{ height: auto; margin-bottom: 15px}
+.swiper-pagination-bullet-active{ background: #545454 !important; }
 }
