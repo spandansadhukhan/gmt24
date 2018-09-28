@@ -11,10 +11,10 @@ ion-title .toolbar-title img{ width: 100px; margin: 0 auto;}
 .toolbar .bar-button{font-size: 2.2rem;}
 .content {background-color: #f9f9f9;}
 .card-content{padding: 13px;}
-.top-content{display: flex; align-items: center; justify-content: flex-start;}
+.top-content{display: flex; align-items: center; justify-content: flex-start; width:auto;}
 .top-content img{ width: 22px; height: 23px; margin-right: 0.8rem;}
-.top-content span{ font-size: 1.6rem;}
-.detail-pic{width: 200px; height: auto; margin: 0 auto;}
+.top-content span{ font-size: 1.6rem; color:#fff;}
+.detail-pic{width: 100%; height: auto; margin: 0 auto;}
 .thumb-area{width: 37px; height: 37px; border-radius: 50%; margin: 0 auto; border: 1px solid #e4e2e2; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); overflow: hidden; display: flex; align-items: center;}
 .thumb-area img{ width: 20px; height: 20px; text-align: center; margin: 0 auto;}
 .body-area{ background-color: #f6f5f5; padding: 13px; text-align: center;}
@@ -26,9 +26,61 @@ ion-title .toolbar-title img{ width: 100px; margin: 0 auto;}
 
 .pr-0{padding-right: 0;}
 .pl-0{ padding-left: 0;}
+.like {
 
+
+
+
+
+    background: #363636;
+    border-radius: 3px;
+    padding: 3px 6px;
+    display:inline-block;
+    position: absolute;
+    left:0;
+    top:10px;
+    z-index:100;
+    padding: 5px 10px;
+
+}
+.heart{
+	 position: absolute;
+    right:30px;
+    top:30px;
+    z-index:100;
+}
+.thumb-area{
+	background:rgba(255, 255, 255, 0.3);
+}
+.height-250{
+	height:250px !important;
+}
+.detail-pic{
+	height:250px !important;
+}
+.detail-pic img{
+	height:250px !important;
+	object-fit:cover;
+}
+.d-box{
+	border-radius: 5px; margin: 0 auto; border: 1px solid #e4e2e2;
+	background:#fff; padding:15px;
+}
+.d-box h2, .d-box h1, .d-box p{
+	text-align:left;
+}
+.d-box p{
+	border-top: solid 1px #e4e2e2;
+	padding:7px 0;
+}
+.d-box p span{
+	font-weight:bold;
+}
+.d-box p:first-child{
+	border-top:0;
+	padding-top:0 !important;
+}
 .swiper-pagination-bullets{bottom: -4px !important}
 .slides{ height: auto; margin-bottom: 15px}
 .swiper-pagination-bullet-active{ background: #545454 !important; }
-
 }

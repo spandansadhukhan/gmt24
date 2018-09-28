@@ -32,12 +32,21 @@
 
 <ion-content style="margin-bottom: 50px">
   <ion-card>
-    <ion-card-content>
+    <ion-card-content class="height-250">
+    <div class="like">
       <p class="top-content">
-        <img src="assets/img/thumb.png" alt="">
+        <img src="assets/img/thumb2.png" alt="">
         <span>{{totallike}}</span>
       </p>
+
+      </div>
+      <div class="heart" *ngIf="user_id!=seller_id">
+          <div class="thumb-area" (click)="favourite(seller_id)">
+            <img src="assets/img/heart.png" alt="">
+          </div>
+        </div>
       <ion-slides class="image-slider" loop="true" pager>
+
         <ion-slide *ngFor="let img of sliderimages">
           <img src="{{img.src}}" class="detail-pic" imageViewer/>
         </ion-slide>
@@ -49,32 +58,32 @@
             <img src="assets/img/thumb.png" alt="">
           </div>
         </ion-col> -->
-        <ion-col col-2 class="pl-0" *ngIf="user_id!=seller_id">
-          <div class="thumb-area" (click)="favourite(seller_id)">
-            <img src="assets/img/heart.png" alt="">
-          </div>
-        </ion-col>
+        
       </ion-row>
     </ion-card-content>
     <div class="body-area">
-      <h2>{{brands}}/{{category}}({{gender}})</h2>
-      <p> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> ({{averagerating}}) </p>
+    <div class="d-box">
+    	<h2>{{brands}}/{{category}}({{gender}})</h2>
+      <p style="border: none;"> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> ({{averagerating}}) </p>
       <h1>{{currency_code}} {{price}}</h1>
-      <p>Seller Name: {{seller_name}}</p>
-      <p>Phone No: {{seller_phone}}</p>
-      <p>Address: {{seller_address}}</p>
-      <p>Product Bracelet Type: {{breslet_type}}</p>
-      <p>Product Size: {{size}}</p>
-      <p>Model Year: {{model_year}}</p>
-      <p>Movement: {{movement}}</p>
-      <p>Date of Purchased: {{date_purchase}}</p>
-      <p>Status of watch: {{status_watch}}</p>
-      <p>Product Description: {{description}}</p>
-      <p>Reference No: {{reference_no}}</p>
-
+    </div>
+      
+      <div class="d-box">
+      <p><span>Seller Name:</span> {{seller_name}}</p>
+      <p><span>Phone No:</span> {{seller_phone}}</p>
+      <p><span>Address:</span><br/>{{seller_address}}</p>
+      <p><span>Product Bracelet Type:</span> {{breslet_type}}</p>
+      <p><span>Product Size:</span> {{size}}</p>
+      <p><span>Model Year:</span> {{model_year}}</p>
+      <p><span>Movement:</span> {{movement}}</p>
+      <p><span>Date of Purchased:</span> {{date_purchase}}</p>
+      <p><span>Status of watch:</span> {{status_watch}}</p>
+      <p><span>Product Description:<br /></span> {{description}}</p>
+      <p><span>Reference No:</span> {{reference_no}}</p>
+</div>
     </div>
 
-    <div padding style="padding-bottom: 45px" *ngIf="ptype== 1 && user_id!=seller_id && interest== 0">
+    <div padding style="padding-bottom: 15px" *ngIf="ptype== 1 && user_id!=seller_id && interest== 0">
       <button ion-button round class="grey-btn" block (click)="interestedEmailToVendor(seller_id,ptype)">I am Interested</button>
     </div>
     <div padding *ngIf="ptype== 2 && ctime > start_time && user_id!=seller_id" style="padding-bottom: 45px">
