@@ -43,7 +43,7 @@
 </ion-slides>
 
 <h6 class="text-uppercase">Top Brands</h6>
-<ion-slides pager>
+<ion-slides pager loop="true">
   <ion-slide class="slide-holder brand-logo" *ngFor="let tb of brandlists">
     <div class="item-image" (click)="brandproduct(tb.brand_id)">
       <img src="{{tb.brand_image}}" alt="Item">
@@ -51,22 +51,18 @@
     <h6>{{tb.brand_name}}</h6>
     
   </ion-slide>
- 
-  
-  
-  <!-- <ion-slide class="slide-holder">
-    <div class="item-image">
-      <img src="assets/img/item-3.jpg" alt="Item">
-    </div>
-    <h6>Rolex Daytona round golden</h6>
-    <p class="price">
-      <span>
-        <img src="assets/img/tick.png" alt="image">
-      </span> $18.00
-      <span class="old-price">$19.00</span>
-    </p>
-  </ion-slide>spandan -->
 </ion-slides>
+
+  <ion-slides  loop="true">
+    <ion-slide *ngFor="let tb of brandlists">
+        <div class="item-image" (click)="brandproduct(tb.brand_id)">
+      <img src="{{tb.brand_image}}"/>
+      </div>
+    </ion-slide>
+  </ion-slides>
+  
+  
+
   
 <h6 class="text-uppercase">Latest Deals</h6>
   <ion-slides pager>

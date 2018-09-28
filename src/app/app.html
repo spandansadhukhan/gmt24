@@ -55,6 +55,12 @@
             <ion-icon name="thumbs-up" item-start></ion-icon> My Interest 
           </ion-item>
 
+          <ion-item menuClose (click)="settings()">
+            <ion-icon name="settings" item-start></ion-icon> Notification Settings 
+          </ion-item>
+
+
+
           <ion-item menuClose (click)="messages()">
             <ion-icon name="mail" item-start></ion-icon> Messages
           </ion-item>
@@ -109,9 +115,9 @@
 
 
           <ion-col text-center>
-            <a (click)="settings()">
-              <span class="footer-icon"><img src="assets/img/icon-settings.png" alt="image"></span>
-              <p>Settings</p>
+            <a (click)="notifications()">
+              <span class="footer-icon"><img src="assets/img/icon-notification.png" alt="image"></span>
+              <p>Notifications</p>
             </a>
           </ion-col>
           

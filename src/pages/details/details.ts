@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams , LoadingController,ToastController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams , LoadingController,ToastController,AlertController} from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 /**
  * Generated class for the DetailsPage page.
@@ -15,6 +15,10 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 })
 export class DetailsPage {
 
+
+  images = ['item-1.jpg', 'item-2.jpg', 'item-3.jpg', 'item-4.jpg'];
+
+  sliderimages:any;
   product_id:any;
   responseData:any;
   productLists:any;
@@ -54,8 +58,8 @@ export class DetailsPage {
     public loadingCtrl: LoadingController,
     public authService: AuthServiceProvider,
     public toastCtrl:ToastController,
-    
-  ) {
+    public alertCtrl: AlertController
+) {
     
     this.loguser =  JSON.parse(localStorage.getItem('userData'));
     this.user_id=this.loguser.user_id;
@@ -131,6 +135,7 @@ export class DetailsPage {
         this.start_time=this.productLists.start_time;
         this.ctime=this.productLists.ctime;
         this.interest=this.productLists.interest;
+        this.sliderimages=this.productLists.image;
          //console.log('arunava',this.productLists)
       }
       else
@@ -232,13 +237,70 @@ favourite(sellerid){
 
 gotobid(uid){
 
+  let alert = this.alertCtrl.create({
+    title: 'Enter password',
+    inputs: [
+      
+      {
+        name: 'password',
+        placeholder: 'Password',
+        type: 'password'
+      }
+    ],
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        handler: data => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Continue',
+        handler: data => {
+          if (data.password) {
+
+            this.loguser =  JSON.parse(localStorage.getItem('userData'));
+            let serval={
+              
+              "userid":this.loguser.user_id,
+              "password":data.password,
+            }
+            
+            this.authService.postData(serval,'checkpassword').then((result) => {
+              this.responseData = result
+            
+              if( this.responseData.Ack == 1)
+              {
+                this.navCtrl.push('LiveAuctionPage',{"product_id":this.product_id}); 
+              }
+              else
+              {
+                this.presentToast('Plsease enter correct password.');
+              }
+             
+            }, (err) => {
+              
+              this.presentToast('Error occured.');
+              console.log(err);
+              
+            });
+          }
+
+           else {
+            // invalid login
+            return false;
+          }
+        }
+      }
+    ]
+  });
+  alert.present();
 
 
 
-  this.navCtrl.push('LiveAuctionPage',{"product_id":this.product_id});
+  
 }
-
-
 
 
 }

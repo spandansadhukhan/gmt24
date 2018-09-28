@@ -50,6 +50,7 @@
     "intl": "^1.2.5",
     "ion2-calendar": "^2.1.7",
     "ionic-angular": "3.9.2",
+    "ionic-img-viewer": "^2.9.0",
     "ionic2-calendar": "^0.4.4",
     "ionic3-calendar": "^1.1.6",
     "ionic3-calendar-en": "^1.1.3",

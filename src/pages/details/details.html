@@ -31,14 +31,18 @@
 
 
 <ion-content style="margin-bottom: 50px">
-
   <ion-card>
     <ion-card-content>
       <p class="top-content">
         <img src="assets/img/thumb.png" alt="">
         <span>{{totallike}}</span>
       </p>
-      <img class="detail-pic" src="{{product_single_image}}" alt="">
+      <ion-slides class="image-slider" loop="true">
+        <ion-slide *ngFor="let img of sliderimages">
+          <img src="{{img.src}}" class="detail-pic" imageViewer/>
+        </ion-slide>
+      </ion-slides>
+      <!-- <img class="detail-pic" src="{{product_single_image}}" alt=""> -->
       <ion-row justify-content-center>
         <!-- <ion-col col-2 class="pr-0">
           <div class="thumb-area">
