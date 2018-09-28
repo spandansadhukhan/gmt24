@@ -24,7 +24,7 @@ ion-title .toolbar-title img{ width: 100px; margin: 0 auto;}
 .item.request-item .name span{color:#888;}
 .item.request-item .info{color:#888; font-size: 1.1rem; text-overflow: clip; white-space: normal}
 .item.request-item ion-thumbnail{width: 100px; height: 100px; object-fit: cover; overflow: hidden;  position: relative;}
-.item.request-item ion-thumbnail img{height:100%; width:100%;}
+.item.request-item ion-thumbnail img{height:100%; width:100%; object-fit:cover;}
 .top-tag{width: 47px; height: 47px; position: absolute; z-index: 100; left: 12px; top: 12px;}
 .top-tag p{  position: absolute; z-index: 100; left: 0; top: 13px; text-transform: uppercase; right: 0; text-align: center; font-size: 1.1rem; font-weight: 300; color: #ffffff;} 
 .item.request-item .button{height:32px; padding-left: 1.5em; padding-right: 1.4em}
