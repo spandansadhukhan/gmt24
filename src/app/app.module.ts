@@ -16,6 +16,8 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 //import {GoogleMaps} from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -26,7 +28,8 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
     BrowserModule,HttpModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-    IonicImageViewerModule
+    IonicImageViewerModule,
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
