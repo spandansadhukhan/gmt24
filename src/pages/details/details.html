@@ -28,7 +28,29 @@
   </ion-navbar>
 
 </ion-header>
-
+<div class="rating-part" *ngIf ="isShow">
+  <ion-card class="rating-area" >
+             <rating 
+      readOnly="false" 
+      max="5" 
+      emptyStarIconName="star-outline" 
+      halfStarIconName="star-half" 
+      starIconName="star" 
+      nullable="false"
+      
+      > 
+</rating>
+<ion-row>
+  <ion-col col-6>
+    <button ion-button block  class="submitbtn" (click)="submit()">Submit</button>
+  </ion-col>
+  <ion-col col-6>
+      <button ion-button  block  class="submitbtn" (click)='hide()'>Cancel</button>
+    
+    </ion-col>
+</ion-row>
+</ion-card>
+</div>
 
 <ion-content style="margin-bottom: 50px">
   <ion-card>
@@ -66,7 +88,7 @@
     <div class="d-box">
     	<h2 style="padding-bottom: 5px;">{{brands}}/{{category}}({{gender}})</h2>
       <p *ngIf="ptype==1" style="border: none;"> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> ({{averagerating}}) <span>
-      	<a href="" class="new-abtn">Write a review</a>
+      	<a class="new-abtn" (click)="show()">Write a review</a>
       </span> </p>
       <h1>{{currency_code}} {{price}}</h1>
     </div>
@@ -97,24 +119,20 @@
       <div class="d-box" *ngIf="ptype==1">
       <h2>Reviews</h2>
       <div class="noti-list">
-      <ion-item>
+      <ion-item *ngFor="let r of reviews">
       <ion-avatar item-start>
-        <img src="assets/img/face-2.jpg" alt="">
+        <img src="{{r.userimage}}" alt="">
       </ion-avatar>
-      <h2>Alina Wilson</h2>
-      <p style="border: none;"> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> ({{averagerating}})</p>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-      <small>Feb 10, 2018</small>
+      <h2>{{r.username}}</h2>
+      <p style="border: none;"> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> ({{r.rating}})</p>
+      <p>{{r.review}}</p>
+      <small>{{r.date}} Days ago</small>
     </ion-item>
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="assets/img/face-3.jpg" alt="">
-      </ion-avatar>
-      <h2>Alina Wilson</h2>
-      <p style="border: none;"> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> ({{averagerating}})</p>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-      <small>Feb 10, 2018</small>
-    </ion-item>
+
+    <ion-item *ngIf="reviews==''">
+       No review found.
+      </ion-item>
+    
     </div>
       </div>
 </div>
