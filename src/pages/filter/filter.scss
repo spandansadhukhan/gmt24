@@ -1,0 +1,72 @@
+page-filter {
+    .scroll-content{
+        padding-bottom: 0 !important;
+    }
+    .header .button-inner{
+        font-size: 13px;
+    }
+    ion-range{
+        ion-icon{
+            font-size: 12px;
+            font-family: 'Poppins', sans-serif;
+            span{
+                display: block;
+            }
+        }
+    }
+    .label{
+        display: block;
+        width: 100%;
+        margin: 15px 0 0;
+        color: #555;
+    }
+    .item-range ion-range{
+        padding: 10px 0;
+    }
+    .item{
+        padding: 0;
+        &.item-custom{
+            .item-inner{
+                padding: 10px 30px 10px 0px;
+                &:after{
+                    content: "\f3d1";
+                    font-family: "Ionicons";
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    font-size: 22px;
+                    color: #aaa;
+                }
+                .label{
+                    color: #777;
+                    font-size: 15px;
+                    margin: 10px 0;
+                }
+                .select-text{
+                    color: #777;
+                }
+            }
+        }
+        
+        
+        .select .select-icon .select-icon-inner{
+            border: none;
+        }
+    }
+    .check-custom{
+        border-bottom: 0.55px solid #c8c7cc;
+        padding: 20px 0 10px;
+    }
+    .check-item{
+        
+        padding-bottom: 0px;
+        .label{
+            margin: 0 ;
+            font-size: 14px;
+        }
+        &.item-block .item-inner{
+            border-bottom: none;
+        }
+    }
+}
