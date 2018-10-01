@@ -51,6 +51,8 @@ export class DetailsPage {
   reference_no:any;
   ctime:any;
   start_time:any;
+  reviews:any;
+  isShow:boolean=false;
   //product_id1:any;
   constructor(
     public navCtrl: NavController, 
@@ -136,6 +138,7 @@ export class DetailsPage {
         this.ctime=this.productLists.ctime;
         this.interest=this.productLists.interest;
         this.sliderimages=this.productLists.image;
+        this.reviews=this.responseData.reviews
          //console.log('arunava',this.productLists)
       }
       else
@@ -298,10 +301,23 @@ gotobid(uid){
   });
   alert.present();
 
-
-
   
 }
+
+
+
+show()
+  {
+    
+    this.isShow =true;
+    //console.log(prodId);
+    //this.product=prodId
+  }
+
+  hide() {
+    this.isShow =false;
+  }
+
 
 
 }
