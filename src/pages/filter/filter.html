@@ -1,0 +1,135 @@
+<!--
+  Generated template for the FilterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Filters</ion-title>
+    <ion-buttons end>
+      <button ion-button>Clear</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item>
+    <ion-label>Price</ion-label>
+    <ion-range min="$1" max="$1000" step="10" snaps="true" [(ngModel)]="brightness">
+        <ion-icon range-left>Min <span>$100</span></ion-icon>
+        <ion-icon range-right>Max <span>$100</span></ion-icon>
+    </ion-range>
+  </ion-item>
+  
+  <ion-item class="item-custom">
+      <ion-label>Brands</ion-label>
+      <ion-select [(ngModel)]="gaming">
+        <ion-option value="nes">NES</ion-option>
+        <ion-option value="n64">Nintendo64</ion-option>
+        <ion-option value="ps">PlayStation</ion-option>
+        <ion-option value="genesis">Sega Genesis</ion-option>
+        <ion-option value="saturn">Sega Saturn</ion-option>
+        <ion-option value="snes">SNES</ion-option>
+      </ion-select>
+    </ion-item>
+  <ion-item class="item-custom">
+      <ion-label>Location</ion-label>
+      <ion-select [(ngModel)]="gaming">
+        <ion-option value="nes">NES</ion-option>
+        <ion-option value="n64">Nintendo64</ion-option>
+        <ion-option value="ps">PlayStation</ion-option>
+        <ion-option value="genesis">Sega Genesis</ion-option>
+        <ion-option value="saturn">Sega Saturn</ion-option>
+        <ion-option value="snes">SNES</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item class="item-custom">
+        <ion-label>Governorate</ion-label>
+        <ion-select [(ngModel)]="gaming">
+          <ion-option value="nes">NES</ion-option>
+          <ion-option value="n64">Nintendo64</ion-option>
+          <ion-option value="ps">PlayStation</ion-option>
+          <ion-option value="genesis">Sega Genesis</ion-option>
+          <ion-option value="saturn">Sega Saturn</ion-option>
+          <ion-option value="snes">SNES</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+          <ion-label>Amount</ion-label>
+          <ion-range min="1" max="100" step="10" snaps="true" [(ngModel)]="amount">
+              <ion-icon range-left>Min <span>1</span></ion-icon>
+              <ion-icon range-right>Max <span>100</span></ion-icon>
+          </ion-range>
+        </ion-item>
+        <ion-item class="item-custom">
+            <ion-label>Bracelet</ion-label>
+            <ion-select [(ngModel)]="gaming">
+              <ion-option value="nes">NES</ion-option>
+              <ion-option value="n64">Nintendo64</ion-option>
+              <ion-option value="ps">PlayStation</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item class="item-custom">
+              <ion-label>Model Year</ion-label>
+              <ion-select [(ngModel)]="gaming">
+                <ion-option value="nes">2015</ion-option>
+                <ion-option value="n64">2014</ion-option>
+                <ion-option value="ps">2013</ion-option>
+              </ion-select>
+            </ion-item>
+            <div class="check-custom">
+                <h6>Movement</h6>
+                <ion-item class="check-item">
+                    
+                        <ion-label>Automatic Movement</ion-label>
+                        <ion-checkbox color="dark" checked="false"></ion-checkbox>
+                  </ion-item>
+                  <ion-item class="check-item">
+                    
+                      <ion-label>Automatic Movement</ion-label>
+                      <ion-checkbox color="dark" checked="false"></ion-checkbox>
+                </ion-item>
+            </div>
+
+            <ion-item>
+                <ion-label>Size</ion-label>
+                <ion-range min="1" max="100" step="10" snaps="true" [(ngModel)]="size">
+                    <ion-icon range-left>Min <span>1</span></ion-icon>
+                    <ion-icon range-right>Max <span>100</span></ion-icon>
+                </ion-range>
+              </ion-item>
+              <div class="check-custom">
+                  <h6>Status Watch</h6>
+                  <ion-item class="check-item">
+                      
+                          <ion-label>New</ion-label>
+                          <ion-checkbox color="dark" checked="false"></ion-checkbox>
+                    </ion-item>
+                    <ion-item class="check-item">
+                      
+                        <ion-label>Mint</ion-label>
+                        <ion-checkbox color="dark" checked="false"></ion-checkbox>
+                  </ion-item>
+                  <ion-item class="check-item">
+                      
+                      <ion-label>Excellent</ion-label>
+                      <ion-checkbox color="dark" checked="false"></ion-checkbox>
+                </ion-item>
+                <ion-item class="check-item">
+                    <ion-label>Good</ion-label>
+                    <ion-checkbox color="dark" checked="false"></ion-checkbox>
+              </ion-item>
+              <ion-item class="check-item">
+                  <ion-label>Fair</ion-label>
+                  <ion-checkbox color="dark" checked="false"></ion-checkbox>
+            </ion-item>
+            <ion-item class="check-item">
+                <ion-label>Poor</ion-label>
+                <ion-checkbox color="dark" checked="false"></ion-checkbox>
+          </ion-item>
+              </div>
+</ion-content>
