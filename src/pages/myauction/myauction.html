@@ -16,7 +16,7 @@
 <ion-content padding>
   <ion-list>
     <ion-item class="request-item" *ngFor="let p of productlists">
-      <ion-thumbnail item-start>
+      <ion-thumbnail item-start (click)="nextPage()">
         <img src="{{p.image}}">
       </ion-thumbnail>
       <h2>{{p.brand_name}}</h2>

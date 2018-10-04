@@ -154,7 +154,17 @@ ion-title .toolbar-title img{ width: 100px; margin: 0 auto;}
 		padding: 30px 15px;
 		border-radius: 10px;
 		&.card .item.item-block .item-inner{
-			border-bottom: #eee 1px solid !important;
+			border-bottom: none !important;
+			box-shadow: none !important;
+		}
+		ion-input{
+			border-bottom: #eee 1px solid;
+			margin: 15px 0 25px;
+			border-radius: 0 !important;
+			.text-input{
+				padding: 0;
+				margin-bottom: 15px;
+			}
 		}
 		ul{
 			padding: 0;
@@ -164,12 +174,33 @@ ion-title .toolbar-title img{ width: 100px; margin: 0 auto;}
 				border: 0px;
 				background: none;
 				padding: 5px 10px;
-				font-size: 20px;
-				color: rgb(60, 150, 60);
+				font-size: 25px;
+				color: #333;
+			}
+		}
+		.label, .item-input .label-primary{
+			color: #333;
+			font-size: 17px;
+			font-weight: 500;
+		}
+
+		.review-recommend{
+			padding: 0 15px;
+			display: flex;
+			.item{
+				padding-left: 0;
+				width: auto;
+				border: none !important;
+				.radio{
+					margin: 19px 10px 9px 10px;
+				}
 			}
 		}
 	}
 
-
+	.noti-list{
+		height: 180px;
+		overflow-y: auto;
+	}
 
 }
