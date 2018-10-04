@@ -15,11 +15,11 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item class="request-item" *ngFor="let p of productlists">
-      <ion-thumbnail item-start (click)="nextPage()">
+    <ion-item class="request-item" *ngFor="let p of productlists" >
+      <ion-thumbnail item-start (click)="nextPage(p.id)">
         <img src="{{p.image}}">
       </ion-thumbnail>
-      <h2>{{p.brand_name}}</h2>
+      <h2 (click)="nextPage(p.id)">{{p.brand_name}}</h2>
       <p class="name" *ngIf="p.approved==1 && p.live_status==1"><span>Expire on:</span> {{p.expiry_date}}</p>
       <p class="info">{{p.description}}</p>
       <p class="price"><span>KWD</span> {{p.price}}</p>

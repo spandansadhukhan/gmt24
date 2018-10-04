@@ -71,7 +71,7 @@
       </p>
 
       </div>
-      <div class="heart" *ngIf="user_id!=seller_id">
+      <div class="heart" *ngIf="user_id!=seller_id && ptype==1">
           <div class="thumb-area" (click)="favourite(seller_id)">
             <img *ngIf="is_fav== 0" src="assets/img/heart.png" alt="">
             <img *ngIf="is_fav== 1" src="assets/img/heart-red.png" alt="">

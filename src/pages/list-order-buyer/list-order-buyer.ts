@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 import {AuthServiceProvider} from '../../providers/auth-service/auth-service'
 
@@ -20,14 +20,25 @@ export class ListOrderBuyerPage {
   auctionList: any;
   id: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
   public storage: Storage,
-  public authService: AuthServiceProvider
+  public authService: AuthServiceProvider,
+  public loadingCtrl: LoadingController,
 ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListOrderBuyerPage');
+    this.Listwinauction();
+  }
+
+  Listwinauction(){
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please Wait...'
+    });
+    loading.present();
 
     this.storage.get('uid').then(val => {
       this.id = val;
@@ -39,15 +50,28 @@ export class ListOrderBuyerPage {
  
       if( this.responseData.Ack == 1)
       {
-       
+        loading.dismiss();
         this.auctionList =  this.responseData.allorders;
         console.log(this.auctionList);
         
+      }else
+      {
+        loading.dismiss();
+        this.auctionList = '';
+        
       }
+     
+    }, (err) => {
+      loading.dismiss();
+      console.log(err);
+  
   });
 
 });
 
   }
+
+
+
 
 }

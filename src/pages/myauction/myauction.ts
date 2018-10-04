@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,LoadingController,AlertController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import { AuctiondetailsPage } from '../../pages/auctiondetails/auctiondetails';
+//import { AuctiondetailsPage } from '../../pages/auctiondetails/auctiondetails';
 import { Storage } from '@ionic/storage';
 
 /**
@@ -125,9 +125,9 @@ deleteproduct(pid){
   });
   }
 
-  nextPage()
+  nextPage(pid)
   {
-  this.navCtrl.push('AuctiondetailsPage');
+  this.navCtrl.push('AuctiondetailsPage',{"product_id":pid});
   }
 
 }
