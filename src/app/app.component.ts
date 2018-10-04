@@ -147,30 +147,42 @@ public settings(){
 
        public wishlist()
         {
-          this.nav.push ('WishlistPage')
+          this.nav.push ('WishlistPage');
         }
 
         public purchase()
         {
-          this.nav.push('ListOrderBuyerPage')
+          this.nav.push('ListOrderBuyerPage');
         }
 
         public myInterest()
         {
-          this.nav.push('MyInterestPage')
+          this.nav.push('MyInterestPage');
         }
 
         public liveauction()
         {
-          this.nav.push('LiveAuctionPage')
+          this.nav.push('LiveAuctionPage');
         }
         public loyalty()
         {
-          this.nav.push('LoyaltyPage')
+          this.nav.push('LoyaltyPage');
         }
 
         public messages()
         {
-          this.nav.push('MessageListingPage')
+          this.nav.push('MessageListingPage');
+        }
+
+
+        public subscriptions(){
+
+          this.nav.push('AllsubscriptionsPage');
+        }
+
+        public subscribedlist(){
+
+          this.nav.push('SubscribedlistPage');
+
         }
 }

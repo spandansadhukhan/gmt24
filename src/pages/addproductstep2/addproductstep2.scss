@@ -34,4 +34,18 @@ page-addproductstep2 {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799',GradientType=0 ); /* IE6-9 */ }
     
     .rdo-btn{ width: auto; }
+
+    .phone-wrap{
+        position: relative;
+    }
+    .phone-wrap ion-input{
+        padding-left: 29px;
+    }
+    .phone-no{
+        position: absolute;
+        top: 66px;
+        left: 24px;
+        z-index: 99;
+        border-right: 1px solid #9f9f9f;
+    }
 }

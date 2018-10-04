@@ -72,6 +72,10 @@ productdetails(product_id){
     this.navCtrl.push('DetailsPage',{"product_id":product_id}); 
   }
 
+  filter(){
 
+    this.navCtrl.push('FilterPage')
+
+  }
 
 }

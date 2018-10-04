@@ -233,7 +233,7 @@ onSubmit(formData){
   if (!this.pForm.valid) {
     const alert = this.alertCtrl.create({
       title: 'Product Add Failed!',
-      subTitle: "Please fill all the details.",
+      subTitle: "Please fill all the * fields.",
       buttons: ['OK']
     });
     alert.present();
