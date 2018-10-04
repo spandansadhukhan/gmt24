@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController,AlertController } from 'ionic-angular';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the AllsubscriptionsPage page.
@@ -15,11 +16,67 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AllsubscriptionsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  packagelists:any;
+  public id:any;
+  public responseData:any;
+  public loguser:any;
+  public utype:any;
+  public msg:any;
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public authService: AuthServiceProvider,
+    public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController) {
+
+      this.loguser = JSON.parse(localStorage.getItem('userData'));
+      this.utype=this.loguser.user_type;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AllsubscriptionsPage');
+    this.packageList();
   }
+
+
+  packageList(){
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please Wait...'
+    });
+    loading.present();
+   
+    this.loguser = JSON.parse(localStorage.getItem('userData'));
+console.log('dgdfg',this.loguser);
+      this.id = this.loguser.user_id;
+    let serval={
+      "user_id":this.id,
+     };
+    this.authService.postData(serval,'listSubscriptions').then((result) => {
+      this.responseData = result
+ 
+      if( this.responseData.Ack == 1)
+      {
+        loading.dismiss();
+        console.log('dgdfg',this.packagelists);
+        this.packagelists =  this.responseData.subscriptionlist;
+        
+      }
+      else
+      {
+        loading.dismiss();
+        this.packagelists = '';
+        
+      }
+     
+    }, (err) => {
+      loading.dismiss();
+      console.log(err);
+      
+    });
+  
+}
+
+
 
 }

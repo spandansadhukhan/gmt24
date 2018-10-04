@@ -17,4 +17,19 @@ page-allsubscriptions {
         display: flex;
         flex-wrap: wrap;
     }
+
+    
+    .offer{
+        position: absolute;
+    right: 0;
+    border: #999 2px dashed;
+    padding: 5px 10px;
+    color: #999;
+    font-weight: 600;
+    text-transform: uppercase;
+    }
+    .subs-item .label{
+        position: relative;
+        padding-right: 80px;
+    }
 }

@@ -17,29 +17,29 @@
   <ion-card>
       <div class="auction-details-top">
           <ul>
-            <li><ion-icon name="md-thumbs-up"></ion-icon> 5</li>
+            <li><ion-icon name="md-thumbs-up"></ion-icon> 0</li>
             <li><ion-icon name="md-eye"></ion-icon> 5</li>
           </ul>
-          <img src="https://thegmt24.com/upload/product_image/watch4.jpg" alt="">
+          <img src="{{product_single_image}}" alt="">
         </div>
         <div padding class="auction-details-info">
           <ion-row>
             <ion-col col-8>
-                <h2>CARTIER/BAIGNOIRE(Male)</h2>
+                <h2>{{brands}}/{{category}}({{gender}})</h2>
             </ion-col>
             <ion-col col-4>
-              <h4>KWD 100.00</h4>
+              <h4>{{currency_code}} {{price}}</h4>
             </ion-col>
           </ion-row>
-          <h5 class="date"><b>Auction Date:</b> 2018-09-05 22:24:00</h5>
+          <h5 class="date"><b>Auction Date:</b> {{start_time}}</h5>
           <h5 class="date"><b>Auction Status:</b> Pending</h5>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+          <p>{{description}}</p>
           <h5>Time Remaining</h5>
           <h3>10h:05m:11s</h3>
-          <div class="seller-details">
+          <div class="seller-details" *ngIf="user_id!=seller_id">
             <h5>Seller details</h5>
-            <p>Name: Riger Parker</p>
-            <p>Phone No: 8989 898 657</p>
+            <p>Name: {{seller_name}}</p>
+            <p>Phone No: {{seller_phone}}</p>
           </div>
           <button ion-button block small round  class="grey-btn" (click)="show()">Check Bidding Details</button>
         </div>
@@ -50,17 +50,14 @@
     <div class="bidding-popup">
         <ul>
             <li>
-              <h6>Alina Wilson</h6>
-              <h4>KWD 50.00</h4>
-            </li>
-            <li>
-                <h6>Alina Wilson</h6>
-                <h4>KWD 50.00</h4>
+                <h4>Bidder Name</h4>
+                <h4>Bid Price</h4>
               </li>
-              <li>
-                  <h6>Alina Wilson</h6>
-                  <h4>KWD 50.00</h4>
-                </li>
+            <li *ngFor="let bid of bidhistory">
+              <h6>{{bid.name}}</h6>
+              <h4>{{currency_code}} {{bid.bidprice}}</h4>
+            </li>
+            
           </ul>
           <button ion-button small round color="light" (click)='hide()'>Cancel</button>
     </div>

@@ -16,7 +16,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 export class DetailsPage {
 
 
-  images = ['item-1.jpg', 'item-2.jpg', 'item-3.jpg', 'item-4.jpg'];
+  //images = ['item-1.jpg', 'item-2.jpg', 'item-3.jpg', 'item-4.jpg'];
 
   sliderimages:any;
   product_id:any;
