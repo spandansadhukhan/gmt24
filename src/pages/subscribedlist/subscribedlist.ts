@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the FilterPage page.
+ * Generated class for the SubscribedlistPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,16 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-filter',
-  templateUrl: 'filter.html',
+  selector: 'page-subscribedlist',
+  templateUrl: 'subscribedlist.html',
 })
-export class FilterPage {
+export class SubscribedlistPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FilterPage');
+    console.log('ionViewDidLoad SubscribedlistPage');
   }
 
 }

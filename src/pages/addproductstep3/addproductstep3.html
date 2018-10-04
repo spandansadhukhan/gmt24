@@ -20,7 +20,7 @@
     <ion-list no-lines class="profile-info">
         
         <ion-item>
-            <ion-label stacked color="primary">Size</ion-label>
+            <ion-label stacked color="primary">Size*</ion-label>
             <ion-input round type="number" placeholder="Type size." min="0" name="size" formControlName="size" required></ion-input>
         </ion-item>
         <p *ngIf="!pForm.controls['size'].valid && pForm.controls['size'].touched" ion-text color="danger" padding-left>

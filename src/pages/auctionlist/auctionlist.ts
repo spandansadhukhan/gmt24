@@ -72,5 +72,10 @@ productdetails(product_id){
 
 
 
+  filter(){
+
+    this.navCtrl.push('FilterPage')
+
+  }
 
 }

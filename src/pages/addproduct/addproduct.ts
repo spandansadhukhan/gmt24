@@ -52,6 +52,9 @@ export class AddproductPage {
   isSelected: boolean=false;
   brandid:any; 
   days=[];
+  month:any;
+  year:any;
+  fulldate:any;
 
   public _daysConfig: DayConfig[] = [];
       // for (let i = 0; i < 31; i++) {
@@ -60,15 +63,15 @@ export class AddproductPage {
       //     subTitle: `$${i + 1}`
       //   })
       // }
-    dateMulti: string[];
-      type: 'string'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
+      
+      type: 'string';
       optionsMulti: CalendarComponentOptions = {
         pickMode: 'multi',
-        //daysConfig : _daysConfig,
+        
       };
 
   
-  
+     
 
 
 
@@ -106,7 +109,7 @@ export class AddproductPage {
         'currency': [null, Validators.required],
         'preferred_date': ["",""],
         "time_slot_id" : ["",""],
-        'description': [null, Validators.required],
+        'description': ["",""],
         'price': [null, Validators.required],
         'otherbrand': ["", ""],
         'othercategory': ["", ""],
@@ -116,7 +119,38 @@ export class AddproductPage {
       
   }
 
- 
+  getauctiontime(date){
+
+    this.date=new Date(date).getDate();
+    this.month=new Date(date).getMonth()+1;
+    this.year=new Date(date).getFullYear();
+    this.fulldate=this.year+'-'+this.month+'-'+this.date;
+   // alert(this.fulldate);
+       
+     let serval={
+       //"getdate": date.year+'-'+date.month+'-'+date.day,
+       "getdate": this.fulldate
+      };
+     this.authService.postData(serval,'getTimeslot_app').then((result) => {
+       this.responseData = result
+   
+       if( this.responseData.Ack == 1)
+       {
+         this.timelists =  this.responseData.time;
+       }
+       else
+       {
+        
+         this.timelists = '';
+       }
+      
+     }, (err) => {
+       
+       console.log(err);
+       
+     });
+   
+   }
 
   
   ionViewDidLoad() {
@@ -300,7 +334,7 @@ braceletList(){
   if (!this.pForm.valid) {
     const alert = this.alertCtrl.create({
       title: 'Product Add Failed!',
-      subTitle: "Please fill all the details.",
+      subTitle: "Please fill all the * fields.",
       buttons: ['OK']
     });
     alert.present();
@@ -345,39 +379,7 @@ braceletList(){
 }
 
 
-getauctiontime(date){
 
-  //this.date= JSON.stringify(date);
-  //this.getdate=JSON.parse(this.date);
-  alert(date);
-     
-  
-   let serval={
-     "getdate": date.year+'-'+date.month+'-'+date.day,
-     //"getdate": "2018-06-05"
-    };
-   this.authService.postData(serval,'getTimeslot_app').then((result) => {
-     this.responseData = result
- 
-     if( this.responseData.Ack == 1)
-     {
-      
-       this.timelists =  this.responseData.time;
-       
-     }
-     else
-     {
-      
-       this.timelists = '';
-     }
-    
-   }, (err) => {
-     
-     console.log(err);
-     
-   });
- 
- }
 
  auctiontimeid(tid)
   {
