@@ -55,6 +55,9 @@ export class AddproductPage {
   month:any;
   year:any;
   fulldate:any;
+  selectOptions:any;
+  currencyLists:any;
+  isShow:boolean=false;
 
   public _daysConfig: DayConfig[] = [];
       // for (let i = 0; i < 31; i++) {
@@ -116,6 +119,28 @@ export class AddproductPage {
         
       });
 
+
+
+      this.selectOptions = {
+        cssClass : 'course-popover'
+      };
+   
+      this.currencyLists = [
+        'RUB',
+        'USD',
+        'EUR',
+        'CHF',
+        'GBP',
+        'JPY',
+        'UAH',
+        'KZT',
+        'BYN',
+        'TRY',
+        'CNY',
+        'AUD',
+        'CAD',
+        'PLN',
+      ];
       
   }
 
@@ -469,6 +494,18 @@ braceletList(){
   goToNextMonth() {
     this.date = new Date(this.date.getFullYear(), this.date.getMonth()+2, 0);
     this.getDaysOfMonth();
+  }
+
+  show()
+  {
+    
+    this.isShow =true;
+    //console.log(prodId);
+    //this.product=prodId
+  }
+
+  hide() {
+    this.isShow =false;
   }
 
 }

@@ -103,8 +103,9 @@
                 </ion-range>
               </ion-item>
               <div class="check-custom">
-                  <h6>Status Watch</h6>
-                  <ion-item class="check-item">
+                  <h6 (click)="toggle()">Status Watch</h6>
+                  <ion-list *ngIf="show" class="accordion-list">
+                      <ion-item class="check-item">
                       
                           <ion-label>New</ion-label>
                           <ion-checkbox color="dark" checked="false"></ion-checkbox>
@@ -131,5 +132,6 @@
                 <ion-label>Poor</ion-label>
                 <ion-checkbox color="dark" checked="false"></ion-checkbox>
           </ion-item>
+                  </ion-list>
               </div>
 </ion-content>
