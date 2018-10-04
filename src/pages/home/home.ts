@@ -52,7 +52,7 @@ export class HomePage {
     let serval={
       "user_id":this.id,
      };
-    this.authService.postData(serval,'homeSettings').then((result) => {
+    this.authService.postData(serval,'homeSettings_app').then((result) => {
       this.responseData = result
  
       if( this.responseData.Ack == 1)

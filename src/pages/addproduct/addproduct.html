@@ -88,11 +88,8 @@
             Currency is required </p>
 
 
-            <ion-item *ngIf="uploadtypeid==2 && !showCalendar"  >
-              <ion-label stacked color="primary" (click)="clickme()">Auction Date</ion-label></ion-item>
-          
-
-        <ion-item *ngIf="uploadtypeid==2 && showCalendar" >
+           
+        <!-- <ion-item *ngIf="uploadtypeid==2" >
             <ion-label stacked color="primary" >Auction Date
             
        
@@ -117,22 +114,30 @@
             <ion-row class="calendar-date" >
               <ion-col col-1 *ngFor="let lastDay of daysInLastMonth" class="last-month">{{lastDay}}</ion-col>
               <ion-col col-1 *ngFor="let day of daysInThisMonth" >
-                <span class="currentDate" *ngIf="currentDate == day || currentDate == day-1; else otherDate" (click)="selectDate(day,currentMonth,currentYear)" style="background-color:gray">{{day}}</span>
-               
+                  <ion-col col-1 *ngFor="let day1 of days" >
+              <span class="currentDate" *ngIf="day1 == day ; else otherDate" (click)="selectDate(day,currentMonth,currentYear)" style="background-color:gray">{{day}}</span>
               <ng-template #otherDate class="otherDate">{{day}}</ng-template>
               </ion-col>
-      
-             
+            </ion-col>
               <ion-col col-1 *ngFor="let nextDay of daysInNextMonth" class="next-month">{{nextDay}}</ion-col>
             </ion-row>
           </ion-grid>
-        </div> </ion-label></ion-item>
+        </div> </ion-label>
+      </ion-item> -->
+
+      <ion-item >
+      <ion-calendar formControlName="preferred_date" (click)="getauctiontime($event)"
+              [options]="optionsMulti"
+              [type]="type"
+              [format]="'YYYY-MM-DD'">
+      </ion-calendar>
+      </ion-item>
+
         <!-- <ion-item *ngIf="uploadtypeid==2">
             <ion-label stacked color="primary">Auction Date</ion-label>
             <ion-input round type="date"  name="preferred_date" formControlName="preferred_date" (click)="getauctiontime($event)" date-enabled-dates="2018-06-06"></ion-input>
         </ion-item> -->
         
-
         <ion-list radio-group formControlName="time_slot_id" name="time_slot_id" *ngIf="uploadtypeid==2">
         <ion-list-header>
             Auction Time
