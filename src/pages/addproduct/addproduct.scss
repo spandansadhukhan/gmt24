@@ -147,5 +147,99 @@ page-addproduct {
           border-bottom: solid 1px #1a732d;
         }
       }*/
+
+
+  .select-custom{
+    .label{
+      margin: 13px 0;
+    }
+  }
+    .country-select{
+      border: 1px solid #e0e0e0;
+      background-color: #f5f5f5;
+      border-radius: 25px;
+      height: 40px !important;
+      text-align: left;
+      color: #333;
+      position: relative;
+      padding-right: 32px !important;
+      box-shadow: none;
+      &:after{
+        content: "";
+        top: 50%;
+        margin-top: -3px;
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-top: 5px solid;
+        border-right: 5px solid transparent;
+        border-left: 5px solid transparent;
+        color: #999;
+        right: 13px;
+      }
+      .button-inner{
+        justify-content: flex-start;
+        padding: 0 15px;
+        font-size: 14px;
+      }
+      img{
+        margin-right: 10px;
+        height: 20px;
+      }
+    }
+
+    .custom-dropdown{
+      background: rgba(0, 0, 0, 0.2);
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+      flex-wrap: wrap;
+      .list{
+        width: 80%;
+        background: #fff;
+        border-radius: 15px;
+        overflow: hidden;
+        padding: 15px;
+        ion-list-header{
+          padding-left: 0;
+          margin: 0;
+          .label{
+            font-size: 16px !important;
+            font-weight: 600;
+            margin: 0;
+          }
+        }
+        .item-radio {
+          padding-left: 0;
+          .label{
+            img{
+              height: 12px;
+              margin-right: 5px;
+            }
+          }
+        }
+        
+      }
+      .list-area-radio{
+        width: 100%;
+        padding: 0;
+        border-radius: 0;
+        max-height: 200px;
+        overflow-y: auto;
+      }
+      .button{
+        box-shadow: none;
+      }
+    }
       
 }
+
+
