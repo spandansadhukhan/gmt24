@@ -9,7 +9,7 @@ import { DatePicker } from '@ionic-native/date-picker';
 import * as moment from 'moment';
 import * as _ from "lodash";
 import { months } from 'moment';
-
+import { CalendarComponentOptions,DayConfig ,CalendarResult} from 'ion2-calendar'
 /**
  * Generated class for the AddproductPage page.
  *
@@ -51,7 +51,27 @@ export class AddproductPage {
   currentDate: any;
   isSelected: boolean=false;
   brandid:any; 
-    
+  days=[];
+
+  public _daysConfig: DayConfig[] = [];
+      // for (let i = 0; i < 31; i++) {
+      //   _daysConfig.push({
+      //     date: new Date(2018, 0, i + 1),
+      //     subTitle: `$${i + 1}`
+      //   })
+      // }
+    dateMulti: string[];
+      type: 'string'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
+      optionsMulti: CalendarComponentOptions = {
+        pickMode: 'multi',
+        //daysConfig : _daysConfig,
+      };
+
+  
+  
+
+
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public authService: AuthServiceProvider,
@@ -59,13 +79,23 @@ export class AddproductPage {
     private builder: FormBuilder,
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
-    
+    private fb: FormBuilder,
     // private calendar: Calendar,
-    private fb: FormBuilder) {
+    ) {
 
+      this._daysConfig;
+      for (let i = 0; i < 31; i++) {
+        this._daysConfig.push({
+          date: new Date(2018, 0, i + 1),
+          subTitle: `$${i + 1}`,
+          marked : true
+        })
+      }
+      this.optionsMulti= {"daysConfig" : this._daysConfig};
+      console.log(this.optionsMulti);
       this.monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
       this.getDaysOfMonth();
-
+      //this.days=['04','06'];
       
       this.pForm = fb.group({
         'type': [null, Validators.required],
@@ -82,21 +112,13 @@ export class AddproductPage {
         'othercategory': ["", ""],
         
       });
+
+      
   }
 
-  clickme()
-  {
-    this.showCalendar=!this.showCalendar
-  }
+ 
 
-  selectDate(day,month, year)
-
-  {
-    // this.isSelected=!this.isSelected;
-    console.log(day,month,year);
-    
-    
-  }
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddproductPage');
     
@@ -105,28 +127,8 @@ export class AddproductPage {
     this.yearList();
     this.braceletList()
     
-
-    
-
-
   }
-  markDisabled = (date: Date) => {
-    var current = new Date();
-    return date < current;
-  };
- /* selectDate(day) {
-    this.isSelected = false;
-    this.selectedEvent = new Array();
-    var thisDate1 = "2018-05-31 00:00:00";
-    var thisDate2 = "2018-06-02 00:00:00";
-    this.eventList.forEach(event => {
-      if(((event.startDate >= thisDate1) && (event.startDate <= thisDate2)) || ((event.endDate >= thisDate1) && (event.endDate <= thisDate2))) {
-        this.isSelected = true;
-        this.selectedEvent.push(event);
-      }
-    });
-  }*/
-  
+
 
 
 
@@ -136,8 +138,6 @@ export class AddproductPage {
      //alert(this.uploadtypeid);
    }
 
-
-   
 
 
   brandList(){
@@ -349,7 +349,7 @@ getauctiontime(date){
 
   //this.date= JSON.stringify(date);
   //this.getdate=JSON.parse(this.date);
-  //alert(this.date);
+  alert(date);
      
   
    let serval={
@@ -388,7 +388,38 @@ getauctiontime(date){
   }
 
     
+
+  selectDate(day,month, year)
+
+  {
+    
+    // this.isSelected=!this.isSelected;
+    console.log(day,month,year);
+  }
+  markDisabled = (date: Date) => {
+    var current = new Date();
+    return date < current;
+  };
+ /* selectDate(day) {
+    this.isSelected = false;
+    this.selectedEvent = new Array();
+    var thisDate1 = "2018-05-31 00:00:00";
+    var thisDate2 = "2018-06-02 00:00:00";
+    this.eventList.forEach(event => {
+      if(((event.startDate >= thisDate1) && (event.startDate <= thisDate2)) || ((event.endDate >= thisDate1) && (event.endDate <= thisDate2))) {
+        this.isSelected = true;
+        this.selectedEvent.push(event);
+      }
+    });
+  }*/
+
+
+
+
+
+
   getDaysOfMonth() {
+  
     this.daysInThisMonth = new Array();
     this.daysInLastMonth = new Array();
     this.daysInNextMonth = new Array();

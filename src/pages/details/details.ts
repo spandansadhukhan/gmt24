@@ -53,6 +53,9 @@ export class DetailsPage {
   start_time:any;
   reviews:any;
   isShow:boolean=false;
+  rate:any;
+  review:any;
+  recomend:any;
   //product_id1:any;
   constructor(
     public navCtrl: NavController, 
@@ -318,6 +321,46 @@ show()
     this.isShow =false;
   }
 
+  submit(){
 
+    let loading = this.loadingCtrl.create({
+      content: 'Please Wait...'
+    });
+    loading.present();
+    this.loguser =  JSON.parse(localStorage.getItem('userData'));
+    let serval={
+      "productid":this.product_id,
+      "userid":this.loguser.user_id,
+      "review":this.review,
+      "rating":this.rate,
+      "recomend":this.recomend,
+    }
+    
+    this.authService.postData(serval,'addreview').then((result) => {
+      this.responseData = result
+     
+      if( this.responseData.Ack == 1)
+      {
+        this.isShow =false;
+        loading.dismiss();
+        this.productsDetails(this.product_id);
+        this.presentToast(this.responseData.msg);
+        
+      }
+      else
+      {
+        this.isShow =false;
+        loading.dismiss();
+        this.presentToast('Something went worng. Please try after some time.');
+      }
+     
+    }, (err) => {
+      this.isShow =false;
+      loading.dismiss();
+      this.presentToast('Error occured.');
+      console.log(err);
+      
+    });
+  }
 
 }
