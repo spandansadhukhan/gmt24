@@ -91,10 +91,10 @@
                   </ion-select> -->
                       
         </ion-item>
-        <ion-item class="select-custom">
+        <!--<ion-item class="select-custom">
                 <button ion-button block class="country-select" (click)="show()"><img src="../../assets/img/flag.png" alt="">India</button>
         </ion-item>
-        <div class="custom-dropdown" *ngIf ="isShow">
+         <div class="custom-dropdown" *ngIf ="isShow">
                 <ion-list radio-group>
                         <ion-list-header>
                           Country
@@ -102,35 +102,25 @@
                       
                         <ion-list class="list-area-radio">
                                 <ion-item>
-                                        <ion-label><img src="../../assets/img/flag.png" alt=""> Go</ion-label>
+                                        <ion-label><img src="assets/img/flag.png" alt=""> Go</ion-label>
                                         <ion-radio checked="true" value="go"></ion-radio>
                                       </ion-item>
                                     
                                       <ion-item>
-                                        <ion-label><img src="../../assets/img/flag.png" alt=""> Rust</ion-label>
+                                        <ion-label><img src="assets/img/flag.png" alt=""> Rust</ion-label>
                                         <ion-radio value="rust"></ion-radio>
                                       </ion-item>
                                     
                                       <ion-item>
-                                        <ion-label><img src="../../assets/img/flag.png" alt=""> Python</ion-label>
+                                        <ion-label><img src="assets/img/flag.png" alt=""> Python</ion-label>
                                         <ion-radio value="python"></ion-radio>
                                       </ion-item>
                                       <ion-item>
-                                            <ion-label><img src="../../assets/img/flag.png" alt=""> Python</ion-label>
+                                            <ion-label><img src="assets/img/flag.png" alt=""> Python</ion-label>
                                             <ion-radio value="python"></ion-radio>
-                                          </ion-item>
-                                          <ion-item>
-                                                <ion-label><img src="../../assets/img/flag.png" alt=""> Python</ion-label>
-                                                <ion-radio value="python"></ion-radio>
-                                              </ion-item>
-                                              <ion-item>
-                                                    <ion-label><img src="../../assets/img/flag.png" alt=""> Python</ion-label>
-                                                    <ion-radio value="python"></ion-radio>
-                                                  </ion-item>
-                                                  <ion-item>
-                                                        <ion-label><img src="../../assets/img/flag.png" alt=""> Python</ion-label>
-                                                        <ion-radio value="python"></ion-radio>
-                                                      </ion-item>
+                                      </ion-item>
+                                          
+                                              
                         </ion-list>
                         <ion-row>
                             <ion-col>
@@ -141,7 +131,7 @@
                             </ion-col>
                         </ion-row>
                       </ion-list>
-        </div>
+        </div> -->
         
         <p *ngIf="!pForm.controls['currency'].valid && pForm.controls['currency'].touched" ion-text color="danger" padding-left>
             Currency is required </p>
