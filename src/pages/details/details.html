@@ -97,7 +97,7 @@
     <div class="d-box">
     	<h2 style="padding-bottom: 5px;">{{brands}}/{{category}}({{gender}})</h2>
       <p *ngIf="ptype==1" style="border: none;"> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> ({{averagerating}}) <span>
-      	<a class="new-abtn" *ngIf="ptype== 1 && user_id!=seller_id" (click)="show()">Write a review</a>
+      	<a class="new-abtn" *ngIf="ptype== 1 && user_id!=seller_id && user_type!=3" (click)="show()">Write a review</a>
       </span> </p>
       <h1>{{currency_code}} {{price}}</h1>
     </div>
@@ -121,7 +121,13 @@
       <p><span>Model Year:</span> {{model_year}}</p>
       <p><span>Movement:</span> {{movement}}</p>
       <p><span>Date of Purchased:</span> {{date_purchase}}</p>
-      <p><span>Status of watch:</span> {{status_watch}}</p>
+      <p *ngIf="status_watch=='New'"><span>Status of watch:</span> {{status_watch}} </p>
+      <p *ngIf="status_watch=='Mint'"><span>Status of watch:</span> {{status_watch}} <ion-icon  ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon></p>
+      <p *ngIf="status_watch=='Excellent'"><span>Status of watch:</span> {{status_watch}} <ion-icon  ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon></p>
+      <p *ngIf="status_watch=='Good'"><span>Status of watch:</span> {{status_watch}} <ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon></p>
+      <p *ngIf="status_watch=='Fair'"><span>Status of watch:</span> {{status_watch}} <ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon></p>
+      <p *ngIf="status_watch=='Poor'"><span>Status of watch:</span> {{status_watch}} <ion-icon ios="ios-star" md="md-star"></ion-icon></p>
+
       <p><span>Product Description:<br /></span> {{description}}</p>
       <p><span>Reference No:</span> {{reference_no}}</p>
       </div>
@@ -148,10 +154,10 @@
     
     
 
-    <div padding style="padding-bottom: 15px" *ngIf="ptype== 1 && user_id!=seller_id && interest== 0">
+    <div padding style="padding-bottom: 15px" *ngIf="ptype== 1 && user_id!=seller_id && interest== 0 && user_type!=3">
       <button ion-button round class="grey-btn" block (click)="interestedEmailToVendor(seller_id,ptype)">I am Interested</button>
     </div>
-    <div padding *ngIf="ptype== 2 && ctime > start_time && user_id!=seller_id" style="padding-bottom: 45px">
+    <div padding *ngIf="ptype== 2 && ctime > start_time && user_id!=seller_id && user_type!=3" style="padding-bottom: 45px">
       <button ion-button round class="grey-btn"  block (click)="gotobid()">Go Live Bidding</button>
     </div>
 

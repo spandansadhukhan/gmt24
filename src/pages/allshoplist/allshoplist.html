@@ -31,10 +31,9 @@
 
   <ion-list>
     <ion-item class="request-item" *ngFor="let shop of shoplists" (click)="productlist(shop.id)">
-      <!-- <div class="top-tag">
-       <p>top</p> 
-        <img src="assets/img/top-tag.png" alt="">
-      </div> -->
+      <div class="top-tag" *ngIf="shop.top_user_vendor==1">
+        <img src="assets/img/cr.png" alt="">
+      </div>
       
       <ion-thumbnail item-start>       
         <img src="{{shop.seller_image}}" alt="" >

@@ -56,6 +56,7 @@ export class DetailsPage {
   rate:any;
   review:any;
   recomend:any;
+  user_type:any;
   //product_id1:any;
   constructor(
     public navCtrl: NavController, 
@@ -68,7 +69,7 @@ export class DetailsPage {
     
     this.loguser =  JSON.parse(localStorage.getItem('userData'));
     this.user_id=this.loguser.user_id;
-
+    this.user_type=this.loguser.user_type;
 
   }
 

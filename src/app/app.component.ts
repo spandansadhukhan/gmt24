@@ -78,6 +78,8 @@ abc(){
     this.istype=1;
   }else if(this.loguser.user_type=="2"){
     this.istype=2;
+  }else if(this.loguser.user_type=="3"){
+    this.istype=3;
   }
   }
 
@@ -160,6 +162,14 @@ public settings(){
           this.nav.push('MyInterestPage');
         }
 
+        public customerInterest()
+        {
+          this.nav.push('CustomerInterestPage');
+        }
+
+
+
+
         public liveauction()
         {
           this.nav.push('LiveAuctionPage');
@@ -184,5 +194,15 @@ public settings(){
 
           this.nav.push('SubscribedlistPage');
 
+        }
+
+        public signin(){
+
+          this.nav.setRoot('LoginnewPage');
+        }
+
+        public signup(){
+
+          this.nav.setRoot('SignupPage');
         }
 }
