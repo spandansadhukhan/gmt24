@@ -17,7 +17,7 @@
   <ion-card>
       <div class="auction-details-top">
           <ul>
-            <li><ion-icon name="md-thumbs-up"></ion-icon> 0</li>
+            <!-- <li><ion-icon name="md-thumbs-up"></ion-icon> 0</li> -->
             <li><ion-icon name="md-eye"></ion-icon> 5</li>
           </ul>
           <img src="{{product_single_image}}" alt="">
@@ -31,17 +31,31 @@
               <h4>{{currency_code}} {{price}}</h4>
             </ion-col>
           </ion-row>
+          <div *ngIf="user_id==seller_id">
           <h5 class="date"><b>Auction Date:</b> {{start_time}}</h5>
           <h5 class="date"><b>Auction Status:</b> Pending</h5>
           <p>{{description}}</p>
           <h5>Time Remaining</h5>
           <h3>10h:05m:11s</h3>
+          </div>
+
+          <div *ngIf="user_id!=seller_id">
+            <h5 class="date"><b>Product Description:</b> {{description}}</h5>
+            <h5 class="date"><b>Bracelet Type:</b> {{breslet_type}}</h5>
+            <h5 class="date"><b>Product Size:</b> {{size}}</h5>
+            
+            <p></p>
+            
+            </div>
+
+
+
           <div class="seller-details" *ngIf="user_id!=seller_id">
-            <h5>Seller details</h5>
+            <h5>Seller Info:</h5>
             <p>Name: {{seller_name}}</p>
             <p>Phone No: {{seller_phone}}</p>
           </div>
-          <button ion-button block small round  class="grey-btn" (click)="show()">Check Bidding Details</button>
+          <button ion-button block small round  class="grey-btn" *ngIf="user_id==seller_id" (click)="show()">Check Bidding Details</button>
         </div>
   </ion-card>
 </ion-content>

@@ -128,4 +128,11 @@ public loguser:any;
     this.navCtrl.setRoot('SignupPage');
   }
 
+  guestlogin(){
+
+    localStorage.setItem('userData', JSON.stringify({"fname":"Guest","lname":"User","user_type":"3"}));
+    this.navCtrl.setRoot('HomePage');
+
+  }
+
 }

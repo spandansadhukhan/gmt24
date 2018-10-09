@@ -72,6 +72,9 @@ export class ListOrderBuyerPage {
   }
 
 
-
+  nextPage(pid)
+  {
+  this.navCtrl.push('AuctiondetailsPage',{"product_id":pid});
+  }
 
 }

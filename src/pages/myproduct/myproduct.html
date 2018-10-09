@@ -16,10 +16,13 @@
 <ion-content padding>
   <ion-list style="padding-bottom: 30px;">
     <ion-item class="request-item" *ngFor="let p of productlists">
+      <div class="top-tag" *ngIf="p.top_product!=0">
+        <img src="assets/img/top.png" alt="">
+      </div>
       <ion-thumbnail item-start>
         <img src="{{p.image}}" (click)="productdetails(p.id)">
       </ion-thumbnail>
-      <h2>{{p.brand_name}}</h2>
+      <h2 (click)="productdetails(p.id)">{{p.brand_name}}</h2>
       <p class="name" *ngIf="p.approved==1 && p.live_status==1"><span>Expire on:</span> {{p.expiry_date}}</p>
       <p class="info">{{p.description}}</p>
       <p class="price"><span>KWD</span> {{p.price}}</p>
@@ -28,7 +31,8 @@
       <button ion-button round class="brown-btn" (click)="deleteproduct(p.id)">Delete</button>
       <button ion-button round class="dark-grey-btn" *ngIf="p.product_status== 0">Mark as sold</button>
       <button ion-button round class="dark-grey-btn" *ngIf="p.product_status== 1" disabled>sold</button>
-      </div>
+      <button ion-button round class="dark-grey-btn" *ngIf="p.top_product== 0">Mark as top</button>
+    </div>
       <div *ngIf="p.approved==0">
         <button ion-button round class="dark-grey-btn" disabled>Wait for Approval</button>
       </div>

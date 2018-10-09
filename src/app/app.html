@@ -11,7 +11,7 @@
       </ion-header>
      
       <ion-content >
-        <ion-card class="sidepanel-list left-menu" style="padding-bottom: 5rem;">
+        <ion-card class="sidepanel-list left-menu" *ngIf="istype==1 || istype==2" style="padding-bottom: 5rem;">
           <ion-item menuClose (click)="myaccount()">
             <ion-icon name="person" item-start ></ion-icon> Profile
           </ion-item>
@@ -61,6 +61,10 @@
             <ion-icon name="thumbs-up" item-start></ion-icon> My Interest 
           </ion-item>
 
+          <ion-item menuClose (click)="customerInterest()">
+            <ion-icon name="thumbs-up" item-start></ion-icon> Customer Interest 
+          </ion-item>
+
           <ion-item menuClose (click)="settings()">
             <ion-icon name="settings" item-start></ion-icon> Notification Settings 
           </ion-item>
@@ -76,6 +80,18 @@
           </ion-item>
 
         </ion-card>
+
+
+        <ion-card class="sidepanel-list left-menu" *ngIf="istype==3" style="padding-bottom: 5rem;">
+          <ion-item menuClose (click)="signin()">
+            <ion-icon name="person" item-start ></ion-icon> Sign In
+          </ion-item>
+          <ion-item menuClose (click)="signup()">
+            <ion-icon name="person" item-start></ion-icon> Sign Up
+          </ion-item> 
+        </ion-card>
+
+
       </ion-content>
 
   
@@ -120,7 +136,7 @@
           </ion-col>
 
 
-          <ion-col text-center>
+          <ion-col text-center *ngIf="istype!=3">
             <a (click)="notifications()">
               <span class="footer-icon"><img src="assets/img/icon-notification.png" alt="image"></span>
               <p>Notifications</p>

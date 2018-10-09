@@ -78,64 +78,48 @@
         </ion-item>
         <p *ngIf="!pForm.controls['model_year'].valid && pForm.controls['model_year'].touched" ion-text color="danger" padding-left>
             Model Year is required </p>
-        <ion-item>
+
+        <!-- <ion-item>
             <ion-label stacked color="primary">Currency*</ion-label>
             <ion-select name="currency" formControlName="currency">
               <ion-option value="{{c.code}}" *ngFor="let c of currencylists">{{c.name}}</ion-option>
             </ion-select>
-            <!-- <ion-select [selectOptions]="selectOptions"  interface="popover">
-                    <ion-option   *ngFor="let cc of currencyLists" value="{{ cc }}"  >
-                    
-                      {{ cc }}
-                    </ion-option>
-                  </ion-select> -->
-                      
         </ion-item>
-        <!--<ion-item class="select-custom">
-                <button ion-button block class="country-select" (click)="show()"><img src="../../assets/img/flag.png" alt="">India</button>
-        </ion-item>
-         <div class="custom-dropdown" *ngIf ="isShow">
-                <ion-list radio-group>
-                        <ion-list-header>
-                          Country
-                        </ion-list-header>
-                      
-                        <ion-list class="list-area-radio">
-                                <ion-item>
-                                        <ion-label><img src="assets/img/flag.png" alt=""> Go</ion-label>
-                                        <ion-radio checked="true" value="go"></ion-radio>
-                                      </ion-item>
-                                    
-                                      <ion-item>
-                                        <ion-label><img src="assets/img/flag.png" alt=""> Rust</ion-label>
-                                        <ion-radio value="rust"></ion-radio>
-                                      </ion-item>
-                                    
-                                      <ion-item>
-                                        <ion-label><img src="assets/img/flag.png" alt=""> Python</ion-label>
-                                        <ion-radio value="python"></ion-radio>
-                                      </ion-item>
-                                      <ion-item>
-                                            <ion-label><img src="assets/img/flag.png" alt=""> Python</ion-label>
-                                            <ion-radio value="python"></ion-radio>
-                                      </ion-item>
-                                          
-                                              
-                        </ion-list>
-                        <ion-row>
-                            <ion-col>
-                                <button block ion-button  round class="grey-btn">Ok</button>
-                            </ion-col>
-                            <ion-col>
-                                <button block ion-button color="dark" round outline (click)='hide()'>Cancel</button>
-                            </ion-col>
-                        </ion-row>
-                      </ion-list>
-        </div> -->
-        
         <p *ngIf="!pForm.controls['currency'].valid && pForm.controls['currency'].touched" ion-text color="danger" padding-left>
-            Currency is required </p>
+            Currency is required </p> -->
 
+
+
+        <ion-item>
+        <ion-label stacked color="primary">Currency*</ion-label>
+        </ion-item>
+        <ion-item class="select-custom">
+        <button ion-button block class="country-select" (click)="show()"><img src="assets/img/{{curimg}}" alt="">{{curcode}}</button>
+        </ion-item>
+        <div class="custom-dropdown" *ngIf ="isShow">
+        <ion-list radio-group>
+        <ion-list-header>Currency</ion-list-header>
+                      
+        <ion-list class="list-area-radio">
+        <ion-item *ngFor="let c of currencylists">
+        <ion-label><img src="assets/img/{{c.image}}" alt="">{{c.code}}</ion-label>
+        <ion-radio value="{{c.code}}" (ionSelect)="selectcurrency(c.code,c.image)"></ion-radio>
+        </ion-item>
+                           
+        </ion-list>
+        <ion-row>
+            <!-- <ion-col>
+                <button block ion-button  round class="grey-btn">Ok</button>
+            </ion-col> -->
+            <ion-col>
+                <button block ion-button color="dark" round outline (click)='hide()'>Cancel</button>
+            </ion-col>
+        </ion-row>
+        </ion-list>
+        </div>
+        <!-- <p *ngIf="!curcode && iserrorShow" ion-text color="danger" padding-left>
+                Currency is required </p> -->
+        
 
            
         <!-- <ion-item *ngIf="uploadtypeid==2" >

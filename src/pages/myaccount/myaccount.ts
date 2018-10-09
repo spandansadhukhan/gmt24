@@ -45,7 +45,7 @@ export class MyaccountPage {
       'email': [null, Validators.required],
       'country': [null, Validators.required],
       'state': [null, Validators.required],
-      'city': [null, Validators.required],
+      //'city': [null, Validators.required],
       'ibanno': [null, Validators.required],
       'bankname': [null, Validators.required],
       'language_preference': [null, Validators.required],
@@ -67,7 +67,7 @@ export class MyaccountPage {
             this.aForm.controls['email'].setValue(res.UserDetails.email);
             this.aForm.controls['country'].setValue(res.UserDetails.country);
             this.aForm.controls['state'].setValue(res.UserDetails.state);
-            this.aForm.controls['city'].setValue(res.UserDetails.city);
+            //this.aForm.controls['city'].setValue(res.UserDetails.city);
             this.aForm.controls['ibanno'].setValue(res.UserDetails.ibanno);
             this.aForm.controls['bankname'].setValue(res.UserDetails.bankname);
             this.aForm.controls['language_preference'].setValue(res.UserDetails.language_preference);
@@ -245,7 +245,8 @@ onSubmit(formData) {
    if (res.Ack == 1) {
     loading.dismiss();
       const alert = this.alertCtrl.create({
-        title: res.msg,
+        title:'Success!',
+        subTitle: res.msg,
         buttons: ['OK']
       });
       alert.present();

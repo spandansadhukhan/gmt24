@@ -56,9 +56,9 @@ export class AddproductPage {
   year:any;
   fulldate:any;
   selectOptions:any;
-  currencyLists:any;
   isShow:boolean=false;
-
+  curcode:any;
+  curimg:any;
   public _daysConfig: DayConfig[] = [];
       // for (let i = 0; i < 31; i++) {
       //   _daysConfig.push({
@@ -109,7 +109,7 @@ export class AddproductPage {
         'cat_id': ["", ""],
         'breslet_type':[null, Validators.required],
         'model_year': [null, Validators.required],
-        'currency': [null, Validators.required],
+        //'currency': [null, Validators.required],
         'preferred_date': ["",""],
         "time_slot_id" : ["",""],
         'description': ["",""],
@@ -119,29 +119,8 @@ export class AddproductPage {
         
       });
 
-
-
-      this.selectOptions = {
-        cssClass : 'course-popover'
-      };
-   
-      this.currencyLists = [
-        'RUB',
-        'USD',
-        'EUR',
-        'CHF',
-        'GBP',
-        'JPY',
-        'UAH',
-        'KZT',
-        'BYN',
-        'TRY',
-        'CNY',
-        'AUD',
-        'CAD',
-        'PLN',
-      ];
-      
+      this.curcode='KWD';
+      this.curimg='kwd.jpg';
   }
 
   getauctiontime(date){
@@ -356,13 +335,19 @@ braceletList(){
 
  onSubmit(formData){
 
+
+
+
   if (!this.pForm.valid) {
+
+    
     const alert = this.alertCtrl.create({
       title: 'Product Add Failed!',
       subTitle: "Please fill all the * fields.",
       buttons: ['OK']
     });
     alert.present();
+  
   }else if(formData['type']== '2' && formData['preferred_date']==""){
     const alert = this.alertCtrl.create({
       title: 'Required!',
@@ -395,9 +380,10 @@ braceletList(){
       alert.present();
     }
   }*/else{
-    
+    formData.currency=this.curcode;
     this.storage.ready().then(() => {
       localStorage.setItem('productData', JSON.stringify(formData));
+      console.log('formdta',formData);
       this.navCtrl.push('Addproductstep2Page');
     });
  }
@@ -507,5 +493,13 @@ braceletList(){
   hide() {
     this.isShow =false;
   }
+
+
+  selectcurrency(ccode,cimg){
+    this.isShow =false;
+  this.curcode=ccode;
+  this.curimg=cimg;
+  }
+
 
 }

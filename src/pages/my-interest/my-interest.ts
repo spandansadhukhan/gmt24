@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 import {AuthServiceProvider} from '../../providers/auth-service/auth-service'
 
@@ -21,33 +21,58 @@ export class MyInterestPage {
   responseData:any;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-  public authService:AuthServiceProvider, public storage: Storage) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+  public authService:AuthServiceProvider, 
+  public storage: Storage,
+  public loadingCtrl: LoadingController,) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyInterestPage');
+    this.interestlist();
+    
+  }
 
-    this.storage.get('uid').then(val => {
-      this.id = val;
-    let serval={
-      "user_id":this.id,
-     };
-    this.authService.postData(serval,'interestinproduct').then((result) => {
-      this.responseData = result
- 
-      if( this.responseData.Ack == 1)
-      {
-       
-        this.interestList =  this.responseData.productList;
-        console.log(this.interestList);
-        
-      }
+
+interestlist(){
+
+  let loading = this.loadingCtrl.create({
+    content: 'Please Wait...'
   });
+  loading.present();
+  this.storage.get('uid').then(val => {
+    this.id = val;
+  let serval={
+    "user_id":this.id,
+   };
+  this.authService.postData(serval,'interestinproduct').then((result) => {
+    this.responseData = result
+
+    if( this.responseData.Ack == 1)
+    {
+      loading.dismiss();
+      this.interestList =  this.responseData.productList;
+      console.log(this.interestList);
+      
+    } else
+    {
+      loading.dismiss();
+      this.interestList ="";
+    }
+   
+  }, (err) => {
+    loading.dismiss();
+    console.log(err);
+    
+  });
+
 
 });
 
-  }
+
+
+}
 
 
   productdetails(product_id){
