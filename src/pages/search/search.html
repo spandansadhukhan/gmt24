@@ -24,14 +24,20 @@
   
   <ion-row>
     <ion-col col-9 class="pt-0 pb-0 pl-0">
-      <ion-searchbar></ion-searchbar>
+      <ion-searchbar [(ngModel)]="keyword" (ngModelChange)="updateKeyword($event)"></ion-searchbar>
+      
     </ion-col>
     <ion-col col-3 class="pt-0 pb-0 pr-0">
       <div class="rt-icon-area" (click)='filter()'>
         <ion-icon ios="ios-funnel" md="md-funnel" ></ion-icon> Filter
       </div>     
-    </ion-col>  
+    </ion-col> 
+    
   </ion-row>
+  
+    <ion-item [hidden]="wordlists.length==0" *ngFor="let item of wordlists" tappable (click)="selectSearchResult(item.field)">
+        {{ item.field }}
+    </ion-item>
 
 </ion-header>
 

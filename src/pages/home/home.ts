@@ -23,6 +23,7 @@ export class HomePage {
   public topmodellists:any;
   public topproductlists:any;
   public latestproductlist:any;
+  wordlists:any;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -94,4 +95,48 @@ productdetails(product_id){
 //lert(product_id);
   this.navCtrl.push('DetailsPage',{"product_id":product_id}); 
 }
+
+
+updateKeyword(keyword){
+
+  //alert(keyword);
+ if(keyword!=""){
+  let serval={
+    "word":keyword
+  }
+  
+  this.authService.postData(serval,'autofield').then((result) => {
+    this.responseData = result
+
+    if( this.responseData.Ack == 1)
+    {
+      
+      this.wordlists =  this.responseData.autofieldlist;
+       //console.log('arunava',this.productlists)
+    }
+    else
+    {
+      this.wordlists = [];
+      //this.msg =this.responseData.msg; 
+    }
+   
+  }, (err) => {
+    console.log(err);
+    
+  });
+}else{
+  this.wordlists = [];
+  
+}
+}
+
+selectSearchResult(item) {
+
+  this.wordlists = [];
+  this.navCtrl.push('SearchPage',{"keyword":item}); 
+}
+
+
+
+
 }

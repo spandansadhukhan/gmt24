@@ -46,22 +46,59 @@ export class AuthServiceProvider {
   }
 
   signup(data:object):Observable<any>{
-    console.log(data);
+    //console.log(data);
     return this.http.post(this.apiUrl +'userSignup',data).map((res:Response)=>{
       return res.json();
     });
   }
 
   countrylist(data:object):Observable<any>{
-    console.log(data);
+    //console.log(data);
     return this.http.post(this.apiUrl +'listcountry',data).map((res:Response)=>{
       return res.json();
     });
   }
 
   satelist(data:object):Observable<any>{
-    console.log(data);
+    //console.log(data);
     return this.http.post(this.apiUrl +'liststate',data).map((res:Response)=>{
+      return res.json();
+    });
+  }
+
+  braceletlist(data:object):Observable<any>{
+    //console.log(data);
+    return this.http.post(this.apiUrl +'listbracelet',data).map((res:Response)=>{
+      return res.json();
+    });
+  }
+
+  yearlist(data:object):Observable<any>{
+    //console.log(data);
+    return this.http.post(this.apiUrl +'getYears',data).map((res:Response)=>{
+      return res.json();
+    });
+  }
+
+  movementlist(data:object):Observable<any>{
+    //console.log(data);
+    return this.http.post(this.apiUrl +'getmovement',data).map((res:Response)=>{
+      return res.json();
+    });
+  }
+  
+  sellerlist(data:object):Observable<any>{
+    //console.log(data);
+    return this.http.post(this.apiUrl +'listshops',data).map((res:Response)=>{
+      return res.json();
+    });
+  }
+
+
+
+  statuslist(data:object):Observable<any>{
+   // console.log(data);
+    return this.http.post(this.apiUrl +'liststatus',data).map((res:Response)=>{
       return res.json();
     });
   }
@@ -74,27 +111,27 @@ export class AuthServiceProvider {
   }
 
   login(data: object): Observable<any> {
-    console.log(data);
+    //console.log(data);
     return this.http.post(this.apiUrl +'userLogin', data).map((res: Response) => {
       return res.json();
     });
   }
 
   resendotp(data: object): Observable<any> {
-    console.log('spandan',data);
+    //console.log('spandan',data);
     return this.http.post(this.apiUrl +'resend_app', data).map((res: Response) => {
       return res.json();
     });
   }
 
   forgetpass(data: object): Observable < any > {
-    console.log(data);
+    //console.log(data);
     let requestforgetoptions = new RequestOptions({
       method: RequestMethod.Post,
       url: this.apiUrl + 'users/apiforgot_password',
       body: JSON.stringify(data)
     });
-    console.log(requestforgetoptions);
+   // console.log(requestforgetoptions);
     return this.http.request(new Request(requestforgetoptions))
       .map((res: Response) => {
         if (res) {
