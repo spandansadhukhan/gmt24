@@ -11,7 +11,11 @@
     </button>
     <ion-title>Home</ion-title>
   </ion-navbar>
-  <ion-searchbar></ion-searchbar>
+  <ion-searchbar  [(ngModel)]="keyword" (ngModelChange)="updateKeyword($event)"></ion-searchbar>
+  <ion-item [hidden]="wordlists.length==0" *ngFor="let item of wordlists" tappable (click)="selectSearchResult(item.field)">
+    {{ item.field }}
+  </ion-item>
+
 </ion-header>
 
 

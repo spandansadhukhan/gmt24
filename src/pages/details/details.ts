@@ -1,13 +1,24 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams , LoadingController,ToastController,AlertController} from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import {
+  GoogleMaps,
+  GoogleMap,
+  GoogleMapsEvent,
+  GoogleMapOptions,
+  CameraPosition,
+  MarkerOptions,
+  Marker
+} from '@ionic-native/google-maps';
+import { Geolocation } from '@ionic-native/geolocation';
+
 /**
  * Generated class for the DetailsPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+declare var google;
 @IonicPage()
 @Component({
   selector: 'page-details',
@@ -57,6 +68,17 @@ export class DetailsPage {
   review:any;
   recomend:any;
   user_type:any;
+
+  map: any;
+  markers = [];
+  location:any;
+  lat:any;
+  lang:any;
+  my_latitude:any;
+  my_longitude:any;
+
+
+
   //product_id1:any;
   constructor(
     public navCtrl: NavController, 
@@ -64,14 +86,59 @@ export class DetailsPage {
     public loadingCtrl: LoadingController,
     public authService: AuthServiceProvider,
     public toastCtrl:ToastController,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    private googleMaps: GoogleMaps,
+    private geolocation: Geolocation,
 ) {
     
     this.loguser =  JSON.parse(localStorage.getItem('userData'));
     this.user_id=this.loguser.user_id;
     this.user_type=this.loguser.user_type;
 
+   /* let loading = this.loadingCtrl.create({
+      content: 'Loading...'
+    });
+    loading.present();
+      this.geolocation.getCurrentPosition().then((resp) => {
+      console.log('splocation',resp);
+      this.lat = resp.coords.latitude;
+      this.lang = resp.coords.longitude;
+      this.initMap(this.lat,this.lang);
+      loading.dismiss();
+    }).catch((error) => {
+      loading.dismiss();
+      console.log('Error getting location', error);
+    });*/
+
+    this.product_id = this.navParams.get('product_id');
+    this.productsDetails(this.product_id);
   }
+
+
+ /* private initMap(lat,lang) {
+
+
+    var point = {lat: lat, lng: lang};
+    let divMap = (<HTMLInputElement>document.getElementById('map'));
+    this.map = new google.maps.Map(divMap, {
+    center: point,
+    zoom: 15,
+    disableDefaultUI: true,
+    draggable: false,
+    zoomControl: true
+    });
+
+
+     var marker = new google.maps.Marker({
+      map: this.map,
+      position: point,
+      });
+      this.markers.push(marker);
+
+
+  }*/
+
+
 
 
   private presentToast(text) {
@@ -87,11 +154,7 @@ export class DetailsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailsPage');
-    this.product_id = this.navParams.get('product_id');
-    //this.user_id ='';
-    //this.currency ='';
- 
-    this.productsDetails(this.product_id);
+    //this.productsDetails(this.product_id);
   }
 
 
@@ -111,10 +174,34 @@ export class DetailsPage {
     this.authService.postData(serval,'ProductsDetails_app').then((result) => {
       this.responseData = result
      //alert(this.responseData.Ack);
-     console.log('productsdetails',this.responseData);
+     //console.log('productsdetails',this.responseData);
       if( this.responseData.Ack == 1)
       {
         loading.dismiss();
+        this.my_latitude=parseFloat(this.responseData.productList.my_latitude);
+        this.my_longitude=parseFloat(this.responseData.productList.my_longitude);
+        //console.log('splat',this.my_latitude);
+       /* if(this.my_latitude){
+        var point = {lat: '22.58552759344749', lng: '88.48358306190187'};
+        let divMap = (<HTMLInputElement>document.getElementById('map'));
+        this.map = new google.maps.Map(divMap, {
+        center: point,
+        zoom: 15,
+        disableDefaultUI: true,
+        draggable: true,
+        zoomControl: true
+        });
+
+
+        var marker = new google.maps.Marker({
+          map: this.map,
+          position: point,
+          });
+          this.markers.push(marker);
+        }*/
+
+
+        
         this.ptype =  this.responseData.type;
         this.is_fav= this.responseData.is_fav;
         this.productLists =  this.responseData.productList;
@@ -142,7 +229,7 @@ export class DetailsPage {
         this.ctime=this.productLists.ctime;
         this.interest=this.productLists.interest;
         this.sliderimages=this.productLists.image;
-        this.reviews=this.responseData.reviews
+        this.reviews=this.responseData.reviews;
          //console.log('arunava',this.productLists)
       }
       else
