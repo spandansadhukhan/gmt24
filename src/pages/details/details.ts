@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams , LoadingController,ToastController,AlertController} from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Storage } from '@ionic/storage';
 import {
   GoogleMaps,
   GoogleMap,
@@ -64,6 +66,7 @@ export class DetailsPage {
   start_time:any;
   reviews:any;
   isShow:boolean=false;
+  hideMe:boolean=false;
   rate:any;
   review:any;
   recomend:any;
@@ -76,7 +79,7 @@ export class DetailsPage {
   lang:any;
   my_latitude:any;
   my_longitude:any;
-
+  sellercontact:FormGroup;
 
 
   //product_id1:any;
@@ -89,6 +92,9 @@ export class DetailsPage {
     public alertCtrl: AlertController,
     private googleMaps: GoogleMaps,
     private geolocation: Geolocation,
+    private storage: Storage,
+    private builder: FormBuilder,
+
 ) {
     
     this.loguser =  JSON.parse(localStorage.getItem('userData'));
@@ -112,6 +118,11 @@ export class DetailsPage {
 
     this.product_id = this.navParams.get('product_id');
     this.productsDetails(this.product_id);
+    this.sellercontact = builder.group({
+     
+      'message': [null, Validators.required]
+      
+    });
   }
 
 
@@ -450,5 +461,49 @@ show()
       
     });
   }
+  ishide() {
+   
+      this.hideMe = true;
+   
+    
+  }
 
+addmessage(formData) {
+  this.storage.get('uid').then(val => {
+  formData['from_id'] = val;
+  formData['to_id'] = this.seller_id;
+  formData['product_id'] = this.product_id;
+  console.log('arunava',formData);
+  this.authService.addmessage(formData).subscribe(res => {
+   if (res.Ack == 1) {
+    this.hideMe = false;
+      const alert = this.alertCtrl.create({
+        title: "Success!",
+        subTitle:"Your Message Sent Successfully",
+        buttons: ['OK']
+      });
+      alert.present();
+    } 
+    else {
+      this.hideMe = false;
+      const alert = this.alertCtrl.create({
+        
+        title: "Error!",
+        subTitle:"Message sent failed",
+        buttons: ['OK']
+      });
+      alert.present();
+    }
+  }, err => {
+    const alert = this.alertCtrl.create({
+      title: "Error!",
+      subTitle:"Something went wrong",
+      buttons: ['OK']
+    });
+    alert.present();
+    console.log(err);
+    
+  });
+});
+}
 }

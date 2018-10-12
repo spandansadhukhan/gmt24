@@ -223,7 +223,12 @@ export class AuthServiceProvider {
 
   }
 
-
+  addmessage(data:object):Observable<any>{
+    //console.log(data);
+    return this.http.post(this.apiUrl +'addmessage',data).map((res:Response)=>{
+      return res.json();
+    });
+  }
 
   removeimage(data: object): Observable<any> {
     return this.http.post(this.apiUrl + 'removeImage_app', data).map((res: Response) => {
