@@ -50,6 +50,45 @@
             <ion-input round type="date" placeholder="Select a date" formControlName="date_of_purchase" name="date_of_purchase" ></ion-input>
         </ion-item>
 
+
+
+
+        <!-- <ion-item>
+          <ion-label stacked color="primary">Status of the watch*</ion-label>
+          </ion-item>
+          <ion-item class="select-custom">
+          <button ion-button block class="country-select" (click)="show()"><img src="assets/img/{{curimg}}" alt="">{{curcode}}</button>
+          </ion-item>
+          <div class="custom-dropdown" *ngIf ="isShow">
+          <ion-list radio-group>
+          <ion-list-header>Staus</ion-list-header>
+                        
+          <ion-list class="list-area-radio">
+          <ion-item *ngFor="let st of statuslists">
+          <ion-label><img src="assets/img/{{st.images}}" alt="">{{st.name}}</ion-label>
+          <ion-radio value="{{st.name}}" (ionSelect)="selectcurrency(st.name,st.images)"></ion-radio>
+          </ion-item>
+                             
+          </ion-list>
+          <ion-row>
+              <ion-col>
+                  <button block ion-button color="dark" round outline (click)='hide()'>Cancel</button>
+              </ion-col>
+          </ion-row>
+          </ion-list>
+          </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
         <ion-item>
             <ion-label stacked color="primary">Status of the watch*</ion-label>
             <ion-select name="status" formControlName="status">

@@ -53,6 +53,7 @@ export class FilterPage {
   genderid:any;
   yearid:any;
   searchdata:any;
+  countryid:any;
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      public loadingCtrl: LoadingController,
@@ -304,6 +305,7 @@ onChange(id, isChecked, index) {
 
 liststate(cid){
 
+  this.countryid=cid;
   this.authService.satelist({"c_id": cid}).subscribe(res=>{
     if(res.Ack==1){
      
@@ -444,7 +446,11 @@ maxminpriceList(){
 
 onSave(){
 
-//this.searchdata=JSON.stringify({"fname":"Guest","lname":"User","user_type":"3"});
+this.searchdata=JSON.stringify({"brand":this.brandid,"catid":this.catid,"movementid":this.movementid,"sellerid":this.sellerid,"statusid":this.statusid,
+"minprice":this.min,"maxprice":this.max,"braceletid":this.braceletid,"minslidesize":this.minslidesize,"maxslidesize":this.maxslidesize,"stateid":this.stateid,"genderid":this.genderid,"yearid":this.yearid,"countryid":this.countryid});
+
+//console.log('searchdata',this.searchdata);
+this.navCtrl.push('SearchPage',{"param":this.searchdata});
 
 }
 

@@ -177,10 +177,7 @@
        
         
         <ion-list radio-group formControlName="time_slot_id" name="time_slot_id" *ngIf="uploadtypeid==2">
-        <ion-list-header>
-            Auction Time*
-            
-        </ion-list-header>
+        <ion-list-header>Auction Time*</ion-list-header>
         <ion-item *ngFor="let t of timelists">
             <ion-label>{{t.start_time}} To {{t.end_time}}</ion-label>
             <ion-radio value="{{t.id}}"></ion-radio>

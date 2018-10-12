@@ -28,6 +28,7 @@ export class Addproductstep2Page {
   pForm: FormGroup;
   movementlist:any;
   phonecode:any;
+  isShow:boolean=false;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -245,5 +246,6 @@ onSubmit(formData){
     });
   }
  }
+ 
 
 }
