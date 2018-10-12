@@ -21,8 +21,25 @@ export class SearchPage {
   productlists:any;
   wordlists=[];
   keyword:any;
-  minprice:any;
-  maxprice:any;
+  minprice:any=0;
+  maxprice:any=10000000;
+  searchdata:any;
+
+  catid:any="";
+  movementid:any="";
+  sellerid:any="";
+  statusid:any="";
+  braceletid:any="";
+  minslidesize:any=0;
+  maxslidesize:any=100;
+  stateid:any="";
+  genderid:any="";
+  yearid:any="";
+  countryid:any="";
+
+
+
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
@@ -36,6 +53,32 @@ export class SearchPage {
     //console.log('ionViewDidLoad SearchPage');
     this.brand_id = this.navParams.get('brand_id');
     this.keyword=this.navParams.get('keyword');
+    
+    
+    if(this.navParams.get('param')){
+    this.searchdata= JSON.parse(this.navParams.get('param'));
+    if(this.searchdata.brand!=""){
+    this.brand_id=this.searchdata.brand;
+    }
+    if(this.searchdata.brand!=""){
+      this.brand_id=this.searchdata.brand;
+      }
+      this.catid=this.searchdata.catid;
+      this.movementid=this.searchdata.movementid;
+      this.sellerid=this.searchdata.sellerid;
+      this.statusid=this.searchdata.statusid;
+      this.minprice=this.searchdata.minprice;
+      this.maxprice=this.searchdata.maxprice;
+      this.braceletid=this.searchdata.braceletid;
+      this.minslidesize=this.searchdata.minslidesize;
+      this.maxslidesize=this.searchdata.maxslidesize;
+      this.stateid=this.searchdata.stateid;
+      this.genderid=this.searchdata.genderid;
+      this.yearid=this.searchdata.yearid;
+      this.countryid=this.searchdata.countryid; 
+      console.log('searchdata',this.searchdata);
+      
+    }
     this.brandproductList();
     this.maxminpriceList();
   }
@@ -48,12 +91,22 @@ export class SearchPage {
     loading.present();
    
     let serval={
-      "amount_max": 10000000,
-      "amount_min":0,
+      "amount_max": this.maxprice,
+      "amount_min":this.minprice,
       "brandList":this.brand_id,
+      "breslettype":this.braceletid,
+      "category":this.catid,
+      "country_id":this.countryid,
+      "gender":this.genderid,
       "keyword": this.keyword,
-      "size_amount_max": 100,
-      "size_amount_min": 0
+      "movement":this.movementid,
+      "sellerList":this.sellerid,
+      "size_amount_max": this.maxslidesize,
+      "size_amount_min": this.minslidesize,
+      "state_id":this.stateid,
+      "statuslist":this.statusid,
+      "year":this.yearid,
+      
     }
     
     this.authService.postData(serval,'ProductListSearch').then((result) => {
