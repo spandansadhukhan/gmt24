@@ -30,7 +30,7 @@
 </ion-header>
 <div class="rating-part" *ngIf ="isShow">
   <ion-card class="rating-area" >
-<rating readOnly="false" [(ngModel)]="rate" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false"> 
+<rating readOnly="true" [(ngModel)]="rate" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false"> 
 </rating>
 <ion-item>
     <ion-label stacked color="primary">Review</ion-label>
@@ -107,6 +107,19 @@
       <p><span>Seller Name:</span> {{seller_name}}</p>
       <p *ngIf="interest== 1"><span>Phone No:</span> {{seller_phone}}</p>
       <p *ngIf="interest== 1"><span>Address:</span><br/>{{seller_address}}</p>
+      </div>
+      <!-- <div class="d-box" *ngIf="interest== 1">
+      <button ion-button round class="grey-btn" block (click)="interestedEmailToVendor(seller_id,ptype)">I am Interested</button>
+      </div> -->
+      <button ion-button round class="grey-btn" *ngIf="interest== 1" (click)="ishide()">Contact Seller</button>
+      <div class="d-box" *ngIf="interest== 1 && hideMe">
+        <form padding  novalidate [formGroup]="sellercontact">
+        <h2>Your Messages</h2>
+        <ion-textarea round rows="5" maxLength="500" placeholder="Type Message" formControlName="message"></ion-textarea>
+        <div padding class="p-b-5">
+          <button ion-button round class="grey-btn" (click)="addmessage(sellercontact.value)" type="submit" block>Send</button>
+        </div>
+      </form>
       </div>
       <div class="d-box" *ngIf="interest== 1">
       <h2>Location Map</h2>
