@@ -502,6 +502,7 @@ addmessage(formData) {
     });
     alert.present();
     console.log(err);
+    
   });
 });
 }
