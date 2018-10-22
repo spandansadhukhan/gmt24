@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams , LoadingController,ToastController,AlertController} from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Storage } from '@ionic/storage';
 import {
   GoogleMaps,
   GoogleMap,
@@ -12,7 +10,8 @@ import {
   MarkerOptions,
   Marker
 } from '@ionic-native/google-maps';
-import { Geolocation } from '@ionic-native/geolocation';
+import {  Geolocation } from '@ionic-native/geolocation';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 /**
  * Generated class for the DetailsPage page.
@@ -28,7 +27,7 @@ declare var google;
 })
 export class DetailsPage {
 
-
+  sellercontactfrom:FormGroup;
   //images = ['item-1.jpg', 'item-2.jpg', 'item-3.jpg', 'item-4.jpg'];
 
   sliderimages:any;
@@ -66,7 +65,6 @@ export class DetailsPage {
   start_time:any;
   reviews:any;
   isShow:boolean=false;
-  hideMe:boolean=false;
   rate:any;
   review:any;
   recomend:any;
@@ -79,8 +77,8 @@ export class DetailsPage {
   lang:any;
   my_latitude:any;
   my_longitude:any;
-  sellercontact:FormGroup;
-
+  hideMe:boolean=false;
+  
 
   //product_id1:any;
   constructor(
@@ -92,44 +90,28 @@ export class DetailsPage {
     public alertCtrl: AlertController,
     private googleMaps: GoogleMaps,
     private geolocation: Geolocation,
-    private storage: Storage,
     private builder: FormBuilder,
-
 ) {
+
+  this.sellercontactfrom = builder.group({
+    'message': [null, Validators.required]
+  });
+
     
     this.loguser =  JSON.parse(localStorage.getItem('userData'));
     this.user_id=this.loguser.user_id;
     this.user_type=this.loguser.user_type;
-
-   /* let loading = this.loadingCtrl.create({
-      content: 'Loading...'
-    });
-    loading.present();
-      this.geolocation.getCurrentPosition().then((resp) => {
-      console.log('splocation',resp);
-      this.lat = resp.coords.latitude;
-      this.lang = resp.coords.longitude;
-      this.initMap(this.lat,this.lang);
-      loading.dismiss();
-    }).catch((error) => {
-      loading.dismiss();
-      console.log('Error getting location', error);
-    });*/
-
     this.product_id = this.navParams.get('product_id');
     this.productsDetails(this.product_id);
-    this.sellercontact = builder.group({
-     
-      'message': [null, Validators.required]
-      
-    });
+    
   }
 
 
- /* private initMap(lat,lang) {
-
+ initlocationMap(lat,lang) {
+    
 
     var point = {lat: lat, lng: lang};
+   // alert(JSON.stringify(point));
     let divMap = (<HTMLInputElement>document.getElementById('map'));
     this.map = new google.maps.Map(divMap, {
     center: point,
@@ -139,15 +121,13 @@ export class DetailsPage {
     zoomControl: true
     });
 
-
      var marker = new google.maps.Marker({
       map: this.map,
       position: point,
       });
       this.markers.push(marker);
 
-
-  }*/
+ }
 
 
 
@@ -164,8 +144,9 @@ export class DetailsPage {
 
 
   ionViewDidLoad() {
+   
     console.log('ionViewDidLoad DetailsPage');
-    //this.productsDetails(this.product_id);
+    
   }
 
 
@@ -188,31 +169,8 @@ export class DetailsPage {
      //console.log('productsdetails',this.responseData);
       if( this.responseData.Ack == 1)
       {
-        loading.dismiss();
-        this.my_latitude=parseFloat(this.responseData.productList.my_latitude);
-        this.my_longitude=parseFloat(this.responseData.productList.my_longitude);
-        //console.log('splat',this.my_latitude);
-       /* if(this.my_latitude){
-        var point = {lat: '22.58552759344749', lng: '88.48358306190187'};
-        let divMap = (<HTMLInputElement>document.getElementById('map'));
-        this.map = new google.maps.Map(divMap, {
-        center: point,
-        zoom: 15,
-        disableDefaultUI: true,
-        draggable: true,
-        zoomControl: true
-        });
-
-
-        var marker = new google.maps.Marker({
-          map: this.map,
-          position: point,
-          });
-          this.markers.push(marker);
-        }*/
-
-
         
+        loading.dismiss();
         this.ptype =  this.responseData.type;
         this.is_fav= this.responseData.is_fav;
         this.productLists =  this.responseData.productList;
@@ -242,6 +200,19 @@ export class DetailsPage {
         this.sliderimages=this.productLists.image;
         this.reviews=this.responseData.reviews;
          //console.log('arunava',this.productLists)
+
+
+         this.my_latitude=parseFloat(this.responseData.productList.my_latitude);
+         this.my_longitude=parseFloat(this.responseData.productList.my_longitude);
+         //console.log('splat',this.my_latitude);
+         if(this.my_latitude && this.interest==1){
+          
+          
+          this.initlocationMap(this.my_latitude,this.my_longitude);
+        
+         }
+
+        
       }
       else
       {
@@ -260,10 +231,23 @@ export class DetailsPage {
 
 interestedEmailToVendor(sellerid,type){
 
+
+  if(this.user_type== 3){
+
+    const alert = this.alertCtrl.create({
+      title: "Sorry!",
+      subTitle:"Please login first.",
+      buttons: ['OK']
+    });
+    alert.present();
+
+  }else{
+
   let loading = this.loadingCtrl.create({
     content: 'Please Wait...'
   });
   loading.present();
+  
   this.loguser =  JSON.parse(localStorage.getItem('userData'));
   let serval={
     "product_id":this.product_id,
@@ -297,12 +281,23 @@ interestedEmailToVendor(sellerid,type){
     
   });
 
-
+  }
 
 }
 
 
 favourite(sellerid){
+
+  if(this.user_type== 3){
+
+    const alert = this.alertCtrl.create({
+      title: "Sorry!",
+      subTitle:"Please login first.",
+      buttons: ['OK']
+    });
+    alert.present();
+
+  }else{
 
   let loading = this.loadingCtrl.create({
     content: 'Please Wait...'
@@ -339,9 +334,21 @@ favourite(sellerid){
     
   });
 }
+}
 
 
 gotobid(uid){
+
+  if(this.user_type== 3){
+
+    const alert = this.alertCtrl.create({
+      title: "Sorry!",
+      subTitle:"Please login first.",
+      buttons: ['OK']
+    });
+    alert.present();
+
+  }else{
 
   let alert = this.alertCtrl.create({
     title: 'Enter password',
@@ -403,7 +410,7 @@ gotobid(uid){
   });
   alert.present();
 
-  
+}
 }
 
 
@@ -422,6 +429,17 @@ show()
 
   submit(){
 
+    if(this.user_type== 3){
+
+      const alert = this.alertCtrl.create({
+        title: "Sorry!",
+        subTitle:"Please login first.",
+        buttons: ['OK']
+      });
+      alert.present();
+  
+    }else{
+      
     let loading = this.loadingCtrl.create({
       content: 'Please Wait...'
     });
@@ -461,49 +479,58 @@ show()
       
     });
   }
+  }
+
+
+
   ishide() {
-   
-      this.hideMe = true;
-   
-    
+    this.hideMe = !this.hideMe;
   }
 
 addmessage(formData) {
-  this.storage.get('uid').then(val => {
-  formData['from_id'] = val;
-  formData['to_id'] = this.seller_id;
-  formData['product_id'] = this.product_id;
-  console.log('arunava',formData);
-  this.authService.addmessage(formData).subscribe(res => {
-   if (res.Ack == 1) {
-    this.hideMe = false;
-      const alert = this.alertCtrl.create({
-        title: "Success!",
-        subTitle:"Your Message Sent Successfully",
-        buttons: ['OK']
-      });
-      alert.present();
-    } 
-    else {
-      this.hideMe = false;
-      const alert = this.alertCtrl.create({
-        
-        title: "Error!",
-        subTitle:"Message sent failed",
-        buttons: ['OK']
-      });
-      alert.present();
-    }
-  }, err => {
+
+this.loguser =  JSON.parse(localStorage.getItem('userData'));
+
+formData['from_id'] = this.loguser.user_id,
+formData['to_id'] = this.seller_id;
+formData['product_id'] = this.product_id;
+console.log('arunava',formData);
+this.authService.addmessage(formData).subscribe(res => {
+ if (res.Ack == 1) {
+  this.hideMe = false;
     const alert = this.alertCtrl.create({
-      title: "Error!",
-      subTitle:"Something went wrong",
+      title: "Success!",
+      subTitle:"Your Message Sent Successfully",
       buttons: ['OK']
     });
     alert.present();
-    console.log(err);
-    
+  } 
+  else {
+    this.hideMe = false;
+    const alert = this.alertCtrl.create({
+      
+      title: "Failed!",
+      subTitle:"Message sent failed",
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+}, err => {
+  const alert = this.alertCtrl.create({
+    title: "Error!",
+    subTitle:"Something went wrong",
+    buttons: ['OK']
   });
+  alert.present();
+  console.log(err);
+  
 });
+
 }
+
+
+
+
+
+
 }

@@ -32,7 +32,9 @@ export class Addproductstep3Page {
   public bikeimages = [];
   selectedValue=[];
   uploadsuccess:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  uploadimages=[];
+  productimages=[];
+    constructor(public navCtrl: NavController, public navParams: NavParams,
     public authService: AuthServiceProvider,
     private storage: Storage,
     //private builder: FormBuilder,
@@ -71,7 +73,16 @@ export class Addproductstep3Page {
         buttons: ['OK']
       });
       alert.present();
-    }else{
+    }else if(this.uploadimages.length > 5){
+
+      const alert = this.alertCtrl.create({
+        title: 'Product Add Failed!',
+        subTitle: "Maximum 5 images can upload",
+        buttons: ['OK']
+      });
+      alert.present();
+
+    } else{
 
       let loading = this.loadingCtrl.create({
         content: 'Please Wait...'
@@ -102,13 +113,13 @@ export class Addproductstep3Page {
     formData['state']=this.logproduct.state;
     formData['city']=this.logproduct.city;
     formData['date_of_purchase']=this.logproduct.date_of_purchase;
-    formData.image =  this.imagename;
+    formData.image =  this.uploadimages.toString();
     console.log('spandanproduct',formData);
      this.authService.productadd(formData).subscribe(res=>{
       
        if(res.Ack==1){
         loading.dismiss();
-        this.uploadImage(res.lastid);
+        //this.uploadImage(res.lastid);
         
         console.log(res);
          const alert = this.alertCtrl.create({
@@ -116,6 +127,7 @@ export class Addproductstep3Page {
            buttons: ['OK']
          });
         alert.present();
+
           if(res.type==1){
             if(res.utype == '1'){
               if(res.certified_user == 1){
@@ -228,6 +240,7 @@ export class Addproductstep3Page {
     this.file.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(success => {
       this.lastImage = newFileName;
       console.log("NEWFILENAMEEEEEE",this.lastImage);
+      this.uploadImage();
     }, error => {
       this.presentToast('Error while storing file.');
     });
@@ -251,7 +264,7 @@ export class Addproductstep3Page {
     }
   }
 
-  public uploadImage(lid) {
+  public uploadImage() {
     // Destination URL
     var url = "https://thegmt24.com/webservice/frontend/imageinsert_app";
    
@@ -268,7 +281,7 @@ export class Addproductstep3Page {
       mimeType: "multipart/form-data",
       params : {
       'photo':filename,
-      'product_id':lid
+      //'product_id':lid
        }
      // params : {'fileName': filename}
     };
@@ -289,7 +302,12 @@ export class Addproductstep3Page {
 
       if(this.uploadsuccess.ack==1){
         loading.dismiss();
+        this.uploadimages.push(this.uploadsuccess.image);
+        this.productimages.push(this.uploadsuccess.link);
+        console.log('spimages',this.uploadimages);
+        console.log('spimagesshow',this.productimages);
         this.presentToast('Image succesful uploaded.');
+        
       }else{
 
         loading.dismiss();
@@ -330,42 +348,10 @@ export class Addproductstep3Page {
           text: 'Ok',
           cssClass:'icon-color',
           handler: data => {
-            if(localStorage.getItem('gear_id'))
-            {
             
-
-            let dataUserDet = {
-              "id": id,
-              "gear_id":localStorage.getItem('gear_id')
-              
-            };
-            console.log(dataUserDet)
-            this.authService.removeimage(dataUserDet).subscribe(res=>{
-              let details = res
-              console.log(res)
-              if(details.Ack == 1){
-                
-                this.bikeimages = details.data;
-              }
-              
-             },err=>{
-              //console.log(err);
-               const alert = this.alertCtrl.create({
-                 title: 'Image Remove Failed!',
-                 buttons: ['OK']
-               });
-               alert.present();
-            });
-          }
-          else{
-
-            this.bikeimages.splice(id, 1);
-            this.imagename.splice(id,1);
-           
-          }
-
-           // console.log('Items Removed!');
-            //Call you API to remove Items here.
+              this.uploadimages.splice(id, 1);
+              this.productimages.splice(id,1);
+            
           }
         }
       ]

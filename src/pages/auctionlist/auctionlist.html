@@ -30,14 +30,14 @@
 <ion-content padding>
 
   <ion-list>
-    <ion-item class="request-item" *ngFor="let product of productlists">
+    <ion-item class="request-item" *ngFor="let product of productlists" (click)="productdetails(product.product_id)">
       <!-- <div class="top-tag">
        <p>top</p> 
         <img src="assets/img/top-tag.png" alt="">
       </div> -->
       
       <ion-thumbnail item-start>       
-        <img src="{{product.image}}" alt="" (click)="productdetails(product.product_id)">
+        <img src="{{product.image}}" alt="" >
       </ion-thumbnail>
       <h2>{{product.brand_name}}/{{product.category_name}}</h2>
       <p class="name">

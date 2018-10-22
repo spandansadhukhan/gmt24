@@ -93,8 +93,8 @@
  
 
 <div class="check-custom">
-  <h6 (click)="toggle()">Movement</h6>
-  <ion-list *ngIf="!show" class="accordion-list">
+  <h6 (click)="toggle1()">Movement</h6>
+  <ion-list *ngIf="!movementshow" class="accordion-list">
       <ion-item class="check-item" *ngFor="let m of movementlists">
           <ion-label>{{m.name}}</ion-label>
           <ion-checkbox color="dark" checked="false" (ionChange)="onmovementset(m.name, $event.checked, i)"></ion-checkbox>
@@ -113,8 +113,8 @@
 
 
 <div class="check-custom">
-  <h6 (click)="toggle()">Sellers</h6>
-  <ion-list *ngIf="!show" class="accordion-list">
+  <h6 (click)="toggle2()">Sellers</h6>
+  <ion-list *ngIf="!sellershow" class="accordion-list">
       <ion-item class="check-item" *ngFor="let sw of shopOwners">
           <ion-label>{{sw.name}}</ion-label>
           <ion-checkbox color="dark" checked="false" (ionChange)="onsellerset(sw.id, $event.checked, i)"></ion-checkbox>
@@ -125,8 +125,8 @@
 
 
 <div class="check-custom">
-  <h6 (click)="toggle()">Status Watch</h6>
-  <ion-list *ngIf="!show" class="accordion-list">
+  <h6 (click)="toggle3()">Status Watch</h6>
+  <ion-list *ngIf="!statusshow" class="accordion-list">
       <ion-item class="check-item" *ngFor="let st of statuslists">
           <ion-label>{{st.name}}</ion-label>
           <ion-checkbox color="dark" checked="false" (ionChange)="onstatusset(st.name, $event.checked, i)"></ion-checkbox>

@@ -125,20 +125,46 @@
       </ion-item>
       <p *ngIf="!aForm.controls['country_preference'].valid && aForm.controls['country_preference'].touched" ion-text color="danger" padding-left>
         Preferred Country is required </p>
-      <ion-item>
+        
+      <!-- <ion-item>
           <ion-label stacked color="primary">Preferred Currency</ion-label>
           <ion-select name="currency_preference" formControlName="currency_preference">
             <ion-option value="{{c.code}}" *ngFor="let c of currencylists">{{c.name}}</ion-option>
           </ion-select>
       </ion-item>
       <p *ngIf="!aForm.controls['currency_preference'].valid && aForm.controls['currency_preference'].touched" ion-text color="danger" padding-left>
-        Preferred Currency is required </p>
+        Preferred Currency is required </p> -->
 
 
-
-        
-
-
+        <ion-item>
+          <ion-label stacked color="primary">Preferred Currency*</ion-label>
+          </ion-item>
+          <ion-item class="select-custom">
+          <button ion-button block class="country-select" (click)="show()"><img src="assets/img/{{curimg}}" alt="">{{curcode}}</button>
+          </ion-item>
+          <div class="custom-dropdown" *ngIf ="isShow">
+          <ion-list radio-group>
+          <ion-list-header>Currency</ion-list-header>
+                        
+          <ion-list class="list-area-radio">
+          <ion-item *ngFor="let c of currencylists">
+          <ion-label><img src="assets/img/{{c.image}}" alt="">{{c.code}}</ion-label>
+          <ion-radio value="{{c.code}}" (ionSelect)="selectcurrency(c.code,c.image)"></ion-radio>
+          </ion-item>
+                             
+          </ion-list>
+          <ion-row>
+              
+              <ion-col>
+                  <button block ion-button color="dark" round outline (click)='hide()'>Cancel</button>
+              </ion-col>
+          </ion-row>
+          </ion-list>
+          </div>
+          <ion-item>
+          <div id="map" style="height:400px;"> 
+          </div>
+        </ion-item>
 
       <!-- <ion-item>
         <ion-label stacked color="primary">Civil ID Attachment</ion-label>

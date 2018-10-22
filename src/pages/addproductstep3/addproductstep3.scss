@@ -35,4 +35,8 @@ page-addproductstep3 {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799',GradientType=0 ); /* IE6-9 */ }
     
     .rdo-btn{ width: auto; }
+    img {
+        max-width: 50%;
+        border: 0;
+    }
 }
