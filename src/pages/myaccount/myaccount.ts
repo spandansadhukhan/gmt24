@@ -597,6 +597,6 @@ remove_image(id)
   //alert(id)
 }*/
 
-//spandan sadhukhan
+//spandan
 
 }
