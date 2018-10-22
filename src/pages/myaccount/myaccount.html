@@ -161,6 +161,20 @@
           </ion-row>
           </ion-list>
           </div>
+
+          <ion-item>
+              <p class="upload-text">Civil Id Attachment</p>
+              <button ion-button block class="upload-image" color="light" (click)="presentActionSheet()">Upload Image</button>
+            </ion-item>
+            <ul class="upload-list" *ngIf="productimages">
+        
+                <li *ngFor="let item of productimages ;index as i ">
+                <img src="{{item}}" alt="" />
+                <a href="javascript:void()" (click)="remove_image(i)"><ion-icon name="close-circle"></ion-icon></a>
+                </li>
+                
+                </ul>
+
           <ion-item>
           <div id="map" style="height:400px;"> 
           </div>

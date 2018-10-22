@@ -25,6 +25,7 @@ import { File } from '@ionic-native/file';
  * Ionic pages and navigation.
  */
 declare var google;
+declare var cordova: any;
 @IonicPage()
 @Component({
   selector: 'page-myaccount',
@@ -45,7 +46,7 @@ export class MyaccountPage {
   public isShow:any;
   public curcode:any;
   public curimg:any;
-
+  loguser:any;
 
   map: any;
   markers = [];
@@ -53,6 +54,16 @@ export class MyaccountPage {
   lat:any;
   lang:any;
   markerlatlong:any;
+
+
+  lastImage:any;
+  imagename = [];
+  
+  uploadsuccess:any;
+  uploadimages=[];
+  productimages=[];
+
+
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
@@ -110,9 +121,10 @@ export class MyaccountPage {
             this.lname=res.UserDetails.lname;
             this.image=res.UserDetails.profile_image;
 
+            this.productimages=res.UserDetails.images;
             if(res.UserDetails.currency_preference){
             this.curcode=res.UserDetails.currency_preference;
-            //this.curimg=cimg;
+            this.curimg=res.UserDetails.currency_image;
             }else{
 
             this.curcode='KWD';
@@ -303,6 +315,7 @@ onSubmit(formData) {
   this.storage.get('uid').then(val => {
   formData['user_id'] = val;
   formData['currency_preference']=this.curcode;
+  formData.image =  this.uploadimages.toString();
   this.authService.updateprofile(formData).subscribe(res => {
    if (res.Ack == 1) {
     loading.dismiss();
@@ -413,7 +426,7 @@ initlocationMap(lat,lang) {
 
  //image upload
 
- /*presentActionSheet() {
+ presentActionSheet() {
   let actionSheet = this.actionSheetCtrl.create({
     enableBackdropDismiss: true,
     buttons: [
@@ -470,7 +483,6 @@ uploadFromCamera(sourceType){
 private createFileName(currentName) {
   var d = new Date(),
   n = d.getTime(),
- // newFileName=n+".jpg";
   newFileName=currentName;
   return newFileName;
 }
@@ -506,7 +518,7 @@ public pathForImage(img) {
 
 public uploadImage() {
   // Destination URL
-  var url = "https://thegmt24.com/webservice/frontend/imageinsert_app";
+  var url = "https://thegmt24.com/webservice/frontend/userimageinsert_app";
  
   // File for Upload
   var targetPath = this.pathForImage(this.lastImage);
@@ -521,7 +533,7 @@ public uploadImage() {
     mimeType: "multipart/form-data",
     params : {
     'photo':filename,
-    //'product_id':lid
+ // 'user_id':uid
      }
    // params : {'fileName': filename}
   };
@@ -595,7 +607,7 @@ remove_image(id)
 
   alert.present();
   //alert(id)
-}*/
+}
 
 //spandan
 
