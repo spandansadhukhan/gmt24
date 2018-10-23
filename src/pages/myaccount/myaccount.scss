@@ -143,5 +143,18 @@ page-myaccount {
             box-shadow: none;
           }
         }
+        .upload-list{display: flex;justify-content: space-between;padding:20px;}
+        .upload-list li{
+          width:46%;;
+          position: relative;
+
+        }
+        .upload-list li a{
+          position: absolute;
+          left: -10px;
+          top: -13px;
+          color: #131212;
+          font-size: 23px;
+        }
 
 }
