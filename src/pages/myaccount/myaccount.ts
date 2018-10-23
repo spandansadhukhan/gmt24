@@ -62,7 +62,7 @@ export class MyaccountPage {
   uploadsuccess:any;
   uploadimages=[];
   productimages=[];
-
+  address:any;
 
 
   constructor(public navCtrl: NavController,
@@ -94,6 +94,7 @@ export class MyaccountPage {
       'bankname': [null, Validators.required],
       'language_preference': [null, Validators.required],
       'country_preference': [null, Validators.required],
+     // 'address': [null, Validators.required],
       //'currency_preference': [null, Validators.required],
       
     });
@@ -122,6 +123,7 @@ export class MyaccountPage {
             this.image=res.UserDetails.profile_image;
 
             this.productimages=res.UserDetails.images;
+            this.address=res.UserDetails.address;
             if(res.UserDetails.currency_preference){
             this.curcode=res.UserDetails.currency_preference;
             this.curimg=res.UserDetails.currency_image;
@@ -315,6 +317,9 @@ onSubmit(formData) {
   this.storage.get('uid').then(val => {
   formData['user_id'] = val;
   formData['currency_preference']=this.curcode;
+  formData['address']=this.address;
+  formData['my_latitude']=this.lat;
+  formData['my_longitude']=this.lang;
   formData.image =  this.uploadimages.toString();
   this.authService.updateprofile(formData).subscribe(res => {
    if (res.Ack == 1) {
@@ -372,7 +377,7 @@ initlocationMap(lat,lang) {
   center: point,
   zoom: 15,
   disableDefaultUI: true,
-  draggable: false,
+  draggable: true,
   zoomControl: true
   });
 
@@ -383,43 +388,56 @@ initlocationMap(lat,lang) {
     });
     this.markers.push(marker);
 
-    google.maps.event.addListener(marker, 'dragend', function ()
-       {
-         
-         this.markerlatlong = marker.getPosition();
-         console.log('sdfsdf',this.markerlatlong.lat);
-           //this.geocodePosition(marker.getPosition());
-       });
+    let geocoder = new google.maps.Geocoder;
+    let latlng = {lat: lat, lng: lang};
+    geocoder.geocode({'location': latlng}, (results, status) => {
+
+      if (status == 'OK')
+      {
+          this.lat = lat;
+          this.lang = lang;
+          this.address = results[0].formatted_address;
+          //alert(this.address);
+      }
+      else
+      {
+        alert(status);
+      }
+
+    });
+
+
+
+    google.maps.event.addListener(marker, 'dragend', () =>{ 
+
+     // console.log("vbhdfvgdshjgf",marker.position);
+      //alert(marker.position.lat());
+    let geocoder = new google.maps.Geocoder;
+    let latlng = {lat: marker.position.lat(), lng: marker.position.lng()};
+    geocoder.geocode({'location': latlng}, (results, status) => {
+
+      if (status == 'OK')
+      {
+          this.lat = marker.position.lat();
+          this.lang = marker.position.lng();
+          this.address = results[0].formatted_address;
+          //alert(this.address);
+      }
+      else
+      {
+        alert(status);
+      }
+       
+    });
+
+
+  });
+    
 
 }
 
 
- geocodePosition(pos)
-  {
-    console.log('ghhghghg',pos);
-    var lat, lng, address;
-   let geocoder = new google.maps.Geocoder();
-    geocoder.geocode
-            ({
-                latLng: pos
-            },
-            function (results, status)
-            {
-                if (status == google.maps.GeocoderStatus.OK)
-                {
-                    lat = pos.lat();
-                    lng = pos.lng();
-                    address = results[0].formatted_address;
-                    alert("Latitude: " + lat + "\nLongitude: " + lng + "\nAddress: " + address);
-                    
-                }
-                else
-                {
-                  alert(status);
-                }
-            }
-            );
-}
+ 
 
 
 

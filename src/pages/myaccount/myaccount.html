@@ -164,9 +164,9 @@
 
           <ion-item>
               <p class="upload-text">Civil Id Attachment</p>
-              <button ion-button block class="upload-image" color="light" (click)="presentActionSheet()">Upload Image</button>
+              <button ion-button block class="upload-image" color="light" (click)="presentActionSheet()">Add Photo</button>
             </ion-item>
-            <ul class="upload-list" *ngIf="productimages">
+            <ul class="upload-list" *ngIf="productimages" style="list-style:none;">
         
                 <li *ngFor="let item of productimages ;index as i ">
                 <img src="{{item}}" alt="" />
@@ -179,6 +179,12 @@
           <div id="map" style="height:400px;"> 
           </div>
         </ion-item>
+        
+        <ion-item>
+            <p class="upload-text">{{address}}</p>
+          </ion-item>
+
+
 
       <!-- <ion-item>
         <ion-label stacked color="primary">Civil ID Attachment</ion-label>
