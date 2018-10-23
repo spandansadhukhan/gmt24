@@ -16,7 +16,9 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 })
 export class FilterPage {
   public show:boolean = false;
-  public buttonName:any = 'Show';
+  public movementshow:boolean = false;
+  public sellershow:boolean = false;
+  public statusshow:boolean = false;
   minValue: any;
   minSize: any = { lower: 0, upper: 100 };
   limit:any=5;
@@ -82,16 +84,24 @@ export class FilterPage {
 
 
   toggle() {
-    this.show = !this.show;
 
-    // CHANGE THE NAME OF THE BUTTON.
-    if(this.show)  
-      this.buttonName = "Hide";
-    else
-      this.buttonName = "Show";
+    this.show = !this.show;
   }
 
+  toggle1() {
 
+    this.movementshow = !this.movementshow;
+  }
+  toggle2() {
+
+    this.sellershow = !this.sellershow;
+  }
+
+  toggle3() {
+
+    this.statusshow = !this.statusshow;
+
+  }
   brandList(){
 
     let loading = this.loadingCtrl.create({

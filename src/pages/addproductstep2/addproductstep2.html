@@ -53,11 +53,11 @@
 
 
 
-        <!-- <ion-item>
+        <ion-item>
           <ion-label stacked color="primary">Status of the watch*</ion-label>
           </ion-item>
           <ion-item class="select-custom">
-          <button ion-button block class="country-select" (click)="show()"><img src="assets/img/{{curimg}}" alt="">{{curcode}}</button>
+          <button ion-button block class="country-select" (click)="show()"><img src="assets/img/{{simg}}" alt="">{{sname}}</button>
           </ion-item>
           <div class="custom-dropdown" *ngIf ="isShow">
           <ion-list radio-group>
@@ -66,7 +66,7 @@
           <ion-list class="list-area-radio">
           <ion-item *ngFor="let st of statuslists">
           <ion-label><img src="assets/img/{{st.images}}" alt="">{{st.name}}</ion-label>
-          <ion-radio value="{{st.name}}" (ionSelect)="selectcurrency(st.name,st.images)"></ion-radio>
+          <ion-radio value="{{st.name}}" (ionSelect)="selectstatus(st.name,st.images)"></ion-radio>
           </ion-item>
                              
           </ion-list>
@@ -76,7 +76,7 @@
               </ion-col>
           </ion-row>
           </ion-list>
-          </div> -->
+          </div>
 
 
 
@@ -89,14 +89,14 @@
 
 
 
-        <ion-item>
+        <!-- <ion-item>
             <ion-label stacked color="primary">Status of the watch*</ion-label>
             <ion-select name="status" formControlName="status">
               <ion-option value="{{st.name}}" *ngFor="let st of statuslists">{{st.name}}</ion-option>
             </ion-select>
         </ion-item>
         <p *ngIf="!pForm.controls['status'].valid && pForm.controls['status'].touched" ion-text color="danger" padding-left>
-          Status is required </p>
+          Status is required </p> -->
         
       <ion-item>
         <ion-label stacked color="primary">Country*</ion-label>

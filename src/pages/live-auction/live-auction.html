@@ -20,6 +20,8 @@
 		<ion-row>
 			<ion-col class="top">
 				<div class="users"><img src="assets/img/users-icon.png" alt="" /> {{countuniquebids}}</div>
+				
+				<div><span>{{displayTime}}</span></div>
 				<div *ngIf="lastbidvalue >= thresholdprice" class="online"></div>
 				<div *ngIf="lastbidvalue < thresholdprice" class="offline"></div>
 			</ion-col>		
@@ -27,20 +29,36 @@
 		<ion-row>
 			<ion-col class="product">
 				<img src="{{product_single_image}}" alt="" />
-				<h4>Total No Of Bid(s) : <span>{{bidcount}}</span></h4>
-				<h4>Highest Bidder Name :<span>{{maxbiddername}}({{higestbidderbid}})</span></h4>
-				<h4>Your Higest Bid : <span>{{currency_code}} {{usermaxbid}}</span></h4>
 
-				<h2>Time Left: <br><span>{{displayTime}}</span></h2>
+				<h2>{{brands}}/{{category}}<span>({{gender}})</span></h2>
+					<h4>Highest Bid: <span>{{currency_code}} {{higestbidderbid}}</span></h4>
+					<h4>Next Minimum Bid: <span>{{currency_code}} {{nextbidprice}}</span></h4>
+					
+	
+					<ion-input class="wh" type="number" formControlName="bid" placeholder="Input your bid" (keyup)="checkinputbid(bidForm.value,nextbidprice,bidincrement,baseauctionprice)"></ion-input>
+					
+					<p *ngIf="!bidmatch" ion-text color="danger" padding-left>Bid increment multiple of {{bidincrement}}. </p>
+					
+	
+					<button ion-button full class="gr" [disabled]="!bidmatch" type="submit" (click)="bidsubmit(bidForm.value)">Place bid</button>
+			
+			
 			</ion-col>
 		</ion-row>
 		<ion-row>
 			<ion-col col-12 class="product">
-				<h2><a  (click)="showhistory()">Bid History</a></h2>
-				<h4 *ngFor="let bh of bidhistory"> {{bh.name}} ({{bh.bidprice}}) </h4>
+
+				<h4>Total No Of Bid(s) : <span>{{bidcount}}</span></h4>
+				<h4>Highest Bidder Name :<span>{{maxbiddername}}({{higestbidderbid}})</span></h4>
+				<h4>Your Higest Bid : <span>{{currency_code}} {{usermaxbid}}</span></h4>
+
+				<h2><a  (click)="toggle()">Bid History</a></h2>
+				<div *ngIf="show">
+				<h4 *ngFor="let bh of bidhistory" > {{bh.name}} ({{bh.bidprice}}) </h4>
+				</div>
 			</ion-col>	
 		</ion-row>
-		<ion-row>
+		<!-- <ion-row>
 			<ion-col class="desc">
 				<h3>{{brands}}/{{category}}
 					<span>({{gender}})</span>
@@ -56,7 +74,7 @@
 
 				<button ion-button full class="gr" [disabled]="!bidmatch" type="submit" (click)="bidsubmit(bidForm.value)">Place bid</button>
 			</ion-col>
-		</ion-row>
+		</ion-row> -->
 	</form>
 	</ion-card>
 

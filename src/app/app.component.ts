@@ -93,7 +93,7 @@ public home(){
  
 public allwatches(){
 
-  this.nav.push('SearchPage');
+  this.nav.setRoot('SearchPage');
 }
 
 public allauctions(){
@@ -103,7 +103,7 @@ public allauctions(){
 
 public allshops(){
 
-  this.nav.push('AllshoplistPage');
+  this.nav.setRoot('AllshoplistPage');
 }
 
 public settings(){

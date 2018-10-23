@@ -29,6 +29,8 @@ export class Addproductstep2Page {
   movementlist:any;
   phonecode:any;
   isShow:boolean=false;
+  simg:any;
+  sname:any;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -42,7 +44,7 @@ export class Addproductstep2Page {
         'movement': [null, Validators.required],
         'gender': [null, Validators.required],
         'reference': [null, Validators.required],
-        'status':[null, Validators.required],
+        //'status':[null, Validators.required],
         'owner_number': [null, Validators.required],
         'country': [null, Validators.required],
         'state': [null, Validators.required],
@@ -65,6 +67,7 @@ export class Addproductstep2Page {
         });
         });
 
+        this.sname="New";
   }
 
   ionViewDidLoad() {
@@ -240,12 +243,34 @@ onSubmit(formData){
     alert.present();
   }else{
     this.storage.ready().then(() => {
-      localStorage.setItem('productData2', JSON.stringify(formData));
 
-  this.navCtrl.push('Addproductstep3Page');
+      formData.status = this.sname;
+      localStorage.setItem('productData2', JSON.stringify(formData));
+      console.log('spform2',formData);
+      this.navCtrl.push('Addproductstep3Page');
     });
   }
  }
  
+
+ show()
+ {
+   
+   this.isShow =true;
+  
+ }
+
+ hide() {
+   this.isShow =false;
+ }
+
+
+ selectstatus(sname,simg){
+    this.isShow =false;
+    this.sname=sname;
+    this.simg=simg;
+ }
+
+
 
 }

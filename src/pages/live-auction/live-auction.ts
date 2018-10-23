@@ -56,6 +56,7 @@ export class LiveAuctionPage {
   seller_id:any;
   refreshIntervalId:any;
   bidhistory:any;
+  show:boolean = false;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -375,6 +376,13 @@ addbid(bid){
     alert.present();
   });
 
+}
+
+
+toggle() {
+
+  this.show = !this.show;
+  
 }
 
 

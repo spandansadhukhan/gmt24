@@ -59,18 +59,22 @@
             <p class="upload-text">Product Image</p>
             <button ion-button block class="upload-image" color="light" (click)="presentActionSheet()">Upload Image</button>
           </ion-item>
-        <ion-item *ngIf="pathForImage(lastImage)!= ''">
+        <!-- <ion-item *ngIf="pathForImage(lastImage)!= ''">
           <h4>Image Preview</h4>
           <img src="{{pathForImage(lastImage)}}"  alt="Ionic File" width="300" />
-        </ion-item>
-        <!-- <ul class="upload-list" *ngIf="bikeimages">
+        </ion-item> -->
+
+
+
+
+        <ul class="upload-list" *ngIf="productimages">
         
-        <li *ngFor="let item of bikeimages ;index as i ">
-        <img src="{{item.link}}" alt="" />
+        <li *ngFor="let item of productimages ;index as i ">
+        <img src="{{item}}" alt="" />
         <a href="javascript:void()" (click)="remove_image(i)"><ion-icon name="close-circle"></ion-icon></a>
         </li>
         
-        </ul> -->
+        </ul>
         
 
 
