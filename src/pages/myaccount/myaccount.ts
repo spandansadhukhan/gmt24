@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController,LoadingController,ToastController,Platform,ActionSheetController} from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { Storage } from '@ionic/storage';
@@ -63,7 +63,9 @@ export class MyaccountPage {
   uploadimages=[];
   productimages=[];
   address:any;
-
+  autocompleteItems=[];
+  GoogleAutocomplete:any;
+  completeAddres:any;
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
@@ -79,8 +81,12 @@ export class MyaccountPage {
     public toastCtrl:ToastController,
     private camera: Camera,
     private actionSheetCtrl: ActionSheetController,
-    private transfer: FileTransfer
+    private transfer: FileTransfer,
+    private zone: NgZone
   ) {
+
+    this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
+
     this.aForm = builder.group({
       'fname': [null, Validators.required],
       'lname': [null, Validators.required],
@@ -94,7 +100,7 @@ export class MyaccountPage {
       'bankname': [null, Validators.required],
       'language_preference': [null, Validators.required],
       'country_preference': [null, Validators.required],
-     // 'address': [null, Validators.required],
+      'pickup_location': [null, Validators.required],
       //'currency_preference': [null, Validators.required],
       
     });
@@ -388,7 +394,12 @@ initlocationMap(lat,lang) {
     });
     this.markers.push(marker);
 
-    let geocoder = new google.maps.Geocoder;
+  // if(item.description){
+
+  
+     
+  // }else{ 
+     let geocoder = new google.maps.Geocoder;
     let latlng = {lat: lat, lng: lang};
     geocoder.geocode({'location': latlng}, (results, status) => {
 
@@ -397,7 +408,7 @@ initlocationMap(lat,lang) {
           this.lat = lat;
           this.lang = lang;
           this.address = results[0].formatted_address;
-          //alert(this.address);
+         // alert(this.address);
       }
       else
       {
@@ -405,13 +416,9 @@ initlocationMap(lat,lang) {
       }
 
     });
-
-
+  //}
 
     google.maps.event.addListener(marker, 'dragend', () =>{ 
-
-     // console.log("vbhdfvgdshjgf",marker.position);
-      //alert(marker.position.lat());
     let geocoder = new google.maps.Geocoder;
     let latlng = {lat: marker.position.lat(), lng: marker.position.lng()};
     geocoder.geocode({'location': latlng}, (results, status) => {
@@ -430,15 +437,78 @@ initlocationMap(lat,lang) {
        
     });
 
-
   });
     
 
 }
 
+updateSearchResults() {
+    
+  if (!this.aForm.value.pickup_location) {
+    this.autocompleteItems = [];
+    return;
+  }
+  this.GoogleAutocomplete.getPlacePredictions({ input: this.aForm.value.pickup_location},
+    (predictions, status) => {
+      this.autocompleteItems = [];
+      this.zone.run(() => {
+        predictions.forEach((prediction) => {
+          //console.log('sp',prediction);
+          this.autocompleteItems.push(prediction);
+        });
+      });
+    });
+}
+ 
+searchaddress(item){
 
+  this.autocompleteItems = [];
+  this.completeAddres = item.description;
+  this.address=item.description;
+  this.aForm.get('pickup_location').setValue(this.completeAddres);
+    let geocoder = new google.maps.Geocoder;
+    geocoder.geocode({'placeId': item.place_id}, (results, status) => {
+   // if(status === 'OK' && results[0]){
+      //this.initlocationMap(22.5957689,88.26363939999999);
+      let position = {
+          lat: results[0].geometry.location.lat,
+          lng: results[0].geometry.location.lng
+      };
+      let marker = new google.maps.Marker({
+        position: results[0].geometry.location,
+        map: this.map,
+        draggable: true,
+      });
+     
+      this.markers.push(marker);
+      this.map.setCenter(results[0].geometry.location);
+    //}
  
 
+ google.maps.event.addListener(marker, 'dragend', () =>{ 
+  let geocoder = new google.maps.Geocoder;
+  let latlng = {lat: marker.position.lat(), lng: marker.position.lng()};
+  geocoder.geocode({'location': latlng}, (results, status) => {
+
+    if (status == 'OK')
+    {
+        this.lat = marker.position.lat();
+        this.lang = marker.position.lng();
+        this.address = results[0].formatted_address;
+        this.aForm.get('pickup_location').setValue(this.address);
+
+        //alert(this.address);
+    }
+    else
+    {
+      alert(status);
+    }
+     
+  });
+});
+});
+
+}
 
 
 
