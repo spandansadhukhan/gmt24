@@ -164,7 +164,7 @@
 
           <ion-item>
               <p class="upload-text">Civil Id Attachment</p>
-              <button ion-button block class="upload-image" color="light" (click)="presentActionSheet()">Add Photo</button>
+              <button ion-button block class="grey-btn" color="light" (click)="presentActionSheet()">Add Photo</button>
             </ion-item>
             <ul class="upload-list" *ngIf="productimages" style="list-style:none;">
         
@@ -178,13 +178,13 @@
 
           <ion-item>
           <!-- <input id="pac-input" class="controls" type="text" placeholder="Search Box"> -->
-          <input type="text" placeholder="Enter Location" id="pac-input" formControlName="pickup_location" name="pickup_location" (keyup)="updateSearchResults()">
+          <input type="text" class="search" placeholder="Enter Location" id="pac-input" formControlName="pickup_location" name="pickup_location" (keyup)="updateSearchResults()">
           <ion-list [hidden]="autocompleteItems.length == 0">
               <ion-item *ngFor="let item of autocompleteItems" tappable (click)="searchaddress(item)">
                   {{ item.description }}
               </ion-item>
           </ion-list>
-          <div id="map" style="height:400px;"> 
+          <div id="map" class="map" style="height:400px;"> 
           </div>
         </ion-item>
         

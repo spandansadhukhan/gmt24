@@ -19,15 +19,19 @@
 			<form  [formGroup]="bidForm" novalidate>
 		<ion-row>
 			<ion-col class="top">
-				<div class="users"><img src="assets/img/users-icon.png" alt="" /> {{countuniquebids}}</div>
+				<div class="users"><img src="assets/img/users-icon.png" alt="" /> {{countuniquebids}}</div>				
 				
-				<div><span>{{displayTime}}</span></div>
+			</ion-col>	
+			<ion-col>
+				<div class="text-center"><span>{{displayTime}}</span></div>
+			</ion-col>	
+			<ion-col>
 				<div *ngIf="lastbidvalue >= thresholdprice" class="online"></div>
 				<div *ngIf="lastbidvalue < thresholdprice" class="offline"></div>
-			</ion-col>		
+			</ion-col>
 		</ion-row>
 		<ion-row>
-			<ion-col class="product">
+			<ion-col class="product desc">
 				<img src="{{product_single_image}}" alt="" />
 
 				<h2>{{brands}}/{{category}}<span>({{gender}})</span></h2>
@@ -40,7 +44,7 @@
 					<p *ngIf="!bidmatch" ion-text color="danger" padding-left>Bid increment multiple of {{bidincrement}}. </p>
 					
 	
-					<button ion-button full class="gr" [disabled]="!bidmatch" type="submit" (click)="bidsubmit(bidForm.value)">Place bid</button>
+					<button ion-button full class="grey-btn" type="submit" (click)="bidsubmit(bidForm.value)">Place bid</button>
 			
 			
 			</ion-col>
@@ -58,6 +62,8 @@
 				</div>
 			</ion-col>	
 		</ion-row>
+
+
 		<!-- <ion-row>
 			<ion-col class="desc">
 				<h3>{{brands}}/{{category}}
