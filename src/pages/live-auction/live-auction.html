@@ -43,8 +43,7 @@
 					
 					<p *ngIf="!bidmatch" ion-text color="danger" padding-left>Bid increment multiple of {{bidincrement}}. </p>
 					
-	
-					<button ion-button full class="grey-btn" type="submit" (click)="bidsubmit(bidForm.value)">Place bid</button>
+					<button ion-button full class="grey-btn" [disabled]="!bidmatch" type="submit" (click)="bidsubmit(bidForm.value)">Place bid</button>
 			
 			
 			</ion-col>

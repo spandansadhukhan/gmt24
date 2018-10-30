@@ -64,19 +64,20 @@
 <ion-content style="margin-bottom: 50px">
   <ion-card>
     <ion-card-content class="height-250">
-    <div class="like">
-      <p class="top-content">
-        <img src="assets/img/thumb2.png" alt="">
+    <div class="like" *ngIf="user_id!=seller_id && ptype==1">
+      <p class="top-content" (click)="favourite(seller_id)">
+        <img *ngIf="is_fav== 0" src="assets/img/thumb2.png" alt="">
+        <img *ngIf="is_fav== 1" src="assets/img/thumsup.png" alt="">
         <span>{{totallike}}</span>
       </p>
 
       </div>
-      <div class="heart" *ngIf="user_id!=seller_id && ptype==1">
+      <!-- <div class="heart" *ngIf="user_id!=seller_id && ptype==1">
           <div class="thumb-area" (click)="favourite(seller_id)">
             <img *ngIf="is_fav== 0" src="assets/img/heart.png" alt="">
             <img *ngIf="is_fav== 1" src="assets/img/heart-red.png" alt="">
           </div>
-        </div>
+      </div> -->
       <ion-slides class="image-slider" loop="true" pager>
 
         <ion-slide *ngFor="let img of sliderimages">
@@ -96,7 +97,19 @@
     <div class="body-area">
     <div class="d-box">
     	<h2 style="padding-bottom: 5px;">{{brands}}/{{category}}({{gender}})</h2>
-      <p *ngIf="ptype==1" style="border: none;"> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> ({{averagerating}}) <span>
+      <p *ngIf="ptype==1" style="border: none;">
+          <ion-icon *ngIf="averagerating>=1" name="star"></ion-icon>
+          <ion-icon *ngIf="averagerating>=2" name="star"></ion-icon>
+          <ion-icon *ngIf="averagerating>=3" name="star"></ion-icon>
+          <ion-icon *ngIf="averagerating>=4" name="star"></ion-icon>
+          <ion-icon *ngIf="averagerating>=5" name="star"></ion-icon>
+          <ion-icon *ngIf="averagerating%1!=0" name="star-half"></ion-icon>
+          <ion-icon *ngIf="averagerating==0" name="star-outline"></ion-icon>
+          <ion-icon *ngIf="averagerating<=1" name="star-outline"></ion-icon>
+          <ion-icon *ngIf="averagerating<=2" name="star-outline"></ion-icon>
+          <ion-icon *ngIf="averagerating<=3" name="star-outline"></ion-icon>
+          <ion-icon *ngIf="averagerating<=4" name="star-outline"></ion-icon> 
+         ({{averagerating}}) <span>
       	<a class="new-abtn" *ngIf="ptype== 1 && user_id!=seller_id" (click)="show()">Write a review</a>
       </span> </p>
       <h1>{{currency_code}} {{price}}</h1>
@@ -106,7 +119,7 @@
       <h2>Seller Informations</h2>
       <p><span>Seller Name:</span> {{seller_name}}</p>
       <p *ngIf="interest== 1"><span>Phone No:</span> {{seller_phone}}</p>
-      <p *ngIf="interest== 1"><span>Address:</span><br/>{{seller_address}}</p>
+      <p *ngIf="interest== 1" (click)="navigateDrivingLocation()"><span>Address:</span><br/>{{seller_address}}</p>
       </div>
 
 
@@ -127,11 +140,11 @@
 
 
 
-      <div class="d-box" *ngIf="interest!='0'">
+      <!-- <div class="d-box" *ngIf="interest!='0'">
       <h2>Location Map</h2>
       <div id="map" style="height:400px;"> 
       </div>
-      </div>
+      </div> -->
 
       <div class="d-box">
       <h2>Product informations</h2>
@@ -158,7 +171,19 @@
         <img src="{{r.userimage}}" alt="">
       </ion-avatar>
       <h2>{{r.username}}</h2>
-      <p style="border: none;"> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> <ion-icon ios="ios-star" md="md-star"></ion-icon> ({{r.rating}})</p>
+      <p style="border: none;"> 
+          <ion-icon *ngIf="r.rating>=1" name="star"></ion-icon>
+          <ion-icon *ngIf="r.rating>=2" name="star"></ion-icon>
+          <ion-icon *ngIf="r.rating>=3" name="star"></ion-icon>
+          <ion-icon *ngIf="r.rating>=4" name="star"></ion-icon>
+          <ion-icon *ngIf="r.rating>=5" name="star"></ion-icon>
+          <ion-icon *ngIf="r.rating%1!=0" name="star-half"></ion-icon>
+          <ion-icon *ngIf="r.rating==0" name="star-outline"></ion-icon>
+          <ion-icon *ngIf="r.rating<=1" name="star-outline"></ion-icon>
+          <ion-icon *ngIf="r.rating<=2" name="star-outline"></ion-icon>
+          <ion-icon *ngIf="r.rating<=3" name="star-outline"></ion-icon>
+          <ion-icon *ngIf="r.rating<=4" name="star-outline"></ion-icon>
+        ({{r.rating}})</p>
       <p>{{r.review}}</p>
       <small>{{r.date}} Days ago</small>
     </ion-item>
@@ -174,7 +199,7 @@
     
 
     <div padding style="padding-bottom: 15px" *ngIf="ptype== 1 && user_id!=seller_id && interest== 0">
-      <button ion-button round class="grey-btn" block (click)="interestedEmailToVendor(seller_id,ptype)">I am Interested</button>
+      <button ion-button round class="grey-btn" block (click)="interestedEmailToVendor(seller_id,ptype)">Show Interest</button>
     </div>
     <div padding *ngIf="(ptype== 2 && ctime > start_time && user_id!=seller_id) || (ptype== 2 && ctime > start_time && user_type==3)" style="padding-bottom: 45px">
       <button ion-button round class="grey-btn"  block (click)="gotobid()">Go Live Bidding</button>

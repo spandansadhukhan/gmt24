@@ -12,6 +12,7 @@ import {
 } from '@ionic-native/google-maps';
 import {  Geolocation } from '@ionic-native/geolocation';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 
 /**
  * Generated class for the DetailsPage page.
@@ -71,7 +72,7 @@ export class DetailsPage {
   user_type:any;
 
   map: any;
-  markers = [];
+  //markers = [];
   location:any;
   lat:any;
   lang:any;
@@ -91,6 +92,7 @@ export class DetailsPage {
     private googleMaps: GoogleMaps,
     private geolocation: Geolocation,
     private builder: FormBuilder,
+    private launchNavigator: LaunchNavigator,
 ) {
 
   this.sellercontactfrom = builder.group({
@@ -107,7 +109,7 @@ export class DetailsPage {
   }
 
 
- initlocationMap(lat,lang) {
+ /*initlocationMap(lat,lang) {
     
 
     var point = {lat: lat, lng: lang};
@@ -127,7 +129,7 @@ export class DetailsPage {
       });
       this.markers.push(marker);
 
- }
+ }*/
 
 
 
@@ -205,12 +207,12 @@ export class DetailsPage {
          this.my_latitude=parseFloat(this.responseData.productList.my_latitude);
          this.my_longitude=parseFloat(this.responseData.productList.my_longitude);
          //console.log('splat',this.my_latitude);
-         if(this.my_latitude && this.interest==1){
+        /* if(this.my_latitude && this.interest==1){
           
           
           this.initlocationMap(this.my_latitude,this.my_longitude);
         
-         }
+         }*/
 
         
       }
@@ -528,7 +530,35 @@ this.authService.addmessage(formData).subscribe(res => {
 
 }
 
+navigateDrivingLocation(){
 
+
+  let loading = this.loadingCtrl.create({
+    content: 'Fetching data...'
+  });
+  loading.present();
+  this.geolocation.getCurrentPosition().then((resp) => {
+    console.log('splocation',resp);
+    this.lat = resp.coords.latitude;
+    this.lang = resp.coords.longitude;
+   
+  if(this.lat){
+
+    loading.dismiss();
+  
+  let options: LaunchNavigatorOptions = {
+   app: this.launchNavigator.APP.GOOGLE_MAPS,
+            start:[this.lat,this.lang]
+     };
+ this.launchNavigator.navigate(this.seller_address,options)
+ .then(success =>{
+   console.log(success);
+ },error=>{
+   console.log(error);
+ })
+}
+});
+}
 
 
 

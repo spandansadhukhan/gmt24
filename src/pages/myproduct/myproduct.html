@@ -27,11 +27,11 @@
       <p class="info">{{p.description}}</p>
       <p class="price"><span>KWD</span> {{p.price}}</p>
       <div class="product-bt" *ngIf="p.approved==1 && p.live_status==1">
-      <button ion-button round class="blue-btn ml-0">Send for Auction</button>
+      <button ion-button round class="blue-btn ml-0" *ngIf="p.product_status== 0" (click)="sendforauction(p.id)">Send for Auction</button>
       <button ion-button round class="brown-btn" (click)="deleteproduct(p.id)">Delete</button>
-      <button ion-button round class="dark-grey-btn" *ngIf="p.product_status== 0">Mark as sold</button>
+      <button ion-button round class="dark-grey-btn" *ngIf="p.product_status== 0" (click)="marksoldproduct(p.id)">Mark as sold</button>
       <button ion-button round class="dark-grey-btn" *ngIf="p.product_status== 1" disabled>sold</button>
-      <button ion-button round class="dark-grey-btn" *ngIf="p.top_product== 0">Mark as top</button>
+      <button ion-button round class="dark-grey-btn" *ngIf="p.top_product== 0 && p.product_status== 0">Mark as top</button>
     </div>
       <div *ngIf="p.approved==0">
         <button ion-button round class="dark-grey-btn" disabled>Wait for Approval</button>

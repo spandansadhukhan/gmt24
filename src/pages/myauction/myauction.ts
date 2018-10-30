@@ -78,52 +78,81 @@ export class MyauctionPage {
 }
 
 
-deleteproduct(pid){
-
-  let loading = this.loadingCtrl.create({
-    content: 'Please Wait...'
-  });
-  loading.present();
-
-  this.storage.get('uid').then(val => {
-      this.id = val;
-    let serval={
-      "product_id": pid,
-      "user_id" : this.id
-     };
-     
-    this.authService.postData(serval,'deleteProduct').then((result) => {
-      this.responseData = result
+  deleteproduct(pid)
+{
+  // alert(id)
+  
+   let alert = this.alertCtrl.create({
+     title: 'Delete',
+     message: 'Are you sure to delete product?',
+     buttons: [
+       {
+         text: 'Cancel',
+         role: 'cancel',
+         cssClass:'icon-color',
+         handler: () => {
+           console.log('Cancel clicked');
+         }
+       },
+       {
+         text: 'Ok',
+         cssClass:'icon-color',
+         handler: data => {
+           
+          let loading = this.loadingCtrl.create({
+            content: 'Please Wait...'
+          });
+          loading.present();
+        
+          this.storage.get('uid').then(val => {
+              this.id = val;
+            let serval={
+              "product_id": pid,
+              "user_id" : this.id
+             };
+             
+            this.authService.postData(serval,'deleteAuction').then((result) => {
+              this.responseData = result
+         
+              if( this.responseData.AcK == 1)
+              {
+                loading.dismiss();
+                const alert = this.alertCtrl.create({
+                  title: this.responseData.msg,
+                  buttons: ['OK']
+                });
+                alert.present();
+                this.navCtrl.push('MyauctionPage');
+              }
+              else
+              {
+                loading.dismiss();
+                const alert = this.alertCtrl.create({
+                  title: this.responseData.msg,
+                  buttons: ['OK']
+                });
+                alert.present();
+                this.navCtrl.push('MyauctionPage');
+              }
+             
+            }, (err) => {
+              loading.dismiss();
+              console.log(err);
+              
+            });
+        
+          });
+           
+         }
+       }
+     ]
+   });
  
-      if( this.responseData.AcK == 1)
-      {
-        loading.dismiss();
-        const alert = this.alertCtrl.create({
-          title: this.responseData.msg,
-          buttons: ['OK']
-        });
-        alert.present();
-        this.navCtrl.push('MyauctionPage');
-      }
-      else
-      {
-        loading.dismiss();
-        const alert = this.alertCtrl.create({
-          title: this.responseData.msg,
-          buttons: ['OK']
-        });
-        alert.present();
-        this.navCtrl.push('MyauctionPage');
-      }
-     
-    }, (err) => {
-      loading.dismiss();
-      console.log(err);
-      
-    });
+   alert.present();
+   //alert(id)
+ }
 
-  });
-  }
+
 
   nextPage(pid)
   {

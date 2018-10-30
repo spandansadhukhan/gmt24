@@ -128,8 +128,22 @@ export class MyaccountPage {
             this.lname=res.UserDetails.lname;
             this.image=res.UserDetails.profile_image;
 
-            this.productimages=res.UserDetails.images;
+            this.productimages=[];
             this.address=res.UserDetails.address;
+            let imagesArray=res.UserDetails.images;
+            if(imagesArray && imagesArray.length && imagesArray.length>0)
+              {
+                  for(let i=0;i<imagesArray.length;i++)
+                  {
+                      if(imagesArray[i])
+                      {
+                        this.productimages.push(imagesArray[i]);
+                      }
+                  }
+              }
+
+
+
             if(res.UserDetails.currency_preference){
             this.curcode=res.UserDetails.currency_preference;
             this.curimg=res.UserDetails.currency_image;
