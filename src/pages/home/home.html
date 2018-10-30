@@ -20,6 +20,18 @@
 
 
 <ion-content padding>
+  <div>
+    <img src="assets/img/banner1.png" alt="">
+  </div>
+  <h6 class="text-uppercase">Top Brands</h6>
+<ion-slides slidesPerView="2" loop="true">
+  <ion-slide class="slide-holder brand-logo" *ngFor="let tb of brandlists">
+    <div class="item-image" (click)="brandproduct(tb.brand_id)">
+      <img src="{{tb.brand_image}}" alt="Item">
+    </div>
+    <h6>{{tb.brand_name}}</h6>
+  </ion-slide>
+</ion-slides>
 
   <h6 class="text-uppercase">Top Products</h6>
   <ion-slides pager slidesPerView="3">
@@ -32,7 +44,11 @@
     </ion-slide>
 </ion-slides>
 
-<h6 class="text-uppercase">Top Models</h6>
+<div>
+  <img src="assets/img/home-img.png">
+</div>
+
+<!-- <h6 class="text-uppercase">Top Models</h6>
 <ion-slides pager slidesPerView="3">
   <ion-slide class="slide-holder" *ngFor="let tm of topmodellists">
     <div class="item-image">
@@ -42,15 +58,7 @@
   </ion-slide>
 </ion-slides>
 
-<h6 class="text-uppercase">Top Brands</h6>
-<ion-slides slidesPerView="2" loop="true">
-  <ion-slide class="slide-holder brand-logo" *ngFor="let tb of brandlists">
-    <div class="item-image" (click)="brandproduct(tb.brand_id)">
-      <img src="{{tb.brand_image}}" alt="Item">
-    </div>
-    <h6>{{tb.brand_name}}</h6>
-  </ion-slide>
-</ion-slides>
+
 
 <h6 class="text-uppercase">Latest Deals</h6>
   <ion-slides pager slidesPerView="3">
@@ -61,7 +69,7 @@
       <h6>{{topproduct.product_name}}</h6>
       <p class="price"><span><img src="assets/img/tick.png" alt="image"></span> {{topproduct.product_price}}</p>
     </ion-slide>
-</ion-slides>
+</ion-slides> -->
 
 
 </ion-content>
