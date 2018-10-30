@@ -233,10 +233,10 @@ export class LiveAuctionPage {
 }
 
 checkinputbid(bid1,nbid,bidi,basebid){
-
-    if(bid1.bid >= nbid && ((bid1.bid-basebid)%bidi)== 0)
+//alert(basebid);
+    if(bid1.bid >= nbid && ((bid1.bid-basebid)%bidi)<= 0)
     {
-      
+      //alert();
      this.bidmatch = true;
     }
     else{

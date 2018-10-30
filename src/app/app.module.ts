@@ -17,6 +17,7 @@ import {GoogleMaps} from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { CalendarModule } from "ion2-calendar";
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { CalendarModule } from "ion2-calendar";
     Camera,
     FileTransfer,
     FilePath,
-    File
+    File,
+    LaunchNavigator
     
   ]
 })

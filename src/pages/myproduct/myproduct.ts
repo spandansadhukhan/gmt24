@@ -78,51 +78,152 @@ export class MyproductPage {
     });
   });
 }
-deleteproduct(pid){
 
-  let loading = this.loadingCtrl.create({
-    content: 'Please Wait...'
-  });
-  loading.present();
 
-  this.storage.get('uid').then(val => {
-      this.id = val;
-    let serval={
-      "product_id": pid,
-      "user_id" : this.id
-     };
-     
-    this.authService.postData(serval,'deleteProduct').then((result) => {
-      this.responseData = result
- 
-      if( this.responseData.AcK == 1)
-      {
-        loading.dismiss();
-        const alert = this.alertCtrl.create({
-          title: this.responseData.msg,
-          buttons: ['OK']
-        });
-        alert.present();
-        this.navCtrl.push('MyproductPage');
-      }
-      else
-      {
-        loading.dismiss();
-        const alert = this.alertCtrl.create({
-          title: this.responseData.msg,
-          buttons: ['OK']
-        });
-        alert.present();
-        this.navCtrl.push('MyproductPage');
-      }
-     
-    }, (err) => {
-      loading.dismiss();
-      console.log(err);
-      
+deleteproduct(pid)
+  {
+   // alert(id)
+   
+    let alert = this.alertCtrl.create({
+      title: 'Delete',
+      message: 'Are you sure to delete product?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass:'icon-color',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Ok',
+          cssClass:'icon-color',
+          handler: data => {
+            
+            let loading = this.loadingCtrl.create({
+              content: 'Please Wait...'
+            });
+            loading.present();
+            this.storage.get('uid').then(val => {
+              this.id = val;
+            let serval={
+              "product_id": pid,
+              "user_id" : this.id
+             };
+             
+            this.authService.postData(serval,'deleteProduct').then((result) => {
+              this.responseData = result
+         
+              if( this.responseData.AcK == 1)
+              {
+                loading.dismiss();
+                const alert = this.alertCtrl.create({
+                  title: this.responseData.msg,
+                  buttons: ['OK']
+                });
+                alert.present();
+                this.navCtrl.push('MyproductPage');
+              }
+              else
+              {
+                loading.dismiss();
+                const alert = this.alertCtrl.create({
+                  title: this.responseData.msg,
+                  buttons: ['OK']
+                });
+                alert.present();
+                this.navCtrl.push('MyproductPage');
+              }
+             
+            }, (err) => {
+              loading.dismiss();
+              console.log(err);
+              
+            });
+        
+          });
+            
+          }
+        }
+      ]
     });
+  
+    alert.present();
+    //alert(id)
+  }
 
-  });
+
+
+  marksoldproduct(pid)
+  {
+   // alert(id)
+   
+    let alert = this.alertCtrl.create({
+      title: 'Mark sold',
+      message: 'Are you sure to mark as sold?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass:'icon-color',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Ok',
+          cssClass:'icon-color',
+          handler: data => {
+            
+            let loading = this.loadingCtrl.create({
+              content: 'Please Wait...'
+            });
+            loading.present();
+             
+            let serval={
+              "id": pid,
+             };
+             
+            this.authService.postData(serval,'markProduct').then((result) => {
+              this.responseData = result
+         
+              if( this.responseData.AcK == 1)
+              {
+                loading.dismiss();
+                const alert = this.alertCtrl.create({
+                  title: this.responseData.msg,
+                  buttons: ['OK']
+                });
+                alert.present();
+                this.navCtrl.push('MyproductPage');
+              }
+              else
+              {
+                loading.dismiss();
+                const alert = this.alertCtrl.create({
+                  title: this.responseData.msg,
+                  buttons: ['OK']
+                });
+                alert.present();
+                this.navCtrl.push('MyproductPage');
+              }
+             
+            }, (err) => {
+              loading.dismiss();
+              console.log(err);
+              
+            });
+        
+          
+            
+          }
+        }
+      ]
+    });
+  
+    alert.present();
+    //alert(id)
   }
 
 
@@ -130,6 +231,12 @@ deleteproduct(pid){
   productdetails(product_id){
     
       this.navCtrl.push('DetailsPage',{"product_id":product_id}); 
+    }
+
+
+    sendforauction(product_id){
+
+      this.navCtrl.push('SendforauctionPage',{"product_id":product_id}); 
     }
 
 }

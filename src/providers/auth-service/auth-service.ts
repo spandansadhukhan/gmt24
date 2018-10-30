@@ -191,6 +191,21 @@ export class AuthServiceProvider {
       });
   }
   
+
+  sendauctionadd(data: object): Observable<any> {
+    
+    let requestchangeoptions = new RequestOptions({
+      method: RequestMethod.Post,
+      url: this.apiUrl + 'auctionapproval',
+      body: JSON.stringify(data)
+    });
+    return this.http.request(new Request(requestchangeoptions))
+      .map((res: Response) => {
+        if (res) {
+          return res.json();
+        }
+      });
+  }
   /*productadd(data:object):Observable<any>{
     console.log(data);
     return this.http.post(this.apiUrl +'addProductNew_app',data).map((res:Response)=>{

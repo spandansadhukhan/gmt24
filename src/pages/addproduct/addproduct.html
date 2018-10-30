@@ -22,7 +22,8 @@
         <ion-item>
             <ion-label stacked color="primary">Upload Type*</ion-label>
             <ion-select name="type" (ionChange)="uploadtype($event)" formControlName="type">
-              <ion-option value="1">Product</ion-option>
+            <ion-option value="" selected>Please select</ion-option>
+            <ion-option value="1">Product</ion-option>
               <ion-option value="2">Auction</ion-option>
             </ion-select>
         </ion-item>
@@ -204,7 +205,7 @@
            
 
       <div padding class="no-p-t p-b-5">
-          <button ion-button round class="grey-btn" type="submit" (click)="onSubmit(pForm.value)" block>Next</button>
+          <button ion-button round class="blue-btn ml-0" type="submit" (click)="onSubmit(pForm.value)" block>Next</button>
       </div>
   
   </ion-list>
