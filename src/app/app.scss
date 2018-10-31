@@ -205,4 +205,19 @@ background: linear-gradient(to bottom, rgba(90,38,38,1) 0%, rgba(70,27,27,1) 100
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5a2626', endColorstr='#461b1b', GradientType=0 );
 }
 .scroll-content{padding-bottom:88px !important;}
-    
+.menu-inner{
+  background: rgba(228, 229, 229, 0.7) !important;
+}
+.menu-bg .item {
+  background-color: transparent !important;
+}
+.menu-bg .card{
+  background: none !important;
+}
+.menu-bg .content{
+  background-color: transparent !important;
+}
+
+.sidepanel-list ion-item{
+  color: #000;
+}

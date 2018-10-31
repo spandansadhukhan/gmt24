@@ -15,14 +15,14 @@
 
 <ion-content padding>
   <ion-list style="padding-bottom: 30px;">
-      <ion-item class="request-item" *ngFor="let item of interestList">
+      <!-- <ion-item class="request-item" *ngFor="let item of interestList">
          
          <ion-thumbnail item-start> <img src="{{item.image}}" (click)="productdetails(item.pid)"></ion-thumbnail>
         
         <h2>{{item.description}}</h2>
 
         <!-- <p class="info">{{item.description}}</p> -->
-        <p class="price"> {{item.price}}</p>
+        <!-- <p class="price"> {{item.price}}</p>
         <div>
         
         <button ion-button round class="brown-btn">Delete</button>
@@ -35,42 +35,70 @@
           
         <h2>Sorry! No result found.</h2>
         
-      </ion-item> 
+      </ion-item>  --> -->
 
 
 
-      <!-- <ion-card>
+      <ion-card>
 
-        <ion-row>
+        <ion-row class="position">
           <ion-col>
-            <img class="small-img" src="assets/img/user-img2.png">
-            <h2>Marty McFly</h2>
-            <p>November 5, 1955</p>
+              <img class="big-img" src="assets/img/item-img2.png">
+              <h4> Price: $450</h4>
           </ion-col>
           <ion-col>
-            <img class="big-img" src="assets/img/item-img2.png">
-            <h4> Price: $450</h4>
+              <img class="small-img" src="assets/img/user-img2.png">
+              <h3>Marty McFly</h3>
+              <p>November 5, 1955</p>
+            
           </ion-col>
         </ion-row>
+
+        <ion-row class="position">
+            <ion-col>
+                <img class="big-img" src="assets/img/item-img2.png">
+                <h4> Price: $450</h4>
+            </ion-col>
+            <ion-col>
+                <img class="small-img" src="assets/img/user-img2.png">
+                <h3>Marty McFly</h3>
+                <p>November 5, 1955</p>
+              
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="position">
+              <ion-col>
+                  <img class="big-img" src="assets/img/item-img2.png">
+                  <h4> Price: $450</h4>
+              </ion-col>
+              <ion-col>
+                  <img class="small-img" src="assets/img/user-img2.png">
+                  <h3>Marty McFly</h3>
+                  <p>November 5, 1955</p>
+                
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="position">
+                <ion-col>
+                    <img class="big-img" src="assets/img/item-img2.png">
+                    <h4> Price: $450</h4>
+                </ion-col>
+                <ion-col>
+                    <img class="small-img" src="assets/img/user-img2.png">
+                    <h3>Marty McFly</h3>
+                    <p>November 5, 1955</p>
+                  
+                </ion-col>
+              </ion-row>
       
         
       
 
-        <ion-row>
-          <ion-col>
-
-          </ion-col>
-          <ion-col>
-            
-          </ion-col>
-          <ion-col center text-center>
-            <ion-note>
-            
-            </ion-note>
-          </ion-col>
-        </ion-row>
+        
       
-      </ion-card> -->
+      </ion-card>
 
 
 
