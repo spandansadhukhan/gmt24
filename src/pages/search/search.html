@@ -11,7 +11,7 @@
           <ion-icon name="menu"></ion-icon>
         </button>
     <ion-title>
-      <img src="assets/img/appicon.png" alt="">
+      <img src="assets/img/appicon.png" class="mr-2" alt="">
     </ion-title>
 
     <!-- <ion-buttons end>
@@ -36,10 +36,12 @@
     </ion-col> 
     
   </ion-row>
-  
+
+  <div class="search-listing">
     <ion-item [hidden]="wordlists.length==0" *ngFor="let item of wordlists" tappable (click)="selectSearchResult(item.field)">
         {{ item.field }}
     </ion-item>
+  </div>
 
 </ion-header>
 

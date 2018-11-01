@@ -113,7 +113,7 @@
 	.sidepanel-list ion-icon.icon {min-height: 2.8rem;font-size: 2rem;line-height: 1.5; color: #222222}
 	.sidepanel-list .item-inner{margin-left:5px !important}
 
-	
+	.mr-2{margin-right: 8px;}
 	.p-0{padding: 0px !important;}
 	.p-t-5{padding-top: 5px !important;}
 	.p-b-5{padding-bottom: 5px !important;}
@@ -220,4 +220,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5a2626', end
 
 .sidepanel-list ion-item{
   color: #000;
+}
+.header-md::after{
+  background-image: none !important;
 }

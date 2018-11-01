@@ -1,12 +1,22 @@
 page-message-details {
-	ion-navbar ion-icon {
-        color: #fff;
-        position: absolute;
-        top: 30%;
-        font-size: 20px;
-        font-weight: 600;
-        left: 15px;
+	// ion-navbar ion-icon {
+    //     color: #fff;
+    //     position: absolute;
+    //     top: 30%;
+    //     font-size: 20px;
+    //     font-weight: 600;
+    //     left: 15px;
+    // }
+    ion-item img{
+        border: 2px solid #d4d4d4;
+        width: 50px !important;
+        height: 50px !important;
+        object-fit: cover;
     }
+    .right-side{
+        flex-direction: row-reverse;
+    }
+   
     // .content { background: #e5e5e5 !important;}
         // .scroll-content{padding: 10px !important}
         // .item.request-item {align-items: flex-start; border-radius: 2px; margin-bottom: 10px}
