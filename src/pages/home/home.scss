@@ -11,7 +11,7 @@ page-home {
 h6{
 	color:#fff;
 }
-.slide-holder{border: 3px solid #6e6f76; border-radius: 4px; width:105px !important; padding:3px !important; background:#c0c3cb; box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.2); margin-right:7px; margin-bottom: 25px; float:left;}
+.slide-holder{border: 3px solid #6e6f76; border-radius: 4px; width:105px !important; padding:3px !important; background:#dee1e8; box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.2); margin-right:7px; margin-bottom: 25px; float:left;}
 .slide-holder .item-image{width:100%; height:95px;}
 .slide-holder .item-image img{width:90px; height:80px; object-fit:scale-down}
 .slide-holder h6{font-size: 1rem; margin: 6px 0; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; color:#000}
@@ -80,28 +80,35 @@ h6{
 	width: 100%;
 	height: 170px;
 	object-fit: cover;
-	border: 1px solid #303030;
+	border: 1px solid #213d65;
 }
 .slide-text{
+	border-radius: 15px;
 	position: absolute;
 	top: 80px;
 	right: 0;
-	background-color: #fff;
+	background-color: #000;
 	font-size: 16px;
-	padding-top: 5px;
-    color: #000;
+	padding: 6px 12px;
+    color: #fff;
     font-weight: 600;
 }
 .slide-text span{
-	background: #0398fe;
+	background: #0a409e;
     display: block;
     padding: 4px 5px;
-    font-size: 13px;
-    color: #e2e1e1;
-    margin-top: 4px;
+    font-size: 12px;
+    color: #f0f0f0;
+    margin-top: 7px;
+    text-transform: uppercase;
 }
 .sliding .slide-zoom{
 	width: 100%;
+}
+.search-list{
+	width: 90%;
+	margin: auto;
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
 }
 /*.scroll-x .f-left{float:left !important; width:190px !important;}
 .scroll-x{

@@ -12,9 +12,11 @@
     <ion-title>Home</ion-title>
   </ion-navbar>
   <ion-searchbar  [(ngModel)]="keyword" (ngModelChange)="updateKeyword($event)"></ion-searchbar>
-  <ion-item [hidden]="wordlists.length==0" *ngFor="let item of wordlists" tappable (click)="selectSearchResult(item.field)">
-    {{ item.field }}
-  </ion-item>
+  <div class="search-list">
+    <ion-item [hidden]="wordlists.length==0" *ngFor="let item of wordlists" tappable (click)="selectSearchResult(item.field)">
+      {{ item.field }}
+    </ion-item>
+  </div>
 
 </ion-header>
 
@@ -53,15 +55,19 @@
 
   <ion-slide class="sliding">
     <div class="slide">
-      <h5 class="slide-text">Special Auction<span>Details</span></h5>
-      <img src="assets/img/slide-img1.png" alt="">
-      <h2></h2>
+      <div class="slide-text">
+        <h5 class="m-0">Special Auction<span>Details</span></h5>
+      </div>
+    <img src="assets/img/slide-img1.png" alt="">
+    <h2></h2>
     </div>
   </ion-slide>
 
   <ion-slide>
       <div class="slide">
-          <h5 class="slide-text">Ladies watch<span>Details</span></h5>
+        <div class="slide-text">
+          <h5 class="m-0">Ladies watch<span>Details</span></h5>
+        </div>
           <img src="assets/img/slide-img2.png" alt="">
           <h2></h2>
       </div>
@@ -69,7 +75,9 @@
 
   <ion-slide >
       <div class="slide">
-          <h5 class="slide-text">Certified sellers<span>Details</span></h5>
+        <div class="slide-text">
+          <h5 class="m-0">Certified sellers<span>Details</span></h5>
+        </div>
           <img src="assets/img/slide-img3.png" alt="">
           <h2></h2>
       </div>
@@ -77,7 +85,9 @@
 
   <ion-slide >
       <div class="slide">
-          <h5 class="slide-text">Top Products<span>Details</span></h5>
+        <div class="slide-text">
+          <h5 class="m-0">Top Products<span>Details</span></h5>
+        </div>
           <img src="assets/img/slide-img4.png" alt="">
           <h2></h2>
       </div>

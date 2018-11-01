@@ -6,21 +6,20 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-  	<ion-icon></ion-icon> 
-    <ion-title>Messages</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
+    <ion-navbar>
+      <ion-title>MessageDetails</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
 
 <ion-content padding>
-<ion-list>
-    <ion-item class="request-item" *ngFor="let item of messageList">
+<ion-list></ion-list>
+    <!-- <ion-item class="request-item" *ngFor="let item of messageList">
       <ion-thumbnail item-start>
         <img src="{{item.image}}">
       </ion-thumbnail>
-      <!-- <h2>User Name</h2> -->
+      <h2>User Name</h2>
      
       <p>{{item.date_diff}} ago</p>
       <ion-icon name="chatbubbles" (click)="messageDetails(item.to_id,item.from_id,item.product_id)"></ion-icon>
@@ -30,7 +29,7 @@
     <ion-item class="request-item" *ngIf="messageList==''">
         
       Sorry! No message found.
-      </ion-item>
+      </ion-item> -->
 
 
 
@@ -63,4 +62,20 @@
       <p>Lorem Ipsum is simply dummy text of the printing...</p>
     </ion-item> -->
     </ion-list>
+
+
+
+    <ion-list>
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="assets/img/item-img2.png" class="image-m">
+          </ion-avatar>
+          <div class="row">
+              <h2 style="font-weight: 700;">Michal John</h2>
+              <ion-icon name="chatbubbles" (click)="messageDetails(item.to_id,item.from_id,item.product_id)"></ion-icon> 
+          </div>
+          <h3>Don't Know What To Do!</h3>
+        </ion-item>
+    </ion-list>
+
 </ion-content>

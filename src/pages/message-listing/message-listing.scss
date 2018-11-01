@@ -1,11 +1,22 @@
 page-message-listing {
 	ion-navbar ion-icon {
         color: #fff;
-        position: absolute;
-        top: 30%;
+        // position: absolute;
+        // top: 30%;
         font-size: 20px;
         font-weight: 600;
         left: 15px;
+        float: right !important;
+    }
+    .image-m{
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border: 2px solid #888;
+    }
+    .row{
+        display: flex;
+        justify-content: space-between;
     }
     .content { background: #e5e5e5 !important;}
         .scroll-content{padding: 10px !important}
