@@ -15,31 +15,36 @@
 
 <ion-content padding>
   <ion-list style="padding-bottom: 30px;">
-      <!-- <ion-item class="request-item" *ngFor="let item of interestList">
+    <ion-item class="request-item" *ngFor="let item of interestList">
          
-         <ion-thumbnail item-start> <img src="{{item.image}}" (click)="productdetails(item.pid)"></ion-thumbnail>
-        
-        <h2>{{item.description}}</h2>
+        <ion-thumbnail item-start> <img src="{{item.image}}" (click)="productdetails(item.pid)"></ion-thumbnail>
+       
+       <h2>{{item.description}}</h2>
 
-        <!-- <p class="info">{{item.description}}</p> -->
-        <!-- <p class="price"> {{item.price}}</p>
-        <div>
-        
-        <button ion-button round class="brown-btn">Delete</button>
-        
-        </div>
-        
-      </ion-item>
+       <!-- <p class="info">{{p.description}}</p> -->
+       <p class="price"> {{item.price}}</p>
+       <div>
+       
+       <button ion-button round class="brown-btn">Delete</button>
+       
+       </div>
+       <ion-col>
+        <img class="small-img" src="{{item.interesteduserimage}}">
+        <h3>{{item.interestedusername}}</h3>
+        <p>Show interest</p>
+      
+    </ion-col>
+     </ion-item>
 
-      <ion-item *ngIf="interestList== ''"> 
-          
-        <h2>Sorry! No result found.</h2>
-        
-      </ion-item>  --> -->
+     <ion-item *ngIf="interestList== ''"> 
+         
+       <h2>Sorry! No result found.</h2>
+       
+     </ion-item>
 
 
 
-      <ion-card>
+      <!-- <ion-card>
 
         <ion-row class="position">
           <ion-col>
@@ -98,7 +103,7 @@
 
         
       
-      </ion-card>
+      </ion-card> -->
 
 
 
