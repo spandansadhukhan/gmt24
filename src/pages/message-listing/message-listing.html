@@ -14,7 +14,7 @@
   
 
 <ion-content padding>
-<ion-list></ion-list>
+
     <!-- <ion-item class="request-item" *ngFor="let item of messageList">
       <ion-thumbnail item-start>
         <img src="{{item.image}}">
@@ -60,22 +60,27 @@
       </ion-thumbnail>
       <h2>User Name</h2>
       <p>Lorem Ipsum is simply dummy text of the printing...</p>
-    </ion-item> -->
-    </ion-list>
+    </ion-item> 
+    </ion-list>-->
 
 
 
     <ion-list>
-        <ion-item>
+        <ion-item *ngFor="let item of messageList">
           <ion-avatar item-start>
-            <img src="assets/img/item-img2.png" class="image-m">
+            <img src="{{item.image}}" class="image-m">
           </ion-avatar>
           <div class="row">
-              <h2 style="font-weight: 700;">Michal John</h2>
+              <h2 style="font-weight: 700;"></h2>
               <ion-icon name="chatbubbles" (click)="messageDetails(item.to_id,item.from_id,item.product_id)"></ion-icon> 
           </div>
-          <h3>Don't Know What To Do!</h3>
+          <h3>{{item.date_diff}} Days ago</h3>
         </ion-item>
+
+        <ion-item class="request-item" *ngIf="messageList==''">
+        
+          Sorry! No message found.
+          </ion-item>
     </ion-list>
 
 </ion-content>
