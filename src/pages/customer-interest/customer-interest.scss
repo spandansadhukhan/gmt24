@@ -3,8 +3,8 @@ page-customer-interest {
     .content { background: #1b1b1b !important;}
     .scroll-content{padding: 10px !important}
     .item.request-item {align-items: flex-start; border-radius: 2px; margin-bottom: 10px;background: #000000; border:2px solid #2e2e2e}
-    .item.request-item h2{font-size: 1.5rem; color:#fff;}
-    .item.request-item .price{font-size: 1.5rem; color:#fff}
+    .item.request-item h2{font-size: 1.5rem; color:#fff; margin-left: 0.8rem;}
+    .item.request-item .price{font-size: 1.5rem; color:#fff; margin-left: 0.8rem;}
     .item.request-item .price span{color:#999; font-weight: 600}
     .item.request-item .name{font-size: 1.2rem; color:#fff}
     .item.request-item .name span{color:#888;}
@@ -16,8 +16,8 @@ page-customer-interest {
     .small-img{
         border-radius: 50%;
         object-fit: cover;
-        width: 60px;
-        height: 60px;
+        width: 40px;
+        height: 40px;
         border: 2px solid #9d9d9d;
     }
     .card{
