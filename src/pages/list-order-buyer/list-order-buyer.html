@@ -28,7 +28,7 @@
       <ion-grid>
         <ion-row class="line" *ngFor="let item of auctionList" >
           <ion-col col-2><img src="{{item.product_image}}"></ion-col>
-          <ion-col col-3>KWD {{item.total_price}}</ion-col>
+          <ion-col col-3>{{item.userSelectedcurrency}} {{item.total_price}}</ion-col>
           <ion-col col-3>{{item.date}}</ion-col>
           <ion-col col-2 *ngIf="item.status== 1">Purchased</ion-col>
           <ion-col col-2 *ngIf="item.status== 0"><button class="btn-list" ion-button>Pay</button></ion-col>

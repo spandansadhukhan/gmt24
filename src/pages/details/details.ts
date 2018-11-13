@@ -79,7 +79,8 @@ export class DetailsPage {
   my_latitude:any;
   my_longitude:any;
   hideMe:boolean=false;
-  
+  selectedcurrency:any;
+  mycurrency:any;
 
   //product_id1:any;
   constructor(
@@ -104,7 +105,15 @@ export class DetailsPage {
     this.user_id=this.loguser.user_id;
     this.user_type=this.loguser.user_type;
     this.product_id = this.navParams.get('product_id');
+    this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
+    if(this.selectedcurrency){
+      this.mycurrency = this.selectedcurrency.selectedcurrency;
+      //alert(this.selectedcurrency.selectedcurrency);
+    }else{
+      this.mycurrency ='KWD';
+    }
     this.productsDetails(this.product_id);
+   
     
   }
 
@@ -159,10 +168,11 @@ export class DetailsPage {
       content: 'Please Wait...'
     });
     loading.present();
-   
+   // this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
     let serval={
       "product_id":product_id,
-      "user_id":this.user_id
+      "user_id":this.user_id,
+      "currency":this.mycurrency,
     }
     
     this.authService.postData(serval,'ProductsDetails_app').then((result) => {

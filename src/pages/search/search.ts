@@ -37,7 +37,7 @@ export class SearchPage {
   yearid:any="";
   countryid:any="";
   selectedcurrency:any;
-
+  mycurrency:any;
 
 
   constructor(public navCtrl: NavController, 
@@ -46,6 +46,13 @@ export class SearchPage {
     public authService: AuthServiceProvider,
     
   ) {
+
+    this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
+    if(this.selectedcurrency){
+      this.mycurrency = this.selectedcurrency.selectedcurrency;
+    }else{
+      this.mycurrency ='KWD';
+    }
     
     
   }
@@ -90,7 +97,7 @@ export class SearchPage {
       content: 'Please Wait...'
     });
     loading.present();
-    this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
+   // this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
     let serval={
       "amount_max": this.maxprice,
       "amount_min":this.minprice,
@@ -107,7 +114,7 @@ export class SearchPage {
       "state_id":this.stateid,
       "statuslist":this.statusid,
       "year":this.yearid,
-      "currency":this.selectedcurrency.selectedcurrency,
+      "currency":this.mycurrency,
       
     }
     

@@ -62,6 +62,7 @@ export class MyApp {
     this.storage.ready().then(() => {
      // const data=localStorage.getItem("userData");
     localStorage.removeItem('userData');
+    localStorage.removeItem('selectedcurrency');
     localStorage.setItem('userData',"");
     this.storage.set("uid","");
 
@@ -123,6 +124,12 @@ public settings(){
     
     }
 
+  public changecurrency(){ 
+  
+    this.nav.push('CurrencychangePage');
+    
+    }
+    
   public notifications(){ 
   
       this.nav.push('NotificationPage');

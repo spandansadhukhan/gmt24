@@ -18,7 +18,9 @@
           <ion-item menuClose (click)="changepassword()">
             <ion-icon name="unlock" item-start></ion-icon> Change Password
           </ion-item> 
-
+          <ion-item menuClose (click)="changecurrency()">
+            <ion-icon name="card" item-start></ion-icon> Change Currency
+          </ion-item>
           <ion-item menuClose (click)="loyalty()" *ngIf="istype==1">
             <ion-icon name="person" item-start></ion-icon> My Loyalty
           </ion-item> 
@@ -89,6 +91,9 @@
           <ion-item menuClose (click)="signup()">
             <ion-icon name="person" item-start></ion-icon> Sign Up
           </ion-item> 
+          <ion-item menuClose (click)="changecurrency()">
+            <ion-icon name="card" item-start></ion-icon> Change Currency
+          </ion-item>
         </ion-card>
 
 

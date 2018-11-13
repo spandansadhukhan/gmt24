@@ -47,6 +47,8 @@ export class AuctiondetailsPage {
   reference_no:any;
   ctime:any;
   start_time:any;
+  selectedcurrency:any
+  mycurrency:any;;
  
   bidhistory:any;
 
@@ -58,6 +60,13 @@ export class AuctiondetailsPage {
 
       this.loguser =  JSON.parse(localStorage.getItem('userData'));
       this.user_id=this.loguser.user_id;
+      this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
+      if(this.selectedcurrency){
+        this.mycurrency = this.selectedcurrency.selectedcurrency;
+      }else{
+        this.mycurrency ='KWD';
+      }
+    
   }
 
   ionViewDidLoad() {
@@ -72,10 +81,11 @@ export class AuctiondetailsPage {
       content: 'Please Wait...'
     });
     loading.present();
-   
+    //this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
     let serval={
       "product_id":product_id,
-      "user_id":this.user_id
+      "user_id":this.user_id,
+      "currency":this.mycurrency,
     }
     
     this.authService.postData(serval,'ProductsDetails_app').then((result) => {

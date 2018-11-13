@@ -23,13 +23,21 @@ export class SubscribedlistPage {
   public loguser:any;
   public utype:any;
   public msg:any;
+  public selectedcurrency:any;
+  public mycurrency:any;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public authService: AuthServiceProvider,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController) {
-  }
+      this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
+    if(this.selectedcurrency){
+      this.mycurrency = this.selectedcurrency.selectedcurrency;
+    }else{
+      this.mycurrency ='KWD';
+    }
+    }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SubscribedlistPage');
@@ -45,10 +53,12 @@ export class SubscribedlistPage {
     loading.present();
    
     this.loguser = JSON.parse(localStorage.getItem('userData'));
+    //this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
 //console.log('dgdfg',this.loguser);
       this.id = this.loguser.user_id;
     let serval={
       "user_id":this.id,
+      "currency":this.mycurrency,
      };
     this.authService.postData(serval,'listSubscribed').then((result) => {
       this.responseData = result

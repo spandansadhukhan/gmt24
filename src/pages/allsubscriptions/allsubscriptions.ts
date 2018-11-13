@@ -23,6 +23,9 @@ export class AllsubscriptionsPage {
   public loguser:any;
   public utype:any;
   public msg:any;
+  public selectedcurrency:any;
+  public mycurrency:any;
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public authService: AuthServiceProvider,
@@ -31,6 +34,12 @@ export class AllsubscriptionsPage {
 
       this.loguser = JSON.parse(localStorage.getItem('userData'));
       this.utype=this.loguser.user_type;
+      this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
+      if(this.selectedcurrency){
+        this.mycurrency = this.selectedcurrency.selectedcurrency;
+      }else{
+        this.mycurrency ='KWD';
+      }
   }
 
   ionViewDidLoad() {
@@ -47,10 +56,13 @@ export class AllsubscriptionsPage {
     loading.present();
    
     this.loguser = JSON.parse(localStorage.getItem('userData'));
+    //this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
 console.log('dgdfg',this.loguser);
       this.id = this.loguser.user_id;
+      
     let serval={
       "user_id":this.id,
+      "currency":this.mycurrency,
      };
     this.authService.postData(serval,'listSubscriptions').then((result) => {
       this.responseData = result

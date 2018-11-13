@@ -21,6 +21,8 @@ export class WishlistPage {
   public responseData:any;
   id: any;
   wishlist:any;
+  selectedcurrency :any;
+  mycurrency:any;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -29,7 +31,13 @@ export class WishlistPage {
     public loadingCtrl: LoadingController,
     public toastCtrl:ToastController,
 ) {
-  
+  this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
+      if(this.selectedcurrency){
+        this.mycurrency = this.selectedcurrency.selectedcurrency;
+      }else{
+        this.mycurrency ='KWD';
+      }
+
   }
 
   ionViewDidLoad() {
@@ -56,8 +64,10 @@ export class WishlistPage {
 
   this.storage.get('uid').then(val => {
     this.id = val;
+    //this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
   let serval={
     "user_id":this.id,
+    "currency":this.mycurrency,
    };
   this.authService.postData(serval,'myFavoriteProduct').then((result) => {
     this.responseData = result

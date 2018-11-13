@@ -24,6 +24,7 @@ export class MyproductPage {
   public utype:any;
   public msg:any;
   public selectedcurrency:any;
+  public mycurrency:any;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -34,10 +35,15 @@ export class MyproductPage {
     public alertCtrl: AlertController) {
 
       this.loguser = JSON.parse(localStorage.getItem('userData'));
-      this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
       this.utype=this.loguser.user_type;
+      this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
+      if(this.selectedcurrency){
+        this.mycurrency = this.selectedcurrency.selectedcurrency;
+      }else{
+        this.mycurrency ='KWD';
+      }
      // alert(this.selectedcurrency.selectedcurrency);
-      //console.log('spandancurrency',this.selectedcurrency.selectedcurrency);
+     // console.log('spandancurrency',this.selectedcurrency.selectedcurrency);
   }
 
   ionViewDidLoad() {
@@ -55,9 +61,10 @@ export class MyproductPage {
    
     this.storage.get('uid').then(val => {
       this.id = val;
+      //alert(this.mycurrency);
     let serval={
       "user_id":this.id,
-      "currency":this.selectedcurrency.selectedcurrency,
+      "currency":this.mycurrency,
      };
     this.authService.postData(serval,'listmyProducts').then((result) => {
       this.responseData = result

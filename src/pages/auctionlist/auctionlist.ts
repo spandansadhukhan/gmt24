@@ -19,11 +19,22 @@ export class AuctionlistPage {
   responseData:any;
   productlists:any;
   loguser:any;
+  selectedcurrency :any;
+  mycurrency:any;
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public authService: AuthServiceProvider,) {
+      this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
+      if(this.selectedcurrency){
+        this.mycurrency = this.selectedcurrency.selectedcurrency;
+      }else{
+        this.mycurrency ='KWD';
+      }
+      
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AuctionlistPage');
@@ -37,10 +48,11 @@ export class AuctionlistPage {
     });
     loading.present();
     this.loguser =  JSON.parse(localStorage.getItem('userData'));
+    //this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
     //console.log('sp',this.loguser);
     let serval={
       "user_id":this.loguser.user_id,
-     // "currency":
+      "currency":this.mycurrency,
     }
     
     this.authService.postData(serval,'auctionListSearch').then((result) => {
