@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,MenuController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { Storage } from '@ionic/storage';
+import { Events } from 'ionic-angular';
 /**
  * Generated class for the CurrencychangePage page.
  *
@@ -26,14 +27,16 @@ export class CurrencychangePage {
     public navParams: NavParams,
     public authService: AuthServiceProvider,
     private storage: Storage,
+    public events: Events,
+    public menu: MenuController,
   ) {
-  
+    events.publish('hideFooter', { isHidden: true});
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CurrencychangePage');
     this.currencyList();
-    
+    this.menu.enable(false, 'loggedOutMenu');
 
   }
 

@@ -56,6 +56,8 @@ export class LiveAuctionPage {
   seller_id:any;
   refreshIntervalId:any;
   bidhistory:any;
+  mycurrency:any;
+  selectedcurrency:any;
   show:boolean = false;
 
   constructor(public navCtrl: NavController, 
@@ -68,6 +70,13 @@ export class LiveAuctionPage {
 
     this.loguser =  JSON.parse(localStorage.getItem('userData'));
     this.user_id=this.loguser.user_id;
+    this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
+    if(this.selectedcurrency){
+      this.mycurrency = this.selectedcurrency.selectedcurrency;
+      //alert(this.selectedcurrency.selectedcurrency);
+    }else{
+      this.mycurrency ='KWD';
+    }
 
     this.bidForm = builder.group({
       'bid': [null, null],
@@ -90,6 +99,7 @@ export class LiveAuctionPage {
       let serval1={
         "product_id":this.product_id,
         "user_id":this.user_id,
+        "currency":this.mycurrency,
       }
       this.authService.postData(serval1,'ProductsDetails_app').then((result) => {
         this.responseData = result

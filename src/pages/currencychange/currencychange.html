@@ -24,6 +24,7 @@
       <ion-item class="input-field">
         <ion-label stacked color="primary">Select Currency</ion-label>
         <ion-select (ionChange)="currencychange($event)">
+          <ion-option value="" selected>Please Select Currency</ion-option>
           <ion-option value="{{b.code}}"  *ngFor="let b of currencylist">{{b.name}}</ion-option>
         </ion-select>
       </ion-item>

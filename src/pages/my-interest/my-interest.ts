@@ -19,6 +19,8 @@ export class MyInterestPage {
   interestList: any;
   id:any;
   responseData:any;
+  selectedcurrency:any;
+  mycurrency:any;
 
 
   constructor(public navCtrl: NavController, 
@@ -26,6 +28,12 @@ export class MyInterestPage {
   public authService:AuthServiceProvider, 
   public storage: Storage,
   public loadingCtrl: LoadingController,) {
+    this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
+  if(this.selectedcurrency){
+    this.mycurrency = this.selectedcurrency.selectedcurrency;
+  }else{
+    this.mycurrency ='KWD';
+  }
   }
 
   ionViewDidLoad() {
@@ -41,10 +49,12 @@ interestlist(){
     content: 'Please Wait...'
   });
   loading.present();
+  //this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
   this.storage.get('uid').then(val => {
     this.id = val;
   let serval={
     "user_id":this.id,
+    "currency":this.mycurrency,
    };
   this.authService.postData(serval,'interestinproduct').then((result) => {
     this.responseData = result

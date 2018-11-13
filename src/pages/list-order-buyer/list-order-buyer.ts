@@ -19,13 +19,20 @@ export class ListOrderBuyerPage {
   responseData: any;
   auctionList: any;
   id: any;
-
+  selectedcurrency:any;
+  mycurrency:any;
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
   public storage: Storage,
   public authService: AuthServiceProvider,
   public loadingCtrl: LoadingController,
 ) {
+  this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
+  if(this.selectedcurrency){
+    this.mycurrency = this.selectedcurrency.selectedcurrency;
+  }else{
+    this.mycurrency ='KWD';
+  }
   }
 
   ionViewDidLoad() {
@@ -39,11 +46,13 @@ export class ListOrderBuyerPage {
       content: 'Please Wait...'
     });
     loading.present();
-
+    //this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
     this.storage.get('uid').then(val => {
       this.id = val;
+      
     let serval={
       "userid":this.id,
+      "currency":this.mycurrency,
      };
     this.authService.postData(serval,'ListOrderBuyer').then((result) => {
       this.responseData = result
