@@ -39,7 +39,8 @@ export class AuctionlistPage {
     this.loguser =  JSON.parse(localStorage.getItem('userData'));
     //console.log('sp',this.loguser);
     let serval={
-      "user_id":this.loguser.user_id
+      "user_id":this.loguser.user_id,
+     // "currency":
     }
     
     this.authService.postData(serval,'auctionListSearch').then((result) => {

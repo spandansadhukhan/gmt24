@@ -36,7 +36,7 @@ export class SearchPage {
   genderid:any="";
   yearid:any="";
   countryid:any="";
-
+  selectedcurrency:any;
 
 
 
@@ -44,8 +44,9 @@ export class SearchPage {
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public authService: AuthServiceProvider,
+    
   ) {
-
+    
     
   }
 
@@ -89,7 +90,7 @@ export class SearchPage {
       content: 'Please Wait...'
     });
     loading.present();
-   
+    this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
     let serval={
       "amount_max": this.maxprice,
       "amount_min":this.minprice,
@@ -106,6 +107,7 @@ export class SearchPage {
       "state_id":this.stateid,
       "statuslist":this.statusid,
       "year":this.yearid,
+      "currency":this.selectedcurrency.selectedcurrency,
       
     }
     

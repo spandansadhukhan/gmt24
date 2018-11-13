@@ -23,6 +23,7 @@ export class MyproductPage {
   public loguser:any;
   public utype:any;
   public msg:any;
+  public selectedcurrency:any;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -33,8 +34,10 @@ export class MyproductPage {
     public alertCtrl: AlertController) {
 
       this.loguser = JSON.parse(localStorage.getItem('userData'));
+      this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
       this.utype=this.loguser.user_type;
-      //alert(this.utype);
+     // alert(this.selectedcurrency.selectedcurrency);
+      //console.log('spandancurrency',this.selectedcurrency.selectedcurrency);
   }
 
   ionViewDidLoad() {
@@ -54,6 +57,7 @@ export class MyproductPage {
       this.id = val;
     let serval={
       "user_id":this.id,
+      "currency":this.selectedcurrency.selectedcurrency,
      };
     this.authService.postData(serval,'listmyProducts').then((result) => {
       this.responseData = result
@@ -238,5 +242,6 @@ deleteproduct(pid)
 
       this.navCtrl.push('SendforauctionPage',{"product_id":product_id}); 
     }
+
 
 }
