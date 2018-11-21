@@ -67,6 +67,33 @@ export class MyaccountPage {
   GoogleAutocomplete:any;
   completeAddres:any;
 
+  public language:any;
+  public selectedlanguage:any;
+  public languages:any;
+  public email:any;
+  public first_name:any;
+  public last_name:any;
+  public gender:any;
+  public countries:any;
+  public male:any;
+  public female:any;
+  public state:any;
+  public mobile_number:any;
+  public number:any;
+  public Bank:any;
+  public Name:any;
+  public preferred:any;
+  public langu:any;
+  public Preferred_Country:any;
+  public Preferred_Currency:any;
+  public Currency:any;
+  public Civil_ID_Attachment:any;
+  public Cancel:any;
+  public Add_Photo:any;
+  public Update:any;
+  public this_field_is_required:any;
+  public My_Profile:any;
+
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
     public authService: AuthServiceProvider,
@@ -179,15 +206,80 @@ export class MyaccountPage {
       loading.dismiss();
       console.log('Error getting location', error);
     });
+
+    this.languages = JSON.parse(localStorage.getItem('language'));
+    //console.log('Arunavalang',this.languages)
+    if(this.languages){
+      this.selectedlanguage = this.languages.language;
+    }else{
+      this.selectedlanguage ='1';
+    }
 }
 
   
 
   ionViewDidLoad() {
+    this.ChangeToUserLaguage(this.selectedlanguage);
     this.countryList();
     this.currencyList();
   }
+  ChangeToUserLaguage(lang){
+    //alert(lang+'a')
+      let serval={
+        "language_id":lang,
+       };
+      /*this.authService.postData(serval,'changeLaguage').then((result) => {
+        this.language = result.languages
+        console.log('language',this.language.languages.top_brands);
+        
+       
+      }, (err) => {
+        
+        console.log(err);
+        
+      });*/
+      
+      this.authService.changeLaguage(serval).subscribe(res=>{
+        if(res.Ack==1){
+        // loading.dismiss();
+        //console.log(res.languages)
+         console.log("splang",res.languages);
+         this.email=res.languages.email;
+         this.first_name=res.languages.category;
+         this.last_name=res.languages.special_auction;
+         this.gender=res.languages.gender;
+         this.male=res.languages.male;
+         this.female = res.languages.female;
+         this.countries = res.languages.countries;
+         this.state = res.languages.state;
+         this.mobile_number= res.languages.mobile_number;
+         this.number= res.languages.number;
+         this.Bank= res.languages.Bank;
+         this.Name= res.languages.Name;
+         this.preferred= res.languages.preferred;
+         this.langu= res.languages.langu;
+         this.Preferred_Country= res.languages.Preferred_Country;
+         this.Preferred_Currency= res.languages.Preferred_Currency;
+         this.Currency= res.languages.Currency;
+         this.Cancel= res.languages.Cancel;
+         this.Civil_ID_Attachment= res.languages.Civil_ID_Attachment;
+         this.Add_Photo= res.languages.Add_Photo;
+         this.Update= res.languages.Update;
 
+         this.this_field_is_required= res.languages.this_field_is_required;
+          this.My_Profile = res.languages.My_Profile;
+         //this.Cancel= res.languages.Cancel;
+        }else{
+    
+         //loading.dismiss();
+        
+        }
+       },err=>{
+         //loading.dismiss();
+        
+      });
+    
+    }
 
   countryList(){
    

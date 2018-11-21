@@ -60,6 +60,20 @@ export class LiveAuctionPage {
   selectedcurrency:any;
   show:boolean = false;
 
+  public language:any;
+  public selectedlanguage:any;
+  public languages:any;
+  public Live_Auction:any;
+  public Highest_Bid:any;
+  public Next_Minimum_Bid:any;
+  public Bid_increment_multiple_of:any;
+  public Place_bid:any;
+  public Tota_No_Of_Bid:any;
+  public Highest_Bidder_Name:any;
+  public your_higest_bid:any;
+  public Bid_History:any;
+
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
@@ -83,7 +97,13 @@ export class LiveAuctionPage {
     });
 
     
-
+    this.languages = JSON.parse(localStorage.getItem('language'));
+    //console.log('Arunavalang',this.languages)
+    if(this.languages){
+      this.selectedlanguage = this.languages.language;
+    }else{
+      this.selectedlanguage ='1';
+    }
 
   }
 
@@ -91,8 +111,50 @@ export class LiveAuctionPage {
     console.log('ionViewDidLoad LiveAuctionPage');
     this.product_id = this.navParams.get('product_id');
     this.productsDetails(this.product_id);
+    this.ChangeToUserLaguage(this.selectedlanguage);
   }
+ChangeToUserLaguage(lang){
+    //alert(lang+'a')
+      let serval={
+        "language_id":lang,
+       };
+       let loading = this.loadingCtrl.create({
+        content: 'Please Wait...'
+      });
+      loading.present();
+   
+      
+      this.authService.changeLaguage(serval).subscribe(res=>{
+        
+        if(res.Ack==1){
+         loading.dismiss();
+        //console.log(res.languages)
+         console.log("splang",res.languages);
+         this.Live_Auction=res.languages.Live_Auction;
+         this.Highest_Bid=res.languages.Highest_Bid;
+         this.Next_Minimum_Bid=res.languages.Next_Minimum_Bid;
+         this.Bid_increment_multiple_of = res.languages.Bid_increment_multiple_of;
+         this.Place_bid = res.languages.Place_bid;
+         this.Tota_No_Of_Bid = res.languages.Tota_No_Of_Bid;
+         this.Highest_Bidder_Name = res.languages.Highest_Bidder_Name;
+         this.your_higest_bid = res.languages.your_higest_bid;
+         this.Bid_History = res.languages.Bid_History;
 
+         
+         
+         
+         //this.Cancel= res.languages.Cancel;
+        }else{
+    
+         //loading.dismiss();
+        
+        }
+       },err=>{
+         //loading.dismiss();
+        
+      });
+    
+    }
   ionViewWillEnter(){
 
     this.refreshIntervalId =  setInterval(() => {

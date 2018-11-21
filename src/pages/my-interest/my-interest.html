@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>My Interest</ion-title>
+    <ion-title>{{this.interested_product}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -25,7 +25,7 @@
           <p class="price"> {{item.currency_pref}} {{item.price}}</p>
           <div>
           
-          <button ion-button round class="brown-btn">Delete</button>
+          <button ion-button round class="brown-btn">{{this.Remove}}</button>
           
           </div>
           
@@ -33,7 +33,7 @@
 
         <ion-item *ngIf="interestList== ''"> 
             
-          <h2>Sorry! No result found.</h2>
+          <h2>{{this.no_records_found}}</h2>
           
         </ion-item> 
 

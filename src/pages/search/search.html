@@ -31,7 +31,7 @@
     </ion-col>
     <ion-col col-3 class="pt-0 pb-0 pr-0">
       <div class="rt-icon-area" (click)='filter()'>
-        <ion-icon ios="ios-funnel" md="md-funnel" ></ion-icon> Filter
+        <ion-icon ios="ios-funnel" md="md-funnel" ></ion-icon> {{this.filters}}
       </div>     
     </ion-col> 
     
@@ -59,7 +59,7 @@
       </ion-thumbnail>
       <h2>{{product.brands}}/{{product.category_name}}({{product.gender}})</h2>
       <p class="name">
-        <span>Seller:</span> {{product.seller_name}}.</p>
+        <span>{{this.seller}}:</span> {{product.seller_name}}.</p>
       <p class="price">
         <span><ion-icon ios="ios-checkmark-circle-outline" md="md-checkmark-circle-outline"></ion-icon></span>
         <span class="amount">{{product.currency_code}} {{product.price}}</span>
@@ -73,7 +73,7 @@
     
     <ion-item class="request-item" *ngIf="productlists == ''">
       
-        Sorry! No products available. 
+      {{this.no_records_found}} 
         
       </ion-item>
   </ion-list>

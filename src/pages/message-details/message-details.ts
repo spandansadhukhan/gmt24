@@ -30,12 +30,28 @@ dataSet:any;
 txtInput:any;
 userMessage:any;
 textEntered:any;
+
+public language:any;
+  public selectedlanguage:any;
+  public languages:any;
+  public Sends:any;
+  public MessageDetails:any;
+ 
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public storage: Storage,
     public authService:AuthServiceProvider,
     public loadingCtrl: LoadingController,
     public toastCtrl:ToastController,) {
+
+      this.languages = JSON.parse(localStorage.getItem('language'));
+      //console.log('Arunavalang',this.languages)
+      if(this.languages){
+        this.selectedlanguage = this.languages.language;
+      }else{
+        this.selectedlanguage ='1';
+      } 
 
     this.toId =  this.navParams.get('to_id');
     this.fromId =  this.navParams.get('from_id');
@@ -60,7 +76,50 @@ textEntered:any;
   ionViewDidLoad() {
     console.log('ionViewDidLoad MessageDetailsPage');
     this.messagedetails();
+    this.ChangeToUserLaguage(this.selectedlanguage);
   }
+ChangeToUserLaguage(lang){
+    //alert(lang+'a')
+      let serval={
+        "language_id":lang,
+       };
+       let loading = this.loadingCtrl.create({
+        content: 'Please Wait...'
+      });
+      loading.present();
+      /*this.authService.postData(serval,'changeLaguage').then((result) => {
+        this.language = result.languages
+        console.log('language',this.language.languages.top_brands);
+        
+       
+      }, (err) => {
+        
+        console.log(err);
+        
+      });*/
+      
+      this.authService.changeLaguage(serval).subscribe(res=>{
+        
+        if(res.Ack==1){
+         loading.dismiss();
+        //console.log(res.languages)
+         console.log("splang",res.languages);
+         this.MessageDetails=res.languages.MessageDetails;
+         this.Sends=res.languages.Send;
+        
+         
+         //this.Cancel= res.languages.Cancel;
+        }else{
+    
+         //loading.dismiss();
+        
+        }
+       },err=>{
+         //loading.dismiss();
+        
+      });
+    
+    }
 
 
  messagedetails(){

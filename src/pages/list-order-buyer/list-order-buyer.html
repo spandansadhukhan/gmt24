@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Won Auctions</ion-title>
+    <ion-title>{{this.purchase_won_auction_lists}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,11 +18,11 @@
   
   <ion-grid>
         <ion-row class="main-box">
-            <ion-col col-2>Product</ion-col>
-            <ion-col col-3>TotalAmount</ion-col>
-            <ion-col col-3>AuctionDate</ion-col>
-            <ion-col col-2>Status</ion-col>
-            <ion-col col-2>View</ion-col>
+            <ion-col col-2>{{this.product}}</ion-col>
+            <ion-col col-3>{{this.Total_Amount}}</ion-col>
+            <ion-col col-3>{{this.auction_date}}</ion-col>
+            <ion-col col-2>{{this.status}}</ion-col>
+            <ion-col col-2>{{this.view}}</ion-col>
         </ion-row>
       </ion-grid>
       <ion-grid>
@@ -30,17 +30,17 @@
           <ion-col col-2><img src="{{item.product_image}}"></ion-col>
           <ion-col col-3>{{item.userSelectedcurrency}} {{item.total_price}}</ion-col>
           <ion-col col-3>{{item.date}}</ion-col>
-          <ion-col col-2 *ngIf="item.status== 1">Purchased</ion-col>
-          <ion-col col-2 *ngIf="item.status== 0"><button class="btn-list" ion-button>Pay</button></ion-col>
+          <ion-col col-2 *ngIf="item.status== 1">{{this.Purchased}}</ion-col>
+          <ion-col col-2 *ngIf="item.status== 0"><button class="btn-list" ion-button>{{this.Pay}}</button></ion-col>
          
 
-          <ion-col col-2><button class="btn-list" ion-button (click)="nextPage(item.product_id)">View</button></ion-col>
+          <ion-col col-2><button class="btn-list" ion-button (click)="nextPage(item.product_id)">{{this.view}}</button></ion-col>
           <hr class="line2">
         </ion-row>
       </ion-grid>
         <ion-item *ngIf="auctionList== ''"> 
             
-          <h2>Sorry! No record found.</h2>
+          <h2>{{this.no_records_found}}</h2>
           
         </ion-item> 
         

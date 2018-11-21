@@ -7,7 +7,7 @@
 <ion-header>
   <ion-navbar>
   <ion-icon ></ion-icon>
-    <ion-title>Loyalty</ion-title>
+    <ion-title>{{this.loyalty}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -18,8 +18,8 @@
       <ion-thumbnail item-start>
         <img src="assets/img/profile-photo.jpg">
       </ion-thumbnail>
-      <h2>Total Loyalty: <span>{{responseData.total_loyalty}}</span></h2>
-      <button ion-button round class="blue-btn ml-0" (click)="details()">Details</button>
+      <h2>{{this.Total_Loyalty}}: <span>{{responseData.total_loyalty}}</span></h2>
+      <button ion-button round class="blue-btn ml-0" (click)="details()">{{this.detailss}}</button>
     </ion-item>
     <!-- <ion-item class="request-item"> -->
       <!-- <ion-thumbnail item-start>

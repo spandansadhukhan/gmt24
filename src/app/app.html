@@ -13,72 +13,75 @@
       <ion-content >
         <ion-card class="sidepanel-list left-menu" *ngIf="istype==1 || istype==2" style="padding-bottom: 5rem;">
           <ion-item menuClose (click)="myaccount()">
-            <ion-icon name="person" item-start ></ion-icon> Profile
+            <ion-icon name="person" item-start ></ion-icon> {{this.profile}}
           </ion-item>
           <ion-item menuClose (click)="changepassword()">
-            <ion-icon name="unlock" item-start></ion-icon> Change Password
+            <ion-icon name="unlock" item-start></ion-icon> {{this.change_password}}
           </ion-item> 
           <ion-item menuClose (click)="changecurrency()">
-            <ion-icon name="card" item-start></ion-icon> Change Currency
+            <ion-icon name="card" item-start></ion-icon> {{this.Change_Currency}}
+          </ion-item>
+          <ion-item menuClose (click)="changelanguage()">
+            <ion-icon name="card" item-start></ion-icon> Change Language
           </ion-item>
           <ion-item menuClose (click)="loyalty()" *ngIf="istype==1">
-            <ion-icon name="person" item-start></ion-icon> My Loyalty
+            <ion-icon name="person" item-start></ion-icon> {{this.My_Loyalty}}
           </ion-item> 
           
           <ion-item menuClose (click)="notifications()">
-            <ion-icon name="notifications" item-start></ion-icon> Notifications
+            <ion-icon name="notifications" item-start></ion-icon> {{this.notificationsss}}
           </ion-item>
 
           <ion-item menuClose (click)="subscriptions()" *ngIf="istype==2">
-              <ion-icon name="list-box" item-start></ion-icon> Subscriptions
+              <ion-icon name="list-box" item-start></ion-icon> {{this.subscriptionsss}}
             </ion-item>
 
             <ion-item menuClose (click)="subscribedlist()" *ngIf="istype==2">
-              <ion-icon name="list-box" item-start></ion-icon> Subscribed List
+              <ion-icon name="list-box" item-start></ion-icon> {{this.subscribed_list}}
             </ion-item>
 
           <ion-item menuClose (click)="addproduct()">
-            <ion-icon name="add-circle" item-start></ion-icon> Add Product
+            <ion-icon name="add-circle" item-start></ion-icon> {{this.add_product}}
           </ion-item>
 
           <ion-item menuClose (click)="myproduct()">
-            <ion-icon name="watch" item-start></ion-icon> My Product
+            <ion-icon name="watch" item-start></ion-icon> {{this.my_product}}
           </ion-item>
           
           <ion-item menuClose (click)="wishlist()">
-            <ion-icon name="heart" item-start></ion-icon> Favourite/Wishlist
+            <ion-icon name="heart" item-start></ion-icon> {{this.favorite_or_wishlist}}
           </ion-item>
 
           <ion-item menuClose (click)="myauction()">
-            <ion-icon name="watch" item-start></ion-icon> My Auction
+            <ion-icon name="watch" item-start></ion-icon> {{this.my_auction}}
           </ion-item>
 
           
 
           <ion-item menuClose (click)="purchase()">
-            <ion-icon name="hammer" item-start></ion-icon> Purchased/ Won Auction
+            <ion-icon name="hammer" item-start></ion-icon> {{this.Purchased_or_Won_Auction}}
           </ion-item>
 
           <ion-item menuClose (click)="myInterest()">
-            <ion-icon name="thumbs-up" item-start></ion-icon> My Interest 
+            <ion-icon name="thumbs-up" item-start></ion-icon> {{this.My_Interest}} 
           </ion-item>
 
           <ion-item menuClose (click)="customerInterest()">
-            <ion-icon name="thumbs-up" item-start></ion-icon> Customer Interest 
+            <ion-icon name="thumbs-up" item-start></ion-icon> {{this.potential_buyers}} 
           </ion-item>
 
           <ion-item menuClose (click)="settings()">
-            <ion-icon name="settings" item-start></ion-icon> Notification Settings 
+            <ion-icon name="settings" item-start></ion-icon> {{this.notification_settings}} 
           </ion-item>
 
 
 
           <ion-item menuClose (click)="messages()">
-            <ion-icon name="mail" item-start></ion-icon> Messages
+            <ion-icon name="mail" item-start></ion-icon> {{this.messageses}}
           </ion-item>
 
           <ion-item menuClose (click)="logout()">
-            <ion-icon name="power" item-start></ion-icon> Log out
+            <ion-icon name="power" item-start></ion-icon> {{this.logouts}}
           </ion-item>
 
         </ion-card>
@@ -86,13 +89,13 @@
 
         <ion-card class="sidepanel-list left-menu" *ngIf="istype==3" style="padding-bottom: 5rem;">
           <ion-item menuClose (click)="signin()">
-            <ion-icon name="person" item-start ></ion-icon> Sign In
+            <ion-icon name="person" item-start ></ion-icon> {{this.Sign_In}}
           </ion-item>
           <ion-item menuClose (click)="signup()">
-            <ion-icon name="person" item-start></ion-icon> Sign Up
+            <ion-icon name="person" item-start></ion-icon> {{this.signups}}
           </ion-item> 
           <ion-item menuClose (click)="changecurrency()">
-            <ion-icon name="card" item-start></ion-icon> Change Currency
+            <ion-icon name="card" item-start></ion-icon> {{this.Change_Currency}}
           </ion-item>
         </ion-card>
 
@@ -115,13 +118,13 @@
           <ion-col text-center>
             <a (click)="home()">
               <span class="footer-icon"><img src="assets/img/home.png" alt="image"></span>
-              <p>Home</p>
+              <p>{{this.homes}}</p>
             </a>
           </ion-col>
           <ion-col text-center>
             <a (click)="allauctions()">
               <span class="footer-icon"><img src="assets/img/icon-auction.png" alt="image"></span>
-              <p>Auction</p>
+              <p>{{this.auction}}</p>
             </a>
           </ion-col>
   
@@ -129,14 +132,14 @@
           <ion-col text-center>
             <a (click)="allwatches()">
               <span class="footer-icon"><img src="assets/img/watch.png" alt="image"></span>
-              <p>Watches</p>
+              <p>{{this.watches}}</p>
             </a>
           </ion-col>
 
           <ion-col text-center>
             <a (click)="allshops()">
               <span class="footer-icon"><img src="assets/img/shop.png" alt="image"></span>
-              <p>Shops</p>
+              <p>{{this.shops}}</p>
             </a>
           </ion-col>
 
@@ -144,7 +147,7 @@
           <ion-col text-center *ngIf="istype!=3">
             <a (click)="notifications()">
               <span class="footer-icon"><img src="assets/img/icon-notification.png" alt="image"></span>
-              <p>Notifications</p>
+              <p>{{this.notificationsss}}</p>
             </a>
           </ion-col>
           

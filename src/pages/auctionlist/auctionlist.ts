@@ -22,10 +22,27 @@ export class AuctionlistPage {
   selectedcurrency :any;
   mycurrency:any;
 
+  public language:any;
+  public selectedlanguage:any;
+  public languages:any;
+  public phone:any;
+  public no_records_found:any;
+  public filters:any;
+  public seller:any
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public authService: AuthServiceProvider,) {
+
+      this.languages = JSON.parse(localStorage.getItem('language'));
+      //console.log('Arunavalang',this.languages)
+      if(this.languages){
+        this.selectedlanguage = this.languages.language;
+      }else{
+        this.selectedlanguage ='1';
+      }
+
       this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
       if(this.selectedcurrency){
         this.mycurrency = this.selectedcurrency.selectedcurrency;
@@ -38,9 +55,45 @@ export class AuctionlistPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AuctionlistPage');
+    this.ChangeToUserLaguage(this.selectedlanguage);
     this.auctionList();
   }
+  ChangeToUserLaguage(lang){
+    //alert(lang+'a')
+      let serval={
+        "language_id":lang,
+       };
+       let loading = this.loadingCtrl.create({
+        content: 'Please Wait...'
+      });
+      loading.present();
+   
+      
+      this.authService.changeLaguage(serval).subscribe(res=>{
+        
+        if(res.Ack==1){
+         loading.dismiss();
+        //console.log(res.languages)
+         console.log("splang",res.languages);
+         this.phone=res.languages.phone;
+         this.filters=res.languages.filters;
+         this.no_records_found=res.languages.no_records_found;
+         this.seller = res.languages.seller;
 
+         
+         
+         //this.Cancel= res.languages.Cancel;
+        }else{
+    
+         //loading.dismiss();
+        
+        }
+       },err=>{
+         //loading.dismiss();
+        
+      });
+    
+    }
   auctionList(){
 
     let loading = this.loadingCtrl.create({

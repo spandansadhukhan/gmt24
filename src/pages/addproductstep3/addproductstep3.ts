@@ -34,6 +34,21 @@ export class Addproductstep3Page {
   uploadsuccess:any;
   uploadimages=[];
   productimages=[];
+
+  public language:any;
+  public selectedlanguage:any;
+  public languages:any;
+  public size;any;
+  public location:any;
+  public Work_Hours:any;
+  public Product_Image:any;
+  public Upload_Image:any;
+  public save:any;
+  public optional:any;
+  public this_field_is_required:any;
+  public add_product:any;
+  public auction:any;
+
     constructor(public navCtrl: NavController, public navParams: NavParams,
     public authService: AuthServiceProvider,
     private storage: Storage,
@@ -57,12 +72,69 @@ export class Addproductstep3Page {
         
         
       });
+      this.languages = JSON.parse(localStorage.getItem('language'));
+    //console.log('Arunavalang',this.languages)
+    if(this.languages){
+      this.selectedlanguage = this.languages.language;
+    }else{
+      this.selectedlanguage ='1';
+    }
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Addproductstep3Page');
+    this.ChangeToUserLaguage(this.selectedlanguage);
   }
+  ChangeToUserLaguage(lang){
+    //alert(lang+'a')
+      let serval={
+        "language_id":lang,
+       };
+       let loading = this.loadingCtrl.create({
+        content: 'Please Wait...'
+      });
+      loading.present();
+      /*this.authService.postData(serval,'changeLaguage').then((result) => {
+        this.language = result.languages
+        console.log('language',this.language.languages.top_brands);
+        
+       
+      }, (err) => {
+        
+        console.log(err);
+        
+      });*/
+      
+      this.authService.changeLaguage(serval).subscribe(res=>{
+        
+        if(res.Ack==1){
+         loading.dismiss();
+        //console.log(res.languages)
+         console.log("splang",res.languages);
+         this.size=res.languages.size;
+         this.add_product=res.languages.add_product;
+         this.auction=res.languages.auction;
 
+         this.location=res.languages.location;
+         this.Work_Hours=res.languages.Work_Hours;
+         this.Product_Image = res.languages.Product_Image;
+         this.Upload_Image = res.languages.Upload_Image;
+         this.save = res.languages.save;
+         this.optional = res.languages.optional;
+         this.this_field_is_required= res.languages.this_field_is_required;
+         
+         //this.Cancel= res.languages.Cancel;
+        }else{
+    
+         //loading.dismiss();
+        
+        }
+       },err=>{
+         //loading.dismiss();
+        
+      });
+    
+    }
 
   onSubmit(formData) {
     

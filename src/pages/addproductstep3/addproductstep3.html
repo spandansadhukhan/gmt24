@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Add Product/Auction</ion-title>
+    <ion-title>{{this.add_product}}/{{this.auction}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -20,18 +20,18 @@
     <ion-list no-lines class="profile-info">
         
         <ion-item>
-            <ion-label stacked color="primary">Size*</ion-label>
+            <ion-label stacked color="primary">{{this.size}}*</ion-label>
             <ion-input round type="number" placeholder="Type size." min="0" name="size" formControlName="size" required></ion-input>
         </ion-item>
         <p *ngIf="!pForm.controls['size'].valid && pForm.controls['size'].touched" ion-text color="danger" padding-left>
-          Size is required </p>
+          {{this.this_field_is_required}} </p>
         <ion-item>
-            <ion-label stacked color="primary">Location(optional)</ion-label>
-            <ion-input round type="text" placeholder="Type location" name="location" formControlName="location"></ion-input>
+            <ion-label stacked color="primary">{{this.location}}(optional)</ion-label>
+            <ion-input round type="text" placeholder="{{this.location}}" name="location" formControlName="location"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label stacked color="primary">Work Hours(optional)</ion-label>
-            <ion-input round type="text" placeholder="Type working hours." name="work_hours" formControlName="work_hours"></ion-input>
+            <ion-label stacked color="primary">{{this.Work_Hours}}({{this.optional}})</ion-label>
+            <ion-input round type="text" placeholder="{{this.Work_Hours}}" name="work_hours" formControlName="work_hours"></ion-input>
         </ion-item>
 
         <!-- <ion-item>
@@ -56,8 +56,8 @@
             </div>
           </ion-col> -->
           <ion-item>
-            <p class="upload-text">Product Image</p>
-            <button ion-button block class="upload-image" color="light" (click)="presentActionSheet()">Upload Image</button>
+            <p class="upload-text">{{this.Product_Image}}</p>
+            <button ion-button block class="upload-image" color="light" (click)="presentActionSheet()">{{this.Upload_Image}}</button>
           </ion-item>
         <!-- <ion-item *ngIf="pathForImage(lastImage)!= ''">
           <h4>Image Preview</h4>
@@ -81,7 +81,7 @@
 
       <div padding class="no-p-t p-b-5">
           
-          <button ion-button round class="blue-btn ml-0" type="submit" (click)="onSubmit(pForm.value)" block>Save</button>
+          <button ion-button round class="blue-btn ml-0" type="submit" (click)="onSubmit(pForm.value)" block>{{this.save}}</button>
       </div>
   
   </ion-list>
