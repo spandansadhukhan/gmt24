@@ -44,7 +44,7 @@
       </ion-thumbnail>
       <h2>{{shop.seller_name}}</h2>
       <p class="name">
-        <span>Phone:</span> {{shop.seller_phone}}</p>
+        <span>{{this.phone}}:</span> {{shop.seller_phone}}</p>
       <p class="batch">
         <!-- <span class="batch-pic"> <img  src="assets/img/batch.png" alt=""> </span> 
         <span class="batch-text">Trusted Seller since 2016</span>  -->
@@ -54,7 +54,7 @@
     
     <ion-item class="request-item" *ngIf="shoplists == ''">
       
-      Sorry! No shops available now. 
+      {{this.no_records_found}} 
       
     </ion-item>
     

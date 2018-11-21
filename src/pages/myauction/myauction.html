@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>My Auction</ion-title>
+    <ion-title>{{this.my_auction}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -20,13 +20,13 @@
         <img src="{{p.image}}">
       </ion-thumbnail>
       <h2 (click)="nextPage(p.id)">{{p.brand_name}}</h2>
-      <p class="name" *ngIf="p.approved==1 && p.live_status==1"><span>Expire on:</span> {{p.expiry_date}}</p>
+      <p class="name" *ngIf="p.approved==1 && p.live_status==1"><span>{{this.Expired_On}}:</span> {{p.expiry_date}}</p>
       <p class="info">{{p.description}}</p>
       <p class="price"><span>{{p.selected_currency}}</span> {{p.price}}</p>
       <div class="product-bt">
       
-      <button ion-button round class="brown-btn" (click)="deleteproduct(p.id)">Delete</button>
-      <button ion-button round class="blue-btn ml-0" *ngIf="p.approved==1 && p.auction_fee_paid==0">Pay Now</button>
+      <button ion-button round class="brown-btn" (click)="deleteproduct(p.id)">{{this.delete}}</button>
+      <button ion-button round class="blue-btn ml-0" *ngIf="p.approved==1 && p.auction_fee_paid==0">{{this.pay_now}}</button>
       </div>
       
     </ion-item>

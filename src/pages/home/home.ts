@@ -24,6 +24,18 @@ export class HomePage {
   public topproductlists:any;
   public latestproductlist:any;
   wordlists:any;
+  public language:any;
+  public selectedlanguage:any;
+  public languages:any;
+  public top_brands:any;
+  public category:any;
+  public special_auction:any;
+  public ladies_watch:any
+  public best_sellers:any;
+  public top_products:any;
+  public view:any;
+  public homes:any;
+
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -32,14 +44,30 @@ export class HomePage {
     private storage: Storage,
     public loadingCtrl: LoadingController,
     public myApp:MyApp) {
+
+      this.languages = JSON.parse(localStorage.getItem('language'));
+      //console.log('Arunavalang',this.languages)
+      if(this.languages){
+        this.selectedlanguage = this.languages.language;
+      }else{
+        this.selectedlanguage ='1';
+      }
+      //console.log('Arunavalang',this.languages)
+
+
+      this.ChangeToUserLaguage(this.selectedlanguage);
+    this.myApp.abc();
+    this.myApp.ChangeToUserLaguage1(this.selectedlanguage);
+    this.menu.enable(true, 'loggedOutMenu');
+    this.homemenus();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
-    this.myApp.abc();
-    this.menu.enable(true, 'loggedOutMenu');
-    this.homemenus();
+   
   }
+
+  
 
   homemenus(){
 
@@ -63,7 +91,7 @@ export class HomePage {
         this.topmodellists =  this.responseData.topmodellist;
         this.topproductlists = this.responseData.topproductlist;
         this.latestproductlist=this.responseData.latestproductlist
-        console.log('brand',this.brandlists)
+        //console.log('brand',this.brandlists)
       }
       
       else
@@ -137,6 +165,45 @@ selectSearchResult(item) {
 }
 
 
+ChangeToUserLaguage(lang){
+//alert(lang+'a')
+  let serval={
+    "language_id":lang,
+   };
+  /*this.authService.postData(serval,'changeLaguage').then((result) => {
+    this.language = result.languages
+    console.log('language',this.language.languages.top_brands);
+    
+   
+  }, (err) => {
+    
+    console.log(err);
+    
+  });*/
+  
+  this.authService.changeLaguage(serval).subscribe(res=>{
+    if(res.Ack==1){
+    // loading.dismiss();
+    //console.log(res.languages)
+     console.log("splang",res.languages);
+     this.top_brands=res.languages.top_brands;
+     this.category=res.languages.category;
+     this.special_auction=res.languages.special_auction;
+     this.ladies_watch = res.languages.ladies_watch;
+     this.best_sellers = res.languages.best_sellers;
+     this.top_products= res.languages.top_products;
+     this.view= res.languages.view;
+     this.homes = res.languages.home;
+    }else{
 
+     //loading.dismiss();
+    
+    }
+   },err=>{
+     //loading.dismiss();
+    
+  });
+
+}
 
 }

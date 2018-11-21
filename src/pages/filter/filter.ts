@@ -56,10 +56,42 @@ export class FilterPage {
   yearid:any;
   searchdata:any;
   countryid:any;
+
+  public language:any;
+  public selectedlanguage:any;
+  public languages:any;
+  public filter:any;
+  public brands:any;
+  public category:any;
+  public location:any;
+  public state:any;
+  public gender:any;
+  public male:any;
+  public female:any;
+  public unisex:any;
+  public price :any;
+  public Bracelet_Type:any;
+  public Model_Year:any;
+  public movement :any;
+  public size:any;
+  public amount_min:any;
+  public amount_max :any;
+  public seller:any;
+  public Status_of_watch:any;
+  public save :any;
+
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      public loadingCtrl: LoadingController,
      public authService: AuthServiceProvider,) {
+
+      this.languages = JSON.parse(localStorage.getItem('language'));
+    //console.log('Arunavalang',this.languages)
+    if(this.languages){
+      this.selectedlanguage = this.languages.language;
+    }else{
+      this.selectedlanguage ='1';
+    }
       
       this.min=this.navParams.get("min");
       this.max=this.navParams.get("max");
@@ -77,7 +109,66 @@ export class FilterPage {
     this.statuslist();
     this.sellerlist();
     this.maxminpriceList();
+    this.ChangeToUserLaguage(this.selectedlanguage);
   }
+ChangeToUserLaguage(lang){
+    //alert(lang+'a')
+      let serval={
+        "language_id":lang,
+       };
+       let loading = this.loadingCtrl.create({
+        content: 'Please Wait...'
+      });
+      loading.present();
+      /*this.authService.postData(serval,'changeLaguage').then((result) => {
+        this.language = result.languages
+        console.log('language',this.language.languages.top_brands);
+        
+       
+      }, (err) => {
+        
+        console.log(err);
+        
+      });*/
+      
+      this.authService.changeLaguage(serval).subscribe(res=>{
+        
+        if(res.Ack==1){
+         loading.dismiss();
+        //console.log(res.languages)
+         console.log("splang",res.languages);
+         this.filter=res.languages.filter;
+         this.brands=res.languages.brands;
+         this.category=res.languages.category;
+         this.location = res.languages.location;
+         this.state = res.languages.state;
+         this.gender = res.languages.gender;
+         this.male = res.languages.male;
+         this.female = res.languages.female;
+         this.unisex = res.languages.unisex;
+         this.price  = res.languages.price ;
+         this.Bracelet_Type = res.languages.Bracelet_Type;
+         this.Model_Year = res.languages.Model_Year;
+         this.movement  = res.languages.movement ;
+         this.size = res.languages.size;
+         this.amount_min = res.languages.amount_min;
+         this.amount_max  = res.languages.amount_max ;
+         this.seller = res.languages.seller;
+         this.Status_of_watch = res.languages.Status_of_watch;
+         this.save  = res.languages.save ;
+         
+         //this.Cancel= res.languages.Cancel;
+        }else{
+    
+         //loading.dismiss();
+        
+        }
+       },err=>{
+         //loading.dismiss();
+        
+      });
+    
+    }
 
 
   

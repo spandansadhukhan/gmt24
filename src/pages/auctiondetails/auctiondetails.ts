@@ -52,11 +52,39 @@ export class AuctiondetailsPage {
  
   bidhistory:any;
 
+  public language:any;
+  public selectedlanguage:any;
+  public languages:any;
+  public Auction_Details;any;
+  public Product_Bracelet_Type:any;
+  public Product_Description:any;
+  public Product_Size:any;
+  public Seller_Info:any;
+  public Name:any;
+  public phone:any;
+  public Bidder_Name:any;
+  public time_remaining:any;
+  public Cancel:any;
+
+  public auction_date:any;
+  public Auction_Status:any;
+  public Bid_Price:any;
+  
+
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public authService: AuthServiceProvider,) {
+
+
+    this.languages = JSON.parse(localStorage.getItem('language'));
+    //console.log('Arunavalang',this.languages)
+    if(this.languages){
+      this.selectedlanguage = this.languages.language;
+    }else{
+      this.selectedlanguage ='1';
+    }
 
       this.loguser =  JSON.parse(localStorage.getItem('userData'));
       this.user_id=this.loguser.user_id;
@@ -73,8 +101,50 @@ export class AuctiondetailsPage {
     console.log('ionViewDidLoad AuctiondetailsPage');
     this.product_id = this.navParams.get('product_id');
     this.productsDetails(this.product_id);
+    this.ChangeToUserLaguage(this.selectedlanguage);
   }
-
+ChangeToUserLaguage(lang){
+    //alert(lang+'a')
+      let serval={
+        "language_id":lang,
+       };
+       let loading = this.loadingCtrl.create({
+        content: 'Please Wait...'
+      });
+      loading.present();
+      this.authService.changeLaguage(serval).subscribe(res=>{
+        
+        if(res.Ack==1){
+         loading.dismiss();
+        //console.log(res.languages)
+         console.log("splang",res.languages);
+         this.Auction_Details=res.languages.Auction_Details;
+         this.Product_Bracelet_Type=res.languages.Product_Bracelet_Type;
+         this.Product_Description=res.languages.Product_Description;
+         this.Product_Size = res.languages.Product_Size;
+         this.Seller_Info = res.languages.Seller_Info;
+         this.Name = res.languages.Name;
+         this.phone = res.languages.phone;
+         this.Bidder_Name = res.languages.Bidder_Name;
+         this.time_remaining = res.languages.time_remaining;
+         this.Cancel = res.languages.Cancel;
+         this.auction_date = res.languages.auction_date;
+         this.Auction_Status = res.languages.Auction_Status;
+         this.Bid_Price = res.languages.Bid_Price
+         
+         
+         //this.Cancel= res.languages.Cancel;
+        }else{
+    
+         //loading.dismiss();
+        
+        }
+       },err=>{
+         //loading.dismiss();
+        
+      });
+    
+    }
   productsDetails(product_id){
 
     let loading = this.loadingCtrl.create({

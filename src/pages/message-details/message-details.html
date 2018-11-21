@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>MessageDetails</ion-title>
+    <ion-title>{{this.MessageDetails}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -35,7 +35,7 @@
     
     <form [formGroup]="formGroup" (ngSubmit)="send(formGroup.value)" style="text-align: center" >
     <ion-item><ion-input type="text" formControlName="message"></ion-input></ion-item>
-    <button ion-button type="submit">Send</button></form>
+    <button ion-button type="submit">{{this.Sends}}</button></form>
 
   </ion-item>
     <!-- <ion-list>

@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>My Wishlist</ion-title>
+    <ion-title>{{this.My_Wishlist}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -25,13 +25,13 @@
       
 
       <button ion-button round icon-left class="brown-btn">
-          <ion-icon name="trash"></ion-icon> Remove</button>
+          <ion-icon name="trash"></ion-icon> {{this.Remove}}</button>
       </div>
       
     </ion-item>
     <ion-item *ngIf="wishlist== ''"> 
             
-        <h2>Sorry! No record found.</h2>
+        <h2>{{this.no_records_found}}</h2>
         
       </ion-item> 
 

@@ -71,6 +71,43 @@ export class DetailsPage {
   recomend:any;
   user_type:any;
 
+  public language:any;
+  public selectedlanguage:any;
+  public languages:any;
+  public reviewss:any;
+  public Recommend_this_product:any;
+  public Yes:any;
+  public No:any;
+  public save:any;
+  public Cancel:any;
+  public Write_a_review:any;
+  public Seller_Info:any;
+  public Seller_Name:any;
+  public phone:any;
+  public Address:any;
+  public Your_Messages:any;
+  public Send:any;
+  public Product_Informations:any;
+  public Product_Bracelet_Type:any;
+  public Product_Size:any;
+  public Model_Year:any;
+  public movementss:any;
+  public Date_of_Purchased:any;
+  public Status_of_watch:any;
+  public Product_Description:any;
+  public reference_noss:any;
+  public Days_ago:any;
+  public no_records_found:any;
+  public show_interest:any;
+  public Go_Live_Bidding:any;
+  public contact_seller:any;
+  public Please_enter_your_password_below:any;
+  public Continue:any;
+  
+  
+
+  
+
   map: any;
   //markers = [];
   location:any;
@@ -95,6 +132,14 @@ export class DetailsPage {
     private builder: FormBuilder,
     private launchNavigator: LaunchNavigator,
 ) {
+
+  this.languages = JSON.parse(localStorage.getItem('language'));
+    //console.log('Arunavalang',this.languages)
+    if(this.languages){
+      this.selectedlanguage = this.languages.language;
+    }else{
+      this.selectedlanguage ='1';
+    }
 
   this.sellercontactfrom = builder.group({
     'message': [null, Validators.required]
@@ -158,7 +203,68 @@ export class DetailsPage {
    
     console.log('ionViewDidLoad DetailsPage');
     
+    this.ChangeToUserLaguage(this.selectedlanguage);
   }
+ChangeToUserLaguage(lang){
+    //alert(lang+'a')
+      let serval={
+        "language_id":lang,
+       };
+       let loading = this.loadingCtrl.create({
+        content: 'Please Wait...'
+      });
+      loading.present();
+     
+      
+      this.authService.changeLaguage(serval).subscribe(res=>{
+        
+        if(res.Ack==1){
+         loading.dismiss();
+        //console.log(res.languages)
+         console.log("splang",res.languages);
+         this.reviewss=res.languages.reviews;
+         this.Recommend_this_product=res.languages.Recommend_this_product;
+         this.Yes=res.languages.Yes;
+         this.No = res.languages.No;
+         this.save = res.languages.save;
+         this.Cancel = res.languages.Cancel;
+         this.Write_a_review = res.languages.Write_a_review;
+
+         this.Seller_Info=res.languages.Seller_Info;
+         this.Seller_Name=res.languages.Seller_Name;
+         this.phone = res.languages.phone;
+         this.Address = res.languages.Address;
+         this.Your_Messages = res.languages.Your_Messages;
+         this.Send = res.languages.Send;
+         this.Product_Informations=res.languages.Product_Informations;
+         this.Product_Bracelet_Type=res.languages.Product_Bracelet_Type;
+         this.Product_Size = res.languages.Product_Size;
+         this.Model_Year = res.languages.Model_Year;
+         this.movementss = res.languages.movement;
+         this.Date_of_Purchased = res.languages.Date_of_Purchased;
+         this.Status_of_watch=res.languages.Status_of_watch;
+         this.Product_Description=res.languages.Product_Description;
+         this.reference_noss = res.languages.reference_no;
+         this.Days_ago = res.languages.Days_ago;
+         this.no_records_found = res.languages.no_records_found;
+         this.show_interest = res.languages.show_interest;
+         this.Go_Live_Bidding=res.languages.Go_Live_Bidding;
+         this.contact_seller=res.languages.contact_seller;
+         this.Please_enter_your_password_below = res.languages.Please_enter_your_password_below;
+         this.Continue = res.languages.Continue;
+         
+         //this.Cancel= res.languages.Cancel;
+        }else{
+    
+         //loading.dismiss();
+        
+        }
+       },err=>{
+         //loading.dismiss();
+        
+      });
+    
+    }
 
 
 
@@ -211,6 +317,7 @@ export class DetailsPage {
         this.interest=this.productLists.interest;
         this.sliderimages=this.productLists.image;
         this.reviews=this.responseData.reviews;
+        
          //console.log('arunava',this.productLists)
 
 
@@ -363,7 +470,7 @@ gotobid(uid){
   }else{
 
   let alert = this.alertCtrl.create({
-    title: 'Enter password',
+    title: this.Please_enter_your_password_below,
     inputs: [
       
       {
@@ -374,14 +481,14 @@ gotobid(uid){
     ],
     buttons: [
       {
-        text: 'Cancel',
+        text: this.Cancel,
         role: 'cancel',
         handler: data => {
           console.log('Cancel clicked');
         }
       },
       {
-        text: 'Continue',
+        text: this.Continue,
         handler: data => {
           if (data.password) {
 

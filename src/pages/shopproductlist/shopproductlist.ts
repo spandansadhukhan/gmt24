@@ -22,6 +22,15 @@ export class ShopproductlistPage {
   selectedcurrency:any;
   mycurrency:any;
 
+
+  public language:any;
+  public selectedlanguage:any;
+  public languages:any;
+  public filters:any;
+  public no_records_found:any;
+  public seller:any;
+  
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
@@ -32,13 +41,56 @@ export class ShopproductlistPage {
       }else{
         this.mycurrency ='KWD';
       }
+
+      this.languages = JSON.parse(localStorage.getItem('language'));
+      //console.log('Arunavalang',this.languages)
+      if(this.languages){
+        this.selectedlanguage = this.languages.language;
+      }else{
+        this.selectedlanguage ='1';
+      }
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ShopproductlistPage');
     this.shop_id = this.navParams.get('shopid');
     this.shopproductList(this.shop_id);
+    this.ChangeToUserLaguage(this.selectedlanguage);
   }
+ChangeToUserLaguage(lang){
+    //alert(lang+'a')
+      let serval={
+        "language_id":lang,
+       };
+       let loading = this.loadingCtrl.create({
+        content: 'Please Wait...'
+      });
+      loading.present();
+   
+      
+      this.authService.changeLaguage(serval).subscribe(res=>{
+        
+        if(res.Ack==1){
+         loading.dismiss();
+        //console.log(res.languages)
+         console.log("splang",res.languages);
+         this.filters=res.languages.filters;
+         this.no_records_found=res.languages.no_records_found;
+         this.seller=res.languages.seller;
+         
+         
+         //this.Cancel= res.languages.Cancel;
+        }else{
+    
+         //loading.dismiss();
+        
+        }
+       },err=>{
+         //loading.dismiss();
+        
+      });
+    
+    }
 
   shopproductList(id){
 

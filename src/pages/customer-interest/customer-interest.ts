@@ -23,6 +23,15 @@ export class CustomerInterestPage {
   responseData:any;
   selectedcurrency:any;
   mycurrency:any;
+
+  public language:any;
+  public selectedlanguage:any;
+  public languages:any;
+  public interested_product_by_users;any;
+  public Remove:any;
+  public show_interest:any;
+  public no_records_found:any;
+ 
   
 
   constructor(public navCtrl: NavController, 
@@ -30,6 +39,15 @@ export class CustomerInterestPage {
     public authService:AuthServiceProvider, 
     public storage: Storage,
     public loadingCtrl: LoadingController,) {
+
+
+      this.languages = JSON.parse(localStorage.getItem('language'));
+    //console.log('Arunavalang',this.languages)
+    if(this.languages){
+      this.selectedlanguage = this.languages.language;
+    }else{
+      this.selectedlanguage ='1';
+    }
 
       this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
       if(this.selectedcurrency){
@@ -42,7 +60,52 @@ export class CustomerInterestPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CustomerInterestPage');
     this.interestlist();
+    this.ChangeToUserLaguage(this.selectedlanguage);
   }
+ChangeToUserLaguage(lang){
+    //alert(lang+'a')
+      let serval={
+        "language_id":lang,
+       };
+       let loading = this.loadingCtrl.create({
+        content: 'Please Wait...'
+      });
+      loading.present();
+      /*this.authService.postData(serval,'changeLaguage').then((result) => {
+        this.language = result.languages
+        console.log('language',this.language.languages.top_brands);
+        
+       
+      }, (err) => {
+        
+        console.log(err);
+        
+      });*/
+      
+      this.authService.changeLaguage(serval).subscribe(res=>{
+        
+        if(res.Ack==1){
+         loading.dismiss();
+        //console.log(res.languages)
+         console.log("splang",res.languages);
+         this.interested_product_by_users=res.languages.interested_product_by_users;
+         this.Remove=res.languages.Remove;
+         this.show_interest=res.languages.show_interest;
+         this.no_records_found = res.languages.no_records_found;
+         
+         
+         //this.Cancel= res.languages.Cancel;
+        }else{
+    
+         //loading.dismiss();
+        
+        }
+       },err=>{
+         //loading.dismiss();
+        
+      });
+    
+    }
 
 
   interestlist(){

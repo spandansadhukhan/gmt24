@@ -9,7 +9,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>{{this.homes}}</ion-title>
   </ion-navbar>
   <ion-searchbar  [(ngModel)]="keyword" (ngModelChange)="updateKeyword($event)"></ion-searchbar>
   <div class="search-list">
@@ -30,7 +30,7 @@
     </div>
     <img src="assets/img/banner1.png" alt="">
   </div>
-  <h6 class="text-uppercase">Top Brands</h6>
+  <h6 class="text-uppercase">{{this.top_brands}}</h6>
 <ion-slides class="top-sliderss" slidesPerView="2" loop="true">
   <ion-slide class="slide-holder brand-logo" *ngFor="let tb of brandlists">
     <div class="item-image" (click)="brandproduct(tb.brand_id)">
@@ -40,7 +40,7 @@
   </ion-slide>
 </ion-slides>
 
-  <h6 class="text-uppercase">category</h6>
+  <h6 class="text-uppercase">{{this.category}}</h6>
   <ion-slides pager slidesPerView="3">
     <ion-slide class="slide-holder" *ngFor="let topproduct of topproductlists">
       <div class="item-image" (click)="productdetails(topproduct.product_id)">
@@ -56,8 +56,8 @@
   <ion-slide class="sliding">
     <div class="slide">
       <div class="slide-text">
-        <h5 class="m-0">Special Auction</h5>
-        <a class="view-btn">View</a>
+        <h5 class="m-0">{{this.special_auction}}</h5>
+        <a class="view-btn">{{this.view}}</a>
       </div>
     <img src="assets/img/slide-img1.png" alt="">
     <h2></h2>
@@ -67,8 +67,8 @@
   <ion-slide>
       <div class="slide">
         <div class="slide-text">
-          <h5 class="m-0">Ladies watch</h5>
-          <a class="view-btn">View</a>
+          <h5 class="m-0">{{this.ladies_watch}}</h5>
+          <a class="view-btn">{{this.view}}</a>
         </div>
           <img src="assets/img/slide-img2.png" alt="">
           <h2></h2>
@@ -78,8 +78,8 @@
   <ion-slide >
       <div class="slide">
         <div class="slide-text">
-          <h5 class="m-0">Certified sellers</h5>
-          <a class="view-btn">View</a>
+          <h5 class="m-0">{{this.best_sellers}}</h5>
+          <a class="view-btn">{{this.view}}</a>
         </div>
           <img src="assets/img/slide-img3.png" alt="">
           <h2></h2>
@@ -89,8 +89,8 @@
   <ion-slide >
       <div class="slide">
         <div class="slide-text">
-          <h5 class="m-0">Top Products</h5>
-          <a class="view-btn">View</a>
+          <h5 class="m-0">{{this.top_products}}</h5>
+          <a class="view-btn">{{this.view}}</a>
         </div>
           <img src="assets/img/slide-img4.png" alt="">
           <h2></h2>

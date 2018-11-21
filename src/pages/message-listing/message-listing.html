@@ -7,7 +7,7 @@
 <ion-header>
 
     <ion-navbar>
-      <ion-title>MessageDetails</ion-title>
+      <ion-title>{{this.Message_listing}}</ion-title>
     </ion-navbar>
   
   </ion-header>
@@ -74,12 +74,12 @@
               <h2 style="font-weight: 700;"></h2>
               <ion-icon name="chatbubbles" (click)="messageDetails(item.to_id,item.from_id,item.product_id)"></ion-icon> 
           </div>
-          <h3>{{item.date_diff}} Days ago</h3>
+          <h3>{{item.date_diff}} {{this.Days_ago}}</h3>
         </ion-item>
 
         <ion-item class="request-item" *ngIf="messageList==''">
         
-          Sorry! No message found.
+          {{this.no_records_found}}
           </ion-item>
     </ion-list>
 

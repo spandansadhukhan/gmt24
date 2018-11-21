@@ -59,6 +59,32 @@ export class AddproductPage {
   isShow:boolean=false;
   curcode:any;
   curimg:any;
+
+  public language:any;
+  public selectedlanguage:any;
+  public languages:any;
+  public add_product:any;
+  public auction:any;
+  public Upload_Type:any;
+  public product:any;
+  public this_field_is_required:any;
+  public please_select:any;
+  public brands:any;
+  public other:any;
+  public category:any;
+  public other_brand_name:any;
+  public other_category_name:any;
+  public Bracelet_Type:any;
+  public Model_Year:any;
+  public Currency:any;
+  public Cancel:any;
+  public auction_date:any;
+  public auction_Timing:any;
+  public description:any;
+  public Price:any;
+  public next:any;
+  
+
   public _daysConfig: DayConfig[] = [];
       // for (let i = 0; i < 31; i++) {
       //   _daysConfig.push({
@@ -88,6 +114,14 @@ export class AddproductPage {
     private fb: FormBuilder,
     // private calendar: Calendar,
     ) {
+
+      this.languages = JSON.parse(localStorage.getItem('language'));
+    //console.log('Arunavalang',this.languages)
+    if(this.languages){
+      this.selectedlanguage = this.languages.language;
+    }else{
+      this.selectedlanguage ='1';
+    }
 
       this._daysConfig;
       for (let i = 0; i < 31; i++) {
@@ -164,10 +198,68 @@ export class AddproductPage {
     this.brandList();
     this.yearList();
     this.braceletList()
-    
+    this.ChangeToUserLaguage(this.selectedlanguage);
   }
 
-
+  ChangeToUserLaguage(lang){
+    //alert(lang+'a')
+      let serval={
+        "language_id":lang,
+       };
+       let loading = this.loadingCtrl.create({
+        content: 'Please Wait...'
+      });
+      loading.present();
+      /*this.authService.postData(serval,'changeLaguage').then((result) => {
+        this.language = result.languages
+        console.log('language',this.language.languages.top_brands);
+        
+       
+      }, (err) => {
+        
+        console.log(err);
+        
+      });*/
+      
+      this.authService.changeLaguage(serval).subscribe(res=>{
+        
+        if(res.Ack==1){
+         loading.dismiss();
+        //console.log(res.languages)
+         console.log("splang",res.languages);
+         this.add_product=res.languages.add_product;
+         this.auction=res.languages.auction;
+         this.Upload_Type=res.languages.Upload_Type;
+         this.product = res.languages.product;
+         this.this_field_is_required= res.languages.this_field_is_required;
+         this.please_select = res.languages.please_select;
+         this.brands = res.languages.brands;
+         this.other = res.languages.other;
+         this.category = res.languages.category;
+         this.other_brand_name = res.languages.other_brand_name;
+         this.other_category_name= res.languages.other_category_name;
+         this.Bracelet_Type = res.languages.Bracelet_Type;
+         this.Model_Year = res.languages.Model_Year;
+         this.Currency = res.languages.Currency;
+         this.Cancel = res.languages.Cancel;
+         this.auction_date= res.languages.auction_date;
+         this.auction_Timing = res.languages.auction_Timing;
+         this.description = res.languages.description;
+         this.Price = res.languages.Price;
+         this.next = res.languages.next;
+         
+         //this.Cancel= res.languages.Cancel;
+        }else{
+    
+         //loading.dismiss();
+        
+        }
+       },err=>{
+         //loading.dismiss();
+        
+      });
+    
+    }
 
 
   uploadtype(typeid){

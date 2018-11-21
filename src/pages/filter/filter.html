@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Filters</ion-title>
+    <ion-title>{{this.filter}}</ion-title>
     <!-- <ion-buttons end>
       <button ion-button>Clear</button>
     </ion-buttons> -->
@@ -19,7 +19,7 @@
 <ion-content padding>
   
   <div class="check-custom">
-    <h6 (click)="toggle()">Brands</h6>
+    <h6 (click)="toggle()">{{this.brands}}</h6>
     <ion-list *ngIf="!show" class="accordion-list">
         <ion-item class="check-item" *ngFor="let b of brandlists;let i = index" >
             <ion-label>{{b.name}}</ion-label>
@@ -34,7 +34,7 @@
 </div>
 
 <div class="check-custom">
-  <h6 (click)="toggle()">Category</h6>
+  <h6 (click)="toggle()">{{this.category}}</h6>
   <ion-list *ngIf="!show" class="accordion-list">
       <ion-item class="check-item" *ngFor="let sc of subcategorylist">
           <ion-label>{{sc.name}}</ion-label>
@@ -46,14 +46,14 @@
 
 
 <ion-item class="item-custom">
-  <ion-label>Locations</ion-label>
+  <ion-label>{{this.location}}</ion-label>
   <ion-select [(ngModel)]="location" (ionChange)="liststate($event)">
     <ion-option value="{{c.id}}" *ngFor="let c of countrylists">{{c.name}}</ion-option>
   </ion-select>
 </ion-item>
 
 <ion-item class="item-custom">
-  <ion-label>Governorate</ion-label>
+  <ion-label>{{this.state}}</ion-label>
   <ion-select (ionChange)="onstateset($event)">
     <ion-option value="{{s.id}}" *ngFor="let s of statelists">{{s.name}}</ion-option>
   </ion-select>
@@ -61,16 +61,16 @@
 
 
 <ion-item class="item-custom">
-  <ion-label>Gender</ion-label>
+  <ion-label>{{this.gender}}</ion-label>
   <ion-select (ionChange)="ongenderset($event)">
-    <ion-option value="Male">Male</ion-option>
-    <ion-option value="Female">Female</ion-option>
-    <ion-option value="Unisex">Unisex</ion-option>
+    <ion-option value="Male">{{this.male}}</ion-option>
+    <ion-option value="Female">{{this.female}}</ion-option>
+    <ion-option value="Unisex">{{this.unisex}}</ion-option>
   </ion-select>
 </ion-item>
 
 <ion-item>
-    <ion-label>Price</ion-label>
+    <ion-label>{{this.price}}</ion-label>
   <ion-range  dualKnobs="true" pin="true" min="{{minprice}}" max="{{maxprice}}" step="3" [(ngModel)]="minValue" (ionChange)="priceslider($event)">
     <ion-icon range-left>Min <span>{{minprice}}</span></ion-icon>
     <ion-icon range-right>Max <span>{{maxprice}}</span></ion-icon>	
@@ -78,14 +78,14 @@
 </ion-item>
   
 <ion-item class="item-custom">
-  <ion-label>Bracelet</ion-label>
+  <ion-label>{{this.Bracelet_Type}}</ion-label>
   <ion-select (ionChange)="onbraceletset($event)">
     <ion-option value="{{b.id}}" *ngFor="let b of braceletlists">{{b.type}}</ion-option>
   </ion-select>
 </ion-item>
    
 <ion-item class="item-custom">
-  <ion-label>Model Year</ion-label>
+  <ion-label>{{this.Model_Year}}</ion-label>
   <ion-select (ionChange)="onyearset($event)">
     <ion-option value="{{year}}" *ngFor="let year of years">{{year}}</ion-option>
   </ion-select>
@@ -93,7 +93,7 @@
  
 
 <div class="check-custom">
-  <h6 (click)="toggle1()">Movement</h6>
+  <h6 (click)="toggle1()">{{this.movement}}</h6>
   <ion-list *ngIf="!movementshow" class="accordion-list">
       <ion-item class="check-item" *ngFor="let m of movementlists">
           <ion-label>{{m.name}}</ion-label>
@@ -104,7 +104,7 @@
   
 
 <ion-item>
-  <ion-label>Size</ion-label>
+  <ion-label>{{this.size}}</ion-label>
 <ion-range  dualKnobs="true" pin="true" step="3" [(ngModel)]="minSize" (ionChange)="onsizeslider($event)">
   <ion-icon range-left>Min <span>0</span></ion-icon>
   <ion-icon range-right>Max <span>100</span></ion-icon>	
@@ -113,7 +113,7 @@
 
 
 <div class="check-custom">
-  <h6 (click)="toggle2()">Sellers</h6>
+  <h6 (click)="toggle2()">{{this.seller}}</h6>
   <ion-list *ngIf="!sellershow" class="accordion-list">
       <ion-item class="check-item" *ngFor="let sw of shopOwners">
           <ion-label>{{sw.name}}</ion-label>
@@ -125,7 +125,7 @@
 
 
 <div class="check-custom">
-  <h6 (click)="toggle3()">Status Watch</h6>
+  <h6 (click)="toggle3()">{{this.Status_of_watch}}</h6>
   <ion-list *ngIf="!statusshow" class="accordion-list">
       <ion-item class="check-item" *ngFor="let st of statuslists">
           <ion-label>{{st.name}}</ion-label>
@@ -134,7 +134,7 @@
   </ion-list>
 </div>           
 
-<button ion-button round class="dark-grey-btn" (click)="onSave()">Save</button>
+<button ion-button round class="dark-grey-btn" (click)="onSave()">{{this.save}}</button>
          
           
 </ion-content>

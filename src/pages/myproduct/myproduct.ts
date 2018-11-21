@@ -26,6 +26,20 @@ export class MyproductPage {
   public selectedcurrency:any;
   public mycurrency:any;
 
+  public language:any;
+  public selectedlanguage:any;
+  public languages:any;
+  public my_product:any;
+  public Awaiting_Admin_Approval:any;
+  public pay_now:any;
+  public mark_as_top:any;
+  public Save_Changes:any;
+  public mark_as_sold:any;
+  public sold:any;
+  public delete:any;
+  public send_for_auction:any;
+  public Expired_On:any;
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public authService: AuthServiceProvider,
@@ -33,6 +47,14 @@ export class MyproductPage {
     public loadingCtrl: LoadingController,
     public myApp:MyApp,
     public alertCtrl: AlertController) {
+
+      this.languages = JSON.parse(localStorage.getItem('language'));
+      //console.log('Arunavalang',this.languages)
+      if(this.languages){
+        this.selectedlanguage = this.languages.language;
+      }else{
+        this.selectedlanguage ='1';
+      }
 
       this.loguser = JSON.parse(localStorage.getItem('userData'));
       this.utype=this.loguser.user_type;
@@ -48,10 +70,60 @@ export class MyproductPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyproductPage');
+    this.ChangeToUserLaguage(this.selectedlanguage);  
     this.myproductList();
     
   }
+  ChangeToUserLaguage(lang){
+    //alert(lang+'a')
+      let serval={
+        "language_id":lang,
+       };
+       let loading = this.loadingCtrl.create({
+        content: 'Please Wait...'
+      });
+      loading.present();
+      /*this.authService.postData(serval,'changeLaguage').then((result) => {
+        this.language = result.languages
+        console.log('language',this.language.languages.top_brands);
+        
+       
+      }, (err) => {
+        
+        console.log(err);
+        
+      });*/
+      
+      this.authService.changeLaguage(serval).subscribe(res=>{
+        
+        if(res.Ack==1){
+         loading.dismiss();
+        //console.log(res.languages)
+         console.log("splang",res.languages);
+         this.my_product=res.languages.my_product;
+         this.Awaiting_Admin_Approval=res.languages.Awaiting_Admin_Approval;
+         this.pay_now=res.languages.pay_now;
+         this.mark_as_top = res.languages.mark_as_top;
+         this.Save_Changes = res.languages.Save_Changes;
+         this.mark_as_sold = res.languages.mark_as_sold;
+         this.sold = res.languages.sold;
 
+         this.delete = res.languages.delete;
+         this.send_for_auction = res.languages.send_for_auction;
+         this.Expired_On= res.languages.Expired_On;
+         
+         //this.Cancel= res.languages.Cancel;
+        }else{
+    
+         //loading.dismiss();
+        
+        }
+       },err=>{
+         //loading.dismiss();
+        
+      });
+    
+    }
   myproductList(){
 
     let loading = this.loadingCtrl.create({

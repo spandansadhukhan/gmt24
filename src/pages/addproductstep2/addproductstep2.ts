@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,LoadingController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { Storage } from '@ionic/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -32,13 +32,52 @@ export class Addproductstep2Page {
   simg:any;
   sname:any;
 
+  public language:any;
+  public selectedlanguage:any;
+  public languages:any;
+
+  public add_product:any;
+  public auction:any;
+  public Upload_Type:any;
+  public product:any;
+  public this_field_is_required:any;
+  public countries:any;
+  public Owner_Number:any;
+
+  public status_of_the_watch:any;
+  public date_of_purchased:any;
+  public reference_code:any;
+  public gender:any;
+  public unisex:any;
+  public female:any;
+  public male:any;
+  public please_choose_a_state:any;
+  public Currency:any;
+  public Cancel:any;
+  public please_choose_a_country:any;
+  public please_choose_your_gender:any;
+  public movement:any;
+  public state:any;
+  public Status:any;
+  public next:any;
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public authService: AuthServiceProvider,
     private storage: Storage,
+    public loadingCtrl: LoadingController,
     private builder: FormBuilder,
     private fb: FormBuilder,
     public alertCtrl: AlertController) {
+
+      this.languages = JSON.parse(localStorage.getItem('language'));
+    //console.log('Arunavalang',this.languages)
+    if(this.languages){
+      this.selectedlanguage = this.languages.language;
+    }else{
+      this.selectedlanguage ='1';
+    }
+
 
       this.pForm = fb.group({
         'movement': [null, Validators.required],
@@ -72,13 +111,75 @@ export class Addproductstep2Page {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Addproductstep2Page');
+    this.ChangeToUserLaguage(this.selectedlanguage);
     this.countryList();
     this.statusList();
     this.movementList();
     //this.loguser =  JSON.parse(localStorage.getItem('productData'));
    // alert(this.loguser.price);
   }
-
+  ChangeToUserLaguage(lang){
+    //alert(lang+'a')
+      let serval={
+        "language_id":lang,
+       };
+       let loading = this.loadingCtrl.create({
+        content: 'Please Wait...'
+      });
+      loading.present();
+      /*this.authService.postData(serval,'changeLaguage').then((result) => {
+        this.language = result.languages
+        console.log('language',this.language.languages.top_brands);
+        
+       
+      }, (err) => {
+        
+        console.log(err);
+        
+      });*/
+      
+      this.authService.changeLaguage(serval).subscribe(res=>{
+        
+        if(res.Ack==1){
+         loading.dismiss();
+        //console.log(res.languages)
+         console.log("splang",res.languages);
+         this.add_product=res.languages.add_product;
+         this.auction=res.languages.auction;
+         this.Upload_Type=res.languages.Upload_Type;
+         this.product = res.languages.product;
+         this.countries =  res.languages.country;
+         this.Status= res.languages.Status ;
+         this.this_field_is_required= res.languages.this_field_is_required;
+         this.status_of_the_watch = res.languages.status_of_the_watch;
+         this.date_of_purchased = res.languages.date_of_purchased;
+         this.reference_code = res.languages.reference_code;
+         this.gender = res.languages.gender;
+         this.female = res.languages.female;
+         this.unisex= res.languages.unisex;
+         this.male = res.languages.male;
+         this.please_choose_a_state = res.languages.please_choose_a_state;
+         this.Currency = res.languages.Currency;
+         this.Cancel = res.languages.Cancel;
+         this.please_choose_a_country= res.languages.please_choose_a_country;
+         this.please_choose_your_gender = res.languages.please_choose_your_gender;
+         this.movement = res.languages.movement;
+         this.state = res.languages.state;
+         this.Owner_Number = res.languages.Owner_Number;
+         this.next = res.languages.next;
+         
+         //this.Cancel= res.languages.Cancel;
+        }else{
+    
+         //loading.dismiss();
+        
+        }
+       },err=>{
+         //loading.dismiss();
+        
+      });
+    
+    }
 
   countryList(){
    

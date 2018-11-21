@@ -52,6 +52,13 @@ export class AuthServiceProvider {
     });
   }
 
+  changeLaguage(data:object):Observable<any>{
+    //console.log(data);
+    return this.http.post(this.apiUrl +'changeLaguage',data).map((res:Response)=>{
+      return res.json();
+    });
+  }
+
   countrylist(data:object):Observable<any>{
     //console.log(data);
     return this.http.post(this.apiUrl +'listcountry',data).map((res:Response)=>{

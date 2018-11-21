@@ -21,12 +21,35 @@ export class ListOrderBuyerPage {
   id: any;
   selectedcurrency:any;
   mycurrency:any;
+
+  public language:any;
+  public selectedlanguage:any;
+  public languages:any;
+  public purchase_won_auction_lists;any;
+  public product:any;
+  public Total_Amount:any;
+  public auction_date:any;
+  public status:any;
+  public view:any;
+  public Purchased:any;
+
+  public Pay:any;
+  public no_records_found:any;
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
   public storage: Storage,
   public authService: AuthServiceProvider,
   public loadingCtrl: LoadingController,
 ) {
+  this.languages = JSON.parse(localStorage.getItem('language'));
+  //console.log('Arunavalang',this.languages)
+  if(this.languages){
+    this.selectedlanguage = this.languages.language;
+  }else{
+    this.selectedlanguage ='1';
+  }
+
   this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
   if(this.selectedcurrency){
     this.mycurrency = this.selectedcurrency.selectedcurrency;
@@ -38,7 +61,56 @@ export class ListOrderBuyerPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListOrderBuyerPage');
     this.Listwinauction();
+    this.ChangeToUserLaguage(this.selectedlanguage);
   }
+ChangeToUserLaguage(lang){ 
+    //alert(lang+'a')
+      let serval={
+        "language_id":lang,
+       };
+       let loading = this.loadingCtrl.create({
+        content: 'Please Wait...'
+      });
+      loading.present();
+      /*this.authService.postData(serval,'changeLaguage').then((result) => {
+        this.language = result.languages
+        console.log('language',this.language.languages.top_brands);
+        
+       
+      }, (err) => {
+        
+        console.log(err);
+        
+      });*/
+      
+      this.authService.changeLaguage(serval).subscribe(res=>{
+        
+        if(res.Ack==1){
+         loading.dismiss();
+        //console.log(res.languages)
+         console.log("splang",res.languages);
+         this.purchase_won_auction_lists=res.languages.purchase_won_auction_lists;
+         this.product=res.languages.product;
+         this.Total_Amount=res.languages.Total_Amount;
+         this.auction_date = res.languages.auction_date;
+         this.status = res.languages.status;
+         this.view = res.languages.view;
+         this.Purchased = res.languages.Purchased;
+         this.Pay = res.languages.Pay;
+         this.no_records_found = res.languages.no_records_found;
+         
+         //this.Cancel= res.languages.Cancel;
+        }else{
+    
+         //loading.dismiss();
+        
+        }
+       },err=>{
+         //loading.dismiss();
+        
+      });
+    
+    }
 
   Listwinauction(){
 

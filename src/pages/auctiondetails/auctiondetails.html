@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Auction Details</ion-title>
+    <ion-title>{{this.Auction_Details}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -32,17 +32,17 @@
             </ion-col>
           </ion-row>
           <div *ngIf="user_id==seller_id">
-          <h5 class="date"><b>Auction Date:</b> {{start_time}}</h5>
-          <h5 class="date"><b>Auction Status:</b> Pending</h5>
+          <h5 class="date"><b>{{this.auction_date}}:</b> {{start_time}}</h5>
+          <h5 class="date"><b>{{this.Auction_Status}}:</b> {{this.Auction_Details}}Pending</h5>
           <p>{{description}}</p>
-          <h5>Time Remaining</h5>
+          <h5>{{this.time_remaining}}</h5>
           <h3>10h:05m:11s</h3>
           </div>
 
           <div *ngIf="user_id!=seller_id">
-            <h5 class="date"><b>Product Description:</b> {{description}}</h5>
-            <h5 class="date"><b>Bracelet Type:</b> {{breslet_type}}</h5>
-            <h5 class="date"><b>Product Size:</b> {{size}}</h5>
+            <h5 class="date"><b>{{this.Product_Description}}:</b> {{description}}</h5>
+            <h5 class="date"><b>{{this.Product_Bracelet_Type}}:</b> {{breslet_type}}</h5>
+            <h5 class="date"><b>{{this.Product_Size}}:</b> {{size}}</h5>
             
             <p></p>
             
@@ -51,9 +51,9 @@
 
 
           <div class="seller-details" *ngIf="user_id!=seller_id">
-            <h5>Seller Info:</h5>
-            <p>Name: {{seller_name}}</p>
-            <p>Phone No: {{seller_phone}}</p>
+            <h5>{{this.Seller_Info}}:</h5>
+            <p>{{this.Name}}: {{seller_name}}</p>
+            <p>{{this.phone}}: {{seller_phone}}</p>
           </div>
           <button ion-button block small round  class="grey-btn" *ngIf="user_id==seller_id" (click)="show()">Check Bidding Details</button>
         </div>
@@ -64,8 +64,8 @@
     <div class="bidding-popup">
         <ul>
             <li>
-                <h4>Bidder Name</h4>
-                <h4>Bid Price</h4>
+                <h4>{{this.Bidder_Name}}</h4>
+                <h4>{{this.Bid_Price}}</h4>
               </li>
             <li *ngFor="let bid of bidhistory">
               <h6>{{bid.name}}</h6>
@@ -73,6 +73,6 @@
             </li>
             
           </ul>
-          <button ion-button small round color="light" (click)='hide()'>Cancel</button>
+          <button ion-button small round color="light" (click)='hide()'>{{this.Cancel}}</button>
     </div>
   </div>
