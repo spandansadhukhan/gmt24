@@ -1,0 +1,59 @@
+<!--
+  Generated template for the CusdetailtsforpaymentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Customer Detailts</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <form [formGroup]="customerForm">
+    <ion-list no-lines>
+      
+      <ion-item>
+        <ion-label stacked color="primary">Name</ion-label>
+        <ion-input type="text"  placeholder="Enter Name here" formControlName="name" required>
+        </ion-input>
+      </ion-item>
+    <p *ngIf="!customerForm.controls['name'].valid && customerForm.controls['name'].touched" ion-text color="danger" padding-left>
+  Name is required </p>
+  
+      <ion-item>
+        <ion-label stacked color="primary">Email</ion-label>
+        <ion-input  type="text" placeholder="Enter email here" formControlName="email" required>
+        </ion-input>
+      </ion-item>
+      <p *ngIf="!customerForm.controls['email'].valid && customerForm.controls['email'].touched" ion-text color="danger" padding-left>
+        Email is required </p>
+
+      <ion-item>
+        <ion-label stacked color="primary">Phone</ion-label>
+        <ion-input  type="text" placeholder="Enter phone here" formControlName="phone" required>
+        </ion-input>
+      </ion-item>
+      <p *ngIf="!customerForm.controls['phone'].valid && customerForm.controls['phone'].touched" ion-text color="danger" padding-left>
+        Phone is required </p>
+
+      <ion-item>
+        <ion-label stacked color="primary" *ngIf="price!=''">Pay Amount: {{price}}</ion-label>
+        <ion-label stacked color="primary" *ngIf="price==''">Pay Amount: 0</ion-label>
+      </ion-item>
+
+
+
+      <div padding class="p-b-5">
+        <button ion-button round class="blue-btn" [disabled]="" (click)="submit(customerForm.value)"  type="submit" block>Proceed</button>
+      </div>
+  
+  
+    </ion-list>
+  
+  </form>
+</ion-content>

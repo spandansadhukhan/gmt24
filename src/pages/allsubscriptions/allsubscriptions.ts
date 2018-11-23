@@ -89,6 +89,10 @@ console.log('dgdfg',this.loguser);
   
 }
 
+purchase(id){
 
+this.navCtrl.push('CusdetailtsforpaymentPage',{'pid':id});
+
+}
 
 }

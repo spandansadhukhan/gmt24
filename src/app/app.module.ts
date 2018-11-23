@@ -18,6 +18,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { CalendarModule } from "ion2-calendar";
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
     StatusBar,
     AuthServiceProvider,
     SplashScreen,
+    InAppBrowser,
     GoogleMaps,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
