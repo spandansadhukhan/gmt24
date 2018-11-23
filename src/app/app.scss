@@ -27,8 +27,8 @@
       @content;
     }
   }
-  
-  
+
+
   // Name of the next breakpoint, or null for the last breakpoint.
   //
   //    >> breakpoint-next(sm)
@@ -41,8 +41,8 @@
     $n: index($breakpoint-names, $name);
     @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
   }
-  
-  
+
+
   // Maximum breakpoint width. Null for the largest (last) breakpoint.
   // The maximum value is calculated as the minimum of the next one less 0.1.
   //
@@ -52,32 +52,32 @@
     $next: breakpoint-next($name, $breakpoints);
     @return if($next, breakpoint-min($next, $breakpoints) - 1px, null);
   }
-  
-  
+
+
   // Creates text alignment classes based on screen size
   // TODO this would be nice to add to the framework
   @each $breakpoint in map-keys($grid-breakpoints) {
     $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
-  
+
     @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
       // Provide text `[text-{bp}]` attributes for aligning text based on screen size
       [text#{$infix}-center] {
         text-align: center;
       }
-  
+
       [text#{$infix}-left] {
         text-align: left;
       }
-  
+
       [text#{$infix}-right] {
         text-align: right;
       }
-  
+
       [hidden#{$infix}-up] {
         display: none;
       }
     }
-  
+
     @include media-breakpoint-down($breakpoint, $grid-breakpoints) {
       [hidden#{$infix}-down] {
         display: none;
@@ -93,13 +93,13 @@
 	.button-ios{text-transform: none;height:2.8em; font-family: 'Poppins', sans-serif; font-size:1.6rem}
 	.item-md,.item-ios{font-size:1.6rem}
 	ion-content.dark-bg.content {background-color:#3f475f !important}
-	
+
   h6 {font-size: 1.4rem;}
-  
+
   .text-center{text-align: center !important}
   .text-right{text-align: right !important}
   .text-uppercase{text-transform: uppercase}
-	
+
   .side-bar-header{padding:33px 50px; background: url('../assets/img/left-panel-bg.jpg') no-repeat top center; background-size: cover;
     ion-thumbnail img{border-radius: 100%;width:70px !important;height:70px!important;}
     .item-inner{border-bottom:0 !important}
@@ -132,7 +132,7 @@
 	.m-b-10{margin-bottom: 10px !important;}
 	.m-b-20{margin-bottom: 20px !important;}
 	.w-100{width:100% !important;}
-  
+
  	ion-header .toolbar-background{ background-color: #000;}
  	ion-footer .toolbar-background{ background-color: #fff;}
  	ion-footer .toolbar-content .col{padding: 0px;}
@@ -217,7 +217,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5a2626', end
 .menu-bg .content{
   background-color: transparent !important;
 }
-
+.menu-bg .content-ios{
+  background-color: transparent !important;
+}
 .sidepanel-list ion-item{
   color: #000;
 }
