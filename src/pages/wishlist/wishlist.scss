@@ -1,10 +1,13 @@
 page-wishlist {
-    
-    .content { background: #1b1b1b !important;}
+
+    .content { background: #e5e5e5!important;}
     .scroll-content{padding: 10px !important}
-    .item.request-item {align-items: flex-start; border-radius: 2px; margin-bottom: 10px; background: #000000; border:2px solid #2e2e2e}
-    .item.request-item h2{font-size: 1.4rem; color:#fff;}
-    .item.request-item .price{font-size: 1.5rem; color:#fff}
+    .item.request-item {align-items: flex-start; border-radius: 2px; margin-bottom: 10px;
+      // background: #000000;
+      // border:2px solid #2e2e2e
+    }
+    .item.request-item h2{font-size: 1.4rem; color:#000;}
+    .item.request-item .price{font-size: 1.5rem; color:#000}
     .item.request-item .price span{color:#999; font-weight: 600}
     .item.request-item .info{font-size: 1.2rem; color:#999; white-space: normal; text-overflow: clip}
     .item.request-item ion-thumbnail{min-width: 60px}
@@ -17,6 +20,6 @@ page-wishlist {
     .item.request-item .item-inner{border-bottom:0}
     .product-bt{
         display: flex;
-        flex-wrap: wrap;   
+        flex-wrap: wrap;
     }
 }
