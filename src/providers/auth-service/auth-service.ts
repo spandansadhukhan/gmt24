@@ -199,6 +199,21 @@ export class AuthServiceProvider {
   }
   
 
+  UserSubscriptionpayment(data: object): Observable<any> {
+    
+    let requestchangeoptions = new RequestOptions({
+      method: RequestMethod.Post,
+      url: this.apiUrl + 'UserSubscriptionpayment',
+      body: JSON.stringify(data)
+    });
+    return this.http.request(new Request(requestchangeoptions))
+      .map((res: Response) => {
+        if (res) {
+          return res.json();
+        }
+      });
+  }
+
   sendauctionadd(data: object): Observable<any> {
     
     let requestchangeoptions = new RequestOptions({

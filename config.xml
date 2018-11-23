@@ -99,4 +99,5 @@
     <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" spec="^4.2.2">
         <variable name="OKHTTP_VERSION" value="3.+" />
     </plugin>
+    <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
 </widget>

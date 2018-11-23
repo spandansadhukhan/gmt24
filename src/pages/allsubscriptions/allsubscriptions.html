@@ -27,7 +27,7 @@
         <p class="price">
           <span>{{p.prefered_currency}}</span> {{p.price}}</p>
         
-        <button ion-button round class="dark-grey-btn">Purchase</button>
+        <button ion-button round class="dark-grey-btn" (click)="purchase(p.id)">Purchase</button>
       </ion-item>
   
       <ion-item *ngIf="productlists== ''"> 
