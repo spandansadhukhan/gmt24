@@ -56,7 +56,7 @@ export class MyauctionPage {
         this.mycurrency = this.selectedcurrency.selectedcurrency;
       }else{
         this.mycurrency ='KWD';
-      }
+      } 
 
       this.languages = JSON.parse(localStorage.getItem('language'));
     //console.log('Arunavalang',this.languages)
@@ -70,6 +70,7 @@ export class MyauctionPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyauctionPage');
     this.ChangeToUserLaguage(this.selectedlanguage);
+    this.myproductList();
   }
 ChangeToUserLaguage(lang){
     //alert(lang+'a')
@@ -241,5 +242,12 @@ ChangeToUserLaguage(lang){
   {
   this.navCtrl.push('AuctiondetailsPage',{"product_id":pid});
   }
+  
+
+  pay(pid)
+  {
+  this.navCtrl.push('CusdetailsauctionuploadPage',{"pid":pid});
+  }
+
 
 }

@@ -85,6 +85,12 @@ export class SubscribedlistPage {
   
 }
 
+purchase(id){
+
+  this.navCtrl.push('CusdetailtsforpaymentPage',{'pid':id});
+  
+  }
+
 
 
 }

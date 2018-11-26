@@ -31,13 +31,13 @@
       <button ion-button round class="brown-btn" (click)="deleteproduct(p.id)">{{this.delete}}</button>
       <button ion-button round class="dark-grey-btn" *ngIf="p.product_status== 0" (click)="marksoldproduct(p.id)">{{this.mark_as_sold}}</button>
       <button ion-button round class="dark-grey-btn" *ngIf="p.product_status== 1" disabled>{{this.sold}}</button>
-      <button ion-button round class="dark-grey-btn" *ngIf="p.top_product== 0 && p.product_status== 0">{{this.mark_as_top}}</button>
+      <button ion-button round class="dark-grey-btn" *ngIf="p.top_product== 0 && p.product_status== 0" (click)="paytop(p.id)">{{this.mark_as_top}}</button>
     </div>
       <div *ngIf="p.approved==0">
         <button ion-button round class="dark-grey-btn" disabled>{{this.Awaiting_Admin_Approval}}</button>
       </div>
       <div *ngIf="p.approved==1 && p.live_status==0 && utype==1">
-        <button ion-button round class="blue-btn ml-0">{{this.pay_now}}</button>
+        <button ion-button round class="blue-btn ml-0" (click)="pay(p.id)">{{this.pay_now}}</button>
       </div>
     </ion-item>
 

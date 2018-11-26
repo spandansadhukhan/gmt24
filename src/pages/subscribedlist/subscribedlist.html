@@ -36,7 +36,7 @@
               <span>Expiry Date:</span> {{p.expiry_date}}</p>
          
          
-         <button ion-button round class="dark-grey-btn">Renew</button>
+         <button ion-button round class="dark-grey-btn" (click)="purchase(p.id)">Renew</button>
        </ion-item>
    
        <ion-item *ngIf="productlists== ''"> 
