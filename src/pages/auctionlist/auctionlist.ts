@@ -21,6 +21,7 @@ export class AuctionlistPage {
   loguser:any;
   selectedcurrency :any;
   mycurrency:any;
+  is_special_auction:any;
 
   public language:any;
   public selectedlanguage:any;
