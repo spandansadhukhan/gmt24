@@ -16,9 +16,11 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 })
 export class AllshoplistPage {
 
-  responseData:any;
-  shoplists:any;
-  loguser:any;
+  public responseData:any;
+  public shoplists:any;
+  public loguser:any;
+  public top_user_vendor:any;
+  public is_top:any;
   
   public language:any;
   public selectedlanguage:any;
@@ -87,10 +89,18 @@ ChangeToUserLaguage(lang){
       content: 'Please Wait...'
     });
     loading.present();
-    this.loguser =  JSON.parse(localStorage.getItem('userData'));
-    //console.log('sp',this.loguser);
+    this.loguser =  JSON.parse(localStorage.getItem('userData'));    
+    this.top_user_vendor =  JSON.parse(localStorage.getItem('top_user_vendor'));
+    if(this.top_user_vendor){
+      this.is_top=1;
+    }else{
+      this.is_top=0;
+    }
+    //alert(this.top_user_vendor);
+    console.log('sp',this.top_user_vendor);
     let serval={
-      "user_id":this.loguser.user_id
+      "user_id":this.loguser.user_id,
+      "top_user_vendor":this.is_top, 
     }
     
     this.authService.postData(serval,'allShopListing').then((result) => {
@@ -122,7 +132,11 @@ productlist(id){
 this.navCtrl.push('ShopproductlistPage',{"shopid":id});
   
 }
+ionViewWillLeave(){
 
+  localStorage.removeItem('top_user_vendor');
+  //this.top_user_vendor.top_user_vendor = 0;
+}
 
 
 }

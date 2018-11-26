@@ -205,5 +205,28 @@ ChangeToUserLaguage(lang){
   });
 
 }
+//Arunava
+topuservendor() {
 
+  localStorage.setItem('top_user_vendor', JSON.stringify({"top_user_vendor":'1'}));
+  this.navCtrl.push('AllshoplistPage');
+}
+
+spcealauction() {
+//alert();
+  localStorage.setItem('is_special_auction', JSON.stringify({"is_special_auction":'1'}));
+  this.navCtrl.push('AuctionlistPage');
+}
+
+ladieswatch() {
+ // alert();
+     localStorage.setItem('gender', JSON.stringify({"gender":'Female'}));
+     this.navCtrl.push('SearchPage');
+  }
+
+  topproduct() {
+    // alert();
+        localStorage.setItem('top_prodct', JSON.stringify({"gender":'top_prodct'}));
+        this.navCtrl.push('SearchPage');
+     }
 }
