@@ -45,6 +45,9 @@ export class SearchPage {
   public filters:any;
   public no_records_found:any;
   public seller:any;
+  public gender:any;
+  public is_top_pro:any;
+  public top_prodct:any;
  
 
 
@@ -156,6 +159,17 @@ ChangeToUserLaguage(lang){
       content: 'Please Wait...'
     });
     loading.present();
+    this.gender =  JSON.parse(localStorage.getItem('gender'));
+    if(this.gender){
+      this.genderid=this.gender;
+    }
+
+    this.top_prodct =  JSON.parse(localStorage.getItem('top_prodct'));
+    if(this.top_prodct){
+      this.is_top_pro=1;
+    }else{
+      this.is_top_pro=0;
+    }
    // this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
     let serval={
       "amount_max": this.maxprice,
@@ -174,6 +188,7 @@ ChangeToUserLaguage(lang){
       "statuslist":this.statusid,
       "year":this.yearid,
       "currency":this.mycurrency,
+      "top_product":this.is_top_pro,
       
     }
     
@@ -283,6 +298,10 @@ productdetails(product_id){
   }
 
 
+  ionViewWillLeave(){
 
+    localStorage.removeItem('top_prodct');
+    //this.top_user_vendor.top_user_vendor = 0;
+  }
 
 }

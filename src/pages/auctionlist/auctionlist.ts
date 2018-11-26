@@ -29,6 +29,7 @@ export class AuctionlistPage {
   public no_records_found:any;
   public filters:any;
   public seller:any
+  public is_special:any;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -103,9 +104,16 @@ export class AuctionlistPage {
     this.loguser =  JSON.parse(localStorage.getItem('userData'));
     //this.selectedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'));
     //console.log('sp',this.loguser);
+    this.is_special_auction =  JSON.parse(localStorage.getItem('is_special_auction'));
+    if(this.is_special_auction){
+      this.is_special=1;
+    }else{
+      this.is_special=0;
+    }
     let serval={
       "user_id":this.loguser.user_id,
       "currency":this.mycurrency,
+      "is_special_auction":this.is_special,
     }
     
     this.authService.postData(serval,'auctionListSearch').then((result) => {
@@ -144,4 +152,10 @@ productdetails(product_id){
 
   }
 
+  //Arunava
+  ionViewWillLeave(){
+
+    localStorage.removeItem('is_special_auction');
+    //this.top_user_vendor.top_user_vendor = 0;
+  }
 }
