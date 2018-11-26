@@ -1,5 +1,5 @@
 <!--
-  Generated template for the CusdetailtsforpaymentPage page.
+  Generated template for the CusdetailsproductuploadPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -17,6 +17,15 @@
   <form [formGroup]="customerForm">
     <ion-list no-lines>
       
+
+      <ion-item>
+        <ion-label stacked color="primary">Select Package*</ion-label>
+        <ion-select class="custom-select"  (ionChange)="selectpackage($event)" formControlName="sid">
+        <ion-option value="" selected>please select</ion-option>
+        <ion-option value="{{s.id}}" *ngFor="let s of packagedetails">KWD {{s.price}} (For {{s.duration}} Days)</ion-option>
+        </ion-select>
+    </ion-item>
+
       <ion-item>
         <ion-label stacked color="primary">Name</ion-label>
         <ion-input type="text"  placeholder="Enter Name here" formControlName="name" required>
@@ -41,12 +50,23 @@
       <p *ngIf="!customerForm.controls['phone'].valid && customerForm.controls['phone'].touched" ion-text color="danger" padding-left>
         Phone is required </p>
 
+
       <ion-item>
-        <ion-label stacked color="primary" *ngIf="price!=''">Pay Amount: {{price}}</ion-label>
-        <ion-label stacked color="primary" *ngIf="price==''">Pay Amount: 0</ion-label>
+        <ion-label stacked color="primary">Loyalty Redeem</ion-label>
+        <ion-input  type="number" min=0 formControlName="loyalty_redeem" required>
+        </ion-input>
       </ion-item>
 
 
+      <ion-item>
+        <ion-label stacked color="primary">Loyalty Remain: {{totalloyalty - customerForm.value.loyalty_redeem}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked color="primary" *ngIf="price!=''">Pay Amount: {{price - customerForm.value.loyalty_redeem}}</ion-label>
+        <ion-label stacked color="primary" *ngIf="price==''">Pay Amount: 0</ion-label>
+      </ion-item>
+      
 
       <div padding class="p-b-5">
         <button ion-button round class="blue-btn" [disabled]="" (click)="submit(customerForm.value)"  type="submit" block>Proceed</button>

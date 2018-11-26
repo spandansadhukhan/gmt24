@@ -322,5 +322,14 @@ deleteproduct(pid)
       this.navCtrl.push('SendforauctionPage',{"product_id":product_id}); 
     }
 
+    pay(pid){
+
+      this.navCtrl.push('CusdetailsproductuploadPage',{'pid':pid});
+    }
+
+    paytop(pid){
+
+      this.navCtrl.push('CusdetailsproducttopPage',{'pid':pid});
+    }
 
 }

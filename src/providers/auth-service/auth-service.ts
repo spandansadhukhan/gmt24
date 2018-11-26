@@ -214,6 +214,52 @@ export class AuthServiceProvider {
       });
   }
 
+
+  auctionuploapayment(data: object): Observable<any> {
+    
+    let requestchangeoptions = new RequestOptions({
+      method: RequestMethod.Post,
+      url: this.apiUrl + 'auctionuploapayment',
+      body: JSON.stringify(data)
+    });
+    return this.http.request(new Request(requestchangeoptions))
+      .map((res: Response) => {
+        if (res) {
+          return res.json();
+        }
+      });
+  }
+
+  productuploapayment(data: object): Observable<any> {
+    
+    let requestchangeoptions = new RequestOptions({
+      method: RequestMethod.Post,
+      url: this.apiUrl + 'userpaymentforupload',
+      body: JSON.stringify(data)
+    });
+    return this.http.request(new Request(requestchangeoptions))
+      .map((res: Response) => {
+        if (res) {
+          return res.json();
+        }
+      });
+  }
+
+  userpaymentfortop(data: object): Observable<any> {
+    
+    let requestchangeoptions = new RequestOptions({
+      method: RequestMethod.Post,
+      url: this.apiUrl + 'userpaymentfortop',
+      body: JSON.stringify(data)
+    });
+    return this.http.request(new Request(requestchangeoptions))
+      .map((res: Response) => {
+        if (res) {
+          return res.json();
+        }
+      });
+  }
+
   sendauctionadd(data: object): Observable<any> {
     
     let requestchangeoptions = new RequestOptions({
