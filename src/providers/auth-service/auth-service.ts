@@ -320,6 +320,11 @@ export class AuthServiceProvider {
   }
 
   
-
+  notifysettings(data:object):Observable<any>{
+    //console.log(data);
+    return this.http.post(this.apiUrl +'notifysettings',data).map((res:Response)=>{
+      return res.json();
+    });
+  }
   
 }
