@@ -161,7 +161,8 @@ ChangeToUserLaguage(lang){
     loading.present();
     this.gender =  JSON.parse(localStorage.getItem('gender'));
     if(this.gender){
-      this.genderid=this.gender;
+     //console.log('GEn',this.gender.gender);
+      this.genderid=this.gender.gender;
     }
 
     this.top_prodct =  JSON.parse(localStorage.getItem('top_prodct'));
@@ -301,6 +302,7 @@ productdetails(product_id){
   ionViewWillLeave(){
 
     localStorage.removeItem('top_prodct');
+    localStorage.removeItem('gender');
     //this.top_user_vendor.top_user_vendor = 0;
   }
 

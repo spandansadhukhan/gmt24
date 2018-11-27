@@ -226,7 +226,7 @@ ladieswatch() {
 
   topproduct() {
     // alert();
-        localStorage.setItem('top_prodct', JSON.stringify({"gender":'top_prodct'}));
+        localStorage.setItem('top_prodct', JSON.stringify({"top_product":'1'}));
         this.navCtrl.push('SearchPage');
      }
 }
