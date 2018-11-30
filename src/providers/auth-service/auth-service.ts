@@ -326,5 +326,12 @@ export class AuthServiceProvider {
       return res.json();
     });
   }
+
+  getvideo(data:object):Observable<any>{
+    //console.log(data);
+    return this.http.post(this.apiUrl +'getvideo',data).map((res:Response)=>{
+      return res.json();
+    });
+  }
   
 }

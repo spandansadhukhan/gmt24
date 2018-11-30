@@ -25,7 +25,7 @@ export class VerifyOtpPage {
     public authService: AuthServiceProvider,
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
-    private form: FormBuilder) {
+    public form: FormBuilder) {
 
     this.mobile=this.navParams.get('mobile');
     this.user_id=this.navParams.get('userid');

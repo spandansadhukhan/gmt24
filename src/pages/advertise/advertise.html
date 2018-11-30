@@ -15,14 +15,13 @@
 
 <ion-content padding class="advertise-holder">
   <p class="skip text-right"><a (click)="skip()">SKIP</a></p>
-  <ion-grid>
-    <ion-row>
-      <ion-col col-12 class="text-center">
-        <h1 class="text-uppercase">it’s <span>play time</span></h1>
-        <p>The rugged shape and robust styling originated with an engineer;s brief calling for an “unbreakable watch” Swatch for global
-        lifestyle.</p>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  
+  <div overflow-scroll="true" *ngFor="let videos of videoList" >
+      <video  *ngIf="videos.count == counter" fullscreen="fullscreen" width="100%" controls="controls"  (ended)="videoEnded()" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline" class="videoPlayer">
+        <source  src="{{videos.video}}" type="video/mp4" />
+      </video>
+  </div>
+
+ 
   <div class="logo"><img src="assets/img/advertise-logo.png" alt="logo"></div>
 </ion-content>
