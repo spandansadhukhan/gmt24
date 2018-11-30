@@ -113,6 +113,10 @@ export class NotificationPage {
   });
 }
 
+gotowinpayment(id){
 
+  this.navCtrl.push('CusdetailswinerpaymentPage',{'aid':id});
+  //alert(id);
+}
 
 }

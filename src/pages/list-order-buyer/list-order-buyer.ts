@@ -158,4 +158,10 @@ ChangeToUserLaguage(lang){
   this.navCtrl.push('AuctiondetailsPage',{"product_id":pid});
   }
 
+  gotowinpayment(id){
+
+    this.navCtrl.push('CusdetailswinerpaymentPage',{'aid':id});
+  }
+
+
 }

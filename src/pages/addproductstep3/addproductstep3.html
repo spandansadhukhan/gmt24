@@ -25,14 +25,35 @@
         </ion-item>
         <p *ngIf="!pForm.controls['size'].valid && pForm.controls['size'].touched" ion-text color="danger" padding-left>
           {{this.this_field_is_required}} </p>
-        <ion-item>
+        <!-- <ion-item>
             <ion-label stacked color="primary">{{this.location}}(optional)</ion-label>
             <ion-input round type="text" placeholder="{{this.location}}" name="location" formControlName="location"></ion-input>
-        </ion-item>
+        </ion-item> -->
         <ion-item>
             <ion-label stacked color="primary">{{this.Work_Hours}}({{this.optional}})</ion-label>
             <ion-input round type="text" placeholder="{{this.Work_Hours}}" name="work_hours" formControlName="work_hours"></ion-input>
         </ion-item>
+
+
+        <ion-item>
+          <input type="text" class="search" placeholder="Enter Location" id="pac-input" formControlName="location" name="location" (keyup)="updateSearchResults()">
+          <ion-list [hidden]="autocompleteItems.length == 0">
+              <ion-item *ngFor="let item of autocompleteItems" tappable (click)="searchaddress(item)">
+                  {{ item.description }}
+              </ion-item>
+          </ion-list>
+          <div id="map" class="map" style="height:400px;"> 
+          </div>
+        </ion-item>
+        
+        <ion-item>
+            <p class="upload-text">{{address}}</p>
+        </ion-item>
+
+
+
+
+
 
         <!-- <ion-item>
           <p class="upload-text">Upload Image</p>
@@ -67,7 +88,7 @@
 
 
 
-        <ul class="upload-list" *ngIf="productimages">
+        <ul class="upload-list" *ngIf="productimages" style="list-style:none;">
         
         <li *ngFor="let item of productimages ;index as i ">
         <img src="{{item}}" alt="" />
