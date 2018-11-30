@@ -18,7 +18,8 @@
         <img src="{{n.from_userimg}}" alt="">
       </ion-avatar>
       <h2>{{n.fromName}}</h2>
-      <p [innerHTML]="n.message"></p>
+      <p *ngIf="n.app_message">You won1 the auction. Please pay and buy the product within 2 days. For buy <a (click)='gotowinpayment(n.app_message)'> Click here</a></p>
+      <p *ngIf="!n.app_message" [innerHTML]="n.message"></p>
       <small>{{n.dateformat}}</small>
     </ion-item>
     

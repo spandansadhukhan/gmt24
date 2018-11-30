@@ -30,6 +30,8 @@ dataSet:any;
 txtInput:any;
 userMessage:any;
 textEntered:any;
+loguser:any;
+user_id:any;
 
 public language:any;
   public selectedlanguage:any;
@@ -53,6 +55,9 @@ public language:any;
         this.selectedlanguage ='1';
       } 
 
+
+    this.loguser = JSON.parse(localStorage.getItem('userData'));
+    this.user_id = this.loguser.user_id;
     this.toId =  this.navParams.get('to_id');
     this.fromId =  this.navParams.get('from_id');
     this.productId =  this.navParams.get('product_id');
@@ -169,11 +174,9 @@ this.authService.postData(this.dataSet,'getfullMessages').then((result) => {
   send(data)
   {
 
-    //console.log(data);
-    //console.log(data.message);
-    data.to_id=this.toId
-    data.from_id=this.fromId
-    data.product_id=this.productId
+    data.to_id=this.fromId;
+    data.from_id=this.toId;
+    data.product_id=this.productId;
 
     //console.log (data)
   let loading = this.loadingCtrl.create({
@@ -183,9 +186,7 @@ this.authService.postData(this.dataSet,'getfullMessages').then((result) => {
   this.authService.postData(data,'addmessage').then((result) => {
 
   this.responseDataMsg = result
-  //console.log ( this.responseDataMsg)
-  //console.log (data)
-
+ 
   if( this.responseDataMsg.Ack == 1)
   {
     loading.dismiss();

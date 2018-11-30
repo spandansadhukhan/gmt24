@@ -39,4 +39,38 @@ page-addproductstep3 {
         max-width: 50%;
         border: 0;
     }
+
+    .upload-list{display: flex;justify-content: space-between;padding:20px;}
+        .upload-list li{
+          width:46%;;
+          position: relative;
+
+        }
+        .upload-list li a{
+          position: absolute;
+          left: -10px;
+          top: -13px;
+          color: #131212;
+          font-size: 23px;
+        }
+
+        .map{
+            position: relative;
+          }
+          .search{
+            position: absolute;
+            top: 26px;
+            left: 0;
+            z-index: 1;
+            right: 0;
+            width: 80%;
+            margin: 0 auto 0;
+            border: 1px solid #dddddd;
+            padding-left: 9px;
+            padding-top: 9px;
+            padding-bottom: 9px;
+            border-radius: 50px;
+            font-size: 12px;
+            line-height: 11px;        
+         }
 }

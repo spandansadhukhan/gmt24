@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController,ActionSheetController,ToastController, LoadingController ,Platform } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { Storage } from '@ionic/storage';
@@ -8,12 +8,24 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { FilePath } from '@ionic-native/file-path';
 import { File } from '@ionic-native/file';
 import { identifierModuleUrl } from '@angular/compiler';
+import {
+  GoogleMaps,
+  GoogleMap,
+  GoogleMapsEvent,
+  GoogleMapOptions,
+  CameraPosition,
+  MarkerOptions,
+  Marker
+} from '@ionic-native/google-maps';
+import {  Geolocation } from '@ionic-native/geolocation';
+
 /**
  * Generated class for the Addproductstep3Page page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+declare var google;
 declare var cordova: any;
 @IonicPage()
 @Component({
@@ -49,6 +61,16 @@ export class Addproductstep3Page {
   public add_product:any;
   public auction:any;
 
+  address:any;
+  autocompleteItems=[];
+  GoogleAutocomplete:any;
+  completeAddres:any;
+  map: any;
+  markers = [];
+  lat:any;
+  lang:any;
+  markerlatlong:any;
+
     constructor(public navCtrl: NavController, public navParams: NavParams,
     public authService: AuthServiceProvider,
     private storage: Storage,
@@ -62,8 +84,11 @@ export class Addproductstep3Page {
     public toastCtrl:ToastController,
     private camera: Camera,
     private actionSheetCtrl: ActionSheetController,
-    private transfer: FileTransfer) {
+    private transfer: FileTransfer,
+    private geolocation: Geolocation,
+    private zone: NgZone) {
 
+      this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
 
       this.pForm = fb.group({
         'size': [null, Validators.required],
@@ -72,9 +97,31 @@ export class Addproductstep3Page {
         
         
       });
+
+    //for current location
+      let loading = this.loadingCtrl.create({
+        content: 'Fetching your location...'
+      });
+      loading.present();
+        this.geolocation.getCurrentPosition().then((resp) => {
+        console.log('splocation',resp);
+        this.lat = resp.coords.latitude;
+        this.lang = resp.coords.longitude;
+        this.initlocationMap(this.lat,this.lang);
+        loading.dismiss();
+      }).catch((error) => {
+        loading.dismiss();
+        console.log('Error getting location', error);
+      });
+
+
+
+
+
+
+      //for language
       this.languages = JSON.parse(localStorage.getItem('language'));
-    //console.log('Arunavalang',this.languages)
-    if(this.languages){
+        if(this.languages){
       this.selectedlanguage = this.languages.language;
     }else{
       this.selectedlanguage ='1';
@@ -451,9 +498,142 @@ export class Addproductstep3Page {
   }
 
 
+  initlocationMap(lat,lang) {
+    
 
+    var point = {lat: lat, lng: lang};
+   // alert(JSON.stringify(point));
+    let divMap = (<HTMLInputElement>document.getElementById('map'));
+    this.map = new google.maps.Map(divMap, {
+    center: point,
+    zoom: 15,
+    disableDefaultUI: true,
+    draggable: true,
+    zoomControl: true
+    });
+  
+     var marker = new google.maps.Marker({
+      map: this.map,
+      position: point,
+      draggable: true,
+      });
+      this.markers.push(marker);
+  
+    // if(item.description){
+  
+    
+       
+    // }else{ 
+       let geocoder = new google.maps.Geocoder;
+      let latlng = {lat: lat, lng: lang};
+      geocoder.geocode({'location': latlng}, (results, status) => {
+  
+        if (status == 'OK')
+        {
+            this.lat = lat;
+            this.lang = lang;
+            this.address = results[0].formatted_address;
+           // alert(this.address);
+        }
+        else
+        {
+          alert(status);
+        }
+  
+      });
+    //}
+  
+      google.maps.event.addListener(marker, 'dragend', () =>{ 
+      let geocoder = new google.maps.Geocoder;
+      let latlng = {lat: marker.position.lat(), lng: marker.position.lng()};
+      geocoder.geocode({'location': latlng}, (results, status) => {
+  
+        if (status == 'OK')
+        {
+            this.lat = marker.position.lat();
+            this.lang = marker.position.lng();
+            this.address = results[0].formatted_address;
+            //alert(this.address);
+        }
+        else
+        {
+          alert(status);
+        }
+         
+      });
+  
+    });
+      
+  
+  }
 
+  updateSearchResults() {
+    
+    if (!this.pForm.value.location) {
+      this.autocompleteItems = [];
+      return;
+    }
+    this.GoogleAutocomplete.getPlacePredictions({ input: this.pForm.value.location},
+      (predictions, status) => {
+        this.autocompleteItems = [];
+        this.zone.run(() => {
+          predictions.forEach((prediction) => {
+            //console.log('sp',prediction);
+            this.autocompleteItems.push(prediction);
+          });
+        });
+      });
+  }
 
+  searchaddress(item){
+
+    this.autocompleteItems = [];
+    this.completeAddres = item.description;
+    this.address=item.description;
+    this.pForm.get('location').setValue(this.completeAddres);
+      let geocoder = new google.maps.Geocoder;
+      geocoder.geocode({'placeId': item.place_id}, (results, status) => {
+     // if(status === 'OK' && results[0]){
+        //this.initlocationMap(22.5957689,88.26363939999999);
+        let position = {
+            lat: results[0].geometry.location.lat,
+            lng: results[0].geometry.location.lng
+        };
+        let marker = new google.maps.Marker({
+          position: results[0].geometry.location,
+          map: this.map,
+          draggable: true,
+        });
+       
+        this.markers.push(marker);
+        this.map.setCenter(results[0].geometry.location);
+      //}
+   
+  
+   google.maps.event.addListener(marker, 'dragend', () =>{ 
+    let geocoder = new google.maps.Geocoder;
+    let latlng = {lat: marker.position.lat(), lng: marker.position.lng()};
+    geocoder.geocode({'location': latlng}, (results, status) => {
+  
+      if (status == 'OK')
+      {
+          this.lat = marker.position.lat();
+          this.lang = marker.position.lng();
+          this.address = results[0].formatted_address;
+          this.pForm.get('location').setValue(this.address);
+  
+          //alert(this.address);
+      }
+      else
+      {
+        alert(status);
+      }
+       
+    });
+  });
+  });
+  
+  }
 
 
 

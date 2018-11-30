@@ -230,6 +230,21 @@ export class AuthServiceProvider {
       });
   }
 
+  auctionwinnerpayment(data: object): Observable<any> {
+    
+    let requestchangeoptions = new RequestOptions({
+      method: RequestMethod.Post,
+      url: this.apiUrl + 'UserAuctionpayment',
+      body: JSON.stringify(data)
+    });
+    return this.http.request(new Request(requestchangeoptions))
+      .map((res: Response) => {
+        if (res) {
+          return res.json();
+        }
+      });
+  }
+
   productuploapayment(data: object): Observable<any> {
     
     let requestchangeoptions = new RequestOptions({
