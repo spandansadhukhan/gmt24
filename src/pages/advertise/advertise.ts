@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,MenuController ,LoadingController} from 'ionic-angular';
-import { VideoPlayer } from '@ionic-native/video-player';
+
 import {AuthServiceProvider} from '../../providers/auth-service/auth-service';
 /**
  * Generated class for the AdvertisePage page.
@@ -26,11 +26,12 @@ export class AdvertisePage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public menu: MenuController,
-    //private videoPlayer: VideoPlayer,
+   
     public loadingCtrl: LoadingController,
     public authService:AuthServiceProvider,
   ) {
    
+    
   }
 
   ionViewDidLoad() {
