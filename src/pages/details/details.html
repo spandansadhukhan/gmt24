@@ -33,28 +33,28 @@
 <rating readOnly="false" [(ngModel)]="rate" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false"> 
 </rating>
 <ion-item>
-    <ion-label stacked color="primary">{{this.reviewss}}</ion-label>
+    <ion-label stacked color="primary">{{reviewss}}</ion-label>
 <ion-input  type="text" [(ngModel)]="review" placeholder="Type your review" required>
     </ion-input>
   </ion-item>
-  <p style="padding: 0 16px;">{{this.Recommend_this_product}} ?</p>
+  <p style="padding: 0 16px;">{{Recommend_this_product}} ?</p>
   <ion-list class="review-recommend" radio-group [(ngModel)]="recomend">
      
       <ion-item>
-        <ion-label>{{this.Yes}}</ion-label>
+        <ion-label>{{Yes}}</ion-label>
         <ion-radio value="1" checked></ion-radio>
       </ion-item>
       <ion-item>
-        <ion-label>{{this.No}}</ion-label>
+        <ion-label>{{No}}</ion-label>
         <ion-radio value="2"></ion-radio>
       </ion-item>
     </ion-list>
 <ion-row>
   <ion-col col-6>
-    <button ion-button color="dark" block (click)="submit()">{{this.save}}</button>
+    <button ion-button color="dark" block (click)="submit()">{{save}}</button>
   </ion-col>
   <ion-col col-6>
-      <button ion-button color="light"  block (click)='hide()'>{{this.Cancel}}</button>
+      <button ion-button color="light"  block (click)='hide()'>{{Cancel}}</button>
     
     </ion-col>
 </ion-row>
@@ -110,29 +110,29 @@
           <ion-icon *ngIf="averagerating<=3" name="star-outline"></ion-icon>
           <ion-icon *ngIf="averagerating<=4" name="star-outline"></ion-icon> 
          ({{averagerating}}) <span>
-      	<a class="new-abtn" *ngIf="ptype== 1 && user_id!=seller_id" (click)="show()">{{this.Write_a_review}}</a>
+      	<a class="new-abtn" *ngIf="ptype== 1 && user_id!=seller_id" (click)="show()">{{Write_a_review}}</a>
       </span> </p>
       <h1>{{currency_code}} {{price}}</h1>
     </div>
       
       <div class="d-box">
-      <h2>{{this.Seller_Info}}</h2>
-      <p><span>{{this.Seller_Name}}:</span> {{seller_name}}</p>
-      <p *ngIf="interest== 1"><span>{{this.phone}}:</span> {{seller_phone}}</p>
-      <p *ngIf="interest== 1" (click)="navigateDrivingLocation()"><span>{{this.Address}}:</span><br/>{{seller_address}}</p>
+      <h2>{{Seller_Info}}</h2>
+      <p><span>{{Seller_Name}}:</span> {{seller_name}}</p>
+      <p *ngIf="interest== 1"><span>{{phone}}:</span> {{seller_phone}}</p>
+      <p *ngIf="interest== 1" (click)="navigateDrivingLocation()"><span>{{Address}}:</span><br/>{{seller_address}}</p>
       </div>
 
 
       <div class="d-box" *ngIf="interest== 1">
         <div padding style="padding-bottom: 15px" >
-          <button ion-button round class="grey-btn" block (click)="ishide()">{{this.contact_seller}}</button>
+          <button ion-button round class="grey-btn" block (click)="ishide()">{{contact_seller}}</button>
         </div>
         <div *ngIf="hideMe">
         <form padding [formGroup]="sellercontactfrom">
-          <h2>{{this.Your_Messages}}</h2>
+          <h2>{{Your_Messages}}</h2>
           <ion-textarea round rows="5" maxLength="500" placeholder="Type Message" formControlName="message"></ion-textarea>
           <div padding class="p-b-5">
-            <button ion-button round class="grey-btn" (click)="addmessage(sellercontactfrom.value)" type="submit" block>{{this.Send}}</button>
+            <button ion-button round class="grey-btn" (click)="addmessage(sellercontactfrom.value)" type="submit" block>{{Send}}</button>
           </div>
         </form>
       </div>
@@ -147,24 +147,24 @@
       </div> -->
 
       <div class="d-box">
-      <h2>{{this.Product_Informations}}</h2>
-      <p><span>{{this.Product_Bracelet_Type}}:</span> {{breslet_type}}</p>
-      <p><span>{{this.Product_Size}}:</span> {{size}}</p>
-      <p><span>{{this.Model_Year}}:</span> {{model_year}}</p>
-      <p><span>{{this.movementss}}:</span> {{movement}}</p>
-      <p><span>{{this.Date_of_Purchased}}:</span> {{date_purchase}}</p>
-      <p *ngIf="status_watch=='New'"><span>{{this.Status_of_watch}}:</span> {{status_watch}} </p>
-      <p *ngIf="status_watch=='Mint'"><span>{{this.Status_of_watch}}:</span> {{status_watch}} <ion-icon  ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon></p>
-      <p *ngIf="status_watch=='Excellent'"><span>{{this.Status_of_watch}}:</span> {{status_watch}} <ion-icon  ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon></p>
-      <p *ngIf="status_watch=='Good'"><span>{{this.Status_of_watch}}:</span> {{status_watch}} <ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon></p>
-      <p *ngIf="status_watch=='Fair'"><span>{{this.Status_of_watch}}:</span> {{status_watch}} <ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon></p>
-      <p *ngIf="status_watch=='Poor'"><span>{{this.Status_of_watch}}:</span> {{status_watch}} <ion-icon ios="ios-star" md="md-star"></ion-icon></p>
+      <h2>{{Product_Informations}}</h2>
+      <p><span>{{Product_Bracelet_Type}}:</span> {{breslet_type}}</p>
+      <p><span>{{Product_Size}}:</span> {{size}}</p>
+      <p><span>{{Model_Year}}:</span> {{model_year}}</p>
+      <p><span>{{movementss}}:</span> {{movement}}</p>
+      <p><span>{{Date_of_Purchased}}:</span> {{date_purchase}}</p>
+      <p *ngIf="status_watch=='New'"><span>{{Status_of_watch}}:</span> {{status_watch}} </p>
+      <p *ngIf="status_watch=='Mint'"><span>{{Status_of_watch}}:</span> {{status_watch}} <ion-icon  ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon></p>
+      <p *ngIf="status_watch=='Excellent'"><span>{{Status_of_watch}}:</span> {{status_watch}} <ion-icon  ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon></p>
+      <p *ngIf="status_watch=='Good'"><span>{{Status_of_watch}}:</span> {{status_watch}} <ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon></p>
+      <p *ngIf="status_watch=='Fair'"><span>{{Status_of_watch}}:</span> {{status_watch}} <ion-icon ios="ios-star" md="md-star"></ion-icon><ion-icon ios="ios-star" md="md-star"></ion-icon></p>
+      <p *ngIf="status_watch=='Poor'"><span>{{Status_of_watch}}:</span> {{status_watch}} <ion-icon ios="ios-star" md="md-star"></ion-icon></p>
 
-      <p><span>{{this.Product_Description}}:<br /></span> {{description}}</p>
-      <p><span>{{this.reference_noss}}:</span> {{reference_no}}</p>
+      <p><span>{{Product_Description}}:<br /></span> {{description}}</p>
+      <p><span>{{reference_noss}}:</span> {{reference_no}}</p>
       </div>
       <div class="d-box" *ngIf="ptype==1">
-      <h2>{{this.reviewss}}</h2>
+      <h2>{{reviewss}}</h2>
       <div class="noti-list">
       <ion-item *ngFor="let r of reviews">
       <ion-avatar item-start>
@@ -185,11 +185,11 @@
           <ion-icon *ngIf="r.rating<=4" name="star-outline"></ion-icon>
         ({{r.rating}})</p>
       <p>{{r.review}}</p>
-      <small>{{r.date}} {{this.Days_ago}}</small>
+      <small>{{r.date}} {{Days_ago}}</small>
     </ion-item>
 
     <ion-item *ngIf="reviews==''">
-      {{this.no_records_found}}
+      {{no_records_found}}
       </ion-item>
     
     </div>
