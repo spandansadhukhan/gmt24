@@ -242,15 +242,15 @@ export class MyaccountPage {
       this.authService.changeLaguage(serval).subscribe(res=>{
         if(res.Ack==1){
         // loading.dismiss();
-        //console.log(res.languages)
+        console.log('AG',res.languages)
          console.log("splang",res.languages);
          this.email=res.languages.email;
-         this.first_name=res.languages.category;
-         this.last_name=res.languages.special_auction;
+         this.first_name=res.languages.first_name;
+         this.last_name=res.languages.last_name;
          this.gender=res.languages.gender;
          this.male=res.languages.male;
          this.female = res.languages.female;
-         this.countries = res.languages.countries;
+         this.countries = res.languages.country;
          this.state = res.languages.state;
          this.mobile_number= res.languages.mobile_number;
          this.number= res.languages.number;
