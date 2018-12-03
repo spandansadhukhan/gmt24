@@ -39,8 +39,8 @@
     <!-- <h6>{{tb.brand_name}}</h6> -->
   </ion-slide>
 </ion-slides>
-
-  <h6 class="text-uppercase">{{this.category}}</h6>
+<!-- 
+  <h6 class="text-uppercase margin">{{this.category}}</h6>
   <ion-slides pager slidesPerView="3">
     <ion-slide class="slide-holder" *ngFor="let topproduct of topproductlists">
       <div class="item-image" (click)="productdetails(topproduct.product_id)">
@@ -49,8 +49,10 @@
       <h6>{{topproduct.product_name}}</h6>
       <p class="price"><span><img src="assets/img/tick.png" alt="image"></span> {{topproduct.product_price}}</p>
     </ion-slide>
-</ion-slides>
+</ion-slides> -->
 
+
+<h6 class="text-uppercase margin">{{this.category}}</h6>
 <ion-slides pager slidesPerView="1" class="slider-bg">
 
   <ion-slide class="sliding">

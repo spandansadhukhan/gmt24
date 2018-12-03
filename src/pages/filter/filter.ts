@@ -78,7 +78,7 @@ export class FilterPage {
   public amount_max :any;
   public seller:any;
   public Status_of_watch:any;
-  public save :any;
+  public search :any;
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
@@ -155,7 +155,7 @@ ChangeToUserLaguage(lang){
          this.amount_max  = res.languages.amount_max ;
          this.seller = res.languages.seller;
          this.Status_of_watch = res.languages.Status_of_watch;
-         this.save  = res.languages.save ;
+         this.search  = res.languages.search ;
          
          //this.Cancel= res.languages.Cancel;
         }else{

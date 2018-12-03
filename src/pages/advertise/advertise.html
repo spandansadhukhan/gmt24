@@ -17,9 +17,14 @@
   <p class="skip text-right"><a (click)="skip()">SKIP</a></p>
   
   <div overflow-scroll="true" *ngFor="let videos of videoList" >
+    <div  *ngIf="videos.type==1">
       <video  *ngIf="videos.count == counter" fullscreen="fullscreen" width="100%" controls="controls"  (ended)="videoEnded()" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline" class="videoPlayer">
         <source  src="{{videos.video}}" type="video/mp4" />
       </video>
+    </div>
+    <div  *ngIf="videos.type==2">
+        <img src="{{videos.video}}"  width="100%">
+      </div>
   </div>
 
  
