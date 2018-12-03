@@ -19,7 +19,7 @@ import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { CalendarModule } from "ion2-calendar";
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-
+import { Push } from '@ionic-native/push';
 
 @NgModule({
   declarations: [
@@ -54,7 +54,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     FileTransfer,
     FilePath,
     File,
-    LaunchNavigator
+    LaunchNavigator,
+    Push
     
   ]
 })

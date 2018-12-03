@@ -188,11 +188,12 @@ ChangeToUserLaguage(lang){
     this.sellershow = !this.sellershow;
   }
 
-  toggle3() {
+  // toggle3() {
 
-    this.statusshow = !this.statusshow;
+  //   this.statusshow = !this.statusshow;
 
-  }
+  // }
+
   brandList(){
 
     let loading = this.loadingCtrl.create({
@@ -370,7 +371,7 @@ onChange(id, isChecked, index) {
    
           if(isChecked) {
              this.answers4.push(id)
-             //console.log('sparray',this.answers1);
+             console.log('sparray',this.answers4);
           } else {
              let idx = this.answers4.indexOf(id)
              this.answers4.splice(idx,1);

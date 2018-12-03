@@ -124,12 +124,12 @@
 
 
 
-<div class="check-custom">
-  <h6 (click)="toggle3()">{{this.Status_of_watch}}</h6>
-  <ion-list *ngIf="!statusshow" class="accordion-list">
+<div class="check-custom" >
+  <h6 (click)="status_menu=!status_menu">{{this.Status_of_watch}}</h6>
+  <ion-list *ngIf="status_menu" class="accordion-list">
       <ion-item class="check-item" *ngFor="let st of statuslists">
           <ion-label>{{st.name}}</ion-label>
-          <ion-checkbox color="dark" checked="false" (ionChange)="onstatusset(st.name, $event.checked, i)"></ion-checkbox>
+          <ion-checkbox color="dark"  (ionChange)="onstatusset(st.name, $event.checked, i)"></ion-checkbox>
     </ion-item>
   </ion-list>
 </div>           
