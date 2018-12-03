@@ -25,15 +25,20 @@
   </ion-navbar>
   
   <ion-row>
-    <ion-col col-9 class="pt-0 pb-0 pl-0">
+    <ion-col col-10 class="pt-0 pb-0 pl-0">
       <ion-searchbar [(ngModel)]="keyword" (ngModelChange)="updateKeyword($event)"></ion-searchbar>
       
     </ion-col>
-    <ion-col col-3 class="pt-0 pb-0 pr-0">
+    <ion-col col-1 class="pt-0 pb-0 pr-0">
       <div class="rt-icon-area" (click)='filter()'>
         <ion-icon ios="ios-funnel" md="md-funnel" ></ion-icon> {{this.filters}}
       </div>     
     </ion-col> 
+    <ion-col col-1 class="pt-0 pb-0 pr-0">
+        <div class="rt-icon-area" (click)='filter()'>
+          <ion-icon ios="ios-swap" md="md-swap"></ion-icon> {{this.filters}}
+        </div>     
+    </ion-col>
     
   </ion-row>
 
