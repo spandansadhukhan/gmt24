@@ -100,4 +100,7 @@
         <variable name="OKHTTP_VERSION" value="3.+" />
     </plugin>
     <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
+    <plugin name="phonegap-plugin-push" spec="^1.11.1">
+        <variable name="SENDER_ID" value="242512247505" />
+    </plugin>
 </widget>

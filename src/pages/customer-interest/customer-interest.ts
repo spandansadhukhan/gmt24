@@ -31,8 +31,8 @@ export class CustomerInterestPage {
   public Remove:any;
   public show_interest:any;
   public no_records_found:any;
- 
-  
+  isShow:boolean=false;
+  userdetails:any;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -158,7 +158,40 @@ ChangeToUserLaguage(lang){
 
     showuserdetails(uid){
 
-alert(uid);
+      let loading = this.loadingCtrl.create({
+        content: 'Please Wait...'
+      });
+      loading.present();
+      
+      let serval={
+        "user_id":uid,
+       };
+      this.authService.postData(serval,'showuser').then((result) => {
+        this.responseData = result
+    
+        if( this.responseData.Ack == 1)
+        {
+          loading.dismiss();
+          this.isShow=true;
+          this.userdetails =  this.responseData.userinfo;
+          
+        } else
+        {
+          loading.dismiss();
+          this.userdetails ="";
+        }
+       
+      }, (err) => {
+        loading.dismiss();
+        console.log(err);
+        
+      });
+    
+    }
+
+    hide(){
+      this.isShow=false;
+
     }
 
 

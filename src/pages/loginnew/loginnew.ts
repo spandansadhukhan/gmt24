@@ -79,8 +79,8 @@ public loguser:any;
       content: 'Please Wait...'
     });
     loading.present();
-    //formData['device_token_id'] ='asdfa45645645646knllkjlkj4356546456';
-    //formData['device_type']='android';
+    formData['device_token_id'] = localStorage.getItem('TOKEN');;
+    formData['device_type']='android';
     
     this.authService.login(formData).subscribe(res => {
       //console.log('spandan',res);
