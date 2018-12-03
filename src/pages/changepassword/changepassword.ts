@@ -32,6 +32,7 @@ export class ChangepasswordPage {
   public Save_Changes:any;
   public password_match_error_mobile_2:any;
   public change_password:any;
+  old_password:any;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -43,7 +44,7 @@ export class ChangepasswordPage {
   ) {
    
     this.changeForm = builder.group({
-     
+     'old_password': [null, Validators.required],
       'password': [null, Validators.required],
       'con_password': [null, Validators.required]
     });
@@ -118,6 +119,7 @@ ChangeToUserLaguage(lang){
          loading.dismiss();
         //console.log(res.languages)
          console.log("splang",res.languages);
+         this.old_password=res.languages.old_password;
          this.new_password=res.languages.new_password;
          this.retype_password=res.languages.retype_password;
          this.password_match_error_mobile=res.languages.password_match_error_mobile;

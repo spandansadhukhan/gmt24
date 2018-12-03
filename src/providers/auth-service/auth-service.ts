@@ -172,7 +172,7 @@ export class AuthServiceProvider {
     
     let requestchangeoptions = new RequestOptions({
       method: RequestMethod.Post,
-      url: this.apiUrl + 'changepassword',
+      url: this.apiUrl + 'CheckoldPassword',
       body: JSON.stringify(data)
     });
     return this.http.request(new Request(requestchangeoptions))

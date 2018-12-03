@@ -156,6 +156,10 @@ ChangeToUserLaguage(lang){
     }
   
 
+    showuserdetails(uid){
+
+alert(uid);
+    }
 
 
 }
