@@ -118,7 +118,7 @@ export class DetailsPage {
   hideMe:boolean=false;
   selectedcurrency:any;
   mycurrency:any;
-
+  send_message:any;
   //product_id1:any;
   constructor(
     public navCtrl: NavController, 
@@ -253,6 +253,7 @@ ChangeToUserLaguage(lang){
          this.contact_seller=res.languages.contact_seller;
          this.Please_enter_your_password_below = res.languages.Please_enter_your_password_below;
          this.Continue = res.languages.Continue;
+         this.send_message=res.languages.send_message;
          
          //this.Cancel= res.languages.Cancel;
         }else{

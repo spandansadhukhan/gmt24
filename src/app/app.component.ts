@@ -52,6 +52,7 @@ export class MyApp {
   about_us:any;
   responseData:any;
   count:any;
+  //refreshIntervalId:any;
 
   public path:any;
   constructor(
@@ -89,6 +90,8 @@ export class MyApp {
             if(this.id){
               events.publish('hideFooter', {isHidden: false});
               this.nav.setRoot('HomePage');
+
+              
               
         }else{
          
@@ -103,11 +106,16 @@ export class MyApp {
 
     });
 
-//   setInterval(() => {
-//     this.notificationcount();
-//  }, 1000);
+     setInterval(() => {
+      this.storage.get('uid').then(val => { 
+      this.notificationcount(val);
+      
+    });
+    }, 1000);
+ 
 
 })
+
 
 
   }
@@ -190,9 +198,8 @@ export class MyApp {
     localStorage.removeItem('language');
     localStorage.setItem('userData',"");
     this.storage.set("uid","");
-
-   this.nav.setRoot('LoginnewPage');
- 
+    this.nav.setRoot('LoginnewPage');
+   // clearInterval(this.refreshIntervalId);
   });
 }
 
@@ -437,12 +444,10 @@ public settings(){
 //for push notification end
 
 
-notificationcount(){
+notificationcount(id){
 
-  this.loguser =  JSON.parse(localStorage.getItem('userData'));
-  if(this.loguser){
   let serval={
-    "user_id": this.loguser.user_id,
+    "user_id": id,
   }
   
   this.authService.postData(serval,'notiount').then((result) => {
@@ -465,7 +470,7 @@ notificationcount(){
     console.log(err);
     
   });
-}
+
 }
 
 
