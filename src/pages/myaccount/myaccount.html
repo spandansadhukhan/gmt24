@@ -104,10 +104,10 @@
         {{this_field_is_required}} </p>
       <ion-item>
           <ion-label stacked color="primary">{{Bank}} {{Name}}</ion-label>
-          <ion-input round type="text" name="bankname" formControlName="bankname" placeholder="Type your bank name" required></ion-input>
+          <ion-input round type="text" name="bankname" formControlName="bankname" placeholder="Type your bank name" ></ion-input>
       </ion-item>
-      <p *ngIf="!aForm.controls['bankname'].valid && aForm.controls['bankname'].touched" ion-text color="danger" padding-left>
-        {{this_field_is_required}} </p>
+      <!-- <p *ngIf="!aForm.controls['bankname'].valid && aForm.controls['bankname'].touched" ion-text color="danger" padding-left>
+        {{this_field_is_required}} </p> -->
       <ion-item>
           <ion-label stacked color="primary">{{preferred}} {{langu}}</ion-label>
           <ion-select name="language_preference" formControlName="language_preference">

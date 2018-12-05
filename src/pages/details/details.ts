@@ -13,7 +13,7 @@ import {
 import {  Geolocation } from '@ionic-native/geolocation';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
-
+import { CallNumber } from '@ionic-native/call-number';
 /**
  * Generated class for the DetailsPage page.
  *
@@ -131,6 +131,7 @@ export class DetailsPage {
     private geolocation: Geolocation,
     private builder: FormBuilder,
     private launchNavigator: LaunchNavigator,
+    private callNumber: CallNumber
 ) {
 
   this.languages = JSON.parse(localStorage.getItem('language'));
@@ -677,7 +678,11 @@ navigateDrivingLocation(){
 });
 }
 
-
+call(number){
+  this.callNumber.callNumber(number, true)
+.then(res => console.log('Launched dialer!', res))
+.catch(err => console.log('Error launching dialer', err));
+}
 
 
 }

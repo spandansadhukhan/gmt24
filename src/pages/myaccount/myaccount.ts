@@ -124,10 +124,10 @@ export class MyaccountPage {
       'state': [null, Validators.required],
       //'city': [null, Validators.required],
       'ibanno': [null, Validators.required],
-      'bankname': [null, Validators.required],
+      'bankname': [null,null],
       'language_preference': [null, Validators.required],
       'country_preference': [null, Validators.required],
-      'pickup_location': [null, Validators.required],
+      'pickup_location': [null, null],
       //'currency_preference': [null, Validators.required],
       
     });
@@ -436,6 +436,7 @@ onSubmit(formData) {
   this.authService.updateprofile(formData).subscribe(res => {
    if (res.Ack == 1) {
     loading.dismiss();
+    localStorage.setItem('selectedcurrency', JSON.stringify({"selectedcurrency":this.curcode}));
       const alert = this.alertCtrl.create({
         title:'Success!',
         subTitle: res.msg,

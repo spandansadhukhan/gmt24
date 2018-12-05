@@ -23,7 +23,7 @@
          <p class="price">
             <span>{{p.prefferd_currency}}</span> {{p.price}}</p>
          <p class="name" *ngIf="p.subscribed_id==p.active && p.expirydate >= p.currentdate">
-           <span>Slots Remain:</span>{{p.slot_remain}}({{p.slots}})</p>
+           <span>Slots Remain:</span> {{p.slot_remain}} of {{p.slots}}</p>
 
            <p class="name">
             <span>Slots:</span>{{p.slots}}</p>

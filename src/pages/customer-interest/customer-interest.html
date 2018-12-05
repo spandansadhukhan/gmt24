@@ -16,9 +16,9 @@
 
 <div class="rating-part" *ngIf ="isShow">
     <ion-card class="rating-area" >
- Full Name: {{userdetails.fullname}}<br>
- Email: {{userdetails.email}}<br>
- Contact No: {{userdetails.phone}}
+ <p>Full Name: {{userdetails.fullname}}</p>
+<p> Email: {{userdetails.email}}</p>
+ <p (click)="call(seller_phone)"><ion-icon name="call"></ion-icon>Contact No: {{userdetails.phone}}</p>
   <ion-row>
     <ion-col>
       <button ion-button color="dark" block (click)="hide()">Ok</button>

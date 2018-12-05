@@ -80,6 +80,10 @@
             <ion-icon name="mail" item-start></ion-icon> {{this.messageses}}
           </ion-item>
 
+          <ion-item menuClose (click)="aboutus(1)">
+            <ion-icon name="mail" item-start></ion-icon> {{about_us}}
+          </ion-item>
+
           <ion-item menuClose (click)="logout()">
             <ion-icon name="power" item-start></ion-icon> {{this.logouts}}
           </ion-item>
@@ -150,7 +154,7 @@
           <ion-col text-center *ngIf="istype!=3">
             <a (click)="notifications()">
               <span class="footer-icon"><img src="assets/img/icon-notification.png" alt="image"></span>
-              <p>{{this.notificationsss}}</p>
+              <p>{{this.notificationsss}}({{count}})</p>
             </a>
           </ion-col>
           

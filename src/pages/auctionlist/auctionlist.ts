@@ -153,6 +153,12 @@ productdetails(product_id){
 
   }
 
+  public changecurrency(){ 
+  
+    this.navCtrl.push('CurrencychangePage');
+    
+    }
+
   //Arunava
   ionViewWillLeave(){
 
