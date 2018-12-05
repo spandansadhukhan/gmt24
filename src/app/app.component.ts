@@ -49,7 +49,9 @@ export class MyApp {
   public watches:any;
   public shops:any;
   token:any;
-  
+  about_us:any;
+  responseData:any;
+  count:any;
 
   public path:any;
   constructor(
@@ -64,6 +66,11 @@ export class MyApp {
 
       this.languages = JSON.parse(localStorage.getItem('language'));
     //console.log('Arunavalang',this.languages)
+
+    
+
+
+
     if(this.languages){
       this.selectedlanguage = this.languages.language;
     }else{
@@ -82,7 +89,7 @@ export class MyApp {
             if(this.id){
               events.publish('hideFooter', {isHidden: false});
               this.nav.setRoot('HomePage');
-             
+              
         }else{
          
           events.publish('hideFooter', {isHidden: true});
@@ -94,13 +101,28 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
 
-  // });
-  });
+    });
 
-
+//   setInterval(() => {
+//     this.notificationcount();
+//  }, 1000);
 
 })
+
+
   }
+
+
+
+
+
+
+
+
+
+
+
+  
   
   ChangeToUserLaguage1(lang){
     //alert(lang+'a')
@@ -144,6 +166,7 @@ export class MyApp {
          this.auction = res.languages.auction;
          this.watches = res.languages.watches;
          this.shops = res.languages.shops;
+         this.about_us=res.languages.about_us;
          
 
          
@@ -169,6 +192,7 @@ export class MyApp {
     this.storage.set("uid","");
 
    this.nav.setRoot('LoginnewPage');
+ 
   });
 }
 
@@ -335,6 +359,13 @@ public settings(){
         }
 
 
+        public aboutus(id){
+
+          //alert(id);
+          this.nav.push('CmsPage',{"id":id});
+        }
+
+//for push notification
         initPushNotification() {
           if (!this.platform.is('cordova')) {
             console.warn('Push notifications not initialized. Cordova is not available - Run in physical device');
@@ -343,7 +374,7 @@ public settings(){
           const options: PushOptions = {
             android: {
               senderID: '242512247505',
-              icon: "assets/img/alert-icon",
+              icon: "assets/img/icon.png",
               sound:true,
               vibrate:true,
               messageKey:'message',
@@ -403,6 +434,43 @@ public settings(){
          
         }
         
+//for push notification end
+
+
+notificationcount(){
+
+  this.loguser =  JSON.parse(localStorage.getItem('userData'));
+  if(this.loguser){
+  let serval={
+    "user_id": this.loguser.user_id,
+  }
+  
+  this.authService.postData(serval,'notiount').then((result) => {
+    this.responseData = result
+
+    if( this.responseData.Ack == 1)
+    {
+     
+      this.count =  this.responseData.count;
+    }
+    else
+    {
+      
+      this.count = 0;
+      
+    }
+   
+  }, (err) => {
+    
+    console.log(err);
+    
+  });
+}
+}
+
+
+
+
 
 
 }

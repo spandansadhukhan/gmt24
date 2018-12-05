@@ -27,7 +27,7 @@ export class HomePage {
   public language:any;
   public selectedlanguage:any;
   public languages:any;
-  public top_brands:any;
+  public our_brands:any;
   public category:any;
   public special_auction:any;
   public ladies_watch:any
@@ -186,7 +186,7 @@ ChangeToUserLaguage(lang){
     // loading.dismiss();
     //console.log(res.languages)
      console.log("splang",res.languages);
-     this.top_brands=res.languages.top_brands;
+     this.our_brands=res.languages.our_brands;
      this.category=res.languages.category;
      this.special_auction=res.languages.special_auction;
      this.ladies_watch = res.languages.ladies_watch;

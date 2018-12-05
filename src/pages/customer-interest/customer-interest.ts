@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams ,LoadingController} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 import {AuthServiceProvider} from '../../providers/auth-service/auth-service'
-
+import { CallNumber } from '@ionic-native/call-number';
 /**
  * Generated class for the CustomerInterestPage page.
  *
@@ -38,7 +38,8 @@ export class CustomerInterestPage {
     public navParams: NavParams,
     public authService:AuthServiceProvider, 
     public storage: Storage,
-    public loadingCtrl: LoadingController,) {
+    public loadingCtrl: LoadingController,
+    private callNumber: CallNumber) {
 
 
       this.languages = JSON.parse(localStorage.getItem('language'));
@@ -194,5 +195,11 @@ ChangeToUserLaguage(lang){
 
     }
 
+
+    call(number){
+      this.callNumber.callNumber(number, true)
+    .then(res => console.log('Launched dialer!', res))
+    .catch(err => console.log('Error launching dialer', err));
+    }
 
 }

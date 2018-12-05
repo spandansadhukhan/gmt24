@@ -173,9 +173,15 @@ this.authService.postData(this.dataSet,'getfullMessages').then((result) => {
 
   send(data)
   {
+    if(this.toId==this.user_id){
 
-    data.to_id=this.fromId;
-    data.from_id=this.toId;
+      data.to_id=this.fromId;
+      data.from_id=this.toId;
+    }else{
+      data.to_id=this.toId;
+      data.from_id=this.fromId;
+    }
+    
     data.product_id=this.productId;
 
     //console.log (data)
