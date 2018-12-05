@@ -151,7 +151,7 @@
   ion-footer .row{
     flex-wrap: nowrap;
   }
- 	ion-footer .toolbar-content a span.footer-icon{min-height:30px}
+ 	ion-footer .toolbar-content a span.footer-icon{min-height:30px; position: relative; }
  	ion-footer .toolbar-content a span.footer-icon img{width: 24px !important;}
  	ion-footer .toolbar-content a span.profile{min-height:30px}
  	ion-footer .toolbar-content a span.profile img{width:24px; height:24px; border-radius: 100%;}
@@ -207,7 +207,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5a2626', end
 .scroll-content{padding-bottom:88px !important;}
 
 .menu-inner{
-  background: rgba(228, 229, 229, 0.7) !important;
+  background: rgba(228, 229, 229, 0.9) !important;
 }
 .menu-bg .item {
   background-color: transparent !important;
@@ -226,4 +226,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5a2626', end
 }
 .header-md::after{
   background-image: none !important;
+}
+.f-notofy{
+    position: absolute;
+    color: white;
+    padding: 2px 6px;
+    font-size: 12px;
+    border-radius: 50px;
+    left: 47px;
+    top: -5px;
+    background-color: rgb(58, 58, 58);
+    font-weight: 400;
 }
