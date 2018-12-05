@@ -153,7 +153,10 @@
 
           <ion-col text-center *ngIf="istype!=3">
             <a (click)="notifications()">
-              <span class="footer-icon"><img src="assets/img/icon-notification.png" alt="image"></span>
+              <span class="footer-icon">
+                <small class="f-notofy">01</small>
+                <img src="assets/img/icon-notification.png" alt="image">
+              </span>
               <p>{{this.notificationsss}}({{count}})</p>
             </a>
           </ion-col>

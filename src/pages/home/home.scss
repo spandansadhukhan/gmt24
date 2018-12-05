@@ -9,22 +9,25 @@ page-home {
 }
 .content .scroll-content{
 	// padding-left: 2px!important; padding-right: 2px!important;
-	padding-bottom: 68px !important;
+	//padding-bottom: 68px !important;
+	padding-bottom: 52px !important;
 }
 .scroll-content{
 	padding: 0 !important;
+	margin-top: 116px;
 }
 .margin{
 	// margin-bottom: 0 !important;
 }
 h6{
 	color:#fff;
-	margin-top: 5px;
+	//margin-top: 5px;
 	text-align: center;
+	margin: 5px 0;
 }
 .swiper-container {
 	background: #fff;
-	margin-bottom: 10px;
+	//margin-bottom: 10px;
 	padding:0 2px;
 }
 .slider-bg .swiper-container{
@@ -38,7 +41,7 @@ h6{
 	// box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.2);
 	// margin-right:7px;
 	// margin-bottom: 7px;
-	 margin-top: 7px;
+	// margin-top: 7px;
 	 float:left;
  }
 .slide-holder .item-image{
@@ -53,19 +56,21 @@ h6{
 	width:10px; display: inline-block; }
 .slide-holder .price span.old-price{
 	width:auto; display: inline-block; font-size: 1rem; color:#888; text-decoration: line-through }
-.swiper-pagination-bullets{
-	bottom: -4px !important}
+.swiper-pagination-bullets{}
 .slides{
-	height: auto; margin-bottom: 5px}
+	height: auto; //margin-bottom: 5px;
+}
 .swiper-pagination-bullet-active{ background: #545454 !important; }
 .brand-logo{
     width: auto !important;
     height: auto;
 }
 .brand-logo .item-image{
-    height: 90px;
+	//height: 90px;
+	height: 75px;
     align-items: center;
-    padding: 6px;
+	//padding: 6px 5px;
+	padding: 0 5px;
     display:flex;
 }
 .p-item{
@@ -73,6 +78,8 @@ h6{
 }
 .banner{
 	position: relative;
+	max-height: 162px;
+	overflow: hidden;
 }
 .banner img{
 	border: 1px solid #3a3a3a;
@@ -133,7 +140,8 @@ h6{
 }
 .slide-text .view-btn{
 	position: absolute;
-    bottom: 28px;
+	//bottom: 28px;
+	bottom: 10px;
     right: 10px;
     border-radius: 20px;
     background: #b84031;
@@ -154,6 +162,8 @@ h6{
 	margin: auto;
 	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
 }
+
+
 // .swiper-wrapper-brand{
 
 // }
