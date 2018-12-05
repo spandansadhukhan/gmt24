@@ -19,8 +19,8 @@
 <ion-content padding>
   
   <div class="check-custom">
-    <h6 (click)="toggle()">{{this.brands}}</h6>
-    <ion-list *ngIf="!show" class="accordion-list">
+    <h6 (click)="categoryshow=!categoryshow">{{this.brands}}</h6>
+    <ion-list *ngIf="categoryshow" class="accordion-list">
         <ion-item class="check-item" *ngFor="let b of brandlists;let i = index" >
             <ion-label>{{b.name}}</ion-label>
             <ion-checkbox color="dark"  checked="false"  (ionChange)="onChange(b.id, $event.checked, i)"></ion-checkbox>
@@ -34,8 +34,8 @@
 </div>
 
 <div class="check-custom">
-  <h6 (click)="toggle()">{{this.category}}</h6>
-  <ion-list *ngIf="!show" class="accordion-list">
+  <h6 (click)="categoryshow=!categoryshow">{{this.category}}</h6>
+  <ion-list *ngIf="categoryshow" class="accordion-list">
       <ion-item class="check-item" *ngFor="let sc of subcategorylist">
           <ion-label>{{sc.name}}</ion-label>
           <ion-checkbox color="dark" checked="false" (ionChange)="onCatisset(sc.id, $event.checked, i)"></ion-checkbox>
@@ -93,8 +93,8 @@
  
 
 <div class="check-custom">
-  <h6 (click)="toggle1()">{{this.movement}}</h6>
-  <ion-list *ngIf="!movementshow" class="accordion-list">
+  <h6 (click)="movementshow=!movementshow">{{this.movement}}</h6>
+  <ion-list *ngIf="movementshow" class="accordion-list">
       <ion-item class="check-item" *ngFor="let m of movementlists">
           <ion-label>{{m.name}}</ion-label>
           <ion-checkbox color="dark" checked="false" (ionChange)="onmovementset(m.name, $event.checked, i)"></ion-checkbox>
@@ -113,8 +113,8 @@
 
 
 <div class="check-custom">
-  <h6 (click)="toggle2()">{{this.seller}}</h6>
-  <ion-list *ngIf="!sellershow" class="accordion-list">
+  <h6 (click)="sellershow=!sellershow">{{this.seller}}</h6>
+  <ion-list *ngIf="sellershow" class="accordion-list">
       <ion-item class="check-item" *ngFor="let sw of shopOwners">
           <ion-label>{{sw.name}}</ion-label>
           <ion-checkbox color="dark" checked="false" (ionChange)="onsellerset(sw.id, $event.checked, i)"></ion-checkbox>
@@ -132,6 +132,7 @@
           <ion-checkbox color="dark"  (ionChange)="onstatusset(st.name, $event.checked, i)"></ion-checkbox>
     </ion-item>
   </ion-list>
+  
 </div>           
 
 <button ion-button round class="dark-grey-btn" (click)="onSave()">{{search}}</button>

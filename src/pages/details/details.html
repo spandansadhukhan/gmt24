@@ -120,7 +120,7 @@
 
       <div class="d-box" *ngIf="interest== 1">
         <div padding style="padding-bottom: 15px" >
-          <button ion-button round class="grey-btn" block (click)="ishide()">{{contact_seller}}</button>
+          <button ion-button round class="grey-btn" block (click)="ishide()">{{send_message}}</button>
         </div>
         <div *ngIf="hideMe">
         <form padding [formGroup]="sellercontactfrom">
@@ -201,7 +201,7 @@
     
 
     <div padding style="padding-bottom: 15px" *ngIf="ptype== 1 && user_id!=seller_id && interest== 0">
-      <button ion-button round class="grey-btn" block (click)="interestedEmailToVendor(seller_id,ptype)">{{this.show_interest}}</button>
+      <button ion-button round class="grey-btn" block (click)="interestedEmailToVendor(seller_id,ptype)">{{contact_seller}}</button>
     </div>
     <div padding *ngIf="(ptype== 2 && ctime > start_time && user_id!=seller_id) || (ptype== 2 && ctime > start_time && user_type==3)" style="padding-bottom: 45px">
       <button ion-button round class="grey-btn"  block (click)="gotobid()">{{this.Go_Live_Bidding}}</button>

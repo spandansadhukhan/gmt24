@@ -16,9 +16,9 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 })
 export class FilterPage {
   public show:boolean = false;
-  public movementshow:boolean = false;
-  public sellershow:boolean = false;
-  public statusshow:boolean = false;
+  //public movementshow:boolean = false;
+  //public sellershow:boolean = false;
+  //public statusshow:boolean = false;
   minValue: any;
   minSize: any = { lower: 0, upper: 100 };
   limit:any=5;
@@ -179,14 +179,14 @@ ChangeToUserLaguage(lang){
     this.show = !this.show;
   }
 
-  toggle1() {
+  // toggle1() {
 
-    this.movementshow = !this.movementshow;
-  }
-  toggle2() {
+  //   this.movementshow = !this.movementshow;
+  // }
+  // toggle2() {
 
-    this.sellershow = !this.sellershow;
-  }
+  //   this.sellershow = !this.sellershow;
+  // }
 
   // toggle3() {
 
@@ -369,6 +369,7 @@ onChange(id, isChecked, index) {
 
          onstatusset(id, isChecked, index) {
    
+          
           if(isChecked) {
              this.answers4.push(id)
              console.log('sparray',this.answers4);
