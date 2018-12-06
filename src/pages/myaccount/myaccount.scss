@@ -7,10 +7,21 @@ page-myaccount {
       position: relative;
     }
     .search{
+      //position: absolute;
+      //top: 26px;
+      //left: 30px;
+      //z-index: 1;
       position: absolute;
-      top: 26px;
-      left: 30px;
-      z-index: 1;
+    top: 30px;
+    left: 0;
+    z-index: 1;
+    right: 0;
+    margin: 0 auto;
+    display: table;
+    width: 79%;
+    border-radius: 50px;
+    border: 1px solid #dddddd;
+    padding: 10px 10px;
     }
     .profile-top{padding:15px 10px;margin-bottom: 0; background: url('../assets/img/left-panel-bg.jpg') no-repeat bottom center; background-size: cover; }
     .profile-top .item{border: 0!important;  background-color: transparent;}
