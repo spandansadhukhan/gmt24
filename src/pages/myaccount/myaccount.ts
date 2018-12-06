@@ -519,7 +519,7 @@ initlocationMap(lat,lang) {
       }
       else
       {
-        alert(status);
+       // alert(status);
       }
 
     });
@@ -539,7 +539,7 @@ initlocationMap(lat,lang) {
       }
       else
       {
-        alert(status);
+       // alert(status);
       }
        
     });
@@ -608,7 +608,7 @@ searchaddress(item){
     }
     else
     {
-      alert(status);
+     // alert(status);
     }
      
   });
