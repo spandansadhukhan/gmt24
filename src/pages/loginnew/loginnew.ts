@@ -8,7 +8,8 @@ import { Storage } from '@ionic/storage';
 import { MenuController } from 'ionic-angular';
 //import {MyApp} from '../../app/app.component';
 import { Events } from 'ionic-angular';
-
+import { Facebook } from '@ionic-native/facebook';
+import { GooglePlus } from '@ionic-native/google-plus';
 @IonicPage()
 @Component({
   selector: 'page-loginnew',
@@ -40,9 +41,10 @@ public loguser:any;
     public menu: MenuController,
     public authService: AuthServiceProvider,
     private storage: Storage,
-    
     public loadingCtrl: LoadingController,
     public events: Events,
+    private fb: Facebook,
+    private googlePlus: GooglePlus,
     //private myApp:MyApp
   ) {
 
@@ -79,7 +81,7 @@ public loguser:any;
       content: 'Please Wait...'
     });
     loading.present();
-    formData['device_token_id'] = localStorage.getItem('TOKEN');;
+    formData['device_token_id'] = localStorage.getItem('TOKEN');
     formData['device_type']='android';
     
     this.authService.login(formData).subscribe(res => {
@@ -134,5 +136,80 @@ public loguser:any;
     this.navCtrl.setRoot('HomePage');
 
   }
+
+
+  facebookSignIn() {
+    this.fb.login(['public_profile', 'email'])
+      .then(res => {
+        console.log("FBDATA",res);
+        if(res.status === "connected") {
+          //this.isLoggedIn = true;
+          this.getUserDetail(res.authResponse.userID);
+        } else {
+         // this.isLoggedIn = false;
+        }
+      })
+      .catch(e => console.log('Error logging into Facebook', e));
+  }
+  
+  getUserDetail(userid) {
+    this.fb.api("/"+userid+"/?fields=id,email,name,picture,gender",["public_profile"])
+      .then(res => {
+        console.log("FBDATA",res);
+        this.users = res;
+        
+     let param={
+      "id": this.users.id,
+      "email":this.users.email,
+      "name": this.users.name,
+      "device_type": 'android',
+      "device_token_id": localStorage.getItem('TOKEN'),
+       
+     };
+     console.log("DATATATTATATAT",param);
+       
+        this.authService.facebooklogin(param).subscribe((res) => { //console.log(result);
+         //this.detailsTReponse = res;
+         console.log("FBRESULT",res);
+         if(res.Ack== 1)
+         {
+       
+          localStorage.setItem('userData',JSON.stringify(res.UserDetails));
+          //this.navCtrl.push('HomePage')
+          this.storage.set('uid', res.UserDetails['user_id']).then(() => {
+            this.navCtrl.setRoot('HomePage');
+          });
+         }
+         else{
+          
+          let alert = this.alertCtrl.create({
+            title: "Something went wrong.",
+                   buttons: ['ok']
+          });
+          alert.present(); 
+          //this.formGroup.reset();
+           
+         }
+          
+       })
+  
+      })
+      
+  }
+
+
+  googleplus() {
+    //alert();
+    this.googlePlus.login({})
+      .then(res => {
+        console.log("GOOGLEPLUSDATA",res);
+        this.email = res.email;
+      })
+      .catch(err => console.error(err));
+  }
+
+
+
+
 
 }

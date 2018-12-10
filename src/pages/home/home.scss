@@ -23,7 +23,7 @@ h6{
 	color:#333;
 	//margin-top: 5px;
 	text-align: center;
-	margin: 14px 0 0;
+	margin: 3px 0 0;
 	font-weight: 600;
 }
 .swiper-container {
@@ -79,7 +79,6 @@ h6{
 }
 .banner{
 	position: relative;
-	max-height: 162px;
 	overflow: hidden;
 }
 .banner img{
@@ -113,6 +112,8 @@ h6{
 }
 .slide{
 	position: relative;
+	height: 32vh;
+	
 }
 .slide h2{
 	margin-top: 6px;
@@ -123,7 +124,7 @@ h6{
 }
 .slide img{
 	width: 100%;
-	height: 198px;
+	height: 32vh;
 	object-fit: cover;
 	// border: 1px solid #213d65;
 }
@@ -194,5 +195,17 @@ h6{
 	margin-bottom: 25px;
 	float:left !important;
 }*/
+.vh32{
+	height: 25vh;
+}
+.vh32 img{
+	height: 25vh !important;
+	width: 100vw;
+	
+}
+.slids{
+	height: 18vh;
+	padding: 25px 0;
+}
 
 }

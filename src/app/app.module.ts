@@ -20,7 +20,8 @@ import { CalendarModule } from "ion2-calendar";
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Push } from '@ionic-native/push';
-
+import { Facebook } from '@ionic-native/facebook';
+import { GooglePlus } from '@ionic-native/google-plus';
 @NgModule({
   declarations: [
     MyApp,
@@ -47,6 +48,8 @@ import { Push } from '@ionic-native/push';
     InAppBrowser,
     GoogleMaps,
     Geolocation,
+    Facebook,
+    GooglePlus,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserProvider,
     

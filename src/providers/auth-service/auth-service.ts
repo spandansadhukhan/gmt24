@@ -124,6 +124,13 @@ export class AuthServiceProvider {
     });
   }
 
+  facebooklogin(data: object): Observable<any> {
+    //console.log(data);
+    return this.http.post(this.apiUrl +'fblogin', data).map((res: Response) => {
+      return res.json();
+    });
+  }
+
   resendotp(data: object): Observable<any> {
     //console.log('spandan',data);
     return this.http.post(this.apiUrl +'resend_app', data).map((res: Response) => {

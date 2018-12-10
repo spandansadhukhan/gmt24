@@ -66,8 +66,8 @@
       </ion-grid>
 
       <div padding class="text-center">
-        <button ion-button class="fb-btn" ><img src="assets/img/fb-icon.png" alt="Facebook logo"></button>
-        <button ion-button class="g-plus-btn"><img src="assets/img/g-plus-icon.png" alt="Facebook logo"></button>
+        <button ion-button class="fb-btn" (click)="facebookSignIn()"><img src="assets/img/fb-icon.png" alt="Facebook logo"></button>
+        <button ion-button class="g-plus-btn" (click)="googleplus()"><img src="assets/img/g-plus-icon.png" alt="G+ logo"></button>
       </div>
       <p class="bottom-text">Don’t have account?<span (click)="onSignup()"> Sign Up </span></p>
 
