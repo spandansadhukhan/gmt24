@@ -22,7 +22,7 @@
 
 
 <ion-content padding>
-  <div class="banner">
+  <div class="banner vh32">
     <div class="banner-text">
       <p>A place to find your dream watch</p>
       <h4>The Worldwide<br> Marketplace </h4>
@@ -30,6 +30,7 @@
     </div>
     <img src="assets/img/banner1.png" alt="">
   </div>
+  <div class="slids">
   <h6 class="text-uppercase">{{our_brands}}</h6>
 <ion-slides class="top-sliderss" slidesPerView="2" loop="true">
   <ion-slide class="slide-holder brand-logo" *ngFor="let tb of brandlists">
@@ -39,6 +40,7 @@
     <!-- <h6>{{tb.brand_name}}</h6> -->
   </ion-slide>
 </ion-slides>
+</div>
 <!-- 
   <h6 class="text-uppercase margin">{{this.category}}</h6>
   <ion-slides pager slidesPerView="3">
