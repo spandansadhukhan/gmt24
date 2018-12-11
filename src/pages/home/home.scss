@@ -2,7 +2,7 @@ page-home {
 
 .toolbar-title{ color: #ffffff; text-transform: uppercase; font-family: 'Poppins', sans-serif;  font-weight: 300 !important; }
 
-.searchbar{background: #3a3a3a}
+.searchbar{background: #011629}
 .searchbar .searchbar-input{border-radius: 50px; border: 1px solid #00203d;}
 
 .content {background: #ffffff !important; padding-left: 10px!important; padding-right:10px!important
@@ -10,11 +10,12 @@ page-home {
 .content .scroll-content{
 	// padding-left: 2px!important; padding-right: 2px!important;
 	//padding-bottom: 68px !important;
-	padding-bottom: 52px !important;
+	padding-bottom: 47px !important;
 }
 .scroll-content{
 	padding: 0 !important;
 	margin-top: 116px;
+	margin-bottom: 21px;
 }
 .margin{
 	// margin-bottom: 0 !important;
@@ -116,7 +117,11 @@ h6{
 	
 }
 .slide h2{
-	margin-top: 6px;
+	margin-top: 6px;.swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+		margin: 0 5px;
+		background: #fff;
+		opacity: .7;
+	}
 }
 .slide h5{
 	padding: 0 2px;
@@ -204,8 +209,18 @@ h6{
 	
 }
 .slids{
-	height: 18vh;
-	padding: 25px 0;
+	// height: 18vh;
+	padding: 15px 0;
+}
+
+.swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+    margin: 0 5px;
+    background: #fff;
+    opacity: .7;
+}
+.swiper-pagination-bullet-active{
+	background: #8d9198 !important;
+	opacity: 0.4;
 }
 
 }
