@@ -192,7 +192,7 @@
     <div class="d-box">
     <h2>{{Seller_Info}}</h2>
     <p><span>{{Seller_Name}}:</span> {{seller_name}}</p>
-    <p *ngIf="interest== 1" (click)="call(seller_phone)"><ion-icon name="call"></ion-icon><span>{{phone}}:</span> {{seller_phone}}</p>
+    <p *ngIf="interest== 1" (click)="call(seller_phone)"><ion-icon name="call"></ion-icon><span></span> {{seller_phone}}</p>
     <p *ngIf="interest== 1" (click)="navigateDrivingLocation()"><span>{{Address}}:</span><br/>{{seller_address}}</p>
     </div>
     

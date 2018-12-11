@@ -232,7 +232,7 @@ ChangeToUserLaguage(lang){
          this.Write_a_review = res.languages.Write_a_review;
 
          this.Seller_Info=res.languages.Seller_Info;
-         this.Seller_Name=res.languages.Seller_Name;
+         this.Seller_Name=res.languages.Name;
          this.phone = res.languages.phone;
          this.Address = res.languages.Address;
          this.Your_Messages = res.languages.Your_Messages;
