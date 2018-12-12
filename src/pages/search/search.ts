@@ -21,7 +21,7 @@ export class SearchPage {
   productlists:any;
   wordlists=[];
   keyword:any;
-  minprice:any=0;
+  minprice:any=0.00;
   maxprice:any=10000000;
   searchdata:any;
 
