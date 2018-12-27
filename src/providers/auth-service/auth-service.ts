@@ -142,7 +142,7 @@ export class AuthServiceProvider {
     //console.log(data);
     let requestforgetoptions = new RequestOptions({
       method: RequestMethod.Post,
-      url: this.apiUrl + 'users/apiforgot_password',
+      url: this.apiUrl + 'forgetpassword',
       body: JSON.stringify(data)
     });
    // console.log(requestforgetoptions);

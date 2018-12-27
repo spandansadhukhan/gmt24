@@ -7,22 +7,22 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>forgetpass</ion-title>
+    <ion-title>Forgot Password</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content>
-  <div class="logo style">
+<ion-content padding>
+  <div class="logo">
     <img src="assets/img/appicon.png" alt="Ionic logo">
 
-    <h3>LogIn</h3>
+   
   </div>
   <!-- <form  [formGroup]="form" (ngSubmit)="loginNow(form.value)"> -->
   <form [formGroup]="forgetpassForm"  #loginForm="ngForm">
     <ion-list no-lines>
-      <ion-item>
+      <ion-item class="input-field">
         <ion-label stacked color="primary">Enter Your Email</ion-label>
         <ion-input type="text" formControlName="email" required>
         </ion-input>
@@ -30,7 +30,7 @@
       </ion-item>
      
 <div padding class="p-b-5">
-  <button ion-button class="sign-in-btn" (click)="forgetpassword(forgetpassForm.value)" type="submit" block>Send password</button>
+  <button ion-button class="grey-btn" (click)="forgetpassword(forgetpassForm.value)" type="submit" block>Send password</button>
 </div>
 
  </ion-list>
