@@ -98,11 +98,6 @@
       "cordova-plugin-filepath": {},
       "cordova-plugin-datepicker": {},
       "cordova-plugin-geolocation": {},
-      "cordova-plugin-googlemaps": {
-        "API_KEY_FOR_ANDROID": "AIzaSyDnTqCZqlvuWG1KNrNh9slnA_EqiJmiX9g",
-        "PLAY_SERVICES_VERSION": "15.0.1",
-        "ANDROID_SUPPORT_V4_VERSION": "27.+"
-      },
       "uk.co.workingedge.phonegap.plugin.launchnavigator": {
         "OKHTTP_VERSION": "3.+"
       },
@@ -120,6 +115,11 @@
       "cordova-plugin-googleplus": {
         "REVERSED_CLIENT_ID": "242512247505-uctu8cgthvur5kjhu083rl7m6gmhv9dg.apps.googleusercontent.com",
         "PLAY_SERVICES_VERSION": "11.8.0"
+      },
+      "cordova-plugin-googlemaps": {
+        "API_KEY_FOR_ANDROID": "AIzaSyA9TtgcmRWCs9APKw2Sh4W5gujBJVOYaPo",
+        "PLAY_SERVICES_VERSION": "15.0.1",
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
       }
     },
     "platforms": [
