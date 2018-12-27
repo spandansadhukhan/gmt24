@@ -26,23 +26,30 @@ export class ForgetpassPage{
 
   forgetpassword(formData){
     this.authService.forgetpass(formData).subscribe(res => {
-      if (res.ACK == 1) {
+      if (res.Ack == 1) {
         const alert = this.alertCtrl.create({
-          title: res.message,
+          title: 'Mail Sent Successfully',
           buttons: ['OK']
         });
         alert.present();
+        this.navCtrl.setRoot('LoginnewPage');
       }
       else {
 
         const alert = this.alertCtrl.create({
-          title: res.message,
+          title: 'Password Change Failed. Try Again.' ,
           buttons: ['OK']
         });
         alert.present();
+        this.navCtrl.setRoot('LoginnewPage');
       }
     }, err => {
-      console.log(err);
+      const alert = this.alertCtrl.create({
+        title: 'Something Went Wrong' ,
+        buttons: ['OK']
+      });
+      alert.present();
+      //console.log(err);
     });
   }
 
