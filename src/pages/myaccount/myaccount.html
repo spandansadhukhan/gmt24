@@ -18,7 +18,7 @@
     <ion-item>
       <div class="profile-pic">
         <img src="{{image}}" alt="">
-        <a href="" class="edit"><ion-icon name="create"></ion-icon></a>
+        <a class="edit"><ion-icon (click)="presentActionSheet(1)" name="create"></ion-icon></a>
       </div>
       <h4 class="text-white text-center">{{fname}} {{lname}}</h4>
       <!-- <p class="text-white text-center">California C.A. United States</p> -->
@@ -164,7 +164,7 @@
 
           <ion-item>
               <p class="upload-text">{{this.Civil_ID_Attachment}}</p>
-              <button ion-button block class="grey-btn" color="light" (click)="presentActionSheet()">{{this.Add_Photo}}</button>
+              <button ion-button block class="grey-btn" color="light" (click)="presentActionSheet(2)">{{this.Add_Photo}}</button>
             </ion-item>
             <ul class="upload-list" *ngIf="productimages" style="list-style:none;">
         

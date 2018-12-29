@@ -94,6 +94,8 @@ export class MyaccountPage {
   public this_field_is_required:any;
   public My_Profile:any;
 
+  public user_id:any;
+
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
     public authService: AuthServiceProvider,
@@ -621,7 +623,8 @@ searchaddress(item){
 
  //image upload
 
- presentActionSheet() {
+ presentActionSheet(uploadid) {
+   //alert(uploadid);
   let actionSheet = this.actionSheetCtrl.create({
     enableBackdropDismiss: true,
     buttons: [
@@ -629,13 +632,13 @@ searchaddress(item){
         text: 'Take a picture',
         icon: 'camera',
         handler: () => {
-          this.uploadFromCamera(this.camera.PictureSourceType.CAMERA);
+          this.uploadFromCamera(this.camera.PictureSourceType.CAMERA,uploadid);
         }
       }, {
         text: 'From gallery',
         icon: 'images',
         handler: () => {
-          this.uploadFromCamera(this.camera.PictureSourceType.PHOTOLIBRARY);
+          this.uploadFromCamera(this.camera.PictureSourceType.PHOTOLIBRARY,uploadid);
         }
       }
     ]
@@ -645,7 +648,7 @@ searchaddress(item){
 
 
 
-uploadFromCamera(sourceType){
+uploadFromCamera(sourceType,uploadid){
 
   var options = {
     quality: 100,
@@ -662,12 +665,12 @@ uploadFromCamera(sourceType){
         .then(filePath => {
           let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
           let currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
-          this.copyFileToLocalDir(correctPath, currentName, this.createFileName(currentName));
+          this.copyFileToLocalDir(correctPath, currentName, this.createFileName(currentName),uploadid);
         });
     } else {
       var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
       var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
-      this.copyFileToLocalDir(correctPath, currentName, this.createFileName(currentName));
+      this.copyFileToLocalDir(correctPath, currentName, this.createFileName(currentName),uploadid);
     }
   }, (err) => {
     this.presentToast('Error while selecting image.');
@@ -682,12 +685,19 @@ private createFileName(currentName) {
   return newFileName;
 }
 
-private copyFileToLocalDir(namePath, currentName, newFileName) {
+private copyFileToLocalDir(namePath, currentName, newFileName,uploadid) {
  console.log("CURRENTFILENAME",currentName);
   this.file.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(success => {
     this.lastImage = newFileName;
     console.log("NEWFILENAMEEEEEE",this.lastImage);
-    this.uploadImage();
+    if(uploadid == '1'){
+      //alert('ok');
+      this.uploadImage_profile();
+    }else{
+      //alert('ok1');
+      this.uploadImage();
+    }
+    
   }, error => {
     this.presentToast('Error while storing file.');
   });
@@ -803,6 +813,66 @@ remove_image(id)
   alert.present();
   //alert(id)
 }
+
+
+public uploadImage_profile() {
+
+  this.loguser =  JSON.parse(localStorage.getItem('userData'));
+  this.user_id=this.loguser.user_id;
+  // Destination URL
+  var url = "https://thegmt24.com/webservice/frontend/updateProfilePhoto_app";
+ 
+  // File for Upload
+  var targetPath = this.pathForImage(this.lastImage);
+ 
+  // File name only
+  var filename = this.lastImage;
+ 
+  var options = {
+    fileKey: "photo",
+    photo: filename,
+    chunkedMode: false,
+    mimeType: "multipart/form-data",
+    params : {
+    'photo':filename,
+    'user_id':this.user_id
+     }
+   // params : {'fileName': filename}
+  };
+  console.log("OPTIONS",options);
+  const fileTransfer:FileTransferObject = this.transfer.create();
+ 
+  let loading = this.loadingCtrl.create({
+    content: 'Uploading Please Wait...'
+  });
+  loading.present();
+ 
+  // Use the FileTransfer to upload the image
+  fileTransfer.upload(targetPath, url, options).then(data => {
+   
+    this.uploadsuccess=JSON.parse(data.response);
+    if(this.uploadsuccess.Ack==1){
+      loading.dismiss();
+      this.image=this.uploadsuccess.image;
+      this.presentToast('Image succesful uploaded.');
+      
+    }else{
+
+      loading.dismiss();
+      this.presentToast('Time out. Try again.');
+    }
+
+
+
+  }, err => {
+    console.log("Error",err);
+    loading.dismiss();
+    this.presentToast('Error while uploading file.');
+  });
+}
+
+
+
 
 //spandan
 
