@@ -41,11 +41,18 @@ ion-title .toolbar-title img{ width: 100px; margin-right: 30px;}
     margin-left: 10px;
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
 }
-
-
 .pt-0{padding-top: 0;}
 .pr-0{padding-right: 0;}
 .pb-0{padding-bottom: 0;}
 .pl-0{padding-left: 0;}
+
+.rtl-arabic{
+    .item.request-item{
+        flex-direction: row-reverse;
+        .label-ios{
+            text-align: right;
+        }
+    }
+}
 
 }

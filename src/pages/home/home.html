@@ -21,7 +21,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding *ngIf="selectedlanguage == 1">
   <div class="banner vh32">
     <div class="banner-text">
       <p>A place to find your dream watch</p>
@@ -32,7 +32,7 @@
   </div>
   <div class="slids">
   <h6 class="text-uppercase">{{our_brands}}</h6>
-<ion-slides class="top-sliderss" slidesPerView="2" loop="true">
+<ion-slides class="top-sliderss" direction="x" slidesPerView="2" loop="true">
   <ion-slide class="slide-holder brand-logo" *ngFor="let tb of brandlists">
     <div class="item-image" (click)="brandproduct(tb.brand_id)">
       <img src="{{tb.brand_image}}" alt="Item">
@@ -123,4 +123,69 @@
 </ion-slides> -->
 
 
+</ion-content>
+
+<ion-content padding *ngIf="selectedlanguage == 2" class="rtl-arabic">
+  <div class="banner vh32">
+    <div class="banner-text">
+      <p>A place to find your dream watch</p>
+      <h4>The Worldwide<br> Marketplace </h4>
+      <h4>for Luxury Watches</h4>
+    </div>
+    <img src="assets/img/banner1.png" alt="">
+  </div>
+  <div class="slids">
+  <h6 class="text-uppercase">{{our_brands}}</h6>
+<ion-slides class="top-sliderss" slidesPerView="2" loop="true">
+  <ion-slide class="slide-holder brand-logo" *ngFor="let tb of brandlists">
+    <div class="item-image" (click)="brandproduct(tb.brand_id)">
+      <img src="{{tb.brand_image}}" alt="Item">
+    </div>
+    <!-- <h6>{{tb.brand_name}}</h6> -->
+  </ion-slide>
+</ion-slides>
+</div>
+<ion-slides pager slidesPerView="1" class="slider-bg">
+
+  <ion-slide class="sliding">
+    <div class="slide">
+      <div class="slide-text">
+        <h5 class="m-0">{{this.special_auction}}</h5>
+        <a (click)="spcealauction()" class="view-btn">{{this.view}}</a>
+      </div>
+    <img src="assets/img/slide-img1.png" alt="">
+    </div>
+  </ion-slide>
+
+  <ion-slide>
+      <div class="slide">
+        <div class="slide-text">
+          <h5 class="m-0">{{this.ladies_watch}}</h5>
+          <a (click)="ladieswatch()" class="view-btn">{{this.view}}</a>
+        </div>
+          <img src="assets/img/slide-img2.png" alt="">
+      </div>
+  </ion-slide>
+
+  <ion-slide >
+      <div class="slide">
+        <div class="slide-text">
+          <h5 class="m-0">{{this.best_sellers}}</h5>
+          <a (click)="topuservendor()" class="view-btn">{{this.view}}</a>
+        </div>
+          <img src="assets/img/slide-img3.png" alt="">
+      </div>
+  </ion-slide>
+
+  <ion-slide >
+      <div class="slide">
+        <div class="slide-text">
+          <h5 class="m-0">{{this.top_products}}</h5>
+          <a (click)="topproduct()" class="view-btn">{{this.view}}</a>
+        </div>
+          <img src="assets/img/slide-img4.png" alt="">
+      </div>
+  </ion-slide>
+
+</ion-slides>
 </ion-content>

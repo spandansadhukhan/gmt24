@@ -11,7 +11,47 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding *ngIf="selectedlanguage == 1">
+  <ion-list class="noti-list">
+    <ion-item *ngFor="let n of notificationlists">
+      <ion-avatar item-start>
+        <img src="{{n.from_userimg}}" alt="">
+      </ion-avatar>
+      <h2>{{n.fromName}}</h2>
+      <p *ngIf="n.app_message">You won1 the auction. Please pay and buy the product within 2 days. For buy <a (click)='gotowinpayment(n.app_message)'> Click here</a></p>
+      <p *ngIf="!n.app_message" [innerHTML]="n.message"></p>
+      <small>{{n.dateformat}}</small>
+    </ion-item>
+    
+    <ion-item *ngIf="notificationlists== ''"> 
+            
+      <h2>{{msg}}</h2>
+      
+    </ion-item> 
+    
+    <!-- <ion-item>
+      <ion-avatar item-start>
+        <img src="assets/img/face-2.jpg" alt="">
+      </ion-avatar>
+      <h2>Alina Wilson
+        <span>post a message</span>
+      </h2>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+      <small>Feb 10, 2018</small>
+    </ion-item>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="assets/img/face-3.jpg" alt="">
+      </ion-avatar>
+      <h2>Alina Wilson
+        <span>post a message</span>
+      </h2>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+      <small>Feb 10, 2018</small>
+    </ion-item> -->
+  </ion-list>
+</ion-content>
+<ion-content padding *ngIf="selectedlanguage == 2" class="rtl-arabic">
   <ion-list class="noti-list">
     <ion-item *ngFor="let n of notificationlists">
       <ion-avatar item-start>

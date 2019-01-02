@@ -42,4 +42,12 @@ page-shopproductlist {
     .pr-0{padding-right: 0;}
     .pb-0{padding-bottom: 0;}
     .pl-0{padding-left: 0;}
+    .rtl-arabic{
+        .item.request-item{
+            flex-direction: row-reverse;
+            .item-inner{
+                text-align: right;
+            }            
+        }
+    }
 }

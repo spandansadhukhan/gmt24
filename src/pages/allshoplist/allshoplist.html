@@ -31,7 +31,39 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding *ngIf="selectedlanguage == 1">
+
+  <ion-list>
+    <ion-item class="request-item" *ngFor="let shop of shoplists" (click)="productlist(shop.id)">
+      <div class="top-tag" *ngIf="shop.top_user_vendor==1">
+        <img src="assets/img/cr.png" alt="">
+      </div>
+      
+      <ion-thumbnail item-start>       
+        <img src="{{shop.seller_image}}" alt="" >
+      </ion-thumbnail>
+      <h2>{{shop.seller_name}}</h2>
+      <p class="name">
+        <span>{{this.phone}}:</span> {{shop.seller_phone}}</p>
+      <p class="batch">
+        <!-- <span class="batch-pic"> <img  src="assets/img/batch.png" alt=""> </span> 
+        <span class="batch-text">Trusted Seller since 2016</span>  -->
+        
+      </p>
+    </ion-item>
+    
+    <ion-item class="request-item" *ngIf="shoplists == ''">
+      
+      {{this.no_records_found}} 
+      
+    </ion-item>
+    
+  </ion-list>
+
+
+
+</ion-content>
+<ion-content padding *ngIf="selectedlanguage == 2" class="rtl-arabic">
 
   <ion-list>
     <ion-item class="request-item" *ngFor="let shop of shoplists" (click)="productlist(shop.id)">

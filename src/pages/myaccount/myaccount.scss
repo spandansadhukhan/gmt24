@@ -180,4 +180,22 @@ page-myaccount {
           font-size: 23px;
         }
 
+        .rtl-arabic{
+          .profile-info {
+            .item {
+              padding-right: 5px;
+              text-align: right;
+            }
+          }
+          .text-input,.select-text{
+            text-align: right;
+          }
+          .country-select {
+            .button-inner{
+              justify-content: flex-end;
+            }
+
+          }
+        }
+
 }

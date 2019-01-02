@@ -20,4 +20,13 @@ page-myauction {
         display: flex;
         flex-wrap: wrap;
     }
+    .rtl-arabic{
+        .item{
+            text-align: right;
+            flex-direction: row-reverse;
+        }
+        .product-bt{
+            justify-content: flex-end;
+        }
+    }
 }

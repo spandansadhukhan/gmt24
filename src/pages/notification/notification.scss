@@ -15,4 +15,14 @@ page-notification {
 	
     .label{margin-right:0; margin-bottom: 0}
 	small{color: #999; display: block;text-align: right; font-size:10px; display: block; margin-bottom: 2px}
+	.rtl-arabic{
+		text-align: right;
+		.noti-list {
+			.label{
+				h2{
+				text-align: right;
+				}
+			} 
+	}
+		}
 }

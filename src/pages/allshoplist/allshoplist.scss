@@ -57,4 +57,20 @@ ion-title .toolbar-title img{ width: 100px; margin-right: 30px;}
 .pr-0{padding-right: 0;}
 .pb-0{padding-bottom: 0;}
 .pl-0{padding-left: 0;}
+.rtl-arabic{
+    .item.request-item{
+        flex-direction: row-reverse;
+        .item-inner{
+            text-align: right;
+        }
+        .top-tag {
+            width: 32px;           
+            left: auto;
+            top: 10px;
+            right: 13px;
+        }
+    }
+}
+
+
 }

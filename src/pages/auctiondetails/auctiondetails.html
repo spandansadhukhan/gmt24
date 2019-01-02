@@ -13,7 +13,53 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding *ngIf="selectedlanguage == 1">
+  <ion-card>
+      <div class="auction-details-top">
+          <ul>
+            <!-- <li><ion-icon name="md-thumbs-up"></ion-icon> 0</li> -->
+            <li><ion-icon name="md-eye"></ion-icon> 5</li>
+          </ul>
+          <img src="{{product_single_image}}" alt="">
+        </div>
+        <div padding class="auction-details-info">
+          <ion-row>
+            <ion-col col-8>
+                <h2>{{brands}}/{{category}}({{gender}})</h2>
+            </ion-col>
+            <ion-col col-4>
+              <h4>{{currency_code}} {{price}}</h4>
+            </ion-col>
+          </ion-row>
+          <div *ngIf="user_id==seller_id">
+          <h5 class="date"><b>{{this.auction_date}}:</b> {{start_time}}</h5>
+          <h5 class="date"><b>{{this.Auction_Status}}:</b> {{this.Auction_Details}}Pending</h5>
+          <p>{{description}}</p>
+          <h5>{{this.time_remaining}}</h5>
+          <h3>10h:05m:11s</h3>
+          </div>
+
+          <div *ngIf="user_id!=seller_id">
+            <h5 class="date"><b>{{this.Product_Description}}:</b> {{description}}</h5>
+            <h5 class="date"><b>{{this.Product_Bracelet_Type}}:</b> {{breslet_type}}</h5>
+            <h5 class="date"><b>{{this.Product_Size}}:</b> {{size}}</h5>
+            
+            <p></p>
+            
+            </div>
+
+
+
+          <div class="seller-details" *ngIf="user_id!=seller_id">
+            <h5>{{this.Seller_Info}}:</h5>
+            <p>{{this.Name}}: {{seller_name}}</p>
+            <p>{{this.phone}}: {{seller_phone}}</p>
+          </div>
+          <button ion-button block small round  class="grey-btn" *ngIf="user_id==seller_id" (click)="show()">Check Bidding Details</button>
+        </div>
+  </ion-card>
+</ion-content>
+<ion-content padding *ngIf="selectedlanguage == 2" class="rtl-arabic">
   <ion-card>
       <div class="auction-details-top">
           <ul>

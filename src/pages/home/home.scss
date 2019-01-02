@@ -223,4 +223,17 @@ h6{
 	opacity: 0.4;
 }
 
+.rtl-arabic{
+	.banner.vh32 img{
+		transform: scalex(-1);		
+	}
+	.banner-text{
+		right: 48%;
+		z-index: 999;
+	}
+	
+}
+
+
+
 }

@@ -23,4 +23,14 @@ page-language {
     ion-select.select {border: 1px solid #666666;background-color: #333333; height:43px; border-radius: 25px; padding-top: 10px!important; padding-bottom: 10px!important}
     .select-text{ padding: 0 12px; font-size: 1.4rem; color: #999;}
     .select-icon .select-icon-inner{left:0 !important}
+    
+    .rtl-arabic{
+      text-align: right;
+      .item{
+          text-align: right;
+      }
+      .text-input{
+          text-align: right;
+      }
+    }
 }

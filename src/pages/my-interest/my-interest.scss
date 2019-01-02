@@ -21,6 +21,12 @@ page-my-interest {
     }
     .item.request-item .button{height:32px; padding-left: 1.5em; padding-right: 1.4em}
     .item.request-item .item-inner{border-bottom:0}
+    .rtl-arabic{
+        .item{
+            text-align: right;
+            flex-direction: row-reverse;
+        }
+    }
 
 
     }

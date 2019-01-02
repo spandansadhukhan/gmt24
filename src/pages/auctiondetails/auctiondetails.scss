@@ -111,4 +111,10 @@ page-auctiondetails {
             font-size: 14px;
         }
     }
+    .rtl-arabic{
+        text-align: right;
+        .item{
+            text-align: right;
+        }
+    }
 }
