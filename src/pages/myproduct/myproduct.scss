@@ -22,4 +22,9 @@ page-myproduct {
         display: flex;
         flex-wrap: wrap;
     }
+    .rtl-arabic{
+        .item{
+            text-align: right;
+        }
+    }
 }

@@ -144,10 +144,10 @@
     box-shadow: 10px 0 20px rgba(0,0,0,.4) !important;
    }
    ion-footer .toolbar-content a p{font-size:11px; text-transform: uppercase; margin: 0;font-weight: 800;height: 28px;}
-   ion-footer .toolbar-content a p.active,
-   ion-footer .toolbar-content a p:hover{
-    //  color: #fff !important;
-   }
+  //  ion-footer .toolbar-content a p.active,
+  //  ion-footer .toolbar-content a p:hover{
+  //   //  color: #fff !important;
+  //  }
   ion-footer .row{
     flex-wrap: nowrap;
   }
@@ -240,4 +240,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5a2626', end
 }
 .arabic{
   text-overflow: ellipsis !important;
+}
+.rtl-arabic{
+  .sidepanel-list ion-item{
+      text-align: right;
+      flex-direction: row-reverse;
+  }
 }

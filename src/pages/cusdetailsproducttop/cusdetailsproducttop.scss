@@ -29,4 +29,12 @@ page-cusdetailsproducttop {
         padding:8px 14px !important;
         font-size: 12px;
     }
+    .rtl-arabic{
+        .item{
+            text-align: right;
+        }
+        .text-input{
+            text-align: right;
+        }
+    }
 }

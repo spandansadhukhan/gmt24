@@ -20,4 +20,23 @@ page-settings {
 
 .pt-o{padding-top: 0;}
 .pl-0{padding-left: 0;}
+
+.rtl-arabic{
+    .item{
+        text-align: right;
+        flex-direction: row-reverse;
+    }
+    .card-ios {
+        ion-list{
+            width: 100%;
+        }
+    }
+    .noti-list{
+        text-align: right;
+        max-width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+
+    }
+}
 }

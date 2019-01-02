@@ -1,9 +1,4 @@
 page-details {
-
-
-   
-
-
 .bar-buttons-start{ order: 3;}
 ion-title{ text-align: center;}
 ion-title .toolbar-title{align-items: center; display: flex; justify-content: center;}
@@ -202,5 +197,23 @@ ion-title .toolbar-title img{ width: 100px; margin: 0 auto;}
 		height: 180px;
 		overflow-y: auto;
 	}
+
+
+	.rtl-arabic{
+		
+		text-align: right;
+		.like {
+			left: auto;
+			right: 15px;
+			top: 15px;
+		}		
+		.d-box{			
+			text-align: right;
+		h2,p,h1,.label{
+			text-align: right;			
+			}
+		}
+	}
+	/*--end of rtl*/
 
 }

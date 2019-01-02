@@ -22,5 +22,13 @@ page-cusdetailsauctionupload {
     .bottom-text span{ text-decoration: underline; }
     .rdo-btn{ width: auto; }
     .text-input{ padding: 0 6px; font-size: 1.2rem; color: #fff;}
+    .rtl-arabic{
+        .item{
+            text-align: right;
+        }
+        .text-input{
+            text-align: right;
+        }
+    }
     
 }

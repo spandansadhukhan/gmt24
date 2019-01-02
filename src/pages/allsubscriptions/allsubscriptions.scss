@@ -32,4 +32,19 @@ page-allsubscriptions {
         position: relative;
         padding-right: 80px;
     }
+    .rtl-arabic{
+        text-align: right;
+        .item{
+            text-align: right;
+            flex-direction: row-reverse;
+        }
+        .subs-item {
+            .label{
+                padding-right: 0;
+            }
+
+        }
+       
+    }
+
 }

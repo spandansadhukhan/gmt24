@@ -33,5 +33,12 @@ page-list-order-buyer {
                 line-height: 30px;
             }
     
-    
+            .rtl-arabic{
+                .item{
+                    text-align: right;
+                }
+                .main-box{
+                    text-align: right;
+                }
+            }
 }

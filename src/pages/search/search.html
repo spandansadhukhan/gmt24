@@ -51,7 +51,40 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding *ngIf="selectedlanguage == 1">
+  <ion-list>
+    <ion-item class="request-item" *ngFor="let product of productlists" (click)="productdetails(product.product_id)">
+      <div class="top-tag" *ngIf="product.top_product==1">
+        <img src="assets/img/top.png" alt="">
+      </div>
+      
+      <ion-thumbnail item-start>       
+        <img src="{{product.image}}" alt="">
+      </ion-thumbnail>
+      <h2>{{product.brands}}/{{product.category_name}}({{product.gender}})</h2>
+      <p class="name">
+        <span>{{this.seller}}:</span> {{product.seller_name}}.</p>
+      <p class="price">
+        <span><ion-icon ios="ios-checkmark-circle-outline" md="md-checkmark-circle-outline"></ion-icon></span>
+        <span class="amount">{{product.currency_code}} {{product.price}}</span>
+      </p>
+      <!-- <p class="batch" >
+         <span class="batch-pic"> <img  src="assets/img/top.png" alt=""> </span> 
+       <span class="batch-text">Trusted Seller since 2016</span>  
+        
+      </p> -->
+    </ion-item>
+    
+    <ion-item class="request-item" *ngIf="productlists == ''">
+      
+      {{this.no_records_found}} 
+        
+      </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-content padding *ngIf="selectedlanguage == 2" class="rtl-arabic">
 
   <ion-list>
     <ion-item class="request-item" *ngFor="let product of productlists" (click)="productdetails(product.product_id)">

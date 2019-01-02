@@ -73,4 +73,19 @@ page-addproductstep3 {
             font-size: 12px;
             line-height: 11px;        
          }
+         .rtl-arabic{
+          .profile-info{
+            .item {
+              text-align: right;
+            }
+          }
+          .text-input,.select-text{
+            text-align: right;
+          }
+          .country-select {
+            .button-inner{
+              justify-content: flex-end;
+            }
+          }
+        }
 }
