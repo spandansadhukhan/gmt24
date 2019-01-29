@@ -7,13 +7,13 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Subscriptions</ion-title>
+    <ion-title>{{subscriptions}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding class="rtl-arabic">
+<ion-content padding *ngIf="selectedlanguage == 2" class="rtl-arabic">
    <ion-list style="padding-bottom: 30px;">
        
   
@@ -21,13 +21,13 @@
        <div class="offer" *ngIf="p.type== 'O'">Offer</div>
         <h2>{{p.name}}</h2>
         <p class="name">
-          <span>Slots:</span> {{p.slots}}</p>
+          <span>{{Slots}}:</span> {{p.slots}}</p>
           <p class="name">
-          <span>Duration:</span> {{p.duration}} Days</p>
+          <span>{{Duration}}:</span> {{p.duration}} Days</p>
         <p class="price">
           <span>{{p.prefered_currency}}</span> {{p.price}}</p>
         
-        <button ion-button round class="dark-grey-btn" (click)="purchase(p.id)">Purchase</button>
+        <button ion-button round class="dark-grey-btn" (click)="purchase(p.id)">{{Purchased}}</button>
       </ion-item>
   
       <ion-item *ngIf="productlists== ''"> 
@@ -54,3 +54,31 @@
       
     </ion-list>
   </ion-content>
+
+  <ion-content padding *ngIf="selectedlanguage == 1">
+    <ion-list style="padding-bottom: 30px;">
+        
+   
+       <ion-item class="request-item subs-item" *ngFor="let p of packagelists">
+        <div class="offer" *ngIf="p.type== 'O'">Offer</div>
+         <h2>{{p.name}}</h2>
+         <p class="name">
+          <span>{{Slots}}:</span> {{p.slots}}</p>
+          <p class="name">
+          <span>{{Duration}}:</span> {{p.duration}} Days</p>
+         <p class="price">
+           <span>{{p.prefered_currency}}</span> {{p.price}}</p>
+         
+         <button ion-button round class="dark-grey-btn" (click)="purchase(p.id)">{{Purchased}}</button>
+       </ion-item>
+   
+       <ion-item *ngIf="productlists== ''"> 
+               
+           <h2>Sorry! No subscriptions found</h2>
+           
+         </ion-item>
+       
+      
+       
+     </ion-list>
+   </ion-content>

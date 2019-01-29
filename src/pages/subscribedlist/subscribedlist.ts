@@ -26,6 +26,11 @@ export class SubscribedlistPage {
   public selectedcurrency:any;
   public mycurrency:any;
 
+  public language:any;
+  public selectedlanguage:any;
+  public languages:any;
+
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public authService: AuthServiceProvider,
@@ -37,6 +42,16 @@ export class SubscribedlistPage {
     }else{
       this.mycurrency ='KWD';
     }
+
+    this.languages = JSON.parse(localStorage.getItem('language'));
+    //console.log('Arunavalang',this.languages)
+    if(this.languages){
+      this.selectedlanguage = this.languages.language;
+    }else{
+      this.selectedlanguage ='1';
+    }
+
+
     }
 
   ionViewDidLoad() {
