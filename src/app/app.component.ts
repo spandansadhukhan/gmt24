@@ -217,6 +217,13 @@ abc(){
   }
   }
 
+  this.languages = JSON.parse(localStorage.getItem('language'));
+    if(this.languages){
+      this.selectedlanguage = this.languages.language;
+    }else{
+      this.selectedlanguage ='1';
+    }
+
 }
 
 // ChangeToUserLaguage()

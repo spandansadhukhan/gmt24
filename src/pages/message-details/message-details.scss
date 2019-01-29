@@ -91,4 +91,36 @@ page-message-details {
         // .item.request-item .button{height:32px; padding-left: 1.5em; padding-right: 1.4em}
         // .item.request-item .item-inner{border-bottom:0}
         // .item-md ion-thumbnail{min-height: auto !important;}
+
+
+
+        .rtl-arabic{
+            .item{
+                text-align: right;
+            }
+            .text-input{
+                text-align:right;
+            }
+            .row{
+                flex-direction: row-reverse;
+            }
+            .label-ios h3{
+                text-align: left !important;
+                padding-left: 10px;
+            }
+            .send-box{
+                flex-direction: row-reverse;
+            }
+            .send-box ion-icon {
+                font-size: 38px;
+                
+                margin-right: 15px;
+            }
+            .send-form{
+                padding: 0 5px;
+            }
+        }
+
+
+
     }
