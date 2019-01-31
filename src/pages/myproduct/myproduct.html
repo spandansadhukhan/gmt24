@@ -39,6 +39,9 @@
       <div *ngIf="p.approved==1 && p.live_status==0 && utype==1">
         <button ion-button round class="blue-btn ml-0" (click)="pay(p.id)">{{this.pay_now}}</button>
       </div>
+      <div *ngIf="p.live_status==0 && utype==1">
+        <button ion-button round class="brown-btn" (click)="deleteproductpermanently(p.id)">{{this.delete}}</button>
+      </div>
     </ion-item>
 
     
@@ -121,6 +124,9 @@
       </div>
       <div *ngIf="p.approved==1 && p.live_status==0 && utype==1">
         <button ion-button round class="blue-btn ml-0" (click)="pay(p.id)">{{this.pay_now}}</button>
+      </div>
+      <div *ngIf="p.approved==1 && p.live_status==0 && utype==1">
+        <button ion-button round class="brown-btn" (click)="deleteproductpermanently(p.id)">{{this.delete}}</button>
       </div>
     </ion-item>
 
