@@ -73,7 +73,12 @@ page-myaccount {
       border-right: 1px solid #9f9f9f;
   }
 
-
+.map-list .list-md{
+  padding-top: 58px !important;
+  padding-left: 15px !important;
+  position: absolute;
+  z-index: 999;
+}
 
 
   .select-custom{

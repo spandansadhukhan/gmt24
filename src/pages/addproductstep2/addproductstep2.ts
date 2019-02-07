@@ -60,6 +60,7 @@ export class Addproductstep2Page {
   public state:any;
   public Status:any;
   public next:any;
+  public utype:any;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -99,6 +100,7 @@ export class Addproductstep2Page {
       this.pForm.controls['country'].setValue(res.UserDetails.country);
       this.pForm.controls['state'].setValue(res.UserDetails.state);
       this.pForm.controls['city'].setValue(res.UserDetails.city);
+      this.pForm.controls['owner_number'].setValue(res.UserDetails.phone);
       this.stateList(res.UserDetails.country);
       this.cityList(res.UserDetails.state);  
             });
@@ -107,6 +109,11 @@ export class Addproductstep2Page {
         });
 
         this.sname="New";
+
+
+      this.loguser = JSON.parse(localStorage.getItem('userData'));
+      this.utype=this.loguser.user_type;
+//alert(this.utype);
   }
 
   ionViewDidLoad() {

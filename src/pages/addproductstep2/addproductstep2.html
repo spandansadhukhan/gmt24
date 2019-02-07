@@ -11,7 +11,24 @@
   </ion-navbar>
 
 </ion-header>
-
+<div class="custom-dropdown" *ngIf ="isShow">
+  <ion-list radio-group>
+  <ion-list-header>{{this.Status}}</ion-list-header>
+                
+  <ion-list class="list-area-radio">
+  <ion-item *ngFor="let st of statuslists">
+  <ion-label><img src="assets/img/{{st.images}}" alt="">{{st.name}}</ion-label>
+  <ion-radio value="{{st.name}}" (ionSelect)="selectstatus(st.name,st.images)"></ion-radio>
+  </ion-item>
+                     
+  </ion-list>
+  <ion-row>
+      <ion-col>
+          <button block ion-button color="dark" round outline (click)='hide()'>{{this.Cancel}}</button>
+      </ion-col>
+  </ion-row>
+  </ion-list>
+  </div>
 
 <ion-content *ngIf="selectedlanguage == 2" class="rtl-arabic">
   
@@ -59,24 +76,7 @@
           <ion-item class="select-custom">
           <button ion-button block class="country-select" (click)="show()"><img src="assets/img/{{simg}}" alt="">{{sname}}</button>
           </ion-item>
-          <div class="custom-dropdown" *ngIf ="isShow">
-          <ion-list radio-group>
-          <ion-list-header>{{this.Status}}</ion-list-header>
-                        
-          <ion-list class="list-area-radio">
-          <ion-item *ngFor="let st of statuslists">
-          <ion-label><img src="assets/img/{{st.images}}" alt="">{{st.name}}</ion-label>
-          <ion-radio value="{{st.name}}" (ionSelect)="selectstatus(st.name,st.images)"></ion-radio>
-          </ion-item>
-                             
-          </ion-list>
-          <ion-row>
-              <ion-col>
-                  <button block ion-button color="dark" round outline (click)='hide()'>{{this.Cancel}}</button>
-              </ion-col>
-          </ion-row>
-          </ion-list>
-          </div>
+          
 
 
 
@@ -118,7 +118,8 @@
         <ion-item class="phone-wrap">
             <ion-label stacked color="primary">{{this.Owner_Number}}*</ion-label>
             <ion-label><span class="phone-no">+{{phonecode}}</span></ion-label>
-            <ion-input round type="number" min="0" placeholder="Type phone no." formControlName="owner_number" name="owner_number" required></ion-input>
+            <ion-input round type="number" min="0" placeholder="Type phone no." formControlName="owner_number" name="owner_number" required *ngIf="utype==1" readonly></ion-input>
+            <ion-input round type="number" min="0" placeholder="Type phone no." formControlName="owner_number" name="owner_number" required *ngIf="utype==2"></ion-input>
         </ion-item>
         <p *ngIf="!pForm.controls['owner_number'].valid && pForm.controls['owner_number'].touched" ion-text color="danger" padding-left>
           {{this.this_field_is_required}}  </p>
@@ -189,7 +190,7 @@
           <ion-item class="select-custom">
           <button ion-button block class="country-select" (click)="show()"><img src="assets/img/{{simg}}" alt="">{{sname}}</button>
           </ion-item>
-          <div class="custom-dropdown" *ngIf ="isShow">
+          <!-- <div class="custom-dropdown" *ngIf ="isShow">
           <ion-list radio-group>
           <ion-list-header>{{this.Status}}</ion-list-header>
                         
@@ -206,7 +207,7 @@
               </ion-col>
           </ion-row>
           </ion-list>
-          </div>
+          </div> -->
 
 
 
@@ -248,8 +249,9 @@
         <ion-item class="phone-wrap">
             <ion-label stacked color="primary">{{this.Owner_Number}}*</ion-label>
             <ion-label><span class="phone-no">+{{phonecode}}</span></ion-label>
-            <ion-input round type="number" min="0" placeholder="Type phone no." formControlName="owner_number" name="owner_number" required></ion-input>
-        </ion-item>
+            <ion-input round type="number" min="0" placeholder="Type phone no." formControlName="owner_number" name="owner_number" required *ngIf="utype==1" readonly></ion-input>
+            <ion-input round type="number" min="0" placeholder="Type phone no." formControlName="owner_number" name="owner_number" required *ngIf="utype==2"></ion-input>
+          </ion-item>
         <p *ngIf="!pForm.controls['owner_number'].valid && pForm.controls['owner_number'].touched" ion-text color="danger" padding-left>
           {{this.this_field_is_required}}  </p>
 

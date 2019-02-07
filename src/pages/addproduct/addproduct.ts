@@ -440,7 +440,7 @@ braceletList(){
     });
     alert.present();
   
-  }else if(formData['type']== '2' && formData['preferred_date']==""){
+  }else if(formData['type']== '2' && (formData['preferred_date']=="" || formData['time_slot_id']=="")){
     const alert = this.alertCtrl.create({
       title: 'Required!',
       subTitle: 'Please select action date and time!',
