@@ -393,6 +393,7 @@ onChange(id, isChecked, index) {
       if( this.responseData.Ack == 1)
       {
         this.countrylists =  this.responseData.countrylist;
+        console.log('arunava',this.countrylists);
       }
       else
       {
