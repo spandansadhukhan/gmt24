@@ -188,7 +188,7 @@ export class Addproductstep3Page {
     if (!this.pForm.valid) {
       const alert = this.alertCtrl.create({
         title: 'Product Add Failed!',
-        subTitle: "Please fill all the details.",
+        subTitle: "Please fill all * fields.",
         buttons: ['OK']
       });
       alert.present();
@@ -197,6 +197,15 @@ export class Addproductstep3Page {
       const alert = this.alertCtrl.create({
         title: 'Product Add Failed!',
         subTitle: "Maximum 5 images can upload",
+        buttons: ['OK']
+      });
+      alert.present();
+
+    }else if(this.uploadimages.length < 1){
+
+      const alert = this.alertCtrl.create({
+        title: 'Product Add Failed!',
+        subTitle: "Please upload Image.",
         buttons: ['OK']
       });
       alert.present();

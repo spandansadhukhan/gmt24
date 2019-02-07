@@ -191,8 +191,8 @@ page-addproduct {
     .custom-dropdown{
       background: rgba(0, 0, 0, 0.2);
       width: 100%;
-      height: 100%;
-      position: fixed;
+      height: 100% !important;
+      position: absolute;
       z-index: 9999;
       top: 0;
       left: 0;
@@ -202,6 +202,7 @@ page-addproduct {
       justify-content: center;
       align-content: center;
       flex-wrap: wrap;
+      overflow-y: hidden;
       .list{
         width: 80%;
         background: #fff;

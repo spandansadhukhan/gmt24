@@ -34,7 +34,7 @@
             <ion-input round type="text" placeholder="{{this.Work_Hours}}" name="work_hours" formControlName="work_hours"></ion-input>
         </ion-item>
 
-
+<div class="map-list">
         <ion-item>
           <input type="text" class="search" placeholder="Enter Location" id="pac-input" formControlName="location" name="location" (keyup)="updateSearchResults()">
           <ion-list [hidden]="autocompleteItems.length == 0">
@@ -45,6 +45,7 @@
           <div id="map" class="map" style="height:400px;"> 
           </div>
         </ion-item>
+        </div>
         
         <ion-item>
             <p class="upload-text">{{address}}</p>
