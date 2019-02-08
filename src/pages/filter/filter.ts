@@ -63,7 +63,7 @@ export class FilterPage {
   public filter:any;
   public brands:any;
   public category:any;
-  public location:any;
+  public location1:any;
   public state:any;
   public gender:any;
   public male:any;
@@ -140,7 +140,7 @@ ChangeToUserLaguage(lang){
          this.filter=res.languages.filter;
          this.brands=res.languages.brands;
          this.category=res.languages.category;
-         this.location = res.languages.location;
+         this.location1 = res.languages.location;
          this.state = res.languages.state;
          this.gender = res.languages.gender;
          this.male = res.languages.male;
@@ -286,7 +286,10 @@ onsizeslider(id){
 onChange(id, isChecked, index) {
   // nested formarray, which is inside nested formgroup, inside outer array
   //const answers = <FormArray>this.surveyForm.controls.questions.controls[index].controls.answer_ids
-
+  let loading = this.loadingCtrl.create({
+    content: 'Please Wait...'
+  });
+  loading.present();
  if(isChecked) {
     this.answers.push(id)
    // console.log('sparray',this.answers);
@@ -308,16 +311,19 @@ onChange(id, isChecked, index) {
         {
          
           this.subcategorylist =  this.responseData.subcategorylist;
+          loading.dismiss();
         }
         else
         {
           
           this.subcategorylist = [];
+          loading.dismiss();
         }
        
       }, (err) => {
        
         console.log(err);
+        loading.dismiss();
         
       });
   }

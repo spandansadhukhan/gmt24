@@ -138,7 +138,9 @@ ChangeToUserLaguage(lang){
 
   }
 
-
+  adminmessages(){
+    this.navCtrl.push('AdminmessagesPage');
+  }
 
   messageDetails(to_id,from_id,product_id)
   {

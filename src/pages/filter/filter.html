@@ -46,7 +46,7 @@
 
 
 <ion-item class="item-custom">
-  <ion-label>{{this.location}}</ion-label>
+  <ion-label>{{this.location1}}</ion-label>
   <ion-select [(ngModel)]="location" (ionChange)="liststate($event)">
     <ion-option value="{{c.id}}" *ngFor="let c of countrylists">{{c.name}}</ion-option>
   </ion-select>
@@ -170,7 +170,7 @@
 
 
 <ion-item class="item-custom">
-  <ion-label>{{this.location}}</ion-label>
+  <ion-label>{{this.location1}}</ion-label>
   <ion-select [(ngModel)]="location" (ionChange)="liststate($event)">
     <ion-option value="{{c.id}}" *ngFor="let c of countrylists">{{c.name}}</ion-option>
   </ion-select>
