@@ -38,4 +38,19 @@ page-cusdetailsproductupload {
             text-align: right;
         }
     }
+
+
+
+
+
+    .list-md .item-block .item-inner{
+        border-bottom: 0;
+    }
+    ion-input :focus {
+        background: none;
+        border: 0 !important;
+        outline: none;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }       
 }

@@ -244,7 +244,7 @@ export class Addproductstep3Page {
     formData.image =  this.uploadimages.toString();
     console.log('spandanproduct',formData);
      this.authService.productadd(formData).subscribe(res=>{
-      
+      console.log('spandanproduct result',res);
        if(res.Ack==1){
         loading.dismiss();
         //this.uploadImage(res.lastid);
@@ -275,7 +275,7 @@ export class Addproductstep3Page {
 
           }
 
-       }else if(res.AcK==0){
+       }else if(res.Ack== 0){
         loading.dismiss();
         console.log(res);
         const alert = this.alertCtrl.create({
