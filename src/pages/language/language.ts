@@ -16,7 +16,7 @@ import { Events } from 'ionic-angular';
 })
 export class LanguagePage {
 
-  public selectedlanguage :any;
+  public selectedlanguage :any=1;
   constructor(public navCtrl: NavController, 
     public events: Events,
     public menu: MenuController,

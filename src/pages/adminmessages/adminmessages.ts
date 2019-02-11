@@ -188,7 +188,7 @@ this.authService.postData(this.dataSet,'getfullAdminMessages').then((result) => 
    content: 'Please Wait...'
  });
  loading.present();
- this.authService.postData(data,'addmessage').then((result) => {
+ this.authService.postData(data,'adminaddmessage').then((result) => {
 
  this.responseDataMsg = result
 

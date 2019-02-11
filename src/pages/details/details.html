@@ -161,7 +161,7 @@
       </div>
       <div class="d-box" *ngIf="ptype==1">
       <h2>{{reviewss}}</h2>
-      <div class="noti-list">
+      <div class="noti-list"  *ngIf="reviews!=''">
       <ion-item *ngFor="let r of reviews">
       <ion-avatar item-start>
         <img src="{{r.userimage}}" alt="">
@@ -184,9 +184,12 @@
       <small>{{r.date}} {{Days_ago}}</small>
     </ion-item>
 
-    <ion-item *ngIf="reviews==''">
-      {{no_records_found}}
-      </ion-item>
+    
+    </div>
+    <div  *ngIf="reviews ==''">
+      <ion-item>
+        {{no_records_found}}
+        </ion-item>
     </div>
     </div>
 
@@ -313,7 +316,7 @@
       </div>
       <div class="d-box" *ngIf="ptype==1">
       <h2>{{reviewss}}</h2>
-      <div class="noti-list">
+      <div class="noti-list" *ngIf="reviews!=''">
       <ion-item *ngFor="let r of reviews">
       <ion-avatar item-start>
         <img src="{{r.userimage}}" alt="">
@@ -336,9 +339,12 @@
       <small>{{r.date}} {{Days_ago}}</small>
     </ion-item>
 
-    <ion-item *ngIf="reviews==''">
-      {{no_records_found}}
-      </ion-item>
+    
+    </div>
+    <div *ngIf="reviews==''">
+      <ion-item>
+        {{no_records_found}}
+        </ion-item>
     </div>
     </div>
 

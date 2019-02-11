@@ -15,6 +15,7 @@ export class SignupPage {
   busy: boolean;
   countrylist:any;
   phonecode:any;
+  signupMessage:any;
   passwordmatch: boolean = false;
   showusertype: boolean = false;
   constructor(
@@ -61,15 +62,25 @@ export class SignupPage {
     }else{
     
      this.authService.signup(formData).subscribe(res=>{
-       if(res.smsstatus==1){
+      if(res.Ack==1){
+
+      
+      if(res.smsstatus==1){
+        if(res.firstproductfree == 1){ 
+
+            this.signupMessage = "Successfully Registered. <br>1.The activation email and the mobile OTP has been sent.<br> <p class='danger'>2. Congratulations you have awarded a free product to upload.</p>";
+        }else{
+          this.signupMessage = 'Successfully Registered.The activation email and the mobile OTP has been sent.' ;
+        }
         loading.dismiss();
         console.log(res);
          const alert = this.alertCtrl.create({
           title: 'Success!',
-           subTitle: res.msg,
+           subTitle: this.signupMessage,
            buttons: ['OK']
          });
        alert.present();
+        
        this.navCtrl.push('VerifyOtpPage',{'mobile':res.phone,'userid':res.user_id,'resend': '0'});
        }else{
 
@@ -77,13 +88,22 @@ export class SignupPage {
         console.log(res);
          const alert = this.alertCtrl.create({
            title: 'Error!',
-           subTitle: res.msg,
+           subTitle: 'Please Signup Again.',
            buttons: ['OK']
          });
        alert.present();
 
        }
-      },err=>{
+      }else{
+        loading.dismiss();
+        const alert = this.alertCtrl.create({
+          title: 'Error!',
+          subTitle: 'Please Signup Again.',
+          buttons: ['OK']
+        });
+      alert.present();
+      }
+    },err=>{
         loading.dismiss();
        //console.log(err);
         const alert = this.alertCtrl.create({

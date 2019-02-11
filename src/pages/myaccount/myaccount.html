@@ -98,10 +98,9 @@
         City is required </p> -->
       <ion-item>
         <ion-label stacked color="primary">IBAN {{number}}</ion-label>
-        <ion-input round type="text" name="ibanno" formControlName="ibanno" placeholder="Type IBAN number" required></ion-input>
+        <ion-input round type="text" name="ibanno" formControlName="ibanno" placeholder="Type IBAN number"></ion-input>
       </ion-item>
-      <p *ngIf="!aForm.controls['ibanno'].valid && aForm.controls['ibanno'].touched" ion-text color="danger" padding-left>
-        {{this_field_is_required}} </p>
+     
       <ion-item>
           <ion-label stacked color="primary">{{Bank}} {{Name}}</ion-label>
           <ion-input round type="text" name="bankname" formControlName="bankname" placeholder="Type your bank name" ></ion-input>

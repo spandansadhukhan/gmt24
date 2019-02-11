@@ -25,6 +25,14 @@ export class CusdetailtsforpaymentPage {
   packagedetails:any;
   price:any;
   url:any;
+  public languages:any;
+  public selectedlanguage:any;
+  Name:any;
+  email:any;
+  phone:any;
+  this_field_is_required:any;
+  Total_Amount:any;
+  save:any;
 
   options : InAppBrowserOptions = {
     location : 'yes',//Or 'no' 
@@ -54,11 +62,19 @@ export class CusdetailtsforpaymentPage {
     private builder: FormBuilder,
     private theInAppBrowser: InAppBrowser,) {
 
+      this.languages = JSON.parse(localStorage.getItem('language'));
+      //console.log('Arunavalang',this.languages)
+      if(this.languages){
+        this.selectedlanguage = this.languages.language;
+      }else{
+        this.selectedlanguage ='1';
+      }
+
       this.customerForm = builder.group({
      
         'name': [null, Validators.required],
         'email': [null, Validators.required],
-        'phone': [null, Validators.compose([Validators.required,Validators.pattern('[0-9]{10}')])]
+        'phone': [null, Validators.required]
       });
   }
 
@@ -137,5 +153,49 @@ submit(formData) {
 
 }
 
+
+ChangeToUserLaguage(lang){
+  //alert(lang+'a')
+    let serval={
+      "language_id":lang,
+     };
+     let loading = this.loadingCtrl.create({
+      content: 'Please Wait...'
+    });
+    loading.present();
+    /*this.authService.postData(serval,'changeLaguage').then((result) => {
+      this.language = result.languages
+      console.log('language',this.language.languages.top_brands);
+      
+     
+    }, (err) => {
+      
+      console.log(err);
+      
+    });*/
+    
+    this.authService.changeLaguage(serval).subscribe(res=>{
+      
+      if(res.Ack==1){
+       loading.dismiss();
+      //console.log(res.languages)
+       console.log("splang",res.languages);
+       this.Name=res.languages.Name;
+       this.email=res.languages.email;
+       this.phone=res.languages.Upload_Type;
+      this.this_field_is_required = res.languages.this_field_is_required;
+      this.save= res.languages.save;
+       //this.Cancel= res.languages.Cancel;
+      }else{
+  
+       //loading.dismiss();
+      
+      }
+     },err=>{
+       //loading.dismiss();
+      
+    });
+  
+  }
 
 }

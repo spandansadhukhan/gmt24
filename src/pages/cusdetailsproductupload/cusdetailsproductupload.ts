@@ -29,6 +29,19 @@ export class CusdetailsproductuploadPage {
   spackagedetails:any;
   totalloyalty:any;
 
+  public languages:any;
+  public selectedlanguage:any;
+  Name:any;
+  email:any;
+  phone:any;
+  this_field_is_required:any;
+  Total_Amount:any;
+  Total_Loyalty:any;
+  loyalty:any;
+  please_select:any
+  Package:any;
+  save:any;
+
 
   options : InAppBrowserOptions = {
     location : 'yes',//Or 'no' 
@@ -66,6 +79,14 @@ export class CusdetailsproductuploadPage {
       });
       this.price=0;
       this.loguser = JSON.parse(localStorage.getItem('userData'));
+
+      this.languages = JSON.parse(localStorage.getItem('language'));
+      //console.log('Arunavalang',this.languages)
+      if(this.languages){
+        this.selectedlanguage = this.languages.language;
+      }else{
+        this.selectedlanguage ='1';
+      }
   }
 
   ionViewDidLoad() {
@@ -218,4 +239,53 @@ selectpackage(spid){
   });
 }
 
+ChangeToUserLaguage(lang){
+  //alert(lang+'a')
+    let serval={
+      "language_id":lang,
+     };
+     let loading = this.loadingCtrl.create({
+      content: 'Please Wait...'
+    });
+    loading.present();
+    /*this.authService.postData(serval,'changeLaguage').then((result) => {
+      this.language = result.languages
+      console.log('language',this.language.languages.top_brands);
+      
+     
+    }, (err) => {
+      
+      console.log(err);
+      
+    });*/
+    
+    this.authService.changeLaguage(serval).subscribe(res=>{
+      
+      if(res.Ack==1){
+       loading.dismiss();
+      //console.log(res.languages)
+       console.log("splang",res.languages);
+       this.Name=res.languages.Name;
+       this.email=res.languages.email;
+       this.phone=res.languages.Upload_Type;
+      this.this_field_is_required = res.languages.this_field_is_required;
+      this.Total_Amount= res.languages.Total_Amount;
+      this.Total_Loyalty= res.languages.Total_Loyalty;
+      this.loyalty= res.languages.loyalty;
+      this.please_select= res.languages.please_select;
+      this.Package = res.languages.Package;
+      this.save= res.languages.save;
+       
+       //this.Cancel= res.languages.Cancel;
+      }else{
+  
+       //loading.dismiss();
+      
+      }
+     },err=>{
+       //loading.dismiss();
+      
+    });
+  
+  }
 }
