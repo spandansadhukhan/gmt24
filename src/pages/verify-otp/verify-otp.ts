@@ -123,7 +123,7 @@ export class VerifyOtpPage {
         console.log(res);
          const alert = this.alertCtrl.create({
            title: 'Error!',
-           subTitle: "Some thing went wrong. Please try again.",
+           subTitle: "Please Check Your Mobile Number Along With Your Country .",
            buttons: ['OK']
          });
        alert.present();

@@ -67,7 +67,7 @@ export class MyApp {
 
       this.languages = JSON.parse(localStorage.getItem('language'));
     //console.log('Arunavalang',this.languages)
-    
+    //localStorage.removeItem('language');
     
 
 

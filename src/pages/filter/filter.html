@@ -34,8 +34,8 @@
 </div>
 
 <div class="check-custom">
-  <h6 (click)="categoryshow=!categoryshow">{{this.category}}</h6>
-  <ion-list *ngIf="categoryshow" class="accordion-list">
+  <h6 (click)="categoryshow1=!categoryshow1">{{this.category}}</h6>
+  <ion-list *ngIf="categoryshow1" class="accordion-list">
       <ion-item class="check-item" *ngFor="let sc of subcategorylist">
           <ion-label>{{sc.name}}</ion-label>
           <ion-checkbox color="dark" [checked]="this.answers1.indexOf(sc.id)>=0" (ionChange)="onCatisset(sc.id, $event.checked, i)"></ion-checkbox>

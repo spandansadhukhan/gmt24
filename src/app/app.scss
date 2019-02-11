@@ -251,6 +251,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5a2626', end
 }
 
 
+.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner{
+  border: none !important;
+  -webkit-box-shadow:none !important;
+  box-shadow:none !important;
+}
 
 
 

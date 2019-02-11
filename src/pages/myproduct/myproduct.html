@@ -33,13 +33,16 @@
       <button ion-button round class="dark-grey-btn" *ngIf="p.product_status== 1" disabled>{{this.sold}}</button>
       <button ion-button round class="dark-grey-btn" *ngIf="p.top_product== 0 && p.product_status== 0" (click)="paytop(p.id)">{{this.mark_as_top}}</button>
     </div>
-      <div *ngIf="p.approved==0">
+      <div *ngIf="p.approved==0 && p.live_status==1">
         <button ion-button round class="dark-grey-btn" disabled>{{this.Awaiting_Admin_Approval}}</button>
       </div>
-      <div *ngIf="p.approved==1 && p.live_status==0 && utype==1">
+      <div *ngIf="p.live_status==0 && utype==1">
         <button ion-button round class="blue-btn ml-0" (click)="pay(p.id)">{{this.pay_now}}</button>
       </div>
       <div *ngIf="p.live_status==0 && utype==1">
+        <button ion-button round class="brown-btn" (click)="deleteproductpermanently(p.id)">{{this.delete}}</button>
+      </div>
+      <div *ngIf="p.live_status==1 && p.approved==0 && utype==2">
         <button ion-button round class="brown-btn" (click)="deleteproductpermanently(p.id)">{{this.delete}}</button>
       </div>
     </ion-item>
@@ -119,13 +122,16 @@
       <button ion-button round class="dark-grey-btn" *ngIf="p.product_status== 1" disabled>{{this.sold}}</button>
       <button ion-button round class="dark-grey-btn" *ngIf="p.top_product== 0 && p.product_status== 0" (click)="paytop(p.id)">{{this.mark_as_top}}</button>
     </div>
-      <div *ngIf="p.approved==0">
+      <div *ngIf="p.approved==0 && p.live_status==1">
         <button ion-button round class="dark-grey-btn" disabled>{{this.Awaiting_Admin_Approval}}</button>
       </div>
-      <div *ngIf="p.approved==1 && p.live_status==0 && utype==1">
+      <div *ngIf="p.live_status==0 && utype==1">
         <button ion-button round class="blue-btn ml-0" (click)="pay(p.id)">{{this.pay_now}}</button>
       </div>
-      <div *ngIf="p.approved==1 && p.live_status==0 && utype==1">
+      <div *ngIf="p.live_status==0 && utype==1">
+        <button ion-button round class="brown-btn" (click)="deleteproductpermanently(p.id)">{{this.delete}}</button>
+      </div>
+      <div *ngIf="p.live_status==1 && p.approved==0 && utype==2">
         <button ion-button round class="brown-btn" (click)="deleteproductpermanently(p.id)">{{this.delete}}</button>
       </div>
     </ion-item>

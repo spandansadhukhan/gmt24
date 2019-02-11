@@ -60,7 +60,7 @@ export class CusdetailsproducttopPage {
         'sid': [null, Validators.required],
         'name': [null, Validators.required],
         'email': [null, Validators.required],
-        'phone': [null, Validators.compose([Validators.required,Validators.pattern('[0-9]{10}')])],
+        'phone': [null, Validators.required],
         'loyalty_redeem':[null,null],
       });
       this.price=0;
