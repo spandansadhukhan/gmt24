@@ -37,24 +37,49 @@ page-addproductstep2 {
 
     .phone-wrap{
         position: relative;
+        .label{
+          margin: 10px 0 -3px !important;
+        }
     }
     .phone-wrap ion-input{
         padding-left: 29px;
     }
+
+    .phone-wrap ion-label{
+        margin: 0 !important;
+    }
+
+
+
+    
     .phone-no{
-        position: absolute;
-        top: 66px;
-        left: 24px;
-        z-index: 99;
-        border-right: 1px solid #9f9f9f;
+      position: absolute;
+      top: 45px;
+      left: 23px;
+      z-index: 99;
+      border-right: 1px solid #9f9f9f;
+      color: white;
+      padding-right: 6px;
     }
 
 
     .select-custom{
-        .label{
-          margin: 13px 0;
-        }
+      .label{
+        margin: 2px 0 -6px;
       }
+    }
+
+    .curency-part{
+      .label{
+        margin: 0 0 !important;
+      }
+    }
+    #lbl-24{
+      margin: 0 !important;
+    }
+
+
+
         .country-select{
           border: 1px solid #1b1b1b; 
           background-color: #333333;
@@ -149,12 +174,31 @@ page-addproductstep2 {
           }
           .text-input,.select-text{
             text-align: right;
+            direction: rtl;
           }
           .country-select {
             .button-inner{
               justify-content: flex-end;
             }
           }
+          .phone-wrap ion-input {
+            padding-right: 29px;
+          }
+          .phone-no {
+            position: absolute;
+            top: 45px;
+            left: 85%;
+            right: 24px;
+            z-index: 99;
+            border-left: 1px solid #9f9f9f;
+            border-right: transparent;
+            color: white;
+            padding-right: 6px;
+          }
+
+
+
+
         }
 
 

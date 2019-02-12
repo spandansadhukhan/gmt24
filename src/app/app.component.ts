@@ -248,22 +248,22 @@ public home(){
  
 public allwatches(){
 
-  this.nav.push('SearchPage');
+  this.nav.setRoot('SearchPage');
 }
 
 public allauctions(){
 
-  this.nav.push('AuctionlistPage');
+  this.nav.setRoot('AuctionlistPage');
 }
 
 public allshops(){
 
-  this.nav.push('AllshoplistPage');
+  this.nav.setRoot('AllshoplistPage');
 }
 
 public settings(){
 
-  this.nav.push('SettingsPage');
+  this.nav.setRoot('SettingsPage');
 }
   public myaccount(){
    
@@ -291,7 +291,7 @@ public settings(){
     
   public notifications(){ 
   
-      this.nav.push('NotificationPage');
+      this.nav.setRoot('NotificationPage');
       
       }
 

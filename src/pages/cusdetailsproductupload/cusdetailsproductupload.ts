@@ -31,16 +31,20 @@ export class CusdetailsproductuploadPage {
 
   public languages:any;
   public selectedlanguage:any;
+  select:any;
+  Package:any;
   Name:any;
   email:any;
   phone:any;
   this_field_is_required:any;
   Total_Amount:any;
-  Total_Loyalty:any;
-  loyalty:any;
-  please_select:any
-  Package:any;
-  save:any;
+  pay_now:any;
+  Loyalty_Redeem:any;
+  Loyalty_Remain:any;
+  please_select:any;
+  Customer_Details:any;
+  Days:any;
+  for:any;
 
 
   options : InAppBrowserOptions = {
@@ -94,6 +98,7 @@ export class CusdetailsproductuploadPage {
     this.pid=this.navParams.get('pid');
     this.packageLists();
     this.loyaltyDetails();
+    this.ChangeToUserLaguage(this.selectedlanguage);
   }
 
 
@@ -264,17 +269,20 @@ ChangeToUserLaguage(lang){
       if(res.Ack==1){
        loading.dismiss();
       //console.log(res.languages)
-       console.log("splang",res.languages);
+      this.select=res.languages.select;
+       this.Package=res.languages.Package;
        this.Name=res.languages.Name;
        this.email=res.languages.email;
-       this.phone=res.languages.Upload_Type;
+       this.phone=res.languages.phone;
       this.this_field_is_required = res.languages.this_field_is_required;
       this.Total_Amount= res.languages.Total_Amount;
-      this.Total_Loyalty= res.languages.Total_Loyalty;
-      this.loyalty= res.languages.loyalty;
-      this.please_select= res.languages.please_select;
-      this.Package = res.languages.Package;
-      this.save= res.languages.save;
+      this.pay_now=res.languages.pay_now;
+      this.Loyalty_Redeem = res.languages.Loyalty_Redeem;
+      this.Loyalty_Remain = res.languages.Loyalty_Remain;
+      this.please_select=res.languages.please_select;
+      this.Customer_Details=res.languages.Customer_Details;
+      this.Days = res.languages.Days;
+      this.for=res.languages.for
        
        //this.Cancel= res.languages.Cancel;
       }else{

@@ -32,7 +32,8 @@ export class CusdetailtsforpaymentPage {
   phone:any;
   this_field_is_required:any;
   Total_Amount:any;
-  save:any;
+  pay_now:any;
+  Customer_Details:any;
 
   options : InAppBrowserOptions = {
     location : 'yes',//Or 'no' 
@@ -82,6 +83,7 @@ export class CusdetailtsforpaymentPage {
     console.log('ionViewDidLoad CusdetailtsforpaymentPage');
     this.pid=this.navParams.get('pid');
     this.packageDetails();
+    this.ChangeToUserLaguage(this.selectedlanguage);
     //this.loguser = JSON.parse(localStorage.getItem('userData'));
     //console.log('dfdf',this.loguser);
   }
@@ -178,13 +180,15 @@ ChangeToUserLaguage(lang){
       
       if(res.Ack==1){
        loading.dismiss();
-      //console.log(res.languages)
+      console.log('Arunavalang',res.languages)
        console.log("splang",res.languages);
        this.Name=res.languages.Name;
        this.email=res.languages.email;
-       this.phone=res.languages.Upload_Type;
+       this.phone=res.languages.phone;
       this.this_field_is_required = res.languages.this_field_is_required;
-      this.save= res.languages.save;
+      this.Total_Amount= res.languages.Total_Amount;
+      this.pay_now=res.languages.pay_now;
+      this.Customer_Details=res.languages.Customer_Details;
        //this.Cancel= res.languages.Cancel;
       }else{
   

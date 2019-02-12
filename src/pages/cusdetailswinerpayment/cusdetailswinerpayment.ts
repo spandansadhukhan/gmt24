@@ -28,6 +28,22 @@ export class CusdetailswinerpaymentPage {
   user_type:any;
   totalloyalty:any;
 
+  public languages:any;
+  public selectedlanguage:any;
+  select:any;
+  Package:any;
+  Name:any;
+  email:any;
+  phone:any;
+  this_field_is_required:any;
+  Total_Amount:any;
+  pay_now:any;
+  Loyalty_Redeem:any;
+  Loyalty_Remain:any;
+  please_select:any;
+  Customer_Details:any;
+  Days:any;
+  for:any;
 
   options : InAppBrowserOptions = {
     location : 'yes',//Or 'no' 
@@ -67,6 +83,15 @@ export class CusdetailswinerpaymentPage {
 
       this.loguser = JSON.parse(localStorage.getItem('userData'));
       this.user_type=this.loguser.user_type;
+
+
+      this.languages = JSON.parse(localStorage.getItem('language'));
+      //console.log('Arunavalang',this.languages)
+      if(this.languages){
+        this.selectedlanguage = this.languages.language;
+      }else{
+        this.selectedlanguage ='1';
+      }
   }
 
   ionViewDidLoad() {
@@ -74,6 +99,7 @@ export class CusdetailswinerpaymentPage {
     this.pid=this.navParams.get('aid');
     this.productDetails();
     this.loyaltyDetails();
+    this.ChangeToUserLaguage(this.selectedlanguage);
   }
 
   loyaltyDetails(){
@@ -181,4 +207,57 @@ submit(formData) {
 
 }
 
+
+ChangeToUserLaguage(lang){
+  //alert(lang+'a')
+    let serval={
+      "language_id":lang,
+     };
+     let loading = this.loadingCtrl.create({
+      content: 'Please Wait...'
+    });
+    loading.present();
+    /*this.authService.postData(serval,'changeLaguage').then((result) => {
+      this.language = result.languages
+      console.log('language',this.language.languages.top_brands);
+      
+     
+    }, (err) => {
+      
+      console.log(err);
+      
+    });*/
+    
+    this.authService.changeLaguage(serval).subscribe(res=>{
+      
+      if(res.Ack==1){
+       loading.dismiss();
+      //console.log(res.languages)
+      this.select=res.languages.select;
+       this.Package=res.languages.Package;
+       this.Name=res.languages.Name;
+       this.email=res.languages.email;
+       this.phone=res.languages.phone;
+      this.this_field_is_required = res.languages.this_field_is_required;
+      this.Total_Amount= res.languages.Total_Amount;
+      this.pay_now=res.languages.pay_now;
+      this.Loyalty_Redeem = res.languages.Loyalty_Redeem;
+      this.Loyalty_Remain = res.languages.Loyalty_Remain;
+      this.please_select=res.languages.please_select;
+      this.Customer_Details=res.languages.Customer_Details;
+      this.Days = res.languages.Days;
+      this.for=res.languages.for
+       
+       //this.Cancel= res.languages.Cancel;
+      }else{
+  
+       //loading.dismiss();
+      
+      }
+     },err=>{
+       //loading.dismiss();
+      
+    });
+  
+  }
 }
