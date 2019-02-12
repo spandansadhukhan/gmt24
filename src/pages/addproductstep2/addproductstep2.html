@@ -70,7 +70,7 @@
 
 
 
-        <ion-item>
+          <ion-item>
           <ion-label stacked color="primary">{{this.status_of_the_watch}}*</ion-label>
           </ion-item>
           <ion-item class="select-custom">
@@ -97,13 +97,13 @@
         </ion-item>
         <p *ngIf="!pForm.controls['status'].valid && pForm.controls['status'].touched" ion-text color="danger" padding-left>
           Status is required </p> -->
-        
-      <ion-item>
-        <ion-label stacked color="primary">{{countries}}*</ion-label>
-        <ion-select name="country" (ionChange)="stateList($event)" formControlName="country">
-          <ion-option value="{{c.id}}" *ngFor="let c of countrylists">{{c.name}}</ion-option>
-        </ion-select>
-      </ion-item>
+        <ion-item class="curency-part">
+          <ion-label stacked no-margin color="primary">{{countries}}*</ion-label>
+          <ion-select name="country" (ionChange)="stateList($event)" formControlName="country">
+            <ion-option value="{{c.id}}" *ngFor="let c of countrylists">{{c.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+
       <p *ngIf="!pForm.controls['country'].valid && pForm.controls['country'].touched" ion-text color="danger" padding-left>
         {{this.please_choose_a_country}} </p>
       <ion-item>
@@ -117,7 +117,7 @@
 
         <ion-item class="phone-wrap">
             <ion-label stacked color="primary">{{this.Owner_Number}}*</ion-label>
-            <ion-label><span class="phone-no">+{{phonecode}}</span></ion-label>
+            <ion-label no-margin><span class="phone-no">+{{phonecode}}</span></ion-label>
             <ion-input round type="number" min="0" placeholder="Type phone no." formControlName="owner_number" name="owner_number" required *ngIf="utype==1" readonly></ion-input>
             <ion-input round type="number" min="0" placeholder="Type phone no." formControlName="owner_number" name="owner_number" required *ngIf="utype==2"></ion-input>
         </ion-item>
@@ -184,7 +184,7 @@
 
 
 
-        <ion-item>
+            <ion-item>
           <ion-label stacked color="primary">{{this.status_of_the_watch}}*</ion-label>
           </ion-item>
           <ion-item class="select-custom">

@@ -25,6 +25,10 @@ page-myproduct {
     .rtl-arabic{
         .item{
             text-align: right;
+            flex-direction: row-reverse;
+        }
+        .product-bt{
+            justify-content: flex-end;
         }
     }
 }

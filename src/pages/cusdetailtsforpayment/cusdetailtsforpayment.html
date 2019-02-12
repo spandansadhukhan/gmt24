@@ -7,49 +7,49 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Customer Detailts</ion-title>
+    <ion-title>{{this.Customer_Details}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content>
+<ion-content *ngIf="selectedlanguage == 1">
   <form [formGroup]="customerForm">
     <ion-list no-lines>
       
       <ion-item>
-        <ion-label stacked color="primary">Name</ion-label>
-        <ion-input type="text"  placeholder="Enter Name here" formControlName="name" required>
+        <ion-label stacked color="primary">{{this.Name}}</ion-label>
+        <ion-input type="text"  placeholder="{{this.Name}}" formControlName="name" required>
         </ion-input>
       </ion-item>
     <p *ngIf="!customerForm.controls['name'].valid && customerForm.controls['name'].touched" ion-text color="danger" padding-left>
-  Name is required </p>
+      {{this.this_field_is_required}} </p>
   
       <ion-item>
-        <ion-label stacked color="primary">Email</ion-label>
-        <ion-input  type="text" placeholder="Enter email here" formControlName="email" required>
+        <ion-label stacked color="primary">{{this.email}}</ion-label>
+        <ion-input  type="text" placeholder="{{this.email}}" formControlName="email" required>
         </ion-input>
       </ion-item>
       <p *ngIf="!customerForm.controls['email'].valid && customerForm.controls['email'].touched" ion-text color="danger" padding-left>
-        Email is required </p>
+        {{this.this_field_is_required}} </p>
 
       <ion-item>
-        <ion-label stacked color="primary">Phone</ion-label>
-        <ion-input  type="number" placeholder="Enter phone here" formControlName="phone" required>
+        <ion-label stacked color="primary">{{this.phone}}</ion-label>
+        <ion-input  type="number" placeholder="{{this.phone}}" formControlName="phone" required>
         </ion-input>
       </ion-item>
       <p *ngIf="!customerForm.controls['phone'].valid && customerForm.controls['phone'].touched" ion-text color="danger" padding-left>
-        Phone is required </p>
+        {{this.this_field_is_required}} </p>
 
       <ion-item>
-        <ion-label stacked color="primary" *ngIf="price!=''">Pay Amount: {{price}}</ion-label>
-        <ion-label stacked color="primary" *ngIf="price==''">Pay Amount: 0</ion-label>
+        <ion-label stacked color="primary" *ngIf="price!=''">{{this.Total_Amount}}: {{price}}</ion-label>
+        <ion-label stacked color="primary" *ngIf="price==''">{{this.Total_Amount}}: 0</ion-label>
       </ion-item>
 
 
 
       <div padding class="p-b-5">
-        <button ion-button round class="blue-btn" [disabled]="" (click)="submit(customerForm.value)"  type="submit" block>Proceed</button>
+        <button ion-button round class="blue-btn" [disabled]="" (click)="submit(customerForm.value)"  type="submit" block>{{this.pay_now}}</button>
       </div>
   
   
@@ -57,5 +57,54 @@
   
   </form>
 </ion-content>
+
+
+<ion-content *ngIf="selectedlanguage == 2" class="rtl-arabic">
+  <form [formGroup]="customerForm">
+    <ion-list no-lines>
+      
+      <ion-item>
+        <ion-label stacked color="primary">{{this.Name}}</ion-label>
+        <ion-input type="text"  placeholder="{{this.Name}}" formControlName="name" required>
+        </ion-input>
+      </ion-item>
+    <p *ngIf="!customerForm.controls['name'].valid && customerForm.controls['name'].touched" ion-text color="danger" padding-left>
+      {{this.this_field_is_required}} </p>
+  
+      <ion-item>
+        <ion-label stacked color="primary">{{this.email}}</ion-label>
+        <ion-input  type="text" placeholder="{{this.email}}" formControlName="email" required>
+        </ion-input>
+      </ion-item>
+      <p *ngIf="!customerForm.controls['email'].valid && customerForm.controls['email'].touched" ion-text color="danger" padding-left>
+        {{this.this_field_is_required}} </p>
+
+      <ion-item>
+        <ion-label stacked color="primary">{{this.phone}}</ion-label>
+        <ion-input  type="number" placeholder="{{this.phone}}" formControlName="phone" required>
+        </ion-input>
+      </ion-item>
+      <p *ngIf="!customerForm.controls['phone'].valid && customerForm.controls['phone'].touched" ion-text color="danger" padding-left>
+        {{this.this_field_is_required}} </p>
+
+      <ion-item>
+        <ion-label stacked color="primary" *ngIf="price!=''">{{this.Total_Amount}}: {{price}}</ion-label>
+        <ion-label stacked color="primary" *ngIf="price==''">{{this.Total_Amount}}: 0</ion-label>
+      </ion-item>
+
+
+
+      <div padding class="p-b-5">
+        <button ion-button round class="blue-btn" [disabled]="" (click)="submit(customerForm.value)"  type="submit" block>{{this.pay_now}}</button>
+      </div>
+  
+  
+    </ion-list>
+  
+  </form>
+</ion-content>
+
+
+
 
 

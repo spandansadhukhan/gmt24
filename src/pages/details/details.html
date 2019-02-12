@@ -119,7 +119,7 @@
       
 
 
-      <div class="d-box" *ngIf="interest== 1">
+      <!-- <div class="d-box" *ngIf="interest== 1">
         <div padding style="padding-bottom: 15px" >
           <button ion-button round class="grey-btn" block (click)="ishide()">{{send_message}}</button>
         </div>
@@ -132,7 +132,7 @@
           </div>
         </form>
       </div>
-      </div>
+      </div> -->
 
 
 
@@ -166,6 +166,7 @@
       <ion-avatar item-start>
         <img src="{{r.userimage}}" alt="">
       </ion-avatar>
+      
       <h2>{{r.username}}</h2>
       <p style="border: none;"> 
           <ion-icon *ngIf="r.rating>=1" name="star"></ion-icon>
@@ -203,7 +204,20 @@
 </div>
     
     
-
+<div class="d-box" *ngIf="interest== 1">
+    <div padding style="padding-bottom: 15px" >
+      <button ion-button round class="grey-btn" block (click)="ishide()">{{send_message}}</button>
+    </div>
+    <div *ngIf="hideMe">
+    <form padding [formGroup]="sellercontactfrom">
+      <h2>{{Your_Messages}}</h2>
+      <ion-textarea round rows="5" maxLength="500" placeholder="Type Message" formControlName="message"></ion-textarea>
+      <div padding class="p-b-5">
+        <button ion-button round class="grey-btn" (click)="addmessage(sellercontactfrom.value)" type="submit" block>{{Send}}</button>
+      </div>
+    </form>
+  </div>
+  </div>
     <div padding style="padding-bottom: 15px" *ngIf="ptype== 1 && user_id!=seller_id && interest== 0">
       <button ion-button round class="grey-btn" block (click)="interestedEmailToVendor(seller_id,ptype)">{{contact_seller}}</button>
     </div>
@@ -274,7 +288,7 @@
       
 
 
-      <div class="d-box" *ngIf="interest== 1">
+      <!-- <div class="d-box" *ngIf="interest== 1">
         <div padding style="padding-bottom: 15px" >
           <button ion-button round class="grey-btn" block (click)="ishide()">{{send_message}}</button>
         </div>
@@ -287,7 +301,7 @@
           </div>
         </form>
       </div>
-      </div>
+      </div> -->
 
 
 
@@ -358,7 +372,20 @@
 </div>
     
     
-
+<div class="d-box" *ngIf="interest== 1">
+    <div padding style="padding-bottom: 15px" >
+      <button ion-button round class="grey-btn" block (click)="ishide()">{{send_message}}</button>
+    </div>
+    <div *ngIf="hideMe">
+    <form padding [formGroup]="sellercontactfrom">
+      <h2>{{Your_Messages}}</h2>
+      <ion-textarea round rows="5" maxLength="500" placeholder="Type Message" formControlName="message"></ion-textarea>
+      <div padding class="p-b-5">
+        <button ion-button round class="grey-btn" (click)="addmessage(sellercontactfrom.value)" type="submit" block>{{Send}}</button>
+      </div>
+    </form>
+  </div>
+  </div>
     <div padding style="padding-bottom: 15px" *ngIf="ptype== 1 && user_id!=seller_id && interest== 0">
       <button ion-button round class="grey-btn" block (click)="interestedEmailToVendor(seller_id,ptype)">{{contact_seller}}</button>
     </div>

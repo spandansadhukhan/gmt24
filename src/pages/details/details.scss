@@ -213,6 +213,20 @@ ion-title .toolbar-title img{ width: 100px; margin: 0 auto;}
 			text-align: right;			
 			}
 		}
+		.noti-list .item {
+			padding-left: 0;
+			margin-bottom: 0;
+			border-bottom: 1px solid #dfdfdf;
+			background: none !important;
+			-webkit-box-shadow: none !important;
+			box-shadow: none !important;
+			display: inharit !important;
+			-webkit-box-align: start !important;
+			-webkit-align-items: flex-start !important;
+			-ms-flex-align: start !important;
+			align-items: flex-start !important;
+			flex-direction: row-reverse;
+		}
 	}
 	/*--end of rtl*/
 
