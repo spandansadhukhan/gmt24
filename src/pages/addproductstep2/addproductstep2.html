@@ -97,7 +97,7 @@
         </ion-item>
         <p *ngIf="!pForm.controls['status'].valid && pForm.controls['status'].touched" ion-text color="danger" padding-left>
           Status is required </p> -->
-        <ion-item class="curency-part">
+        <ion-item class="select-custom4">
           <ion-label stacked no-margin color="primary">{{countries}}*</ion-label>
           <ion-select name="country" (ionChange)="stateList($event)" formControlName="country">
             <ion-option value="{{c.id}}" *ngFor="let c of countrylists">{{c.name}}</ion-option>
