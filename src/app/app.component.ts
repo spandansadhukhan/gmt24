@@ -263,7 +263,7 @@ public allshops(){
 
 public settings(){
 
-  this.nav.setRoot('SettingsPage');
+  this.nav.push('SettingsPage');
 }
   public myaccount(){
    

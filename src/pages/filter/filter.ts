@@ -79,6 +79,7 @@ export class FilterPage {
   public seller:any;
   public Status_of_watch:any;
   public search :any;
+  public shop_id:any;
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
@@ -110,6 +111,8 @@ export class FilterPage {
     this.sellerlist();
     this.maxminpriceList();
     this.ChangeToUserLaguage(this.selectedlanguage);
+    this.sellerid = this.navParams.get('shop_id');
+    
   }
 ChangeToUserLaguage(lang){
     //alert(lang+'a')

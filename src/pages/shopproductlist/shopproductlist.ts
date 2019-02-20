@@ -135,7 +135,7 @@ productdetails(product_id){
 
   filter(){
 
-    this.navCtrl.push('FilterPage')
+    this.navCtrl.push('FilterPage',{'shop_id':this.shop_id})
 
   }
 

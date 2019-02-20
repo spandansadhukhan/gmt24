@@ -12,7 +12,27 @@
     <ion-title>{{My_Profile}}</ion-title>
   </ion-navbar>
 </ion-header>
-
+<div class="custom-dropdown" *ngIf ="isShow">
+  <ion-list radio-group>
+  <ion-list-header>{{this.Currency}}</ion-list-header>
+                
+  <ion-list class="list-area-radio">
+  <ion-item *ngFor="let c of currencylists">
+  <ion-label><img src="assets/img/{{c.image}}" alt="">{{c.code}}</ion-label>
+  <ion-radio value="{{c.code}}" (ionSelect)="selectcurrency(c.code,c.image)"></ion-radio>
+  </ion-item>
+                     
+  </ion-list>
+  <ion-row>
+      <!-- <ion-col>
+          <button block ion-button  round class="grey-btn">Ok</button>
+      </ion-col> -->
+      <ion-col>
+          <button block ion-button color="dark" round outline (click)='hide()'>{{this.Cancel}}</button>
+      </ion-col>
+  </ion-row>
+  </ion-list>
+  </div>
 <ion-content *ngIf="selectedlanguage == 1">
   <ion-list class="profile-top">
     <ion-item>
@@ -134,7 +154,7 @@
       <p *ngIf="!aForm.controls['currency_preference'].valid && aForm.controls['currency_preference'].touched" ion-text color="danger" padding-left>
         Preferred Currency is required </p> -->
 
-        <div class="custom-select-area">
+        <!-- <div class="custom-select-area">
         <ion-item>
           <ion-label stacked color="primary">{{Preferred_Currency}}*</ion-label>
           </ion-item>
@@ -160,7 +180,14 @@
           </ion-row>
           </ion-list>
           </div>
-        </div> 
+        </div>  -->
+
+        <ion-item>
+          <ion-label stacked color="primary">{{this.Currency}}*</ion-label>
+          </ion-item>
+          <ion-item class="select-custom">
+          <button ion-button block class="country-select" (click)="show()"><img src="assets/img/{{curimg}}" alt="">{{curcode}}</button>
+          </ion-item>
           <ion-item>
               <p class="upload-text">{{this.Civil_ID_Attachment}}</p>
               <button ion-button block class="grey-btn" color="light" (click)="presentActionSheet(2)">{{this.Add_Photo}}</button>
@@ -336,7 +363,7 @@
       <p *ngIf="!aForm.controls['currency_preference'].valid && aForm.controls['currency_preference'].touched" ion-text color="danger" padding-left>
         Preferred Currency is required </p> -->
 
-        <div class="custom-select-area">
+        <!-- <div class="custom-select-area">
         <ion-item>
           <ion-label stacked color="primary">{{Preferred_Currency}}*</ion-label>
           </ion-item>
@@ -362,7 +389,13 @@
           </ion-row>
           </ion-list>
           </div>
-          </div>
+          </div> -->
+          <ion-item>
+            <ion-label stacked color="primary">{{this.Currency}}*</ion-label>
+            </ion-item>
+            <ion-item class="select-custom">
+            <button ion-button block class="country-select" (click)="show()"><img src="assets/img/{{curimg}}" alt="">{{curcode}}</button>
+            </ion-item>
           <ion-item>
               <p class="upload-text">{{this.Civil_ID_Attachment}}</p>
               <button ion-button block class="grey-btn" color="light" (click)="presentActionSheet(2)">{{this.Add_Photo}}</button>

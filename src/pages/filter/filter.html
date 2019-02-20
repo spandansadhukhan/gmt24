@@ -45,12 +45,12 @@
 
 
 
-<div class="item-custom">
-  <h6>{{this.location1}}</h6>
+<ion-item class="item-custom">
+  <ion-label>{{this.location1}}</ion-label>
   <ion-select [(ngModel)]="location" (ionChange)="liststate($event)">
     <ion-option value="{{c.id}}" *ngFor="let c of countrylists">{{c.name}}</ion-option>
   </ion-select>
-</div>
+</ion-item>
 
 <ion-item class="item-custom">
   <ion-label>{{this.state}}</ion-label>
@@ -136,8 +136,7 @@
 </div>           
 
 <button ion-button round class="dark-grey-btn" (click)="onSave()">{{search}}</button>
-         
-          
+       
 </ion-content>
 
 <ion-content padding *ngIf="selectedlanguage == 2" class="rtl-arabic">
@@ -158,8 +157,8 @@
 </div>
 
 <div class="check-custom">
-  <h6 (click)="categoryshow=!categoryshow">{{this.category}}</h6>
-  <ion-list *ngIf="categoryshow" class="accordion-list">
+  <h6 (click)="categoryshow1=!categoryshow1">{{this.category}}</h6>
+  <ion-list *ngIf="categoryshow1" class="accordion-list">
       <ion-item class="check-item" *ngFor="let sc of subcategorylist">
           <ion-label>{{sc.name}}</ion-label>
           <ion-checkbox color="dark" [checked]="this.answers1.indexOf(sc.id)>=0" (ionChange)="onCatisset(sc.id, $event.checked, i)"></ion-checkbox>
