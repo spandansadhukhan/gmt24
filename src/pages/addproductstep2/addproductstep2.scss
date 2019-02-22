@@ -42,16 +42,14 @@ page-addproductstep2 {
         }
     }
     .phone-wrap ion-input{
-        padding-left: 29px;
+        // padding-left: 29px;
+        padding-left: 46px;
     }
 
     .phone-wrap ion-label{
         margin: 0 !important;
     }
 
-
-
-    
     .phone-no{
       position: absolute;
       top: 45px;
@@ -82,43 +80,46 @@ page-addproductstep2 {
       margin: 0 !important;
     }
     #lbl-43{
-      margin: 0 !important;
+      margin: 10px 0 0 !important;
+    }
+    #lbl-42 {
+      margin: 0 0 0;
     }
 
 
-        .country-select{
-          border: 1px solid #1b1b1b; 
-          background-color: #333333;
-          border-radius: 25px;
-          height: 40px !important;
-          text-align: left;
-          color: #fff;
-          position: relative;
-          padding-right: 32px !important;
-          box-shadow: none;
-          &:after{
-            content: "";
-            top: 50%;
-            margin-top: -3px;
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-top: 5px solid;
-            border-right: 5px solid transparent;
-            border-left: 5px solid transparent;
-            color: #999;
-            right: 13px;
-          }
-          .button-inner{
-            justify-content: flex-start;
-            padding: 0 15px;
-            font-size: 14px;
-          }
-          img{
-            margin-right: 10px;
-            height: 20px;
-          }
-        }
+    .country-select{
+      border: 1px solid #1b1b1b; 
+      background-color: #333333;
+      border-radius: 25px;
+      height: 40px !important;
+      text-align: left;
+      color: #fff;
+      position: relative;
+      padding-right: 32px !important;
+      box-shadow: none;
+      &:after{
+        content: "";
+        top: 50%;
+        margin-top: -3px;
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-top: 5px solid;
+        border-right: 5px solid transparent;
+        border-left: 5px solid transparent;
+        color: #999;
+        right: 13px;
+      }
+      .button-inner{
+        justify-content: flex-start;
+        padding: 0 15px;
+        font-size: 14px;
+      }
+      img{
+        margin-right: 10px;
+        height: 20px;
+      }
+    }
     
         .custom-dropdown{
           background: rgba(0, 0, 0, 0.2);
@@ -193,7 +194,7 @@ page-addproductstep2 {
           .phone-no {
             position: absolute;
             top: 45px;
-            left: 85%;
+            left: 79%;
             right: 24px;
             z-index: 99;
             border-left: 1px solid #9f9f9f;
@@ -201,8 +202,16 @@ page-addproductstep2 {
             color: white;
             padding-right: 6px;
           }
-
-
+          #lbl-43{
+            margin: 10px 0 0 !important;
+          }
+          #lbl-42 {
+            margin: 0 0 0;
+          }
+          .phone-wrap ion-input{
+            // padding-left: 29px;
+            padding-right:65px;
+          }
 
 
         }

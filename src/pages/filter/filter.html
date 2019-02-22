@@ -52,9 +52,9 @@
   </ion-select>
 </ion-item>
 
-<ion-item class="item-custom">
+<ion-item class="item-custom" *ngIf="stateVar==1">
   <ion-label>{{this.state}}</ion-label>
-  <ion-select (ionChange)="onstateset($event)">
+  <ion-select  [(ngModel)]="locationState" (ionChange)="onstateset($event)">
     <ion-option value="{{s.id}}" *ngFor="let s of statelists">{{s.name}}</ion-option>
   </ion-select>
 </ion-item>
@@ -62,7 +62,7 @@
 
 <ion-item class="item-custom">
   <ion-label>{{this.gender}}</ion-label>
-  <ion-select (ionChange)="ongenderset($event)">
+  <ion-select [(ngModel)]="genderList" (ionChange)="ongenderset($event)">
     <ion-option value="Male">{{this.male}}</ion-option>
     <ion-option value="Female">{{this.female}}</ion-option>
     <ion-option value="Unisex">{{this.unisex}}</ion-option>
@@ -79,16 +79,18 @@
   
 <ion-item class="item-custom">
   <ion-label>{{this.Bracelet_Type}}</ion-label>
-  <ion-select (ionChange)="onbraceletset($event)">
+  <ion-select [(ngModel)]="braceletType" (ionChange)="onbraceletset($event)">
     <ion-option value="{{b.id}}" *ngFor="let b of braceletlists">{{b.type}}</ion-option>
   </ion-select>
 </ion-item>
    
 <ion-item class="item-custom">
   <ion-label>{{this.Model_Year}}</ion-label>
-  <ion-select (ionChange)="onyearset($event)">
+  <ion-select [(ngModel)]="yearVar" (ionChange)="onyearset($event)"  >
     <ion-option value="{{year}}" *ngFor="let year of years">{{year}}</ion-option>
   </ion-select>
+
+
 </ion-item>    
  
 
@@ -136,6 +138,7 @@
 </div>           
 
 <button ion-button round class="dark-grey-btn" (click)="onSave()">{{search}}</button>
+<button ion-button round class="dark-grey-btn" (click)="onclear()">{{Reset_Filters}}</button>
        
 </ion-content>
 
@@ -175,9 +178,9 @@
   </ion-select>
 </ion-item>
 
-<ion-item class="item-custom">
+<ion-item class="item-custom" *ngIf="stateVar==1">
   <ion-label>{{this.state}}</ion-label>
-  <ion-select (ionChange)="onstateset($event)">
+  <ion-select  [(ngModel)]="locationState" (ionChange)="onstateset($event)">
     <ion-option value="{{s.id}}" *ngFor="let s of statelists">{{s.name}}</ion-option>
   </ion-select>
 </ion-item>
@@ -185,7 +188,7 @@
 
 <ion-item class="item-custom">
   <ion-label>{{this.gender}}</ion-label>
-  <ion-select (ionChange)="ongenderset($event)">
+  <ion-select [(ngModel)]="genderList" (ionChange)="ongenderset($event)">
     <ion-option value="Male">{{this.male}}</ion-option>
     <ion-option value="Female">{{this.female}}</ion-option>
     <ion-option value="Unisex">{{this.unisex}}</ion-option>
@@ -202,16 +205,18 @@
   
 <ion-item class="item-custom">
   <ion-label>{{this.Bracelet_Type}}</ion-label>
-  <ion-select (ionChange)="onbraceletset($event)">
+  <ion-select [(ngModel)]="braceletType" (ionChange)="onbraceletset($event)">
     <ion-option value="{{b.id}}" *ngFor="let b of braceletlists">{{b.type}}</ion-option>
   </ion-select>
 </ion-item>
    
 <ion-item class="item-custom">
   <ion-label>{{this.Model_Year}}</ion-label>
-  <ion-select (ionChange)="onyearset($event)">
+  <ion-select [(ngModel)]="yearVar" (ionChange)="onyearset($event)"  >
     <ion-option value="{{year}}" *ngFor="let year of years">{{year}}</ion-option>
   </ion-select>
+
+
 </ion-item>    
  
 
@@ -257,8 +262,10 @@
   </ion-list>
   
 </div>           
+   
 
 <button ion-button round class="dark-grey-btn" (click)="onSave()">{{search}}</button>
+<button ion-button round class="dark-grey-btn" (click)="onclear()">{{Reset_Filters}}</button>
          
           
 </ion-content>
