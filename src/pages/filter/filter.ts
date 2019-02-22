@@ -20,7 +20,19 @@ export class FilterPage {
   //public sellershow:boolean = false;
   //public statusshow:boolean = false;
   minValue: any;
-  minSize: any = { lower: 0, upper: 100 };
+  defaultPrice = {
+    lower: 0,
+    upper: 1000000
+  }
+  // minSize: any 
+  minSize
+  = {lower: 0, upper: 100};
+  
+  defaultSize = {
+    lower: 0,
+    upper: 1000000
+  }
+
   limit:any=5;
   responseData:any;
   brandlists:any;
@@ -56,6 +68,12 @@ export class FilterPage {
   yearid:any;
   searchdata:any;
   countryid:any;
+  location:any;
+  locationState:any;
+  braceletType:any;
+  genderList:any;
+  yearVar:any;
+  stateVar:any
 
   public language:any;
   public selectedlanguage:any;
@@ -80,12 +98,15 @@ export class FilterPage {
   public Status_of_watch:any;
   public search :any;
   public shop_id:any;
+  public Reset_Filters :any
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      public loadingCtrl: LoadingController,
      public authService: AuthServiceProvider,) {
 
+
+      this.stateVar=0;
       this.languages = JSON.parse(localStorage.getItem('language'));
     //console.log('Arunavalang',this.languages)
     if(this.languages){
@@ -159,6 +180,7 @@ ChangeToUserLaguage(lang){
          this.seller = res.languages.seller;
          this.Status_of_watch = res.languages.Status_of_watch;
          this.search  = res.languages.search ;
+         this.Reset_Filters = res.languages.Reset_Filters
          
          //this.Cancel= res.languages.Cancel;
         }else{
@@ -260,7 +282,8 @@ onbraceletset(id){
   
 }
 onyearset(id){
-
+  console.log('onyearset')
+  
   if(id){
     this.yearid = id;
   }else{
@@ -274,7 +297,7 @@ priceslider(id){
   if(id){
   this.min=id.value.lower;
   this.max=id.value.upper;
-  //console.log('price',id.value.lower);
+  // console.log('price',id);
   }
 }
 
@@ -421,7 +444,7 @@ liststate(cid){
   this.countryid=cid;
   this.authService.satelist({"c_id": cid}).subscribe(res=>{
     if(res.Ack==1){
-     
+      this.stateVar=1;
      //console.log(res.countrylist);
     this.statelists=res.statelist;
     }else{
@@ -455,10 +478,9 @@ braceletlist(){
 
 
 yearlist(){
-
+  console.log('yearlist')
   this.authService.yearlist({}).subscribe(res=>{
     if(res.Ack==1){
-     
      //console.log(res.countrylist);
     this.years=res.Years;
     }else{
@@ -567,5 +589,44 @@ this.navCtrl.push('SearchPage',{"param":this.searchdata});
 
 }
 
+onclear(){
+  console.log('clear');
+  this.stateVar=0;
+  this.minValue = Object.assign({}, this.defaultPrice);
+  this.answers=[];
+  this.answers1=[];
+  this.answers3=[];
+  this.answers4=[];
+  this.answers2=[];
+  this.location=[];
+  this.locationState=[];
+  this.braceletType=[];
+  this.genderList=[];
+  this.yearVar=[];
+  this.minSize=Object.assign({}, this.defaultSize);
+  
+  // this.brandid = "";
+  // this.catid = "";
+  // this.movementid ="";
+  // this.sellerid ="";
+  // this.statusid="";
+
+  // this.max=this.maxprice;
+  // this.max=100000;
+  // this.maxprice=100000;
+
+  // this.min=this.minprice;
+  // this.min=0;
+  // this.minprice=0;
+
+  // this.braceletid = this.braceletid;
+  // this.minslidesize = 0;
+  // this.maxslidesize = 100;
+  // this.stateid ="";
+  // this.genderid ="";
+  // this.yearid=""
+  // this.countryid = "";
+
+}
 
 }
