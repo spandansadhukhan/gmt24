@@ -6,6 +6,9 @@ import { Storage } from '@ionic/storage';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { Events,LoadingController } from 'ionic-angular';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
+import { GooglePlus } from '@ionic-native/google-plus';
+import { Facebook } from '@ionic-native/facebook';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -57,18 +60,20 @@ export class MyApp {
   public path:any;
   constructor(
     public platform: Platform,
-    private storage: Storage, statusBar: StatusBar, 
+    private storage: Storage, statusBar: StatusBar,
     splashScreen: SplashScreen,
     public authService: AuthServiceProvider,
     public loadingCtrl: LoadingController,
     public events: Events,
     public alertCtrl: AlertController,
-    private push: Push,) {
+    private push: Push,
+    public fb: Facebook,
+    public googlePlus: GooglePlus) {
 
       this.languages = JSON.parse(localStorage.getItem('language'));
     //console.log('Arunavalang',this.languages)
     //localStorage.removeItem('language');
-    
+
 
 
 
@@ -77,24 +82,24 @@ export class MyApp {
     }else{
       this.selectedlanguage ='1';
     }
-   
+
       platform.ready().then(()=>{
-       
+
         events.subscribe('hideFooter', (data) => {
           this.footerIsHidden = data.isHidden;
         })
       this.initPushNotification();
       this.storage.get('uid').then(val => {
         this.id =val;
-   
+
             if(this.id){
               events.publish('hideFooter', {isHidden: false});
               this.nav.setRoot('HomePage');
 
-              
-              
+
+
         }else{
-         
+
           events.publish('hideFooter', {isHidden: true});
           this.nav.setRoot('AdvertisePage');
         }
@@ -107,12 +112,12 @@ export class MyApp {
     });
 
      setInterval(() => {
-      this.storage.get('uid').then(val => { 
+      this.storage.get('uid').then(val => {
       this.notificationcount(val);
-      
+
     });
     }, 1000);
- 
+
 
 })
 
@@ -130,8 +135,8 @@ export class MyApp {
 
 
 
-  
-  
+
+
   ChangeToUserLaguage1(lang){
     //alert(lang+'a')
       let serval={
@@ -141,10 +146,10 @@ export class MyApp {
         content: 'Please Wait...'
       });
       loading.present();
-   
-      
+
+
       this.authService.changeLaguage(serval).subscribe(res=>{
-        
+
         if(res.Ack==1){
          loading.dismiss();
         //console.log(res.languages)
@@ -175,37 +180,70 @@ export class MyApp {
          this.watches = res.languages.watches;
          this.shops = res.languages.shops;
          this.about_us=res.languages.about_us;
-         
 
-         
+
+
          //this.Cancel= res.languages.Cancel;
         }else{
-    
+
          //loading.dismiss();
-        
+
         }
        },err=>{
          //loading.dismiss();
-        
+
       });
-    
+
     }
-  public logout(){
-    this.storage.ready().then(() => {
-     // const data=localStorage.getItem("userData");
-    localStorage.removeItem('userData');
-    localStorage.removeItem('selectedcurrency');
-    localStorage.removeItem('language');
-    localStorage.setItem('userData',"");
-    this.storage.set("uid","");
-    this.nav.setRoot('LoginnewPage');
-   // clearInterval(this.refreshIntervalId);
-  });
-}
+    doFbLogout(){
+      this.fb.logout()
+      .then((response) => {
+        //user logged out so we will remove him from the NativeStorage
+        console.log('logout response',response);
+        // alert(response);
+        localStorage.removeItem('fblogin');
+      }, (error) => {
+        console.log(error);
+        // alert(error);
+
+      });
+    }
+
+    doGoogleLogout(){
+      this.googlePlus.logout()
+      .then((response) => {
+        console.log('logout response',response);
+        // alert(response);
+        localStorage.removeItem('googlelogin');
+      },(error) => {
+        console.log(error);
+        // alert(error);
+      })
+    }
+
+    public logout(){
+      let that = this;
+      this.storage.ready().then(() => {
+       // const data=localStorage.getItem("userData");
+      if(localStorage.getItem('fblogin') == 'true'){
+        that.doFbLogout();
+      } else if(localStorage.getItem('googlelogin') == 'true'){
+        that.doGoogleLogout();
+      }
+
+      localStorage.removeItem('userData');
+      localStorage.removeItem('selectedcurrency');
+      localStorage.removeItem('language');
+      localStorage.setItem('userData',"");
+      this.storage.set("uid","");
+      this.nav.setRoot('LoginnewPage');
+     // clearInterval(this.refreshIntervalId);
+    });
+    }
 
 abc(){
  // alert("jdh")
-  this.loguser =  JSON.parse(localStorage.getItem('userData'));   
+  this.loguser =  JSON.parse(localStorage.getItem('userData'));
   if(this.loguser){
     this.events.publish('hideFooter', {isHidden: false});
   if(this.loguser.user_type=="1"){
@@ -228,7 +266,7 @@ abc(){
 
 // ChangeToUserLaguage()
 // {
-//   this.loguser =  JSON.parse(localStorage.getItem('userData'));   
+//   this.loguser =  JSON.parse(localStorage.getItem('userData'));
 //   if(this.loguser){
 //     this.events.publish('hideFooter', {isHidden: false});
 //   if(this.loguser.user_type=="1"){
@@ -241,11 +279,11 @@ abc(){
 //   }
 // }
 public home(){
-   
+
   this.nav.setRoot('HomePage');
- 
-} 
- 
+
+}
+
 public allwatches(){
 
   this.nav.setRoot('SearchPage');
@@ -266,51 +304,51 @@ public settings(){
   this.nav.push('SettingsPage');
 }
   public myaccount(){
-   
+
     this.nav.push('MyaccountPage');
-     
-  } 
+
+  }
 
 
-  public changepassword(){ 
-  
+  public changepassword(){
+
     this.nav.push('ChangepasswordPage');
-    
+
     }
 
-  public changecurrency(){ 
-  
+  public changecurrency(){
+
     this.nav.push('CurrencychangePage');
-    
+
     }
-    public changelanguage(){ 
-  
+    public changelanguage(){
+
       this.nav.push('LanguagePage');
-      
-      }
-    
-  public notifications(){ 
-  
-      this.nav.setRoot('NotificationPage');
-      
+
       }
 
-  public addproduct(){ 
+  public notifications(){
+
+      this.nav.setRoot('NotificationPage');
+
+      }
+
+  public addproduct(){
 
     this.nav.push('AddproductPage');
-    
-    }  
-    public myproduct(){ 
+
+    }
+    public myproduct(){
 
       this.nav.push('MyproductPage');
-      
+
       }
 
 
-      public myauction(){ 
+      public myauction(){
 
         this.nav.push('MyauctionPage');
-        
+
         }
 
        public wishlist()
@@ -403,15 +441,15 @@ public settings(){
             windows: {}
           };
           const pushObject: PushObject = this.push.init(options);
-        
+
           pushObject.on('registration').subscribe((registration: any) => {
             console.log('Device registered', registration);
-      
-      
+
+
             localStorage.setItem('TOKEN', registration.registrationId);
-      
+
             this.token= localStorage.getItem('TOKEN');
-            
+
           });
           pushObject.on('notification').subscribe((data: any) => {
             console.log('message -> ' + data.body);
@@ -443,11 +481,11 @@ public settings(){
             }
           });
           pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
-        
-          
-         
+
+
+
         }
-        
+
 //for push notification end
 
 
@@ -456,26 +494,26 @@ notificationcount(id){
   let serval={
     "user_id": id,
   }
-  
+
   this.authService.postData(serval,'notiount').then((result) => {
     this.responseData = result
 
     if( this.responseData.Ack == 1)
     {
-     
+
       this.count =  this.responseData.count;
     }
     else
     {
-      
+
       this.count = 0;
-      
+
     }
-   
+
   }, (err) => {
-    
+
     console.log(err);
-    
+
   });
 
 }
