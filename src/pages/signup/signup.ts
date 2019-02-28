@@ -40,7 +40,7 @@ export class SignupPage {
       'country': [null, Validators.required],
       'confirm_password' : [null, Validators.required]
     });
-    this.rForm.controls['type'].setValue('2');
+    //this.rForm.controls['type'].setValue('2');
 
   }
 
@@ -98,7 +98,7 @@ export class SignupPage {
         loading.dismiss();
         const alert = this.alertCtrl.create({
           title: 'Error!',
-          subTitle: 'Please Signup Again.',
+          subTitle: res.msg,
           buttons: ['OK']
         });
       alert.present();
