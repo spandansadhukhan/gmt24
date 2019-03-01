@@ -21,8 +21,8 @@
         </ion-col>
 
       </ion-row>
-      <p *ngIf="!showusertype" style="color:#fff">Register as vendor</p>
-      <p *ngIf="showusertype" style="color:#fff">Register as user</p>
+      <p *ngIf="showusertype == 2" style="color:#fff">Register as vendor</p>
+      <p *ngIf="showusertype == 1" style="color:#fff">Register as user</p>
 
     </ion-grid>
     <ion-list class="mb-0">

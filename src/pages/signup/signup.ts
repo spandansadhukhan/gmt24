@@ -17,7 +17,7 @@ export class SignupPage {
   phonecode:any;
   signupMessage:any;
   passwordmatch: boolean = false;
-  showusertype: boolean = false;
+  showusertype: any;
   constructor(
     private builder: FormBuilder,
     public navCtrl: NavController,
@@ -173,15 +173,15 @@ export class SignupPage {
 
   login() {
     this.navCtrl.setRoot('LoginnewPage');
-    this.showusertype=false;
+    this.showusertype=0;
   }
 
   usertype(id){
     //alert(id);
     if(id== 1){
-      this.showusertype=true;
+      this.showusertype=1;
     }else{
-      this.showusertype=false;
+      this.showusertype=2;
     }
    
   }
